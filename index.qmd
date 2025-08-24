@@ -1,0 +1,32 @@
+---
+title: "[INSERT WORKSHOP SHORT TITLE]"
+subtitle: "[INSERT WORKSHOP EXTENDED TITLE]"
+toc: true
+---
+
+**[INSERT WORKSHOP DATE/TIME]**
+
+[INSERT WORKSHOP LOCATION]
+
+# Welcome
+
+[DESCRIPTION OF WORKSHOP]
+
+## Arrival
+
+The event starts at XXX on the XXX and will take place at XXX.
+
+## Schedule
+
+| Time            | Event                       |
+|-----------------|-----------------------------|
+| **PLACEHOLDER** | **PLACEHOLDER**             |
+| **PLACEHOLDER** | **PLACEHOLDER**             |
+| **PLACEHOLDER** | **PLACEHOLDER**             |
+| **PLACEHOLDER** | **PLACEHOLDER**             |
+| **PLACEHOLDER** | **PLACEHOLDER**             |
+| **PLACEHOLDER** | **PLACEHOLDER**             |
+
+## Instructors
+
+## Installation

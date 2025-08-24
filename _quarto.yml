@@ -1,0 +1,59 @@
+project:
+  type: website
+
+website:
+  title: "SU-OSPO Workshops"
+  image: "/images/SU-OSPO_white_border.png"
+  favicon: "/images/SU-OSPO.png"
+  open-graph: true
+  twitter-card: true
+  site-url: enter_gitHub_pages_URL_here
+  repo-url: enter_github_repo_URL_here
+  page-navigation: true
+  navbar:
+    border: true
+    background: "#F76900"
+    foreground: "#000E54"
+    collapse: false
+    right:
+      - icon: github
+        href: https://github.com/SU-OSPO
+        aria-label: "SU-OSPO on GitHub"
+        target: _blank
+      - text: "<img src='/images/SU-OSPO_white_border.png' height=23.5 style='padding-bottom:3px'>"
+        href: https://opensource.syracuse.edu
+        aria-label: "SU-OSPO homepage"
+        target: _blank
+  sidebar:
+    logo: "/images/SU-OSPO_white_border.png"
+    align: center
+    border: true
+    background: "#F76900"
+    foreground: "#000E54"
+    title: false
+    pinned: true
+    style: "docked"
+    collapse-level: 1
+    contents: auto
+  page-footer:
+    border: true
+    right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
+    left: "&copy; Copyright 2025, [Syracuse University Open Source Program Office](https://opensource.syracuse.edu/)"
+    background: "#F76900"
+    foreground: "#000E54"
+
+format:
+  html:
+    theme:
+      - lumen
+      - fonts.scss
+    toc: true
+    mainfont: ShermanSans, Verdana, sans-serif
+
+callout-appearance: default
+
+execute:
+  freeze: auto
+
+
+
