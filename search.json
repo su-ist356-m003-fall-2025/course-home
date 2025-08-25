@@ -1,0 +1,151 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "",
+    "text": "Room: Hinds Hall 021\nTime: M/W 3:45PM - 5:05PM\nInstructor: Collin Capano\nEmail: cdcapano@syr.edu\nOffice hours: Tuesdays, 11AM - 1PM in Hinds Hall 363G\nSyllabus"
+  },
+  {
+    "objectID": "index.html#course-info",
+    "href": "index.html#course-info",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "",
+    "text": "Room: Hinds Hall 021\nTime: M/W 3:45PM - 5:05PM\nInstructor: Collin Capano\nEmail: cdcapano@syr.edu\nOffice hours: Tuesdays, 11AM - 1PM in Hinds Hall 363G\nSyllabus"
+  },
+  {
+    "objectID": "index.html#class-schedule",
+    "href": "index.html#class-schedule",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "Class Schedule",
+    "text": "Class Schedule\nNote: schedule subject to change as we progress through the semester.\n\n\n\nWeek\nDates\nTopic\n\n\n\n\n1\n8/25, 8/29\nIntro; CLI and Conda\n\n\n2\n9/3\nPython review - 1\n\n\n3\n9/8, 9/10\nPython review - 2\n\n\n4\n9/15, 9/17\nUI\n\n\n5\n9/22, 9/24\nData wrangling - 1\n\n\n6\n9/29, 10/1\nData wrangling - 2\n\n\n7\n10/6, 10/8\nData wrangling - 3\n\n\n8\n10/15\nExam 1\n\n\n9\n10/20, 10/22\nWeb APIs - 1\n\n\n10\n10/27, 10/29\nWeb APIs - 2\n\n\n11\n11/3, 11/5\nWeb scraping - 1\n\n\n12\n11/10, 11/12\nWeb scraping - 2\n\n\n13\n11/17, 11/19\nData visualization - 1\n\n\n14\n12/1, 12/3\nData visualization - 2\n\n\n15\n12/8\nExam 2\n\n\n16\n12/15\nProject due"
+  },
+  {
+    "objectID": "index.html#important-dates",
+    "href": "index.html#important-dates",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "Important dates",
+    "text": "Important dates\n\n\n\n\n\n\n\nDate\n\n\n\n\n\nMon. 8/25\nFirst day of class\n\n\nMon. 9/1\nLabor day - No class\n\n\nMon. 9/15\nAcademic/Financial drop deadline; Religious observance notification deadline\n\n\nMon. 10/13\nFall break - No class\n\n\nFri. 11/21\nWithdrawal deadline\n\n\n11/23-11/30\nThanksgiving Break - No class\n\n\nMon. 12/8\nLast day of class"
+  },
+  {
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "",
+    "text": "Room: Hinds Hall 021\nTime: M/W 3:45PM - 5:05PM\nInstructor: Collin Capano\nEmail: cdcapano@syr.edu\nOffice hours: Tuesdays, 11AM - 1PM in Hinds Hall 363G\nSyllabus",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "IST 356: Programming Techniques for Data Analytics"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#course-info",
+    "href": "syllabus.html#course-info",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "",
+    "text": "Room: Hinds Hall 021\nTime: M/W 3:45PM - 5:05PM\nInstructor: Collin Capano\nEmail: cdcapano@syr.edu\nOffice hours: Tuesdays, 11AM - 1PM in Hinds Hall 363G\nSyllabus",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "IST 356: Programming Techniques for Data Analytics"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#course-description",
+    "href": "syllabus.html#course-description",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "Course Description",
+    "text": "Course Description\nApproaches for building pipelines in data analytics using the Python programming language; data cleaning, extraction, wrangling, API’s, web scraping. Building data products. Programming experience required.\n\nAdditional Course Description\nThis course is a tour of programming techniques for building data pipelines for analytics. It will not just emphasize exploratory approaches, but also techniques to build extract transform load pipelines to run code in production. Throughout the course we will learn how to source data from a variety of sources (files, data streams, APIs, web scraping, etc.) and ultimately transform data as to prepare it for dashboards or machine learning. You will also learn some simple data visualization but that is not the primary emphasis of the course.\n\n\nPrerequisites\nThis courses uses the Python programming language. Proficiency n any programming language is the only pre-requisite. Students should have a clear understanding of these concepts:\n\nInput, output, variables and data types\nControl flow statements (if, for, while)\nFunctions (function definition, calling, parameters, return values)\nData structures (lists, dictionaries)\nUsing code in other libraries\n\n\n\nAudience: IST256 or IST356?\nThis course is intended as a follow up course to IST256. It is also appropriate for students with prior experience with programming who have an interest in data analytics.\n\nIST256 is for students with little to no programming experience. The course content is 75% python fundamentals and 25% python for data analytics.\nIST356 is for students with prior programming experience. The course content is 25% python fundamentals and 75% python for data analytics.\n\n\n\nCredits\n3 credits\n\n\nCourse Fees\nNone",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "IST 356: Programming Techniques for Data Analytics"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#learning-objectives",
+    "href": "syllabus.html#learning-objectives",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nUpon completion of this course, students will be able to:\n\nExplain techniques for sourcing or transforming data, and be able to justify the choice of technique\nSolve data-oriented problems using programming techniques\nEvaluate different code modules and application programming interfaces for suitability\nApply data transformational programming techniques to build a larger data pipelines\nCreate production quality data pipelines from exploratory code",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "IST 356: Programming Techniques for Data Analytics"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#textbooks-and-supplies",
+    "href": "syllabus.html#textbooks-and-supplies",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "Textbooks And Supplies",
+    "text": "Textbooks And Supplies\n\nTextbooks\nThere is no textbook you need to purchase for this course. All required readings are available freely online, and in many cases, the online sources are the most up-to-date references to the relevant course material. See reading list section for additional details.\n\nMain Text\n\nPython Programming for Data Science, by T. Beuzen (2021) https://www.tomasbeuzen.com/python-programming-for-data-science/\n\n\n\n\nBring Your Own Device\nYou are expected to bring your computer to each class session. This class is very hands-on, and you will be programming in class often.\n\nSoftware to install\nThis course requires you to install software on your computer. The intro section of this course provides detailed instructions.\n\nVisual Studio Code editor\n(Windows users only): Git Source Code Managment\nMiniconda\n\n\n\nAccounts\n\nWe will use Github for assignment submission.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "IST 356: Programming Techniques for Data Analytics"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#course-requirements-and-expectations",
+    "href": "syllabus.html#course-requirements-and-expectations",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "Course Requirements and Expectations",
+    "text": "Course Requirements and Expectations\n\nAttendance and Participation\nIn-class participation is the best way to learn and absorb the material. As such, you are expected to attend and participate in every class session. Your grade will be partially based on attendance (see below for details). If you must miss class, you are responsible for making up the work and catching up on what you missed. Lectures will be recorded and posted to the course website after the class.\n\n\nAssignments\nThe assignments are programming / problem solving activities that you will complete outside of class. The assignment due dates are posted on the course schedule. Consider these assignments formative assessments - practice so you can get better at computational thinking, problem solving and writing code. It is important to reflect upon your work and take an honest assessment of your abilities as you complete each assignment.\nEach Wednesday we will review the homework assignment. Students will be asked to contribute to the discussion.\nFactors affecting your grade:\n\nIs the code working and correct?\nWere the instructions followed? (e.g. commit after each function is written)\nGood reflection: specific, uses terminology, actionable\nHanded in on time, so your prof only needs to review submissions 1 time.\n\n\n\nExams\nExams are summative assessments. They are designed to test your knowledge of the material. The exams will be issued in class on the dates posted on the course schedule. Exams are closed-book but you may bring one 8.5x11 sheet of paper with your notes on it. Exams length is 60 minutes. They will be a mix of mix of multiple choice, short answer and code tracing and code writing.\n\n\nProject\nThe project is your opportunity to demonstrate what you have learned in an experiential fashion. In your final project you will be expected to create a data pipeline of your choosing.\n\nThe pipeline should incorporate techniques we learned in the course and the more techniques you incorporate correctly the higher your grade.\nIt is expected that you will be able to explain your choices, and they will be appropriate for the problem.\nThe pipeline should be first written exploratory, and then refactored into a production quality pipeline. Both pipelines should be submitted.\nThere should be a simple data visualization or dashboard from the pipeline output as to demonstrate its usefulness.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "IST 356: Programming Techniques for Data Analytics"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#grading",
+    "href": "syllabus.html#grading",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "Grading",
+    "text": "Grading\n\n\n\n\n\n\n\n\n\n\n\nAssessment\nType\nLearning Outcomes\nQuantity\nPoints Each\nPoints Total\n\n\n\n\nAttendance\nFormative\n\n25\n1\n25\n\n\nAssignments\nFormative\n1, 2\n10\n3\n30\n\n\nExams\nSummative\n3, 4\n2\n25\n50\n\n\nProject\nSummative\n5\n1\n20\n20\n\n\nTotal\n\n\n\n\n125\n\n\n\n\nGrading Table\nThe following grading scale translates your total points earned into a letter grade to be submitted to the University registrar.\n\n\n\n\n\n\n\n\n\nStudent Achievement\nTotal Points Earned\nRegistrar Grade\nGrade Points\n\n\n\n\nMastery\n95 - 100\nA\n4.000\n\n\n\n90 - 94\nA-\n3.666\n\n\nSatisfactory\n85 - 89\nB+\n3.333\n\n\n\n80 - 84\nB\n3.000\n\n\n\n75 - 79\nB-\n2.666\n\n\nLow Passing\n70 - 74\nC+\n2.333\n\n\n\n65 - 69\nC\n2.000\n\n\n\n60 - 64\nC-\n1.666\n\n\nUnsatisfactory\n50 - 60\nD\n1.000\n\n\n\n0 - 49\nF\n0.000",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "IST 356: Programming Techniques for Data Analytics"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#use-of-ai-in-this-course",
+    "href": "syllabus.html#use-of-ai-in-this-course",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "Use of AI in this Course",
+    "text": "Use of AI in this Course\nBased on the assignments in this course and our specified learning outcomes, the full use of artificial intelligence as a tool, with disclosure and citation, is permitted in this course. Students do not need to ask permission to use these tools before starting an assignment or exam, but they must explicitly and fully indicate which tools were used and describe how they were used.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "IST 356: Programming Techniques for Data Analytics"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#academic-integrity",
+    "href": "syllabus.html#academic-integrity",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "Academic Integrity",
+    "text": "Academic Integrity\nAs a pre-eminent and inclusive student-focused research institution, Syracuse University considers academic integrity at the forefront of learning, serving as a core value and guiding pillar of education. Syracuse University’s Academic Integrity Policy provides students with the necessary guidelines to complete academic work with integrity throughout their studies. Students are required to uphold both course-specific and university-wide academic integrity expectations such as crediting your sources, doing your own work, communicating honestly, and supporting academic integrity. The full Syracuse University Academic Integrity Policy can be viewed by visiting the Syracuse University Policies website.\nUpholding Academic Integrity includes the protection of faculty’s intellectual property. Students should not upload, distribute, or share instructors’ course materials, including presentations, assignments, exams, or other evaluative materials without permission. Using websites that charge fees or require uploading of course material (e.g., Chegg, Course Hero) to obtain exam solutions or assignments completed by others, which are then presented as your own violates academic integrity expectations in this course and may be classified as a Level 3 violation. All academic integrity expectations that apply to in-person assignments, quizzes, and exams also apply online.\nStudents found in violation of the policy are subject to grade sanctions determined by the course instructor and non-grade sanctions determined by the School or College where the course is offered. Students may not drop or withdraw from courses in which they face a suspected violation. Any established violation in this course may result in course failure regardless of violation level.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "IST 356: Programming Techniques for Data Analytics"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#class-schedule",
+    "href": "syllabus.html#class-schedule",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "Class Schedule",
+    "text": "Class Schedule\nNote: schedule subject to change as we progress through the semester.\n\n\n\nWeek\nDates\nTopic\n\n\n\n\n1\n8/25, 8/29\nIntro; CLI and Conda\n\n\n2\n9/3\nPython review - 1\n\n\n3\n9/8, 9/10\nPython review - 2\n\n\n4\n9/15, 9/17\nUI\n\n\n5\n9/22, 9/24\nData wrangling - 1\n\n\n6\n9/29, 10/1\nData wrangling - 2\n\n\n7\n10/6, 10/8\nData wrangling - 3\n\n\n8\n10/15\nExam 1\n\n\n9\n10/20, 10/22\nWeb APIs - 1\n\n\n10\n10/27, 10/29\nWeb APIs - 2\n\n\n11\n11/3, 11/5\nWeb scraping - 1\n\n\n12\n11/10, 11/12\nWeb scraping - 2\n\n\n13\n11/17, 11/19\nData visualization - 1\n\n\n14\n12/1, 12/3\nData visualization - 2\n\n\n15\n12/8\nExam 2\n\n\n16\n12/15\nProject due",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "IST 356: Programming Techniques for Data Analytics"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#important-dates",
+    "href": "syllabus.html#important-dates",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "Important dates",
+    "text": "Important dates\n\n\n\n\n\n\n\nDate\n\n\n\n\n\nMon. 8/25\nFirst day of class\n\n\nMon. 9/1\nLabor day - No class\n\n\nMon. 9/15\nAcademic/Financial drop deadline; Religious observance notification deadline\n\n\nMon. 10/13\nFall break - No class\n\n\nFri. 11/21\nWithdrawal deadline\n\n\n11/23-11/30\nThanksgiving Break - No class\n\n\nMon. 12/8\nLast day of class",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "IST 356: Programming Techniques for Data Analytics"
+    ]
+  }
+]
