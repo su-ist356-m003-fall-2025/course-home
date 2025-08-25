@@ -1,0 +1,194 @@
+---
+title: "IST 356: Programming Techniques for Data Analytics"
+subtitle: "Syracuse University, Fall 2025"
+toc: true
+---
+
+## Course info
+
+**Room:** Hinds Hall 021
+**Time:** M/W 3:45PM - 5:05PM
+
+**Instructor:** Collin Capano
+**Email:** cdcapano@syr.edu
+**Office hours:** Tuesdays, 11AM - 1PM in Hinds Hall 363G
+
+## Course Description
+Approaches for building pipelines in data analytics using the Python programming language; data cleaning, extraction, wrangling, API’s, web scraping. Building data products. Programming experience required.
+
+### Additional Course Description
+
+This course is a tour of programming techniques for building data pipelines for analytics. It will not just emphasize exploratory approaches, but also techniques to build extract transform load pipelines to run code in production. 
+Throughout the course we will learn how to source data from a variety of sources (files, data streams, APIs, web scraping, etc.) and ultimately transform data as to prepare it for dashboards or machine learning. You will also learn 
+some simple data visualization but that is not the primary emphasis of the course. 
+
+### Prerequisites
+
+ This courses uses the Python programming language. Proficiency n any programming language is the only pre-requisite. Students should have a clear understanding of these concepts: 
+
+ - Input, output, variables and data types
+ - Control flow statements (if, for, while)
+ - Functions (function definition, calling, parameters, return values)
+ - Data structures (lists, dictionaries)
+ - Using code in other libraries 
+
+### Audience: IST256 or IST356?
+
+This course is intended as a follow up course to IST256. It is also appropriate for students with prior experience with programming who have an interest in data analytics.
+
+- IST256 is for students with little to no programming experience. The course content is 75% python fundamentals and 25% python for data analytics. 
+- IST356 is for students with prior programming experience. The course content is 25% python fundamentals and 75% python for data analytics. 
+
+### Credits
+
+3 credits
+
+### Course Fees
+
+None
+
+## Learning Objectives
+
+Upon completion of this course, students will be able to:
+
+1. Explain techniques for sourcing or transforming data, and be able to justify the choice of technique
+2. Solve data-oriented problems using programming techniques
+3. Evaluate different code modules and application programming interfaces for suitability
+4. Apply data transformational programming techniques to build a larger data pipelines
+5. Create production quality data pipelines from exploratory code
+
+
+## Textbooks And Supplies
+
+### Textbooks
+
+There is no textbook you need to purchase for this course. All required readings are available freely online, and in many cases, the online sources are the most up-to-date references to the relevant course material. See reading list section for additional details. 
+
+#### Main Text
+
+- Python Programming for Data Science, by T. Beuzen (2021)
+[https://www.tomasbeuzen.com/python-programming-for-data-science/](https://www.tomasbeuzen.com/python-programming-for-data-science/)
+
+
+### Bring Your Own Device
+
+You are expected to bring your computer to each class session. This class is very hands-on, and you will be programming in class often. 
+
+#### Software to install
+
+This course requires you to install software on your computer. The intro section of this course provides detailed instructions.
+
+- Visual Studio Code editor
+- (Windows users only): Git Source Code Managment
+- Miniconda
+
+#### Accounts
+
+- We will use Github for assignment submission. 
+
+## Course Requirements and Expectations
+
+### Attendance and Participation
+
+In-class participation is the best way to learn and absorb the material. As such, you are expected to attend and participate in every class session. Your grade will be partially based on attendance (see below for details). If you must miss class, you are responsible for making up the work and catching up on what you missed. Lectures will be recorded and posted to the course website after the class.
+
+### Assignments
+
+The assignments are programming / problem solving activities that you will complete outside of class. The assignment due dates are posted on the course schedule. Consider these assignments formative assessments - practice so you can get better at computational thinking, problem solving and writing code. It is important to reflect upon your work and take an honest assessment of your abilities as you complete each assignment. 
+
+Each Wednesday we will review the homework assignment. Students will be asked to contribute to the discussion.
+
+Factors affecting your grade:
+
+- Is the code working and correct?
+- Were the instructions followed? (e.g. commit after each function is written)
+- Good reflection: specific, uses terminology, actionable
+- Handed in on time, so your prof only needs to review submissions 1 time.
+
+### Exams
+
+Exams are summative assessments. They are designed to test your knowledge of the material.  The exams will be issued in class on the dates posted on the course schedule. Exams are closed-book but you may bring one 8.5x11 sheet of paper with your notes on it. Exams length is 60 minutes. They will be a mix of mix of multiple choice, short answer and code tracing and code writing.
+
+### Project
+
+The project is your opportunity to demonstrate what you have learned in an experiential fashion. In your final project you will be expected to create a data pipeline of your choosing. 
+
+- The pipeline should incorporate techniques we learned in the course and the more techniques you incorporate correctly the higher your grade.
+- It is expected that you will be able to explain your choices, and they will be appropriate for the problem.
+- The pipeline should be first written exploratory, and then refactored into a production quality pipeline. Both pipelines should be submitted.
+- There should be a simple data visualization or dashboard from the pipeline output as to demonstrate its usefulness.
+
+## Grading
+
+| Assessment | Type | Learning Outcomes | Quantity | Points Each | Points Total |
+|------------|------|-------------------|----------|-------------|--------------|
+| Attendance | Formative | | 25 | 1 | 25 |
+| Assignments | Formative | 1, 2 | 10 | 3 | 30 |
+| Exams | Summative | 3, 4 | 2 | 25 | 50 |
+| Project | Summative | 5 | 1 | 20 | 20 |
+| **Total** | | | | | **125** |
+
+### Grading Table
+
+The following grading scale translates your total points earned into a letter grade to be submitted to the University registrar.
+
+| Student Achievement | Total Points Earned	| Registrar Grade |Grade Points |
+|---------------------|---------------------|-----------------|-------------|
+| Mastery | 95 - 100 | A | 4.000 |
+| | 90 - 94 | A- | 3.666 |
+| Satisfactory | 85 - 89 | B+ | 3.333 |
+| | 80 - 84   | B | 3.000 |
+| | 75 - 79  | B- | 2.666 |
+| Low Passing  | 70 - 74 | C+ | 2.333 |
+| | 65 - 69  | C | 2.000 |
+| | 60 - 64  | C- | 1.666 |
+| Unsatisfactory | 50 - 60  | D | 1.000 |
+| | 0 - 49 | F | 0.000 |
+
+## Other Policies
+
+### Use of AI in this Course
+
+Based on the assignments in this course and our specified learning outcomes, the full use of artificial intelligence as a tool, with disclosure and citation, is permitted in this course. Students do not need to ask permission to use these tools before starting an assignment or exam, but they must explicitly and fully indicate which tools were used and describe how they were used.
+
+### Academic Integrity
+
+As a pre-eminent and inclusive student-focused research institution, Syracuse University considers academic integrity at the forefront of learning, serving as a core value and guiding pillar of education. Syracuse University’s Academic Integrity Policy provides students with the necessary guidelines to complete academic work with integrity throughout their studies. Students are required to uphold both course-specific and university-wide academic integrity expectations such as crediting your sources, doing your own work, communicating honestly, and supporting academic integrity. The full [Syracuse University Academic Integrity Policy](https://policies.syr.edu/policies/academic-rules-student-responsibilities-and-services/academic-integrity-policy/) can be viewed by visiting the [Syracuse University Policies website](https://policies.syr.edu/).
+
+Upholding Academic Integrity includes the protection of faculty’s intellectual property. Students should not upload, distribute, or share instructors’ course materials, including presentations, assignments, exams, or other evaluative materials without permission. Using websites that charge fees or require uploading of course material (e.g., Chegg, Course Hero) to obtain exam solutions or assignments completed by others, which are then presented as your own violates academic integrity expectations in this course and may be classified as a Level 3 violation. All academic integrity expectations that apply to in-person assignments, quizzes, and exams also apply online.
+
+Students found in violation of the policy are subject to grade sanctions determined by the course instructor and non-grade sanctions determined by the School or College where the course is offered. Students may not drop or withdraw from courses in which they face a suspected violation. Any established violation in this course may result in course failure regardless of violation level.
+
+
+## Important dates
+
+| Mon. 8/25 | First day of class |
+| Mon. 9/1 | Labor day - **No class** |
+| Mon. 9/15 | Academic/Financial drop deadline; Religious observance notification deadline |
+| Mon. 10/13 | Fall break - **No class** |
+| Fri. 11/21 | Withdrawal deadline |
+| Week of 11/23 - 11/30 | Thanksgiving Break - **No class** |
+| Mon. 12/8 | Last day of class |
+
+
+## Class Schedule
+
+*Note:* schedule subject to change as we progress through the semester.
+
+| Week | Dates | Topic |
+| 1  | 8/25, 8/29 | Intro; CLI and Conda |
+| 2  | 9/3 | Python review - 1 |
+| 3  | 9/8, 9/10 | Python review - 2 |
+| 4  | 9/15, 9/17 | UI |
+| 5  | 9/22, 9/24 | Data wrangling - 1 |
+| 6  | 9/29, 10/1 | Data wrangling - 2 |
+| 7  | 10/6, 10/8 | Data wrangling - 3 |
+| 8  | 10/15      | Exam 1 |
+| 9  | 10/20, 10/22 | Web APIs - 1 |
+| 10 | 10/27, 10/29 | Web APIs - 2 |
+| 11 | 11/3, 11/5   | Web scraping - 1 |
+| 12 | 11/10, 11/12 | Web scraping - 2 |
+| 13 | 11/17, 11/19 | Data visualization - 1 |
+| 14 | 12/1, 12/3   | Data visualization - 2 |
+| 15 | 12/8         | Exam 2 |
+| 16 | 12/15        | Project due |
