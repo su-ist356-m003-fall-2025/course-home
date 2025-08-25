@@ -1,6 +1,6 @@
 ---
-title: "IST 356: Programming Techniques for Data Analytics"
-subtitle: "Syracuse University, Fall 2025"
+title: "Syllabus"
+subtitle: "IST 356 - M003, Syracuse University, Fall 2025"
 toc: true
 ---
 
@@ -16,8 +16,7 @@ toc: true
 
 **Office hours:** Tuesdays, 11AM - 1PM in Hinds Hall 363G
 
-**[Syllabus](syllabus.qmd)**
-
+**Course website:** https://su-ist356-m003-fall-2025.github.io/course-home
 
 ## Course Description
 Approaches for building pipelines in data analytics using the Python programming language; data cleaning, extraction, wrangling, API’s, web scraping. Building data products. Programming experience required.
