@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -292,10 +327,8 @@ you should see a credit here.</li>
 <li>Add the following Extensions: Python, Jupyter.</li>
 <li><strong>Windows users only</strong>: we’ll occasionally be using <code>bash</code> in the terminal mode of VSCode. Mac and Linux users have <code>bash</code> natively installed in the operating system. Windows users will have gotten a copy of bash when they downloaded and installed Git SCM. However, you need to tell VSCode to use <code>bash</code> in the Terminal rather than Windows PowerShell. To do that:
 <ol type="a">
-<li>Click “Unlock productivity with the Command Palette” in the Walthrough tab, then “Open Command Palette”. Alternatively, if you don’t see that option, open the Command Palette by typing <ctrl> + <shift> +
-<p>
-.</p></shift></ctrl></li>
-<li>Type “Select Default Profile” then hit <enter></enter></li>
+<li>Click “Unlock productivity with the Command Palette” in the Walthrough tab, then “Open Command Palette”. Alternatively, if you don’t see that option, open the Command Palette by typing CTRL + SHIFT + P. (Mac users type COMMAND + SHIFT + P).</li>
+<li>Type “Select Default Profile” then hit ENTER.</li>
 <li>Select “Git Bash” from the drop-down options.</li>
 <li>Check that it worked by opening a new terminal: in the file menu, click “Terminal” -&gt; “New Terminal”. You should see “bash” in the upper right of the terminal screen.</li>
 </ol></li>
@@ -306,32 +339,32 @@ you should see a credit here.</li>
 <section id="step-4-install-miniconda" class="level2">
 <h2 class="anchored" data-anchor-id="step-4-install-miniconda">Step 4: Install Miniconda</h2>
 <ol type="1">
-<li>Open a terminal by click “Terminal” -&gt; “New Terminal”.</li>
+<li>Open a terminal by clicking “Terminal” -&gt; “New Terminal”.</li>
 <li>In your browser go to the <a href="https://www.anaconda.com/docs/getting-started/miniconda/install#quickstart-install-instructions">Miniconda quick install instructions</a></li>
 <li>Click the tab corresponding to your operating system. <strong>Windows users</strong>: select the “Linux” tab, <strong>not the Windows</strong> ones. This is because you’re using a <code>bash</code> emulator for your terminal, not PowerShell or Command Prompt.</li>
 <li>Copy the commands listed by clicking the copy button in the upper right (it looks like to squares on top of each other).</li>
-<li>Go back to VS Code. In the terminal window paste the commands you copied by typing <ctrl> + <v> (Windows users) or <command> + <v> (Mac users).</v></command></v></ctrl></li>
+<li>Go back to VS Code. In the terminal window paste the commands you copied by typing CTRL + V (Windows users) or COMMAND + V (Mac users).</li>
 <li>Follow the onscreen instructions, hitting enter for the default every time.</li>
 </ol>
 </section>
 <section id="step-5-create-a-conda-environment-and-test-it-in-vs-code" class="level2">
 <h2 class="anchored" data-anchor-id="step-5-create-a-conda-environment-and-test-it-in-vs-code">Step 5: Create a conda environment and test it in VS Code</h2>
 <ol type="1">
-<li>In VS Code open a new terminal window (do this even if you have a terminal window open previously) by clicking Terminal -&gt; New Terminal. If <code>conda</code> installed successfully in the previous step, you should see <code>(base)</code> the left of your prompt.</li>
-<li>Type: <code>bash     conda create -n ist356 -c conda-forge -y python=3.11 ipykernel</code></li>
-<li>After it has finished installing, open the Command Palette by typing <ctrl> + <shift> +
-<p>
-. (Mac users: type <command> instead of <ctrl>.)</ctrl></command></p></shift></ctrl></li>
-<li>Type “Python: Select Interpreter” then hit <enter>.</enter></li>
-<li>Type “ist356” then hit <enter>.</enter></li>
-<li>Check to ensure your environment works:
+<li><p>In VS Code open a new terminal window (do this even if you have a terminal window open previously) by clicking Terminal -&gt; New Terminal. If <code>conda</code> installed successfully in the previous step, you should see <code>(base)</code> the left of your prompt.</p></li>
+<li><p>Type:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> ist356 <span class="at">-c</span> conda-forge <span class="at">-y</span> python=3.11 ipykernel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>After it has finished installing, open the Command Palette by typing CTRL + SHIFT + P. (Mac users: type COMMAND + SHIFT + P.)</p></li>
+<li><p>Type “Python: Select Interpreter” then hit ENTER.</p></li>
+<li><p>Type “ist356” then hit ENTER.</p></li>
+<li><p>Check to ensure your environment works:</p>
 <ol type="1">
-<li>Click File -&gt; “New File…”</li>
-<li>In the drop down menu, select “Jupyter Notebook”.</li>
-<li>Click “Select Kernel” on the right then type “ist356”.</li>
-<li>In the first cell, type: ```python print(“hello world!”)</li>
-<li>Hit the run button or type <shift> + <enter> to execute the code. You should get back “hello world!”.</enter></shift></li>
-<li>Close the ipynb file (you may optionally save it; if you do, be sure to call it something other then “Untitled.ipynb”, maybe “hello.ipynb” instead).</li>
+<li><p>Click File -&gt; “New File…”</p></li>
+<li><p>In the drop down menu, select “Jupyter Notebook”.</p></li>
+<li><p>Click “Select Kernel” on the right then type “ist356”.</p></li>
+<li><p>In the first cell, type:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"hello world!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Hit the run button on the left or type SHIFT + ENTER to execute the code. You should get back “hello world!”.</p></li>
+<li><p>Close the ipynb file (you may optionally save it; if you do, be sure to call it something other then “Untitled.ipynb”, maybe “hello.ipynb” instead).</p></li>
 </ol></li>
 </ol>
 
