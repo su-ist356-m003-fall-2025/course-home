@@ -2,9 +2,8 @@ project:
   type: website
 
 website:
-  title: "SU-OSPO Workshops"
-  image: "/images/SU-OSPO_white_border.png"
-  favicon: "/images/SU-OSPO.png"
+  title: "IST 356 Fall 2025"
+  image: "/images/ischool_logo_reverseX2.png"
   open-graph: true
   twitter-card: true
   site-url: enter_gitHub_pages_URL_here
@@ -12,24 +11,20 @@ website:
   page-navigation: true
   navbar:
     border: true
-    background: "#F76900"
-    foreground: "#000E54"
+    foreground: "#F76900"
+    background: "#000E54"
     collapse: false
     right:
-      - icon: github
-        href: https://github.com/SU-OSPO
-        aria-label: "SU-OSPO on GitHub"
-        target: _blank
-      - text: "<img src='/images/SU-OSPO_white_border.png' height=23.5 style='padding-bottom:3px'>"
-        href: https://opensource.syracuse.edu
-        aria-label: "SU-OSPO homepage"
+      - text: "<img src='/images/ischool_logo_reverseX2.png' height='30'>"
+        href: https://ischool.syracuse.edu
+        aria-label: "iSchool homepage"
         target: _blank
   sidebar:
-    logo: "/images/SU-OSPO_white_border.png"
+    #logo: "/images/ischool_logo_reverseX2.png"
     align: center
     border: true
-    background: "#F76900"
-    foreground: "#000E54"
+    foreground: "#F76900"
+    background: "#000E54"
     title: false
     pinned: true
     style: "docked"
@@ -38,9 +33,9 @@ website:
   page-footer:
     border: true
     right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
-    left: "&copy; Copyright 2025, [Syracuse University Open Source Program Office](https://opensource.syracuse.edu/)"
-    background: "#F76900"
-    foreground: "#000E54"
+    left: "Adapted from the [Syracuse University Open Source Program Office's](https://opensource.syracuse.edu/) [workshop template](https://github.com/SU-OSPO/workshop-template)."
+    foreground: "#F76900"
+    background: "#000E54"
 
 format:
   html:
