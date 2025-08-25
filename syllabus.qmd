@@ -7,11 +7,17 @@ toc: true
 ## Course info
 
 **Room:** Hinds Hall 021
+
 **Time:** M/W 3:45PM - 5:05PM
 
 **Instructor:** Collin Capano
+
 **Email:** cdcapano@syr.edu
+
 **Office hours:** Tuesdays, 11AM - 1PM in Hinds Hall 363G
+
+**[Syllabus](syllabus.qmd)**
+
 
 ## Course Description
 Approaches for building pipelines in data analytics using the Python programming language; data cleaning, extraction, wrangling, API’s, web scraping. Building data products. Programming experience required.
@@ -145,13 +151,12 @@ The following grading scale translates your total points earned into a letter gr
 | Unsatisfactory | 50 - 60  | D | 1.000 |
 | | 0 - 49 | F | 0.000 |
 
-## Other Policies
 
-### Use of AI in this Course
+## Use of AI in this Course
 
 Based on the assignments in this course and our specified learning outcomes, the full use of artificial intelligence as a tool, with disclosure and citation, is permitted in this course. Students do not need to ask permission to use these tools before starting an assignment or exam, but they must explicitly and fully indicate which tools were used and describe how they were used.
 
-### Academic Integrity
+## Academic Integrity
 
 As a pre-eminent and inclusive student-focused research institution, Syracuse University considers academic integrity at the forefront of learning, serving as a core value and guiding pillar of education. Syracuse University’s Academic Integrity Policy provides students with the necessary guidelines to complete academic work with integrity throughout their studies. Students are required to uphold both course-specific and university-wide academic integrity expectations such as crediting your sources, doing your own work, communicating honestly, and supporting academic integrity. The full [Syracuse University Academic Integrity Policy](https://policies.syr.edu/policies/academic-rules-student-responsibilities-and-services/academic-integrity-policy/) can be viewed by visiting the [Syracuse University Policies website](https://policies.syr.edu/).
 
@@ -159,31 +164,20 @@ Upholding Academic Integrity includes the protection of faculty’s intellectual
 
 Students found in violation of the policy are subject to grade sanctions determined by the course instructor and non-grade sanctions determined by the School or College where the course is offered. Students may not drop or withdraw from courses in which they face a suspected violation. Any established violation in this course may result in course failure regardless of violation level.
 
-
-## Important dates
-
-| Mon. 8/25 | First day of class |
-| Mon. 9/1 | Labor day - **No class** |
-| Mon. 9/15 | Academic/Financial drop deadline; Religious observance notification deadline |
-| Mon. 10/13 | Fall break - **No class** |
-| Fri. 11/21 | Withdrawal deadline |
-| Week of 11/23 - 11/30 | Thanksgiving Break - **No class** |
-| Mon. 12/8 | Last day of class |
-
-
 ## Class Schedule
 
 *Note:* schedule subject to change as we progress through the semester.
 
 | Week | Dates | Topic |
-| 1  | 8/25, 8/29 | Intro; CLI and Conda |
-| 2  | 9/3 | Python review - 1 |
-| 3  | 9/8, 9/10 | Python review - 2 |
-| 4  | 9/15, 9/17 | UI |
-| 5  | 9/22, 9/24 | Data wrangling - 1 |
-| 6  | 9/29, 10/1 | Data wrangling - 2 |
-| 7  | 10/6, 10/8 | Data wrangling - 3 |
-| 8  | 10/15      | Exam 1 |
+|----|--------------|----------------------|
+| 1  | 8/25, 8/29   | Intro; CLI and Conda |
+| 2  | 9/3          | Python review - 1 |
+| 3  | 9/8, 9/10    | Python review - 2 |
+| 4  | 9/15, 9/17   | UI |
+| 5  | 9/22, 9/24   | Data wrangling - 1 |
+| 6  | 9/29, 10/1   | Data wrangling - 2 |
+| 7  | 10/6, 10/8   | Data wrangling - 3 |
+| 8  | 10/15        | Exam 1 |
 | 9  | 10/20, 10/22 | Web APIs - 1 |
 | 10 | 10/27, 10/29 | Web APIs - 2 |
 | 11 | 11/3, 11/5   | Web scraping - 1 |
@@ -192,3 +186,18 @@ Students found in violation of the policy are subject to grade sanctions determi
 | 14 | 12/1, 12/3   | Data visualization - 2 |
 | 15 | 12/8         | Exam 2 |
 | 16 | 12/15        | Project due |
+
+
+## Important dates
+
+| Date        | |
+|-------------|---------------------------------------------------|
+| Mon. 8/25   | First day of class |
+| Mon. 9/1    | Labor day - **No class** |
+| Mon. 9/15   | Academic/Financial drop deadline; Religious observance notification deadline |
+| Mon. 10/13  | Fall break - **No class** |
+| Fri. 11/21  | Withdrawal deadline |
+| 11/23-11/30 | Thanksgiving Break - **No class** |
+| Mon. 12/8   | Last day of class |
+
+
