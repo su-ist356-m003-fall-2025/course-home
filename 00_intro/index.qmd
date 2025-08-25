@@ -2,7 +2,7 @@
 title: "Introduction and computer setup"
 subtitle: "IST 356 - M003, Syracuse University, Fall 2025"
 toc: true
-order: 0
+order: 1
 ---
 
 # Setting up Your Computer and Yourself!
@@ -81,8 +81,8 @@ The last step is to configure VS Code for Python debugging. Provided everything 
     1.  Pick a theme: Light, Dark, etc...
     1. Add the following Extensions: Python, Jupyter.
     1. **Windows users only**: we'll occasionally be using `bash` in the terminal mode of VSCode. Mac and Linux users have `bash` natively installed in the operating system. Windows users will have gotten a copy of bash when they downloaded and installed Git SCM. However, you need to tell VSCode to use `bash` in the Terminal rather than Windows PowerShell. To do that:
-        a.  Click "Unlock productivity with the Command Palette" in the Walthrough tab, then "Open Command Palette". Alternatively, if you don't see that option, open the Command Palette by typing <Ctrl> + <Shift> + <P>.
-        b.  Type "Select Default Profile" then hit <Enter>
+        a.  Click "Unlock productivity with the Command Palette" in the Walthrough tab, then "Open Command Palette". Alternatively, if you don't see that option, open the Command Palette by typing CTRL + SHIFT + P. (Mac users type COMMAND + SHIFT + P).
+        b.  Type "Select Default Profile" then hit ENTER.
         c.  Select "Git Bash" from the drop-down options.
         d.  Check that it worked by opening a new terminal: in the file menu, click "Terminal" -> "New Terminal". You should see "bash" in the upper right of the terminal screen.
 
@@ -90,29 +90,35 @@ The last step is to configure VS Code for Python debugging. Provided everything 
 
 ## Step 4: Install Miniconda
 
-1.  Open a terminal by click "Terminal" -> "New Terminal".
+1.  Open a terminal by clicking "Terminal" -> "New Terminal".
 1.  In your browser go to the [Miniconda quick install instructions](https://www.anaconda.com/docs/getting-started/miniconda/install#quickstart-install-instructions)
 1.  Click the tab corresponding to your operating system. **Windows users**: select the "Linux" tab, **not the Windows** ones. This is because you're using a `bash` emulator for your terminal, not PowerShell or Command Prompt.
 1.  Copy the commands listed by clicking the copy button in the upper right (it looks like to squares on top of each other).
-1.  Go back to VS Code. In the terminal window paste the commands you copied by typing <Ctrl> + <V> (Windows users) or <Command> + <V> (Mac users).
+1.  Go back to VS Code. In the terminal window paste the commands you copied by typing CTRL + V (Windows users) or COMMAND + V (Mac users).
 1.  Follow the onscreen instructions, hitting enter for the default every time.
 
 ## Step 5: Create a conda environment and test it in VS Code
 
 1.  In VS Code open a new terminal window (do this even if you have a terminal window open previously) by clicking Terminal -> New Terminal. If `conda` installed successfully in the previous step, you should see `(base)` the left of your prompt.
 1.  Type:
+
     ```bash
     conda create -n ist356 -c conda-forge -y python=3.11 ipykernel
     ```
-1.  After it has finished installing, open the Command Palette by typing <Ctrl> + <Shift> + <P>. (Mac users: type <command> instead of <Ctrl>.) 
-1.  Type "Python: Select Interpreter" then hit <Enter>.
-1.  Type "ist356" then hit <Enter>.
+
+1.  After it has finished installing, open the Command Palette by typing CTRL + SHIFT + P. (Mac users: type COMMAND + SHIFT + P.) 
+
+1.  Type "Python: Select Interpreter" then hit ENTER.
+1.  Type "ist356" then hit ENTER.
 1.  Check to ensure your environment works:
     1.  Click File -> "New File..."
     1.  In the drop down menu, select "Jupyter Notebook".
     1.  Click "Select Kernel" on the right then type "ist356".
     1.  In the first cell, type:
+
         ```python
         print("hello world!")
-    1.  Hit the run button or type <Shift> + <Enter> to execute the code. You should get back "hello world!".
+        ```
+
+    1.  Hit the run button on the left or type SHIFT + ENTER to execute the code. You should get back "hello world!".
     1.  Close the ipynb file (you may optionally save it; if you do, be sure to call it something other then "Untitled.ipynb", maybe "hello.ipynb" instead).
