@@ -1,31 +1,69 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "IST 356: Programming Techniques for Data Analytics",
+    "objectID": "00_intro/index.html",
+    "href": "00_intro/index.html",
+    "title": "Introduction and computer setup",
     "section": "",
-    "text": "Room: Hinds Hall 021\nTime: M/W 3:45PM - 5:05PM\nInstructor: Collin Capano\nEmail: cdcapano@syr.edu\nOffice hours: Tuesdays, 11AM - 1PM in Hinds Hall 363G\nSyllabus"
+    "text": "In IST356 we teach you programming for data analytics using the tools and techiques used by those in the industry. As such, you will learn how to setup and configure development environments, use git and github and learn to systematically test your code.\nThis is unlike IST256 where the emphasis is on the programming basics and the motivations behind learning computational thinking.\n\n\n\n\n\n\n\n\n\nIST356\nIST256\n\n\n\n\nProgramming Environment\nInstall vscode + git + python on your computer\nWeb-hosted jupyterhub\n\n\nAssignment Submissions\nStudent learn and use git / github\nBuilt-in assignment submission\n\n\nCoursework, slides, examples\nYou clone / diff the prof repo\nAutodiff and merge at login\n\n\n\nIn this course you’ll do it the real way, nothing is hidden / abstracted away for you.\n\n\nHere’s what you’ll need to install on your computer. Please read this entire section prior to installing. :-)\n\nVisual Studio Code: https://code.visualstudio.com/Download\nThis is a free editor with testing and debugging capabilities. As you install you can accept all defaults, except the last one: DO NOT launch the application when complete! If you do, simply close it.\nGit Source Code Manager: https://git-scm.com/download/\nAs you set it up, you will be asked several questions, for which the default selection is fine. EXCEPTION: choose Visual Studio Code as the default editor.\nMiniconda Do not install this yet! You will install this using the terminal in VSCode after VSCode and Git are installed and setup; see instructions below.\n\n\n\n\n\nFor distributing assignments we will use GitHub Classroom. This means you need a GitHub account setup; you will need to send me your GitHub username once you do.\n\nBeing an SU student comes with some perks. One of them is a Github for Education account and accompanying “packpack” of goodies. To use this benefit, your github account must be associated with your @syr.edu email.\n\n\nAssociate your current account with SU, by adding your email:\n\nGo to to https://github.com and click Sign In\nOnce you have logged in, go to: https://github.com/settings/emails\n\nAdd and verify your SU email address.\n\n\n\n\nYou’ll need to create an account:\n\nGo to to https://github.com and click Sign In\nFollow the on-screen instructions to sign up for an account.\nMake sure to use your @syr.edu email for the account.\nAdd your personal email when you’re at it so you don’t lose Github access after you graduate!\n\n\n\n\n\n\n\nImportant\n\n\n\nOnce you have a GitHub account, please email your GitHub username to me at cdcapano@syr.edu.\n\n\n\n\n\n\nGo to the Github Backpack site: https://education.github.com/pack\nand click Sign Up For Student Developer Pack\nOnce your account is verified, you will have backpack access.\nYou’ll know its active when you check your billing plan: https://github.com/settings/billing/summary\nyou should see a credit here.\nOnce you have backpack access, you can enable Github Copilot AI. https://github.com/settings/copilot\n\n\n\n\n\nThe last step is to configure VS Code for Python debugging. Provided everything else is in order, this should be straightforward.\n\nOpen Visual studio code. You will be asked to configure it.\n\nSet up GitHub Copilot. To do so, you’ll need to sign into GitHub by clicking “Continue with GitHub”. After you do, you may be dropped into a “Welcome” tab in VS Code. If so, click the “Walkthrough: Setup VS Code” tab to continue set up.\nPick a theme: Light, Dark, etc…\nAdd the following Extensions: Python, Jupyter.\nWindows users only: we’ll occasionally be using bash in the terminal mode of VSCode. Mac and Linux users have bash natively installed in the operating system. Windows users will have gotten a copy of bash when they downloaded and installed Git SCM. However, you need to tell VSCode to use bash in the Terminal rather than Windows PowerShell. To do that:\n\nClick “Unlock productivity with the Command Palette” in the Walthrough tab, then “Open Command Palette”. Alternatively, if you don’t see that option, open the Command Palette by typing  +  +\n\n.\nType “Select Default Profile” then hit \nSelect “Git Bash” from the drop-down options.\nCheck that it worked by opening a new terminal: in the file menu, click “Terminal” -&gt; “New Terminal”. You should see “bash” in the upper right of the terminal screen.\n\nClose the welcome Tab but keep VS Code open.\n\n\n\n\n\n\nOpen a terminal by click “Terminal” -&gt; “New Terminal”.\nIn your browser go to the Miniconda quick install instructions\nClick the tab corresponding to your operating system. Windows users: select the “Linux” tab, not the Windows ones. This is because you’re using a bash emulator for your terminal, not PowerShell or Command Prompt.\nCopy the commands listed by clicking the copy button in the upper right (it looks like to squares on top of each other).\nGo back to VS Code. In the terminal window paste the commands you copied by typing  +  (Windows users) or  +  (Mac users).\nFollow the onscreen instructions, hitting enter for the default every time.\n\n\n\n\n\nIn VS Code open a new terminal window (do this even if you have a terminal window open previously) by clicking Terminal -&gt; New Terminal. If conda installed successfully in the previous step, you should see (base) the left of your prompt.\nType: bash     conda create -n ist356 -c conda-forge -y python=3.11 ipykernel\nAfter it has finished installing, open the Command Palette by typing  +  +\n\n. (Mac users: type  instead of .)\nType “Python: Select Interpreter” then hit .\nType “ist356” then hit .\nCheck to ensure your environment works:\n\nClick File -&gt; “New File…”\nIn the drop down menu, select “Jupyter Notebook”.\nClick “Select Kernel” on the right then type “ist356”.\nIn the first cell, type: ```python print(“hello world!”)\nHit the run button or type  +  to execute the code. You should get back “hello world!”.\nClose the ipynb file (you may optionally save it; if you do, be sure to call it something other then “Untitled.ipynb”, maybe “hello.ipynb” instead).",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Introduction and computer setup"
+    ]
   },
   {
-    "objectID": "index.html#course-info",
-    "href": "index.html#course-info",
-    "title": "IST 356: Programming Techniques for Data Analytics",
+    "objectID": "00_intro/index.html#step-1-software-installs",
+    "href": "00_intro/index.html#step-1-software-installs",
+    "title": "Introduction and computer setup",
     "section": "",
-    "text": "Room: Hinds Hall 021\nTime: M/W 3:45PM - 5:05PM\nInstructor: Collin Capano\nEmail: cdcapano@syr.edu\nOffice hours: Tuesdays, 11AM - 1PM in Hinds Hall 363G\nSyllabus"
+    "text": "Here’s what you’ll need to install on your computer. Please read this entire section prior to installing. :-)\n\nVisual Studio Code: https://code.visualstudio.com/Download\nThis is a free editor with testing and debugging capabilities. As you install you can accept all defaults, except the last one: DO NOT launch the application when complete! If you do, simply close it.\nGit Source Code Manager: https://git-scm.com/download/\nAs you set it up, you will be asked several questions, for which the default selection is fine. EXCEPTION: choose Visual Studio Code as the default editor.\nMiniconda Do not install this yet! You will install this using the terminal in VSCode after VSCode and Git are installed and setup; see instructions below.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Introduction and computer setup"
+    ]
   },
   {
-    "objectID": "index.html#class-schedule",
-    "href": "index.html#class-schedule",
-    "title": "IST 356: Programming Techniques for Data Analytics",
-    "section": "Class Schedule",
-    "text": "Class Schedule\nNote: schedule subject to change as we progress through the semester.\n\n\n\nWeek\nDates\nTopic\n\n\n\n\n1\n8/25, 8/29\nIntro; CLI and Conda\n\n\n2\n9/3\nPython review - 1\n\n\n3\n9/8, 9/10\nPython review - 2\n\n\n4\n9/15, 9/17\nUI\n\n\n5\n9/22, 9/24\nData wrangling - 1\n\n\n6\n9/29, 10/1\nData wrangling - 2\n\n\n7\n10/6, 10/8\nData wrangling - 3\n\n\n8\n10/15\nExam 1\n\n\n9\n10/20, 10/22\nWeb APIs - 1\n\n\n10\n10/27, 10/29\nWeb APIs - 2\n\n\n11\n11/3, 11/5\nWeb scraping - 1\n\n\n12\n11/10, 11/12\nWeb scraping - 2\n\n\n13\n11/17, 11/19\nData visualization - 1\n\n\n14\n12/1, 12/3\nData visualization - 2\n\n\n15\n12/8\nExam 2\n\n\n16\n12/15\nProject due"
+    "objectID": "00_intro/index.html#setup-2-github-account",
+    "href": "00_intro/index.html#setup-2-github-account",
+    "title": "Introduction and computer setup",
+    "section": "",
+    "text": "For distributing assignments we will use GitHub Classroom. This means you need a GitHub account setup; you will need to send me your GitHub username once you do.\n\nBeing an SU student comes with some perks. One of them is a Github for Education account and accompanying “packpack” of goodies. To use this benefit, your github account must be associated with your @syr.edu email.\n\n\nAssociate your current account with SU, by adding your email:\n\nGo to to https://github.com and click Sign In\nOnce you have logged in, go to: https://github.com/settings/emails\n\nAdd and verify your SU email address.\n\n\n\n\nYou’ll need to create an account:\n\nGo to to https://github.com and click Sign In\nFollow the on-screen instructions to sign up for an account.\nMake sure to use your @syr.edu email for the account.\nAdd your personal email when you’re at it so you don’t lose Github access after you graduate!\n\n\n\n\n\n\n\nImportant\n\n\n\nOnce you have a GitHub account, please email your GitHub username to me at cdcapano@syr.edu.\n\n\n\n\n\n\nGo to the Github Backpack site: https://education.github.com/pack\nand click Sign Up For Student Developer Pack\nOnce your account is verified, you will have backpack access.\nYou’ll know its active when you check your billing plan: https://github.com/settings/billing/summary\nyou should see a credit here.\nOnce you have backpack access, you can enable Github Copilot AI. https://github.com/settings/copilot",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Introduction and computer setup"
+    ]
   },
   {
-    "objectID": "index.html#important-dates",
-    "href": "index.html#important-dates",
-    "title": "IST 356: Programming Techniques for Data Analytics",
-    "section": "Important dates",
-    "text": "Important dates\n\n\n\n\n\n\n\nDate\n\n\n\n\n\nMon. 8/25\nFirst day of class\n\n\nMon. 9/1\nLabor day - No class\n\n\nMon. 9/15\nAcademic/Financial drop deadline; Religious observance notification deadline\n\n\nMon. 10/13\nFall break - No class\n\n\nFri. 11/21\nWithdrawal deadline\n\n\n11/23-11/30\nThanksgiving Break - No class\n\n\nMon. 12/8\nLast day of class"
+    "objectID": "00_intro/index.html#step-3-configure-vs-code",
+    "href": "00_intro/index.html#step-3-configure-vs-code",
+    "title": "Introduction and computer setup",
+    "section": "",
+    "text": "The last step is to configure VS Code for Python debugging. Provided everything else is in order, this should be straightforward.\n\nOpen Visual studio code. You will be asked to configure it.\n\nSet up GitHub Copilot. To do so, you’ll need to sign into GitHub by clicking “Continue with GitHub”. After you do, you may be dropped into a “Welcome” tab in VS Code. If so, click the “Walkthrough: Setup VS Code” tab to continue set up.\nPick a theme: Light, Dark, etc…\nAdd the following Extensions: Python, Jupyter.\nWindows users only: we’ll occasionally be using bash in the terminal mode of VSCode. Mac and Linux users have bash natively installed in the operating system. Windows users will have gotten a copy of bash when they downloaded and installed Git SCM. However, you need to tell VSCode to use bash in the Terminal rather than Windows PowerShell. To do that:\n\nClick “Unlock productivity with the Command Palette” in the Walthrough tab, then “Open Command Palette”. Alternatively, if you don’t see that option, open the Command Palette by typing  +  +\n\n.\nType “Select Default Profile” then hit \nSelect “Git Bash” from the drop-down options.\nCheck that it worked by opening a new terminal: in the file menu, click “Terminal” -&gt; “New Terminal”. You should see “bash” in the upper right of the terminal screen.\n\nClose the welcome Tab but keep VS Code open.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Introduction and computer setup"
+    ]
+  },
+  {
+    "objectID": "00_intro/index.html#step-4-install-miniconda",
+    "href": "00_intro/index.html#step-4-install-miniconda",
+    "title": "Introduction and computer setup",
+    "section": "",
+    "text": "Open a terminal by click “Terminal” -&gt; “New Terminal”.\nIn your browser go to the Miniconda quick install instructions\nClick the tab corresponding to your operating system. Windows users: select the “Linux” tab, not the Windows ones. This is because you’re using a bash emulator for your terminal, not PowerShell or Command Prompt.\nCopy the commands listed by clicking the copy button in the upper right (it looks like to squares on top of each other).\nGo back to VS Code. In the terminal window paste the commands you copied by typing  +  (Windows users) or  +  (Mac users).\nFollow the onscreen instructions, hitting enter for the default every time.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Introduction and computer setup"
+    ]
+  },
+  {
+    "objectID": "00_intro/index.html#step-5-create-a-conda-environment-and-test-it-in-vs-code",
+    "href": "00_intro/index.html#step-5-create-a-conda-environment-and-test-it-in-vs-code",
+    "title": "Introduction and computer setup",
+    "section": "",
+    "text": "In VS Code open a new terminal window (do this even if you have a terminal window open previously) by clicking Terminal -&gt; New Terminal. If conda installed successfully in the previous step, you should see (base) the left of your prompt.\nType: bash     conda create -n ist356 -c conda-forge -y python=3.11 ipykernel\nAfter it has finished installing, open the Command Palette by typing  +  +\n\n. (Mac users: type  instead of .)\nType “Python: Select Interpreter” then hit .\nType “ist356” then hit .\nCheck to ensure your environment works:\n\nClick File -&gt; “New File…”\nIn the drop down menu, select “Jupyter Notebook”.\nClick “Select Kernel” on the right then type “ist356”.\nIn the first cell, type: ```python print(“hello world!”)\nHit the run button or type  +  to execute the code. You should get back “hello world!”.\nClose the ipynb file (you may optionally save it; if you do, be sure to call it something other then “Untitled.ipynb”, maybe “hello.ipynb” instead).",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Introduction and computer setup"
+    ]
   },
   {
     "objectID": "syllabus.html",
@@ -76,7 +114,7 @@
     "href": "syllabus.html#textbooks-and-supplies",
     "title": "Syllabus",
     "section": "Textbooks And Supplies",
-    "text": "Textbooks And Supplies\n\nTextbooks\nThere is no textbook you need to purchase for this course. All required readings are available freely online, and in many cases, the online sources are the most up-to-date references to the relevant course material. See reading list section for additional details.\n\nMain Text\n\nPython Programming for Data Science, by T. Beuzen (2021) https://www.tomasbeuzen.com/python-programming-for-data-science/\n\n\n\n\nBring Your Own Device\nYou are expected to bring your computer to each class session. This class is very hands-on, and you will be programming in class often.\n\nSoftware to install\nThis course requires you to install software on your computer. The intro section of this course provides detailed instructions.\n\nVisual Studio Code editor\n(Windows users only): Git Source Code Managment\nMiniconda\n\n\n\nAccounts\n\nWe will use Github for assignment submission.",
+    "text": "Textbooks And Supplies\n\nTextbooks\nThere is no textbook you need to purchase for this course. All required readings are available freely online, and in many cases, the online sources are the most up-to-date references to the relevant course material. See reading list section for additional details.\n\nMain Text\n\nPython Programming for Data Science, by T. Beuzen (2021) https://www.tomasbeuzen.com/python-programming-for-data-science/\n\n\n\n\nBring Your Own Device\nYou are expected to bring your computer to each class session. This class is very hands-on, and you will be programming in class often.\n\nSoftware to install\nThis course requires you to install software on your computer. The intro section of this course provides detailed instructions.\n\nVisual Studio Code editor\nGit Source Code Managment\nMiniconda\n\n\n\nAccounts\n\nWe will use Github for assignment submission.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "Syllabus"
@@ -147,5 +185,33 @@
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "Syllabus"
     ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "",
+    "text": "Room: Hinds Hall 021\nTime: M/W 3:45PM - 5:05PM\nInstructor: Collin Capano\nEmail: cdcapano@syr.edu\nOffice hours: Tuesdays, 11AM - 1PM in Hinds Hall 363G\nSyllabus"
+  },
+  {
+    "objectID": "index.html#course-info",
+    "href": "index.html#course-info",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "",
+    "text": "Room: Hinds Hall 021\nTime: M/W 3:45PM - 5:05PM\nInstructor: Collin Capano\nEmail: cdcapano@syr.edu\nOffice hours: Tuesdays, 11AM - 1PM in Hinds Hall 363G\nSyllabus"
+  },
+  {
+    "objectID": "index.html#class-schedule",
+    "href": "index.html#class-schedule",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "Class Schedule",
+    "text": "Class Schedule\nNote: schedule subject to change as we progress through the semester.\n\n\n\nWeek\nDates\nTopic\n\n\n\n\n1\n8/25, 8/29\nIntro; CLI and Conda\n\n\n2\n9/3\nPython review - 1\n\n\n3\n9/8, 9/10\nPython review - 2\n\n\n4\n9/15, 9/17\nUI\n\n\n5\n9/22, 9/24\nData wrangling - 1\n\n\n6\n9/29, 10/1\nData wrangling - 2\n\n\n7\n10/6, 10/8\nData wrangling - 3\n\n\n8\n10/15\nExam 1\n\n\n9\n10/20, 10/22\nWeb APIs - 1\n\n\n10\n10/27, 10/29\nWeb APIs - 2\n\n\n11\n11/3, 11/5\nWeb scraping - 1\n\n\n12\n11/10, 11/12\nWeb scraping - 2\n\n\n13\n11/17, 11/19\nData visualization - 1\n\n\n14\n12/1, 12/3\nData visualization - 2\n\n\n15\n12/8\nExam 2\n\n\n16\n12/15\nProject due"
+  },
+  {
+    "objectID": "index.html#important-dates",
+    "href": "index.html#important-dates",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "Important dates",
+    "text": "Important dates\n\n\n\n\n\n\n\nDate\n\n\n\n\n\nMon. 8/25\nFirst day of class\n\n\nMon. 9/1\nLabor day - No class\n\n\nMon. 9/15\nAcademic/Financial drop deadline; Religious observance notification deadline\n\n\nMon. 10/13\nFall break - No class\n\n\nFri. 11/21\nWithdrawal deadline\n\n\n11/23-11/30\nThanksgiving Break - No class\n\n\nMon. 12/8\nLast day of class"
   }
 ]
