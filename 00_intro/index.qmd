@@ -106,20 +106,32 @@ The last step is to configure VS Code for Python debugging. Provided everything 
 
 ### Windows
 
-1. Download the [Miniconda installer for Windows](https://www.anaconda.com/download/success). **Click the Downlad button under "Miniconda Installers", *not* the one under "Distribution Installers".**
-1. Run the installer by double-clicking on the downloaded file and follow the steps below.
+1.  Download the [Miniconda installer for Windows](https://www.anaconda.com/download/success). **Click the Downlad button under "Miniconda Installers", *not* the one under "Distribution Installers".**
+1.  Run the installer by double-clicking on the downloaded file and follow the steps below.
 
-   - Click “Run”.
-   - Click on “Next”.
-   - Click on “I agree”.
-   - Select “Just me” and click on “Next”.
-   - Click on “Next”.
-   - Check the option for “Add Anaconda to my PATH environment variable” and check the option for “Register Anaconda as my default Python 3.x”.
-     - Note that even though the installation is for Miniconda, the installer uses the word Anaconda in these options.
-     - You will also see a message in red text that selecting “Add Anaconda to my PATH environment variable” is not recommended; continue with this selection to make using conda easier in Git Bash. If you have questions or concerns, please contact your instructor.
-   - Click on “Install”.
-   - When the install is complete, Click on “Next”.
-   - Click on “Finish”.
+    -   Click “Run”.
+    -   Click on “Next”.
+    -   Click on “I agree”.
+    -   Select “Just me” and click on “Next”.
+    -   Click "Next" to install to the default destination folder.
+        
+        ::: {.callout-warning}
+        If you had tried to install miniconda previously, you may get an error that says "Directory ...\miniconda3 is not empty, please choose a different location." **Do not choose a different location.** Instead, click "OK", then rename the previous miniconda3 directory. You can do that by going to VS Code, opening a new terminal window (click "Terminal" -> "New Terminal"), and entering the following (hit ENTER after each line):
+
+        ```bash
+        cd
+        mv miniconda3 miniconda3-old
+        ```
+
+        Then go back to the Miniconda installer and click "Next".
+        :::
+
+    -   Check the option for “Add Anaconda to my PATH environment variable” and check the option for “Register Anaconda as my default Python 3.x”.
+        - Note that even though the installation is for Miniconda, the installer uses the word Anaconda in these options.
+        - You will also see a message in red text that selecting “Add Anaconda to my PATH environment variable” is not recommended; continue with this selection to make using conda easier in Git Bash. If you have questions or concerns, please contact your instructor.
+    -   Click on “Install”.
+    -   When the install is complete, Click on “Next”.
+    -   Click on “Finish”.
 
 1.  Open a new terminal window in VS Code by clicking "Terminal" -> "New Terminal".
 
