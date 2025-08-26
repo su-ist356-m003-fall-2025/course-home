@@ -24,20 +24,22 @@ In this course you'll do it the real way, nothing is hidden / abstracted away fo
 
 Here's what you'll need to install on your computer. Please read this entire section prior to installing. :-)
 
-1. **Visual Studio Code**: https://code.visualstudio.com/Download   
-This is a free editor with testing and debugging capabilities. As you install you can accept all defaults, except the last one: DO NOT launch the application when complete! If you do, simply close it. 
+1.  **Visual Studio Code**: https://code.visualstudio.com/Download   
+    This is a free editor with testing and debugging capabilities. As you install you can accept all defaults, except the last one: DO NOT launch the application when complete! If you do, simply close it. 
 
-2. **Git Source Code Manager**: https://git-scm.com/download/  
-As you set it up, you will be asked several questions, for which the default selection is fine. EXCEPTION: choose Visual Studio Code as the default editor. 
+2.  **Git Source Code Manager**: https://git-scm.com/download/  
+    As you set it up, you will be asked several questions, for which the default selection is fine. EXCEPTION: choose Visual Studio Code as the default editor.
 
-3. [Miniconda](https://www.anaconda.com/docs/getting-started/miniconda/install#quickstart-install-instructions) 
-**Do not install this yet!** You will install this using the terminal in VSCode after VSCode and Git are installed and setup; see instructions below.
+    ::: {.callout-warning}
+    **Mac users**: you'll see multiple options for downloading Git Source Code Manager. I recommend using the Xcode version. Clicking on that link will redirect you to the Apple store; from there you will download and install Xcode.
+    :::
+
+ 
+
+3.  [Miniconda](https://www.anaconda.com/docs/getting-started/miniconda/install#quickstart-install-instructions) 
+    **Do not install this yet!** You will install this using the terminal in VSCode after VSCode and Git are installed and setup; see instructions below.
 
 ## Setup 2: Github Account
-
-::: {.callout-noe}
-For distributing assignments we will use GitHub Classroom. This means you need a GitHub account setup; you will need to send me your GitHub username once you do.
-:::
 
 Being an SU student comes with some perks. One of them is a Github for Education account and accompanying "packpack" of goodies. To use this benefit, your github account must be associated with your **@syr.edu** email.
 
