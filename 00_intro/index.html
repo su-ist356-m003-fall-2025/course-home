@@ -189,7 +189,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#backpack-access" id="toc-backpack-access" class="nav-link" data-scroll-target="#backpack-access">Backpack Access</a></li>
   </ul></li>
   <li><a href="#step-3-configure-vs-code" id="toc-step-3-configure-vs-code" class="nav-link" data-scroll-target="#step-3-configure-vs-code">Step 3: Configure VS Code</a></li>
-  <li><a href="#step-4-install-miniconda" id="toc-step-4-install-miniconda" class="nav-link" data-scroll-target="#step-4-install-miniconda">Step 4: Install Miniconda</a></li>
+  <li><a href="#step-4-install-miniconda" id="toc-step-4-install-miniconda" class="nav-link" data-scroll-target="#step-4-install-miniconda">Step 4: Install Miniconda</a>
+  <ul class="collapse">
+  <li><a href="#maclinuxwindows-subsystem-for-linux-wsl" id="toc-maclinuxwindows-subsystem-for-linux-wsl" class="nav-link" data-scroll-target="#maclinuxwindows-subsystem-for-linux-wsl">Mac/Linux/Windows Subsystem for Linux (WSL)</a></li>
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows">Windows</a></li>
+  </ul></li>
   <li><a href="#step-5-create-a-conda-environment-and-test-it-in-vs-code" id="toc-step-5-create-a-conda-environment-and-test-it-in-vs-code" class="nav-link" data-scroll-target="#step-5-create-a-conda-environment-and-test-it-in-vs-code">Step 5: Create a conda environment and test it in VS Code</a></li>
   </ul></li>
   </ul>
@@ -338,31 +342,72 @@ you should see a credit here.</li>
 </section>
 <section id="step-4-install-miniconda" class="level2">
 <h2 class="anchored" data-anchor-id="step-4-install-miniconda">Step 4: Install Miniconda</h2>
+<section id="maclinuxwindows-subsystem-for-linux-wsl" class="level3">
+<h3 class="anchored" data-anchor-id="maclinuxwindows-subsystem-for-linux-wsl">Mac/Linux/Windows Subsystem for Linux (WSL)</h3>
 <ol type="1">
-<li>Open a terminal by clicking “Terminal” -&gt; “New Terminal”.</li>
-<li>In your browser go to the <a href="https://www.anaconda.com/docs/getting-started/miniconda/install#quickstart-install-instructions">Miniconda quick install instructions</a></li>
-<li>Click the tab corresponding to your operating system. <strong>Windows users</strong>: select the “Linux” tab, <strong>not the Windows</strong> ones. This is because you’re using a <code>bash</code> emulator for your terminal, not PowerShell or Command Prompt.</li>
-<li>Copy the commands listed by clicking the copy button in the upper right (it looks like to squares on top of each other).</li>
-<li>Go back to VS Code. In the terminal window paste the commands you copied by typing CTRL + V (Windows users) or COMMAND + V (Mac users).</li>
-<li>Follow the onscreen instructions, hitting enter for the default every time.</li>
+<li><p>Open a terminal in VS Code by clicking “Terminal” -&gt; “New Terminal”.</p></li>
+<li><p>In the terminal window, type:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then hit ENTER.</p></li>
+<li><p>Follow the instructions <a href="https://www.anaconda.com/docs/getting-started/miniconda/install#quickstart-install-instructions">Quickstart install instructions</a> on the Miniconda website. For WSL, select “Linux”.</p></li>
 </ol>
+</section>
+<section id="windows" class="level3">
+<h3 class="anchored" data-anchor-id="windows">Windows</h3>
+<ol type="1">
+<li><p>Download the <a href="https://www.anaconda.com/download/success">Miniconda installer for Windows</a>. <strong>Click the Downlad button under “Miniconda Installers”, <em>not</em> the one under “Distribution Installers”.</strong></p></li>
+<li><p>Run the installer by double-clicking on the downloaded file and follow the steps below.</p>
+<ul>
+<li>Click “Run”.</li>
+<li>Click on “Next”.</li>
+<li>Click on “I agree”.</li>
+<li>Select “Just me” and click on “Next”.</li>
+<li>Click on “Next”.</li>
+<li>Check the option for “Add Anaconda to my PATH environment variable” and check the option for “Register Anaconda as my default Python 3.x”.
+<ul>
+<li>Note that even though the installation is for Miniconda, the installer uses the word Anaconda in these options.</li>
+<li>You will also see a message in red text that selecting “Add Anaconda to my PATH environment variable” is not recommended; continue with this selection to make using conda easier in Git Bash. If you have questions or concerns, please contact your instructor.</li>
+</ul></li>
+<li>Click on “Install”.</li>
+<li>When the install is complete, Click on “Next”.</li>
+<li>Click on “Finish”.</li>
+</ul></li>
+<li><p>Open a new terminal window in VS Code by clicking “Terminal” -&gt; “New Terminal”.</p></li>
+<li><p>Type the following command to initialize conda:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> init bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Open a new terminal window in VS Code by either hitting the “+” key next to “bash” in the upper left of the terminal window, or by cliking “Terminal” -&gt; “New Terminal”. If conda installed successfullly, you should see <code>(base)</code> appear next to or above your command prompt.</p></li>
+</ol>
+</section>
 </section>
 <section id="step-5-create-a-conda-environment-and-test-it-in-vs-code" class="level2">
 <h2 class="anchored" data-anchor-id="step-5-create-a-conda-environment-and-test-it-in-vs-code">Step 5: Create a conda environment and test it in VS Code</h2>
 <ol type="1">
-<li><p>In VS Code open a new terminal window (do this even if you have a terminal window open previously) by clicking Terminal -&gt; New Terminal. If <code>conda</code> installed successfully in the previous step, you should see <code>(base)</code> the left of your prompt.</p></li>
-<li><p>Type:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> ist356 <span class="at">-c</span> conda-forge <span class="at">-y</span> python=3.11 ipykernel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>After it has finished installing, open the Command Palette by typing CTRL + SHIFT + P. (Mac users: type COMMAND + SHIFT + P.)</p></li>
-<li><p>Type “Python: Select Interpreter” then hit ENTER.</p></li>
-<li><p>Type “ist356” then hit ENTER.</p></li>
+<li><p>In the bash terminal window in VS Code (make sure it says <code>(base)</code> to the left of or above the prompt), type:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> ist356 <span class="at">-c</span> conda-forge <span class="at">-y</span> python=3.11 ipykernel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then hit ENTER.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The first time you run conda, you may bet an error about Terms of Service not being accepted for certain channels. Accept the TOS for those channels by running the commands listed. For example, if one of the channels is <code>https://repo.anaconda.com/pkgs/main</code>, copy and paste the command into the terminal:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> tos accept <span class="at">--override-channels</span> <span class="at">--channel</span> https://repo.anaconda.com/pkgs/main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Followed by hitting ENTER (to execute a command in the terminal, you hit ENTER after typing/pasting it in). You’ll need to do this for each of the channels listed.</p>
+<p>Once you have accepted the TOS for all the channels, run the <code>conda create</code> command above again.</p>
+</div>
+</div></li>
 <li><p>Check to ensure your environment works:</p>
 <ol type="1">
 <li><p>Click File -&gt; “New File…”</p></li>
 <li><p>In the drop down menu, select “Jupyter Notebook”.</p></li>
 <li><p>Click “Select Kernel” on the right then type “ist356”.</p></li>
 <li><p>In the first cell, type:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"hello world!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"hello world!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Hit the run button on the left or type SHIFT + ENTER to execute the code. You should get back “hello world!”.</p></li>
 <li><p>Close the ipynb file (you may optionally save it; if you do, be sure to call it something other then “Untitled.ipynb”, maybe “hello.ipynb” instead).</p></li>
 </ol></li>
