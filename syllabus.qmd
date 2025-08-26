@@ -14,7 +14,7 @@ toc: true
 
 **Email:** cdcapano@syr.edu
 
-**Office hours:** Tuesdays, 11AM - 1PM in Hinds Hall 363G
+**Office hours:** Tuesdays, 11AM - 1PM in Hinds Hall 323G
 
 **Course website:** https://su-ist356-m003-fall-2025.github.io/course-home
 
