@@ -90,26 +90,70 @@ The last step is to configure VS Code for Python debugging. Provided everything 
 
 ## Step 4: Install Miniconda
 
-1.  Open a terminal by clicking "Terminal" -> "New Terminal".
-1.  In your browser go to the [Miniconda quick install instructions](https://www.anaconda.com/docs/getting-started/miniconda/install#quickstart-install-instructions)
-1.  Click the tab corresponding to your operating system. **Windows users**: select the "Linux" tab, **not the Windows** ones. This is because you're using a `bash` emulator for your terminal, not PowerShell or Command Prompt.
-1.  Copy the commands listed by clicking the copy button in the upper right (it looks like to squares on top of each other).
-1.  Go back to VS Code. In the terminal window paste the commands you copied by typing CTRL + V (Windows users) or COMMAND + V (Mac users).
-1.  Follow the onscreen instructions, hitting enter for the default every time.
+### Mac/Linux/Windows Subsystem for Linux (WSL)
+
+1.  Open a terminal in VS Code by clicking "Terminal" -> "New Terminal".
+
+1.  In the terminal window, type:
+
+    ```bash
+    cd
+    ```
+
+    Then hit ENTER.
+
+1.  Follow the instructions [Quickstart install instructions](https://www.anaconda.com/docs/getting-started/miniconda/install#quickstart-install-instructions) on the Miniconda website. For WSL, select "Linux".
+
+### Windows
+
+1. Download the [Miniconda installer for Windows](https://www.anaconda.com/download/success). **Click the Downlad button under "Miniconda Installers", *not* the one under "Distribution Installers".**
+1. Run the installer by double-clicking on the downloaded file and follow the steps below.
+
+   - Click “Run”.
+   - Click on “Next”.
+   - Click on “I agree”.
+   - Select “Just me” and click on “Next”.
+   - Click on “Next”.
+   - Check the option for “Add Anaconda to my PATH environment variable” and check the option for “Register Anaconda as my default Python 3.x”.
+     - Note that even though the installation is for Miniconda, the installer uses the word Anaconda in these options.
+     - You will also see a message in red text that selecting “Add Anaconda to my PATH environment variable” is not recommended; continue with this selection to make using conda easier in Git Bash. If you have questions or concerns, please contact your instructor.
+   - Click on “Install”.
+   - When the install is complete, Click on “Next”.
+   - Click on “Finish”.
+
+1.  Open a new terminal window in VS Code by clicking "Terminal" -> "New Terminal".
+
+1.  Type the following command to initialize conda:
+
+    ```bash
+    conda init bash
+    ```
+
+1.  Open a new terminal window in VS Code by either hitting the "+" key next to "bash" in the upper left of the terminal window, or by cliking "Terminal" -> "New Terminal". If conda installed successfullly, you should see `(base)` appear next to or above your command prompt.
 
 ## Step 5: Create a conda environment and test it in VS Code
 
-1.  In VS Code open a new terminal window (do this even if you have a terminal window open previously) by clicking Terminal -> New Terminal. If `conda` installed successfully in the previous step, you should see `(base)` the left of your prompt.
-1.  Type:
+1.  In the bash terminal window in VS Code (make sure it says `(base)` to the left of or above the prompt), type:
 
     ```bash
     conda create -n ist356 -c conda-forge -y python=3.11 ipykernel
     ```
 
-1.  After it has finished installing, open the Command Palette by typing CTRL + SHIFT + P. (Mac users: type COMMAND + SHIFT + P.) 
+    Then hit ENTER.
 
-1.  Type "Python: Select Interpreter" then hit ENTER.
-1.  Type "ist356" then hit ENTER.
+    ::: {.callout-warning}
+    The first time you run conda, you may bet an error about Terms of Service not being accepted for certain channels. Accept the TOS for those channels by running the commands listed. For example, if one of the channels is `https://repo.anaconda.com/pkgs/main`, copy and paste the command into the terminal:
+
+    ```bash
+    conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
+    ```
+
+    Followed by hitting ENTER (to execute a command in the terminal, you hit ENTER after typing/pasting it in). You'll need to do this for each of the channels listed.
+
+    Once you have accepted the TOS for all the channels, run the `conda create` command above again.
+    :::
+
+
 1.  Check to ensure your environment works:
     1.  Click File -> "New File..."
     1.  In the drop down menu, select "Jupyter Notebook".
