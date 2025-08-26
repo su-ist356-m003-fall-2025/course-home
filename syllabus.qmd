@@ -127,11 +127,11 @@ The project is your opportunity to demonstrate what you have learned in an exper
 
 | Assessment | Type | Learning Outcomes | Quantity | Points Each | Points Total |
 |------------|------|-------------------|----------|-------------|--------------|
-| Attendance | Formative | | 25 | 1 | 25 |
-| Assignments | Formative | 1, 2 | 10 | 3 | 30 |
-| Exams | Summative | 3, 4 | 2 | 25 | 50 |
-| Project | Summative | 5 | 1 | 20 | 20 |
-| **Total** | | | | | **125** |
+| Attendance | Formative | | 24 | 1 | 24 |
+| Assignments | Formative | 1, 2 | 8 | 3 | 24 |
+| Exams | Summative | 3, 4 | 2 | 24 | 48 |
+| Project | Summative | 5 | 1 | 24 | 24 |
+| **Total** | | | | | **120** |
 
 ### Grading Table
 
@@ -139,15 +139,15 @@ The following grading scale translates your total points earned into a letter gr
 
 | Student Achievement | Total Points Earned	| Registrar Grade |Grade Points |
 |---------------------|---------------------|-----------------|-------------|
-| Mastery | 118 - 125 | A | 4.000 |
-| | 112 - 117 | A- | 3.666 |
-| Satisfactory | 106 - 111 | B+ | 3.333 |
-| | 100 - 105  | B | 3.000 |
-| | 94 - 99  | B- | 2.666 |
-| Low Passing  | 87 - 93 | C+ | 2.333 |
-| | 81 - 86  | C | 2.000 |
-| | 75 - 80  | C- | 1.666 |
-| Unsatisfactory | 60 - 74  | D | 1.000 |
+| Mastery | 114 - 120 | A | 4.000 |
+| | 108 - 113 | A- | 3.666 |
+| Satisfactory | 102 - 107 | B+ | 3.333 |
+| | 96 - 101  | B | 3.000 |
+| | 90 - 95  | B- | 2.666 |
+| Low Passing  | 84 - 89 | C+ | 2.333 |
+| | 78 - 83  | C | 2.000 |
+| | 72 - 77  | C- | 1.666 |
+| Unsatisfactory | 60 - 71  | D | 1.000 |
 | | 0 - 59 | F | 0.000 |
 
 
