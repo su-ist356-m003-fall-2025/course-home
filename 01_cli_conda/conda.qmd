@@ -1,0 +1,494 @@
+---
+title: "Bash variables, environments, and `conda`"
+subtitle: "Bash environments and using `conda` to manage them."
+order: 2
+---
+
+*Note: This task requires that you have conda installed already. Follow the instructions [here](../00_intro/index.qmd) to do that if you have not done so already.*
+
+
+# Variables
+
+Just as in any programming language, in bash we can set variables using the `=`
+*with no spaces around it*. For example:
+
+```bash
+GREETING=Hello
+```
+
+To print the value of the variable use `$`; e.g.:
+
+```bash
+echo $GREETING
+```
+
+Always use quotes if variable contains spaces:
+
+```bash
+GREETING="Hello World"
+echo $GREETING
+```
+
+Use curly braces to distinguish a variable from surrounding text. For example:
+
+```bash
+echo "${GREETING}, how are you today?"
+```
+
+Unset a variable:
+
+```bash
+unset GREETING
+```
+
+# Variable Scope
+
+## The `export` Command
+
+In Bash, variables normally exist only in the shell where they were defined.  
+The `export` command marks a variable so that it is **passed to child processes** (programs or scripts started from the current shell).
+
+### Example:
+
+```bash
+MYVAR="Hello"
+bash -c 'echo $MYVAR'
+# (No output — MYVAR was not exported)
+
+export MYVAR="Hello"
+bash -c 'echo $MYVAR'
+# Output: Hello
+```
+
+In the first case, the new Bash process doesn't know about `MYVAR`.  
+In the second case, `export` makes it available to the child process.
+
+
+## The `source` Command
+
+When you run a Bash script normally, it executes in a **subshell** (a separate process).  
+Any variables set inside that script will only exist in that subshell and disappear when the script finishes.
+
+The `source` command runs a script **in the current shell**.  
+This means variables or changes made by the script persist after it finishes.
+
+### Example: Difference between `source` and `export`
+
+**test.sh**:
+```bash
+MYVAR="Hello"
+```
+
+**Case 1 — Running normally:**
+```bash
+bash test.sh
+echo $MYVAR
+# (No output — MYVAR is not set in current shell)
+```
+
+**Case 2 — Using `source`:**
+```bash
+source test.sh
+echo $MYVAR
+# Output: Hello
+```
+
+**Case 3 — Using `export` in a script:**
+```bash
+# test_export.sh
+export MYVAR="Hello"
+```
+
+```bash
+bash test_export.sh
+echo $MYVAR
+# (No output — export makes it available to child processes, not the parent shell)
+```
+
+# Environments
+
+An **environment** in is the collection of variables that are available to the current shell session and any processes started from it.
+
+Environment variables store settings that affect the behavior of the shell and programs.  
+Examples include:
+- `PATH` — where to search for executables
+- `HOME` — your home directory
+- `USER` — your username
+
+## How environments work
+- Each shell session has its own environment.
+- When you start a new process (run a command or script), it inherits a **copy** of your current environment.
+- Variables you define with `export` become part of the environment and are visible to child processes.
+- Variables defined without `export` are shell variables — they exist only in the current shell and are not passed to child processes.
+
+You can view all your current environment variables by running:
+
+```bash
+env
+```
+
+## The PATH Variable
+
+The `PATH` variable controls where Bash searches for executables. It points to a `:` separated list of absolute paths. See what yours is set to by running:
+
+```bash
+echo $PATH
+```
+
+When you execute any program in the shell, bash cycles through the list of paths specified in `PATH` until it finds an executable file that matches the name.
+
+
+# Conda
+
+Conda is a package and environment manager. It allows you to:
+- Create isolated environments, each with its own set of packages.
+- Install, update, and remove packages.
+- Manage multiple versions of the same software without conflicts.
+
+## Create Environment
+
+```bash
+conda create --name py311 python=3.11
+```
+This creates a new environment called `py311` with Python version 3.11 installed.
+
+## Activate/Deactivate Environments
+
+```bash
+conda activate py311
+```
+Activating an environment changes your shell's environment variables (especially `PATH`) so that commands use the software installed in that environment. You'll see the environment name in parentheses at the start of your shell prompt.
+
+```bash
+conda deactivate
+```
+Deactivating an environment restores your shell to its previous state, removing the environment-specific entries from `PATH` and other variables.
+
+## Install Packages
+
+```bash
+conda install numpy
+```
+Installs the package `numpy` into the currently active environment.
+
+## Channels
+
+A *channel* is a location (usually online) where Conda looks for packages. When you install or search for a package, Conda queries one or more channels.
+
+- **Default channel:** If you installed Conda via Miniforge, the default channel is `conda-forge`, a large community-maintained repository.
+- **Specialized channels:** Some fields use dedicated channels, such as `bioconda` for bioinformatics software.
+
+To install from a specific channel:
+
+```bash
+conda install -c bioconda package_name
+```
+
+Here, `-c bioconda` tells Conda to search the `bioconda` channel for the package.
+
+## Challenge questions
+
+1.  Create a conda environment called `conda-test`.
+
+    ::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+    ##### Solution
+    ```bash
+    conda create -n conda-test
+    ```
+    :::
+
+2.  Activate your `conda-test` environment and install `numpy` into it.
+
+    ::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+    ##### Solution
+    ```bash
+    conda activate conda-test
+    conda install numpy
+    ```
+    :::
+
+3.  Print your `$PATH`; you should see that the first couple of paths point to a conda directory with the name of your environment (`conda-test`) in it.
+
+    ::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+    ##### Solution
+    ```bash
+    echo $PATH
+    ```
+    :::
+
+4.  Create a python script called `check_versions.py` that contains the following code:
+
+    ```python
+    #!/usr/bin/env python
+    import platform
+    import numpy
+    print("Python version: ", platform.python_version())
+    npvers = numpy.__version__
+    print("Numpy version: ", npvers)
+    ```
+    
+    Change the permissions on `check_versions.py` to make it executable.
+
+    ::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+    ##### Solution
+
+    1.  Run:
+
+        ```bash
+        nano check_versions.py
+        ```
+
+    2.  Type/paste in the code. Then type Ctrl+O to save, then Ctrl+X to exit.
+
+    3.  Run:
+
+        ```bash
+        chmod +x check_versions.py
+        ```
+    :::
+
+5.  See what version of Python and numpy you installed by running `check_versions.py` script:
+
+    ```bash
+    ./check_versions.py
+    ```
+   
+    This will print out the current time followed by the versions of Python and numpy you are using.
+
+6.  Suppose that you need to use an older version of Python and numpy for a project. Create another conda environment called `conda-test2` and install Python version 3.9 and numpy 1.24.1 into it.
+
+    ::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+    ##### Solution
+    ```bash
+    conda create -n conda-test2 python=3.9 numpy=1.24.1
+    ```
+    :::
+
+7.  Activate `conda-test2` and run check versions to verify that you have the desired versions.
+
+    ::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+    ##### Solution
+    ```bash
+    conda activate conda-test2
+    ./check_versions.py
+    ```
+    :::
+
+8.  Create an environment called `biotest` and install `gofasta` in it using the `bioconda` channel. (You can specify the channel for `conda create` and/or `conda install` using the `-c` flag, just as we did the in search command above.)
+
+    ::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+    ##### Solution
+    ```bash
+    conda create -n biotest -c bioconda gofasta
+    ```
+    :::
+
+    Now activate the `bioconda` channel and test that `gofasta` is installed by running:
+
+    ```bash
+    conda activate biotest
+    gofasta --help
+    ```
+    
+    You should get a help message giving information about `gofasta`.
+
+## Removing environments
+
+Lets remove some of the environments we created to save space. You can see all the environments you have installed by running:
+    
+```bash
+conda info --envs
+```
+
+Let's uninstall the conda-test environment. First, if you are not in the base environment, go to it by running `conda deactivate`. This will take you to your last active environment. Keep deactivating until you see `(base)` on the left of the prompt. Alternatively, just type `conda activate` (with no environment name) to go directly to the `base` environment. Now let's remove the `conda-test` environment by running:
+
+```bash
+conda remove --all -n conda-test
+```
+
+Now run `conda info --envs` again to check that the environment is installed. Repeat for any other environments you'd like to remove.
+
+
+# Summary
+
+This tutorial covered customizing Bash, managing files, using variables, conditionals, working with environments, and managing packages with Conda.
+
+# Appendix: Some additional useful bash commands
+
+Below are some more advanced bash concepts and utilities you may find useful as you navigate your computer using the command line.
+
+## Bash Customization
+
+Customizing your Bash shell can improve your workflow and make frequently used commands easier to run.
+
+## Example: Enabling Color Output in `ls`
+
+On many systems, the output of `ls` returns text that is the same color, regardless of if it's a file, folder, or something else. However, if you run:
+
+```bash
+ls -G
+```
+Then the output text will be colored depending on what item is; e.g., directory names will be in blue and files in white.
+
+## Aliases
+
+Aliases map a short command to a longer one. For example, if we always want the output of `ls` to be colored, we can alias `ls -G` with `ls` with:
+
+```bash
+alias ls="ls -hG"
+```
+
+## Customization with `.bash_profile` and `.bashrc`
+
+You may find an alias like the above so useful that you want it to run everytime you open a terminal. There are files that are run automatically when Bash starts that allow you to do just that. They are:
+
+- **`~/.bash_profile`**  
+  Runs for *login shells*. Good for commands that should only run once when you log in (e.g., setting environment variables).
+
+- **`~/.bashrc`**  
+  Runs for *interactive non-login shells*. Good for commands you want every interactive shell to run (e.g., aliases, functions).
+
+On many systems, `.bash_profile` will call `.bashrc` so settings apply in both contexts.
+
+> **Tip:** If unsure where to put something, put it in `.bashrc` and make sure `.bash_profile` sources `.bashrc`.
+
+::: callout-note
+## Using Zsh?
+If your default shell is **zsh** (common on macOS Catalina and later), the equivalent files are:
+- `~/.zprofile` – similar to `.bash_profile`
+- `~/.zshrc` – similar to `.bashrc`
+
+Configuration changes should go into `~/.zshrc` for most use cases.
+:::
+
+You can put any bash command you like in these scripts to further customize your shell. For example, you can configure your shell so that pressing the **up arrow** searches backward through your command history for commands starting with the text you have typed, and the **down arrow** searches forward with:
+
+*   **for bash** (add this to your `~/.bashrc`):
+
+    ```bash
+    bind '"\e[A": history-search-backward'
+    bind '"\e[B": history-search-forward'
+    ```
+
+*   **for Zsh** (add this to your `~/.zshrc`):
+
+    ```zsh
+    bindkey "^[[A" history-search-backward
+    bindkey "^[[B" history-search-forward
+    ```
+
+## Redirection and Append
+
+**Redirect output to a file:**
+
+```bash
+echo "Hello" > file.txt
+```
+
+Overwrites `file.txt` with "Hello".
+
+**Append output to a file:**
+
+```bash
+echo "World" >> file.txt
+```
+
+Adds "World" to the end of `file.txt`.
+
+
+:::: {.callout-caution appearance="simple" icon="false"}
+#### Challenge:
+
+Create a file called `input.txt` that contains the text "To be, or not to be," on the first line. Then add "that is the question." on the second line.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+##### Solution
+
+```bash
+echo "To be, or not to be," > input.txt
+echo "that is the question." >> input.txt
+```
+:::
+::::
+
+## Text Manipulation with `sed`
+
+It frequently happens that you need to search for and replace text in a file. The program `sed` is used for that. For example, let's modify the text in the `input.txt` you created above, and replace the word "be" with "use AI":
+
+```bash
+sed 's/ be/ use AI/g' input.txt
+```
+
+We can write results to a new file:
+
+```bash
+sed 's/ be/ use AI/g' input.txt > output.txt
+```
+
+## File Permissions and Ownership
+
+### Viewing Permissions
+
+```bash
+ls -l
+```
+Example output:
+```
+-rw-r--r--  1 user  staff   1234 Aug 14 12:00 file.txt
+```
+
+- First character: file type (`-` = file, `d` = directory)
+- Next three: owner permissions
+- Next three: group permissions
+- Next three: others' permissions
+
+### Changing Permissions
+
+```bash
+chmod u+x script.sh   # add execute permission for owner
+chmod u-w file.txt    # remove write permission for owner
+```
+
+### Changing Ownership
+
+```bash
+sudo chown newuser file.txt
+```
+
+## Conditionals
+
+In Bash, as with any language, *conditionals* allow you to execute commands only if certain conditions are true. They help control the flow of your script, enabling decisions based on system state, user input, or computation results.
+
+The basic syntax for an `if` statement in Bash is:
+
+```bash
+if [ CONDITION ]; then
+  # commands to run if CONDITION is true
+elif [ OTHER_CONDITION ]; then
+  # commands to run if OTHER_CONDITION is true
+else
+  # commands to run if no conditions are true
+fi
+```
+
+### Key points:
+- The square brackets `[ ]` are a synonym for the `test` command.
+- You must have spaces after `[` and before `]`.
+- Common tests:
+  - `-f file` — file exists and is a regular file
+  - `-d directory` — directory exists
+  - `string1 = string2` — strings are equal
+  - `n1 -eq n2` — numbers are equal
+  - `! CONDITION` — logical NOT (true if CONDITION is false)
+
+
+For example, to check if a file exists:
+
+```bash
+if [ -f "file.txt" ]; then
+  echo "File exists"
+else
+  echo "File does not exist"
+fi
+```
+
