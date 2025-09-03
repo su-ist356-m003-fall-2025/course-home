@@ -1,192 +1,5 @@
 [
   {
-    "objectID": "00_intro/index.html",
-    "href": "00_intro/index.html",
-    "title": "Introduction and computer setup",
-    "section": "",
-    "text": "In IST356 we teach you programming for data analytics using the tools and techiques used by those in the industry. As such, you will learn how to setup and configure development environments, use git and github and learn to systematically test your code.\nThis is unlike IST256 where the emphasis is on the programming basics and the motivations behind learning computational thinking.\n\n\n\n\n\n\n\n\n\nIST356\nIST256\n\n\n\n\nProgramming Environment\nInstall vscode + git + python on your computer\nWeb-hosted jupyterhub\n\n\nAssignment Submissions\nStudent learn and use git / github\nBuilt-in assignment submission\n\n\nCoursework, slides, examples\nYou clone / diff the prof repo\nAutodiff and merge at login\n\n\n\nIn this course you’ll do it the real way, nothing is hidden / abstracted away for you.\n\n\nHere’s what you’ll need to install on your computer. Please read this entire section prior to installing. :-)\n\nVisual Studio Code: https://code.visualstudio.com/Download\nThis is a free editor with testing and debugging capabilities. As you install you can accept all defaults, except the last one: DO NOT launch the application when complete! If you do, simply close it.\nGit Source Code Manager: https://git-scm.com/download/\nAs you set it up, you will be asked several questions, for which the default selection is fine. EXCEPTION: choose Visual Studio Code as the default editor.\n\n\n\n\n\n\nWarning\n\n\n\nMac users: you’ll see multiple options for downloading Git Source Code Manager. I recommend using the Xcode version. Clicking on that link will redirect you to the Apple store; from there you will download and install Xcode.\n\n\nMiniconda Do not install this yet! You will install this using the terminal in VSCode after VSCode and Git are installed and setup; see instructions below.\n\n\n\n\nBeing an SU student comes with some perks. One of them is a Github for Education account and accompanying “packpack” of goodies. To use this benefit, your github account must be associated with your @syr.edu email.\n\n\nAssociate your current account with SU, by adding your email:\n\nGo to to https://github.com and click Sign In\nOnce you have logged in, go to: https://github.com/settings/emails\n\nAdd and verify your SU email address.\n\n\n\n\nYou’ll need to create an account:\n\nGo to to https://github.com and click Sign In\nFollow the on-screen instructions to sign up for an account.\nMake sure to use your @syr.edu email for the account.\nAdd your personal email when you’re at it so you don’t lose Github access after you graduate!\n\n\n\n\n\n\n\nImportant\n\n\n\nOnce you have a GitHub account, please email your GitHub username to me at cdcapano@syr.edu.\n\n\n\n\n\n\nGo to the Github Backpack site: https://education.github.com/pack\nand click Sign Up For Student Developer Pack\nOnce your account is verified, you will have backpack access.\nYou’ll know its active when you check your billing plan: https://github.com/settings/billing/summary\nyou should see a credit here.\nOnce you have backpack access, you can enable Github Copilot AI. https://github.com/settings/copilot\n\n\n\n\n\nThe last step is to configure VS Code for Python debugging. Provided everything else is in order, this should be straightforward.\n\nOpen Visual studio code. You will be asked to configure it.\n\nSet up GitHub Copilot. To do so, you’ll need to sign into GitHub by clicking “Continue with GitHub”. After you do, you may be dropped into a “Welcome” tab in VS Code. If so, click the “Walkthrough: Setup VS Code” tab to continue set up.\nPick a theme: Light, Dark, etc…\nAdd the following Extensions: Python, Jupyter.\nWindows users only: we’ll occasionally be using bash in the terminal mode of VSCode. Mac and Linux users have bash natively installed in the operating system. Windows users will have gotten a copy of bash when they downloaded and installed Git SCM. However, you need to tell VSCode to use bash in the Terminal rather than Windows PowerShell. To do that:\n\nClick “Unlock productivity with the Command Palette” in the Walthrough tab, then “Open Command Palette”. Alternatively, if you don’t see that option, open the Command Palette by typing CTRL + SHIFT + P. (Mac users type COMMAND + SHIFT + P).\nType “Select Default Profile” then hit ENTER.\nSelect “Git Bash” from the drop-down options.\nCheck that it worked by opening a new terminal: in the file menu, click “Terminal” -&gt; “New Terminal”. You should see “bash” in the upper right of the terminal screen.\n\nClose the welcome Tab but keep VS Code open.\n\n\n\n\n\n\n\n\nOpen a terminal in VS Code by clicking “Terminal” -&gt; “New Terminal”.\nIn the terminal window, type:\ncd\nThen hit ENTER.\nFollow the instructions Quickstart install instructions on the Miniconda website. For WSL, select “Linux”.\n\n\n\n\n\nDownload the Miniconda installer for Windows. Click the Downlad button under “Miniconda Installers”, not the one under “Distribution Installers”.\nRun the installer by double-clicking on the downloaded file and follow the steps below.\n\nClick “Run”.\nClick on “Next”.\nClick on “I agree”.\nSelect “Just me” and click on “Next”.\nClick “Next” to install to the default destination folder.\n\n\n\n\n\n\nWarning\n\n\n\nIf you had tried to install miniconda previously, you may get an error that says “Directory … is not empty, please choose a different location.” Do not choose a different location. Instead, click “OK”, then rename the previous miniconda3 directory. You can do that by going to VS Code, opening a new terminal window (click “Terminal” -&gt; “New Terminal”), and entering the following (hit ENTER after each line):\ncd\nmv miniconda3 miniconda3-old\nThen go back to the Miniconda installer and click “Next”.\n\n\nCheck the option for “Add Anaconda to my PATH environment variable” and check the option for “Register Anaconda as my default Python 3.x”.\n\nNote that even though the installation is for Miniconda, the installer uses the word Anaconda in these options.\nYou will also see a message in red text that selecting “Add Anaconda to my PATH environment variable” is not recommended; continue with this selection to make using conda easier in Git Bash. If you have questions or concerns, please contact your instructor.\n\nClick on “Install”.\nWhen the install is complete, Click on “Next”.\nClick on “Finish”.\n\nOpen a new terminal window in VS Code by clicking “Terminal” -&gt; “New Terminal”.\nType the following command to initialize conda:\nconda init bash\nOpen a new terminal window in VS Code by either hitting the “+” key next to “bash” in the upper left of the terminal window, or by cliking “Terminal” -&gt; “New Terminal”. If conda installed successfullly, you should see (base) appear next to or above your command prompt.\n\n\n\n\n\n\nIn the bash terminal window in VS Code (make sure it says (base) to the left of or above the prompt), type:\nconda create -n ist356 -c conda-forge -y python=3.11 ipykernel\nThen hit ENTER.\n\n\n\n\n\n\nWarning\n\n\n\nThe first time you run conda, you may bet an error about Terms of Service not being accepted for certain channels. Accept the TOS for those channels by running the commands listed. For example, if one of the channels is https://repo.anaconda.com/pkgs/main, copy and paste the command into the terminal:\nconda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main\nFollowed by hitting ENTER (to execute a command in the terminal, you hit ENTER after typing/pasting it in). You’ll need to do this for each of the channels listed.\nOnce you have accepted the TOS for all the channels, run the conda create command above again.\n\n\nCheck to ensure your environment works:\n\nClick File -&gt; “New File…”\nIn the drop down menu, select “Jupyter Notebook”.\nClick “Select Kernel” on the right then type “ist356”.\nIn the first cell, type:\nprint(\"hello world!\")\nHit the run button on the left or type SHIFT + ENTER to execute the code. You should get back “hello world!”.\nClose the ipynb file (you may optionally save it; if you do, be sure to call it something other then “Untitled.ipynb”, maybe “hello.ipynb” instead).",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Introduction and computer setup"
-    ]
-  },
-  {
-    "objectID": "00_intro/index.html#step-1-software-installs",
-    "href": "00_intro/index.html#step-1-software-installs",
-    "title": "Introduction and computer setup",
-    "section": "",
-    "text": "Here’s what you’ll need to install on your computer. Please read this entire section prior to installing. :-)\n\nVisual Studio Code: https://code.visualstudio.com/Download\nThis is a free editor with testing and debugging capabilities. As you install you can accept all defaults, except the last one: DO NOT launch the application when complete! If you do, simply close it.\nGit Source Code Manager: https://git-scm.com/download/\nAs you set it up, you will be asked several questions, for which the default selection is fine. EXCEPTION: choose Visual Studio Code as the default editor.\n\n\n\n\n\n\nWarning\n\n\n\nMac users: you’ll see multiple options for downloading Git Source Code Manager. I recommend using the Xcode version. Clicking on that link will redirect you to the Apple store; from there you will download and install Xcode.\n\n\nMiniconda Do not install this yet! You will install this using the terminal in VSCode after VSCode and Git are installed and setup; see instructions below.",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Introduction and computer setup"
-    ]
-  },
-  {
-    "objectID": "00_intro/index.html#setup-2-github-account",
-    "href": "00_intro/index.html#setup-2-github-account",
-    "title": "Introduction and computer setup",
-    "section": "",
-    "text": "Being an SU student comes with some perks. One of them is a Github for Education account and accompanying “packpack” of goodies. To use this benefit, your github account must be associated with your @syr.edu email.\n\n\nAssociate your current account with SU, by adding your email:\n\nGo to to https://github.com and click Sign In\nOnce you have logged in, go to: https://github.com/settings/emails\n\nAdd and verify your SU email address.\n\n\n\n\nYou’ll need to create an account:\n\nGo to to https://github.com and click Sign In\nFollow the on-screen instructions to sign up for an account.\nMake sure to use your @syr.edu email for the account.\nAdd your personal email when you’re at it so you don’t lose Github access after you graduate!\n\n\n\n\n\n\n\nImportant\n\n\n\nOnce you have a GitHub account, please email your GitHub username to me at cdcapano@syr.edu.\n\n\n\n\n\n\nGo to the Github Backpack site: https://education.github.com/pack\nand click Sign Up For Student Developer Pack\nOnce your account is verified, you will have backpack access.\nYou’ll know its active when you check your billing plan: https://github.com/settings/billing/summary\nyou should see a credit here.\nOnce you have backpack access, you can enable Github Copilot AI. https://github.com/settings/copilot",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Introduction and computer setup"
-    ]
-  },
-  {
-    "objectID": "00_intro/index.html#step-3-configure-vs-code",
-    "href": "00_intro/index.html#step-3-configure-vs-code",
-    "title": "Introduction and computer setup",
-    "section": "",
-    "text": "The last step is to configure VS Code for Python debugging. Provided everything else is in order, this should be straightforward.\n\nOpen Visual studio code. You will be asked to configure it.\n\nSet up GitHub Copilot. To do so, you’ll need to sign into GitHub by clicking “Continue with GitHub”. After you do, you may be dropped into a “Welcome” tab in VS Code. If so, click the “Walkthrough: Setup VS Code” tab to continue set up.\nPick a theme: Light, Dark, etc…\nAdd the following Extensions: Python, Jupyter.\nWindows users only: we’ll occasionally be using bash in the terminal mode of VSCode. Mac and Linux users have bash natively installed in the operating system. Windows users will have gotten a copy of bash when they downloaded and installed Git SCM. However, you need to tell VSCode to use bash in the Terminal rather than Windows PowerShell. To do that:\n\nClick “Unlock productivity with the Command Palette” in the Walthrough tab, then “Open Command Palette”. Alternatively, if you don’t see that option, open the Command Palette by typing CTRL + SHIFT + P. (Mac users type COMMAND + SHIFT + P).\nType “Select Default Profile” then hit ENTER.\nSelect “Git Bash” from the drop-down options.\nCheck that it worked by opening a new terminal: in the file menu, click “Terminal” -&gt; “New Terminal”. You should see “bash” in the upper right of the terminal screen.\n\nClose the welcome Tab but keep VS Code open.",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Introduction and computer setup"
-    ]
-  },
-  {
-    "objectID": "00_intro/index.html#step-4-install-miniconda",
-    "href": "00_intro/index.html#step-4-install-miniconda",
-    "title": "Introduction and computer setup",
-    "section": "",
-    "text": "Open a terminal in VS Code by clicking “Terminal” -&gt; “New Terminal”.\nIn the terminal window, type:\ncd\nThen hit ENTER.\nFollow the instructions Quickstart install instructions on the Miniconda website. For WSL, select “Linux”.\n\n\n\n\n\nDownload the Miniconda installer for Windows. Click the Downlad button under “Miniconda Installers”, not the one under “Distribution Installers”.\nRun the installer by double-clicking on the downloaded file and follow the steps below.\n\nClick “Run”.\nClick on “Next”.\nClick on “I agree”.\nSelect “Just me” and click on “Next”.\nClick “Next” to install to the default destination folder.\n\n\n\n\n\n\nWarning\n\n\n\nIf you had tried to install miniconda previously, you may get an error that says “Directory … is not empty, please choose a different location.” Do not choose a different location. Instead, click “OK”, then rename the previous miniconda3 directory. You can do that by going to VS Code, opening a new terminal window (click “Terminal” -&gt; “New Terminal”), and entering the following (hit ENTER after each line):\ncd\nmv miniconda3 miniconda3-old\nThen go back to the Miniconda installer and click “Next”.\n\n\nCheck the option for “Add Anaconda to my PATH environment variable” and check the option for “Register Anaconda as my default Python 3.x”.\n\nNote that even though the installation is for Miniconda, the installer uses the word Anaconda in these options.\nYou will also see a message in red text that selecting “Add Anaconda to my PATH environment variable” is not recommended; continue with this selection to make using conda easier in Git Bash. If you have questions or concerns, please contact your instructor.\n\nClick on “Install”.\nWhen the install is complete, Click on “Next”.\nClick on “Finish”.\n\nOpen a new terminal window in VS Code by clicking “Terminal” -&gt; “New Terminal”.\nType the following command to initialize conda:\nconda init bash\nOpen a new terminal window in VS Code by either hitting the “+” key next to “bash” in the upper left of the terminal window, or by cliking “Terminal” -&gt; “New Terminal”. If conda installed successfullly, you should see (base) appear next to or above your command prompt.",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Introduction and computer setup"
-    ]
-  },
-  {
-    "objectID": "00_intro/index.html#step-5-create-a-conda-environment-and-test-it-in-vs-code",
-    "href": "00_intro/index.html#step-5-create-a-conda-environment-and-test-it-in-vs-code",
-    "title": "Introduction and computer setup",
-    "section": "",
-    "text": "In the bash terminal window in VS Code (make sure it says (base) to the left of or above the prompt), type:\nconda create -n ist356 -c conda-forge -y python=3.11 ipykernel\nThen hit ENTER.\n\n\n\n\n\n\nWarning\n\n\n\nThe first time you run conda, you may bet an error about Terms of Service not being accepted for certain channels. Accept the TOS for those channels by running the commands listed. For example, if one of the channels is https://repo.anaconda.com/pkgs/main, copy and paste the command into the terminal:\nconda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main\nFollowed by hitting ENTER (to execute a command in the terminal, you hit ENTER after typing/pasting it in). You’ll need to do this for each of the channels listed.\nOnce you have accepted the TOS for all the channels, run the conda create command above again.\n\n\nCheck to ensure your environment works:\n\nClick File -&gt; “New File…”\nIn the drop down menu, select “Jupyter Notebook”.\nClick “Select Kernel” on the right then type “ist356”.\nIn the first cell, type:\nprint(\"hello world!\")\nHit the run button on the left or type SHIFT + ENTER to execute the code. You should get back “hello world!”.\nClose the ipynb file (you may optionally save it; if you do, be sure to call it something other then “Untitled.ipynb”, maybe “hello.ipynb” instead).",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Introduction and computer setup"
-    ]
-  },
-  {
-    "objectID": "syllabus.html",
-    "href": "syllabus.html",
-    "title": "Syllabus",
-    "section": "",
-    "text": "Room: Hinds Hall 021\nTime: M/W 3:45PM - 5:05PM\nInstructor: Collin Capano\nEmail: cdcapano@syr.edu\nOffice hours: Tuesdays, 11AM - 1PM in Hinds Hall 323G\nCourse website: https://su-ist356-m003-fall-2025.github.io/course-home",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "syllabus.html#course-info",
-    "href": "syllabus.html#course-info",
-    "title": "Syllabus",
-    "section": "",
-    "text": "Room: Hinds Hall 021\nTime: M/W 3:45PM - 5:05PM\nInstructor: Collin Capano\nEmail: cdcapano@syr.edu\nOffice hours: Tuesdays, 11AM - 1PM in Hinds Hall 323G\nCourse website: https://su-ist356-m003-fall-2025.github.io/course-home",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "syllabus.html#course-description",
-    "href": "syllabus.html#course-description",
-    "title": "Syllabus",
-    "section": "Course Description",
-    "text": "Course Description\nApproaches for building pipelines in data analytics using the Python programming language; data cleaning, extraction, wrangling, API’s, web scraping. Building data products. Programming experience required.\n\nAdditional Course Description\nThis course is a tour of programming techniques for building data pipelines for analytics. It will not just emphasize exploratory approaches, but also techniques to build extract transform load pipelines to run code in production. Throughout the course we will learn how to source data from a variety of sources (files, data streams, APIs, web scraping, etc.) and ultimately transform data as to prepare it for dashboards or machine learning. You will also learn some simple data visualization but that is not the primary emphasis of the course.\n\n\nPrerequisites\nThis courses uses the Python programming language. Proficiency n any programming language is the only pre-requisite. Students should have a clear understanding of these concepts:\n\nInput, output, variables and data types\nControl flow statements (if, for, while)\nFunctions (function definition, calling, parameters, return values)\nData structures (lists, dictionaries)\nUsing code in other libraries\n\n\n\nAudience: IST256 or IST356?\nThis course is intended as a follow up course to IST256. It is also appropriate for students with prior experience with programming who have an interest in data analytics.\n\nIST256 is for students with little to no programming experience. The course content is 75% python fundamentals and 25% python for data analytics.\nIST356 is for students with prior programming experience. The course content is 25% python fundamentals and 75% python for data analytics.\n\n\n\nCredits\n3 credits\n\n\nCourse Fees\nNone",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "syllabus.html#learning-objectives",
-    "href": "syllabus.html#learning-objectives",
-    "title": "Syllabus",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\nUpon completion of this course, students will be able to:\n\nExplain techniques for sourcing or transforming data, and be able to justify the choice of technique\nSolve data-oriented problems using programming techniques\nEvaluate different code modules and application programming interfaces for suitability\nApply data transformational programming techniques to build a larger data pipelines\nCreate production quality data pipelines from exploratory code",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "syllabus.html#textbooks-and-supplies",
-    "href": "syllabus.html#textbooks-and-supplies",
-    "title": "Syllabus",
-    "section": "Textbooks And Supplies",
-    "text": "Textbooks And Supplies\n\nTextbooks\nThere is no textbook you need to purchase for this course. All required readings are available freely online, and in many cases, the online sources are the most up-to-date references to the relevant course material. See reading list section for additional details.\n\nMain Text\n\nPython Programming for Data Science, by T. Beuzen (2021) https://www.tomasbeuzen.com/python-programming-for-data-science/\n\n\n\n\nBring Your Own Device\nYou are expected to bring your computer to each class session. This class is very hands-on, and you will be programming in class often.\n\nSoftware to install\nThis course requires you to install software on your computer. The intro section of this course provides detailed instructions.\n\nVisual Studio Code editor\nGit Source Code Managment\nMiniconda\n\n\n\nAccounts\n\nWe will use Github for assignment submission.",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "syllabus.html#course-requirements-and-expectations",
-    "href": "syllabus.html#course-requirements-and-expectations",
-    "title": "Syllabus",
-    "section": "Course Requirements and Expectations",
-    "text": "Course Requirements and Expectations\n\nAttendance and Participation\nIn-class participation is the best way to learn and absorb the material. As such, you are expected to attend and participate in every class session. Your grade will be partially based on attendance (see below for details). If you must miss class, you are responsible for making up the work and catching up on what you missed. Lectures will be recorded and posted to the course website after the class.\n\n\nAssignments\nThe assignments are programming / problem solving activities that you will complete outside of class. The assignment due dates are posted on the course schedule. Consider these assignments formative assessments - practice so you can get better at computational thinking, problem solving and writing code. It is important to reflect upon your work and take an honest assessment of your abilities as you complete each assignment.\nEach Wednesday we will review the homework assignment. Students will be asked to contribute to the discussion.\nFactors affecting your grade:\n\nIs the code working and correct?\nWere the instructions followed? (e.g. commit after each function is written)\nGood reflection: specific, uses terminology, actionable\nHanded in on time, so your prof only needs to review submissions 1 time.\n\n\n\nExams\nExams are summative assessments. They are designed to test your knowledge of the material. The exams will be issued in class on the dates posted on the course schedule. Exams are closed-book but you may bring one 8.5x11 sheet of paper with your notes on it. Exams length is 60 minutes. They will be a mix of mix of multiple choice, short answer and code tracing and code writing.\n\n\nProject\nThe project is your opportunity to demonstrate what you have learned in an experiential fashion. In your final project you will be expected to create a data pipeline of your choosing.\n\nThe pipeline should incorporate techniques we learned in the course and the more techniques you incorporate correctly the higher your grade.\nIt is expected that you will be able to explain your choices, and they will be appropriate for the problem.\nThe pipeline should be first written exploratory, and then refactored into a production quality pipeline. Both pipelines should be submitted.\nThere should be a simple data visualization or dashboard from the pipeline output as to demonstrate its usefulness.",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "syllabus.html#grading",
-    "href": "syllabus.html#grading",
-    "title": "Syllabus",
-    "section": "Grading",
-    "text": "Grading\n\n\n\n\n\n\n\n\n\n\n\nAssessment\nType\nLearning Outcomes\nQuantity\nPoints Each\nPoints Total\n\n\n\n\nAttendance\nFormative\n\n24\n1\n24\n\n\nAssignments\nFormative\n1, 2\n8\n3\n24\n\n\nExams\nSummative\n3, 4\n2\n24\n48\n\n\nProject\nSummative\n5\n1\n24\n24\n\n\nTotal\n\n\n\n\n120\n\n\n\n\nGrading Table\nThe following grading scale translates your total points earned into a letter grade to be submitted to the University registrar.\n\n\n\n\n\n\n\n\n\nStudent Achievement\nTotal Points Earned\nRegistrar Grade\nGrade Points\n\n\n\n\nMastery\n114 - 120\nA\n4.000\n\n\n\n108 - 113\nA-\n3.666\n\n\nSatisfactory\n102 - 107\nB+\n3.333\n\n\n\n96 - 101\nB\n3.000\n\n\n\n90 - 95\nB-\n2.666\n\n\nLow Passing\n84 - 89\nC+\n2.333\n\n\n\n78 - 83\nC\n2.000\n\n\n\n72 - 77\nC-\n1.666\n\n\nUnsatisfactory\n60 - 71\nD\n1.000\n\n\n\n0 - 59\nF\n0.000",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "syllabus.html#use-of-ai-in-this-course",
-    "href": "syllabus.html#use-of-ai-in-this-course",
-    "title": "Syllabus",
-    "section": "Use of AI in this Course",
-    "text": "Use of AI in this Course\nBased on the assignments in this course and our specified learning outcomes, the full use of artificial intelligence as a tool, with disclosure and citation, is permitted in this course. Students do not need to ask permission to use these tools before starting an assignment or exam, but they must explicitly and fully indicate which tools were used and describe how they were used.",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "syllabus.html#academic-integrity",
-    "href": "syllabus.html#academic-integrity",
-    "title": "Syllabus",
-    "section": "Academic Integrity",
-    "text": "Academic Integrity\nAs a pre-eminent and inclusive student-focused research institution, Syracuse University considers academic integrity at the forefront of learning, serving as a core value and guiding pillar of education. Syracuse University’s Academic Integrity Policy provides students with the necessary guidelines to complete academic work with integrity throughout their studies. Students are required to uphold both course-specific and university-wide academic integrity expectations such as crediting your sources, doing your own work, communicating honestly, and supporting academic integrity. The full Syracuse University Academic Integrity Policy can be viewed by visiting the Syracuse University Policies website.\nUpholding Academic Integrity includes the protection of faculty’s intellectual property. Students should not upload, distribute, or share instructors’ course materials, including presentations, assignments, exams, or other evaluative materials without permission. Using websites that charge fees or require uploading of course material (e.g., Chegg, Course Hero) to obtain exam solutions or assignments completed by others, which are then presented as your own violates academic integrity expectations in this course and may be classified as a Level 3 violation. All academic integrity expectations that apply to in-person assignments, quizzes, and exams also apply online.\nStudents found in violation of the policy are subject to grade sanctions determined by the course instructor and non-grade sanctions determined by the School or College where the course is offered. Students may not drop or withdraw from courses in which they face a suspected violation. Any established violation in this course may result in course failure regardless of violation level.",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "syllabus.html#class-schedule",
-    "href": "syllabus.html#class-schedule",
-    "title": "Syllabus",
-    "section": "Class Schedule",
-    "text": "Class Schedule\nNote: schedule subject to change as we progress through the semester.\n\n\n\nWeek\nDates\nTopic\n\n\n\n\n1\n8/25, 8/29\nIntro; CLI and Conda\n\n\n2\n9/3\nPython review - 1\n\n\n3\n9/8, 9/10\nPython review - 2\n\n\n4\n9/15, 9/17\nUI\n\n\n5\n9/22, 9/24\nData wrangling - 1\n\n\n6\n9/29, 10/1\nData wrangling - 2\n\n\n7\n10/6, 10/8\nData wrangling - 3\n\n\n8\n10/15\nExam 1\n\n\n9\n10/20, 10/22\nWeb APIs - 1\n\n\n10\n10/27, 10/29\nWeb APIs - 2\n\n\n11\n11/3, 11/5\nWeb scraping - 1\n\n\n12\n11/10, 11/12\nWeb scraping - 2\n\n\n13\n11/17, 11/19\nData visualization - 1\n\n\n14\n12/1, 12/3\nData visualization - 2\n\n\n15\n12/8\nExam 2\n\n\n16\n12/15\nProject due",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "syllabus.html#important-dates",
-    "href": "syllabus.html#important-dates",
-    "title": "Syllabus",
-    "section": "Important dates",
-    "text": "Important dates\n\n\n\n\n\n\n\nDate\n\n\n\n\n\nMon. 8/25\nFirst day of class\n\n\nMon. 9/1\nLabor day - No class\n\n\nMon. 9/15\nAcademic/Financial drop deadline; Religious observance notification deadline\n\n\nMon. 10/13\nFall break - No class\n\n\nFri. 11/21\nWithdrawal deadline\n\n\n11/23-11/30\nThanksgiving Break - No class\n\n\nMon. 12/8\nLast day of class",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Syllabus"
-    ]
-  },
-  {
     "objectID": "01_cli_conda/conda.html",
     "href": "01_cli_conda/conda.html",
     "title": "Bash variables, environments, and conda",
@@ -679,6 +492,375 @@
     ]
   },
   {
+    "objectID": "02_python/python-1.html",
+    "href": "02_python/python-1.html",
+    "title": "1. Input, output, variables, types, conditionals",
+    "section": "",
+    "text": "Identify the problem inputs (requirements)\nIdentify the problem outputs (results)\nWrite an algorithm to transform inputs to outputs.\nIf you don’t know how to do a step… research it!",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review",
+      "1. Input, output, variables, types, conditionals"
+    ]
+  },
+  {
+    "objectID": "02_python/python-1.html#input-process-output",
+    "href": "02_python/python-1.html#input-process-output",
+    "title": "1. Input, output, variables, types, conditionals",
+    "section": "",
+    "text": "Identify the problem inputs (requirements)\nIdentify the problem outputs (results)\nWrite an algorithm to transform inputs to outputs.\nIf you don’t know how to do a step… research it!",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review",
+      "1. Input, output, variables, types, conditionals"
+    ]
+  },
+  {
+    "objectID": "02_python/python-1.html#python-input-and-output",
+    "href": "02_python/python-1.html#python-input-and-output",
+    "title": "1. Input, output, variables, types, conditionals",
+    "section": "Python input and output",
+    "text": "Python input and output\nprint() does output\ninput() does input, returns input so you must assign it to a variable\n\nx = input(\"Enter something: \")\n\n\nprint(x)\n\n\n\n\n\n\n\nCode Challenge 1.1\n\n\n\nWrite a program to input your first name and last name then output your last name, first name.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nfirst = input(\"Enter your first name: \")\nlast = input(\"Enter your last name: \")\nprint(last, \",\", first)\n# could also do (see next section):\nprint(f\"{last}, {first}\")",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review",
+      "1. Input, output, variables, types, conditionals"
+    ]
+  },
+  {
+    "objectID": "02_python/python-1.html#f-strings",
+    "href": "02_python/python-1.html#f-strings",
+    "title": "1. Input, output, variables, types, conditionals",
+    "section": "F-Strings",
+    "text": "F-Strings\n\nF-Strings are Python’s answer to string interpolation.\nThis replaces the variable name with its value within a string.\nCalled an F-string because the f tells Python to interpolate the string.\n\n\nname = 'George'\nprint(\"{name} was curious.\")\nprint(f\"{name} was curious.\")\n\n{name} was curious.\nGeorge was curious.\n\n\n\n\n\n\n\n\nCheck Yourself 1\n\n\n\nWhich is an example of a properly used string literal?\nA. print(welcome)\nB. print(\"welcome\")\nC. print \"welcome\"\nD. print welcome\nVote now at https://PollEv.com/ist356m3\n\n\n\n\n\n\nSolution\n\n\n\n\n\nB\nNote: In Python 2.7 and earlier the correct answer would be C. The syntax for the print function was changed in Python 3. Python 2 is no longer supported.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review",
+      "1. Input, output, variables, types, conditionals"
+    ]
+  },
+  {
+    "objectID": "02_python/python-1.html#variables",
+    "href": "02_python/python-1.html#variables",
+    "title": "1. Input, output, variables, types, conditionals",
+    "section": "Variables",
+    "text": "Variables\n\nVariables are named areas of computer memory for storing data.\nThe name can be anything but should make symbolic sense to the programmer.\nWe write to the variable’s memory location with the assignment statement (=)\nWe read from the variable by calling its name.\nVariable names must begin with a letter or _ and must only contain letters, numbers or _.\n\n\nVariables are of a Specific Type\n\n\n\n\nType\n\n\nPurpose\n\n\nExamples\n\n\n\n\n\n\nint\n\n\nNumeric type for integers only\n\n\n45, -10\n\n\n\n\nfloat\n\n\nNumeric type floating point numbers\n\n\n45, -10\n\n\n\n\nbool\n\n\nTrue or False values\n\n\nTrue, False\n\n\n\n\nstr\n\n\nCharacters and text\n\n\n“A”, ‘Mike’\n\n\n\n\n\n\nType Detection and Conversion\n\n\n\n\nPython Function\n\n\nWhat It Does\n\n\nExample of Use\n\n\n\n\n\n\ntype(n)\n\n\nReturns the current type of n\n\n\ntype(13) == int\n\n\n\n\nint(n)\n\n\nConverts n to type int\n\n\nint(“45”) == 45\n\n\n\n\nfloat(n)\n\n\nConverts n to type float\n\n\nfloat(45) == 45.0\n\n\n\n\nstr(n)\n\n\nConverts n to type str\n\n\nstr(4.0) == ‘4.0’",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review",
+      "1. Input, output, variables, types, conditionals"
+    ]
+  },
+  {
+    "objectID": "02_python/python-1.html#programmatic-expressions",
+    "href": "02_python/python-1.html#programmatic-expressions",
+    "title": "1. Input, output, variables, types, conditionals",
+    "section": "Programmatic Expressions",
+    "text": "Programmatic Expressions\nProgrammatic Expressions contain operators and operands. They evaluate to a value, preserving type:\n\nprint(2 + 2)\nprint(2.0 + 2)\nprint(\"sh\" + 'ip')\nprint('hi' + 2) # error\n\n4\n4.0\nship\n\n\n\n---------------------------------------------------------------------------\nTypeError                                 Traceback (most recent call last)\nCell In[2], line 4\n      2 print(2.0 + 2)\n      3 print(\"sh\" + 'ip')\n----&gt; 4 print('hi' + 2) # error\n\nTypeError: can only concatenate str (not \"int\") to str",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review",
+      "1. Input, output, variables, types, conditionals"
+    ]
+  },
+  {
+    "objectID": "02_python/python-1.html#arithmetic-operators",
+    "href": "02_python/python-1.html#arithmetic-operators",
+    "title": "1. Input, output, variables, types, conditionals",
+    "section": "Arithmetic Operators",
+    "text": "Arithmetic Operators\n\n\n\n\nOperator\n\n\nWhat it Does\n\n\nExample of Use\n\n\n\n\n\n\n+\n\n\nAddition or string concenation\n\n\n3 + 4 == 7\n\n\n\n\n-\n\n\nSubtraction\n\n\n4 - 3 == 1\n\n\n\n\n*\n\n\nMultiplication\n\n\n3 * 4 == 12\n\n\n\n\n/\n\n\nDivision\n\n\n4 / 3 == 1.33333\n\n\n\n\n//\n\n\nIntger division (quotent)\n\n\n13 // 3 == 4\n\n\n\n\n%\n\n\nModulo (remainder)\n\n\n13 % 3 == 1\n\n\n\n\n( )\n\n\nForce an order of operations\n\n\n2 * (3 + 4) == 14\n\n\n\n\n\n\n\n\n\n\nCode Challenge 1.2: Program to divide up the check among diners in a party\n\n\n\nWrite a program that takes as input the amount of a restaurant check, tip %, and number of diners.\nThe program should output the total amount with tip, and the amount each diner owes.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nbill = float(input(\"Enter the total amount of the bill $\"))\ntip = int(input(\"What % would you like to tip, eg. 20 == 20%? \"))\ntip_pct = tip/100\ndiners = int(input(\"How many diners? \"))\ntotal = bill + bill*tip_pct\nshare = total / diners\nprint(\"Total Bill, with Tip: \", total)\nprint(f\"Even share among {diners} diners is {share:.2f}\")\n\n\n\n\n\n\n\n\n\n\n\n\nCheck Yourself 2\n\n\n\nWhat is the value of str(314) ?\nA. 314\nB. \"314\"\nC. int\nD. '34.0'\nVote now at https://PollEv.com/ist356m3\n\n\n\n\n\n\nSolution\n\n\n\n\n\nB\n\n\n\n\n\n\n\n\n\n\n\nCheck Yourself 3\n\n\n\nWhat is the value of type(314.0) ?\nA. 314\nB. float\nC. int\nD. '314.0'\nVote now at https://PollEv.com/ist356m3\n\n\n\n\n\n\nSolution\n\n\n\n\n\nB\n\n\n\n\n\n\n\n\n\n\n\nCheck Yourself 4\n\n\n\nWhat is the output of the following python code?\n\na = 10\nb = 2\nc = 1 + (a/b)\nprint(c)\n\nA. 6\nB. 5.5\nC. 6.0\nD. 5\nVote now at https://PollEv.com/ist356m3\n\n\n\n\n\n\nSolution\n\n\n\n\n\nC",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review",
+      "1. Input, output, variables, types, conditionals"
+    ]
+  },
+  {
+    "objectID": "02_python/python-1.html#program-flow-control-with-if",
+    "href": "02_python/python-1.html#program-flow-control-with-if",
+    "title": "1. Input, output, variables, types, conditionals",
+    "section": "Program Flow Control with IF",
+    "text": "Program Flow Control with IF\n\nThe IF statement is used to branch your code based on a Boolean expression.\n\n\nif boolean-expression:\n    statements-when-true\nelse:\n    statemrnts-when-false",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review",
+      "1. Input, output, variables, types, conditionals"
+    ]
+  },
+  {
+    "objectID": "02_python/python-1.html#pythons-relational-operators",
+    "href": "02_python/python-1.html#pythons-relational-operators",
+    "title": "1. Input, output, variables, types, conditionals",
+    "section": "Python’s Relational Operators",
+    "text": "Python’s Relational Operators\n\n\n\n\nOperator\n\n\nWhat it does\n\n\nExamples\n\n\n\n\n\n\n &gt; \n\n\nGreater than\n\n\n4&gt;2 (True)\n\n\n\n\n &lt; \n\n\nLess than\n\n\n4&lt;2 (False)\n\n\n\n\n == \n\n\nEqual To\n\n\n4==2 (False)\n\n\n\n\n != \n\n\nNot Equal To\n\n\n4!=2 (True)\n\n\n\n\n &gt;= \n\n\nGreater Than or Equal To\n\n\n4&gt;=2 (True)\n\n\n\n &lt;= \n\n\nLess Than or Equal To\n\n\n4&lt;=2 (True)\n\n\n\n\nExpressions consisting of relational operators evaluate to a Boolean value\n\n\n\n\n\n\nCode Challenge 1.3: Presssure sensor that determines whether to open a door\n\n\n\nWrite code that simulates a pressure sensor that opens a door when the pressure is larger than 10; otherwise, it closes the door.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nreading = float(input(\"Sensor Reading: \"))\n\nif reading &gt; 10:\n    status = \"Opening\"\nelse:\n    status = \"Closing\"\n\nprint(f\"{status} the door\")\n\n\n\n\n\n\n\n\n\n\n\n\nCheck Yourself 5: Relational operators\n\n\n\nOn Which line number is the Boolean expression True?\n\nx = 15      # 1\ny = 20      # 2\nz = 2       # 3\nx &gt; y       # 4\nz*x &lt;= y    # 5\ny &gt;= x-z    # 6\nz*10 == x   # 7\n\nA. 4\nB. 5\nC. 6\nD. 7\nVote now at https://PollEv.com/ist356m3\n\n\n\n\n\n\nSolution\n\n\n\n\n\nC",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review",
+      "1. Input, output, variables, types, conditionals"
+    ]
+  },
+  {
+    "objectID": "02_python/python-1.html#pythons-logical-operators",
+    "href": "02_python/python-1.html#pythons-logical-operators",
+    "title": "1. Input, output, variables, types, conditionals",
+    "section": "Python’s Logical Operators",
+    "text": "Python’s Logical Operators\n\n\n\n\nOperator\n\n\nWhat it does\n\n\nExamples\n\n\n\n\n\n\n and \n\n\nTrue only when both are True\n\n\n4&gt;2 and 4&lt;5 (True)\n\n\n\n\n or \n\n\nFalse only when both are False\n\n\n4&lt;2 or 4==4 (True)\n\n\n\n\n not \n\n\nNegation(Opposite)\n\n\nnot 4==2 (True)\n\n\n\n\n in \n\n\nSet operator\n\n\n4 in [2,4,7] (True)\n\n\n\n\n\n\n\n\n\n\nCheck Yourself 6: Logical Operators\n\n\n\nIn the following code, which line evaluates to True?\n\nraining = False              # 1\nsnowing = True               # 2\nage = 45                     # 3\nage &lt; 18 and raining         # 4\nage &gt;= 18 and not snowing    # 5\nnot snowing or not raining   # 6\nage == 45 and not snowing    # 7\n\nA. 4\nB. 5\nC. 6\nD. 7\nVote now at https://PollEv.com/ist356m3\n\n\n\n\n\n\nSolution\n\n\n\n\n\nC",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review",
+      "1. Input, output, variables, types, conditionals"
+    ]
+  },
+  {
+    "objectID": "02_python/python-1.html#multiple-decisions-if-ladder",
+    "href": "02_python/python-1.html#multiple-decisions-if-ladder",
+    "title": "1. Input, output, variables, types, conditionals",
+    "section": "Multiple Decisions: IF ladder",
+    "text": "Multiple Decisions: IF ladder\nUse elif to make more than one decision in your if statement. Only one code block within the ladder is executed.\n\nif boolean-expression1:\n    statements-when-exp1-true\nelif boolean-expression2:\n    statements-when-exp2-true\nelif boolean-expression3:\n    statements-when-exp3-true\nelse:\n    statements-none-are-true\n\n\n\n#Elif versus multiple ifs...\n# One decision or multiple decisions. \n\nx = int(input(\"enter an integer\"))\n\n# one decision\nif x&gt;10:\n    print(\"A:bigger than 10\")\nelif x&gt;20:\n    print(\"A:bigger than 20\")    \n\n    # Multiple decisions\nif x&gt;10:\n    print(\"B:bigger than 10\")\nif x&gt;20:\n    print(\"B:bigger than 20\")\n\n\n\n\n\n\n\nCheck Yourself 7: IF statement\n\n\n\nAssuming values x = 25 and y = 6, what will be printed when the following code is run?\n\nif x &gt; 20:\n    if y == 4:\n        print(\"One\")\n    elif y &gt; 4:\n        print(\"Two\")\n    else:\n        print(\"Three\")\nelse:\n    print(\"Four\")\n\nA. One\nB. Two\nC. Three\nD. Four\nVote now at https://PollEv.com/ist356m3\n\n\n\n\n\n\nSolution\n\n\n\n\n\nB\n\n\n\n\n\n\n\n\n\n\n\nCode Challenge 1.4: Number to letter grade\n\n\n\n\nLetter grades in a college class are computed as follows:\n\n95 and above is an A\n75 and above, but below 95 is a B\n50 and above, but below 75 is a C\nbelow 50 is F\n\nWrite a program to input the number grade and calculate the letter grade\nThe program should also print an error message if the provided number grade is out of range (i.e., &gt; 120 or &lt; 0).\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nnumber_grade = int(input(\"Enter your numerical grade: 0 - 120\"))\nletter_grade = \"unknown\"\n\nif number_grade &gt;= 0 and number_grade &lt;= 120:\n\n    if number_grade &gt; 95:\n        letter_grade = \"A\"\n    elif number_grade &gt; 75:\n        letter_grade = \"B\"\n    elif number_grade &gt; 50:\n        letter_grade = \"C\"\n    else:\n        letter_grade = \"F\"\n\n    print(f\"For {number_grade} points the letter grade is {letter_grade}\")\n\nelse:\n    print(f\"Number grade of {number_grade} is out of range!\")",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review",
+      "1. Input, output, variables, types, conditionals"
+    ]
+  },
+  {
+    "objectID": "00_intro/index.html",
+    "href": "00_intro/index.html",
+    "title": "Introduction and computer setup",
+    "section": "",
+    "text": "In IST356 we teach you programming for data analytics using the tools and techiques used by those in the industry. As such, you will learn how to setup and configure development environments, use git and github and learn to systematically test your code.\nThis is unlike IST256 where the emphasis is on the programming basics and the motivations behind learning computational thinking.\n\n\n\n\n\n\n\n\n\nIST356\nIST256\n\n\n\n\nProgramming Environment\nInstall vscode + git + python on your computer\nWeb-hosted jupyterhub\n\n\nAssignment Submissions\nStudent learn and use git / github\nBuilt-in assignment submission\n\n\nCoursework, slides, examples\nYou clone / diff the prof repo\nAutodiff and merge at login\n\n\n\nIn this course you’ll do it the real way, nothing is hidden / abstracted away for you.\n\n\nHere’s what you’ll need to install on your computer. Please read this entire section prior to installing. :-)\n\nVisual Studio Code: https://code.visualstudio.com/Download\nThis is a free editor with testing and debugging capabilities. As you install you can accept all defaults, except the last one: DO NOT launch the application when complete! If you do, simply close it.\nGit Source Code Manager: https://git-scm.com/download/\nAs you set it up, you will be asked several questions, for which the default selection is fine. EXCEPTION: choose Visual Studio Code as the default editor.\n\n\n\n\n\n\nWarning\n\n\n\nMac users: you’ll see multiple options for downloading Git Source Code Manager. I recommend using the Xcode version. Clicking on that link will redirect you to the Apple store; from there you will download and install Xcode.\n\n\nMiniconda Do not install this yet! You will install this using the terminal in VSCode after VSCode and Git are installed and setup; see instructions below.\n\n\n\n\nBeing an SU student comes with some perks. One of them is a Github for Education account and accompanying “packpack” of goodies. To use this benefit, your github account must be associated with your @syr.edu email.\n\n\nAssociate your current account with SU, by adding your email:\n\nGo to to https://github.com and click Sign In\nOnce you have logged in, go to: https://github.com/settings/emails\n\nAdd and verify your SU email address.\n\n\n\n\nYou’ll need to create an account:\n\nGo to to https://github.com and click Sign In\nFollow the on-screen instructions to sign up for an account.\nMake sure to use your @syr.edu email for the account.\nAdd your personal email when you’re at it so you don’t lose Github access after you graduate!\n\n\n\n\n\n\n\nImportant\n\n\n\nOnce you have a GitHub account, please email your GitHub username to me at cdcapano@syr.edu.\n\n\n\n\n\n\nGo to the Github Backpack site: https://education.github.com/pack\nand click Sign Up For Student Developer Pack\nOnce your account is verified, you will have backpack access.\nYou’ll know its active when you check your billing plan: https://github.com/settings/billing/summary\nyou should see a credit here.\nOnce you have backpack access, you can enable Github Copilot AI. https://github.com/settings/copilot\n\n\n\n\n\nThe last step is to configure VS Code for Python debugging. Provided everything else is in order, this should be straightforward.\n\nOpen Visual studio code. You will be asked to configure it.\n\nSet up GitHub Copilot. To do so, you’ll need to sign into GitHub by clicking “Continue with GitHub”. After you do, you may be dropped into a “Welcome” tab in VS Code. If so, click the “Walkthrough: Setup VS Code” tab to continue set up.\nPick a theme: Light, Dark, etc…\nAdd the following Extensions: Python, Jupyter.\nWindows users only: we’ll occasionally be using bash in the terminal mode of VSCode. Mac and Linux users have bash natively installed in the operating system. Windows users will have gotten a copy of bash when they downloaded and installed Git SCM. However, you need to tell VSCode to use bash in the Terminal rather than Windows PowerShell. To do that:\n\nClick “Unlock productivity with the Command Palette” in the Walthrough tab, then “Open Command Palette”. Alternatively, if you don’t see that option, open the Command Palette by typing CTRL + SHIFT + P. (Mac users type COMMAND + SHIFT + P).\nType “Select Default Profile” then hit ENTER.\nSelect “Git Bash” from the drop-down options.\nCheck that it worked by opening a new terminal: in the file menu, click “Terminal” -&gt; “New Terminal”. You should see “bash” in the upper right of the terminal screen.\n\nClose the welcome Tab but keep VS Code open.\n\n\n\n\n\n\n\n\nOpen a terminal in VS Code by clicking “Terminal” -&gt; “New Terminal”.\nIn the terminal window, type:\ncd\nThen hit ENTER.\nFollow the instructions Quickstart install instructions on the Miniconda website. For WSL, select “Linux”.\n\n\n\n\n\nDownload the Miniconda installer for Windows. Click the Downlad button under “Miniconda Installers”, not the one under “Distribution Installers”.\nRun the installer by double-clicking on the downloaded file and follow the steps below.\n\nClick “Run”.\nClick on “Next”.\nClick on “I agree”.\nSelect “Just me” and click on “Next”.\nClick “Next” to install to the default destination folder.\n\n\n\n\n\n\nWarning\n\n\n\nIf you had tried to install miniconda previously, you may get an error that says “Directory … is not empty, please choose a different location.” Do not choose a different location. Instead, click “OK”, then rename the previous miniconda3 directory. You can do that by going to VS Code, opening a new terminal window (click “Terminal” -&gt; “New Terminal”), and entering the following (hit ENTER after each line):\ncd\nmv miniconda3 miniconda3-old\nThen go back to the Miniconda installer and click “Next”.\n\n\nCheck the option for “Add Anaconda to my PATH environment variable” and check the option for “Register Anaconda as my default Python 3.x”.\n\nNote that even though the installation is for Miniconda, the installer uses the word Anaconda in these options.\nYou will also see a message in red text that selecting “Add Anaconda to my PATH environment variable” is not recommended; continue with this selection to make using conda easier in Git Bash. If you have questions or concerns, please contact your instructor.\n\nClick on “Install”.\nWhen the install is complete, Click on “Next”.\nClick on “Finish”.\n\nOpen a new terminal window in VS Code by clicking “Terminal” -&gt; “New Terminal”.\nType the following command to initialize conda:\nconda init bash\nOpen a new terminal window in VS Code by either hitting the “+” key next to “bash” in the upper left of the terminal window, or by cliking “Terminal” -&gt; “New Terminal”. If conda installed successfullly, you should see (base) appear next to or above your command prompt.\n\n\n\n\n\n\nIn the bash terminal window in VS Code (make sure it says (base) to the left of or above the prompt), type:\nconda create -n ist356 -c conda-forge -y python=3.11 ipykernel\nThen hit ENTER.\n\n\n\n\n\n\nWarning\n\n\n\nThe first time you run conda, you may bet an error about Terms of Service not being accepted for certain channels. Accept the TOS for those channels by running the commands listed. For example, if one of the channels is https://repo.anaconda.com/pkgs/main, copy and paste the command into the terminal:\nconda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main\nFollowed by hitting ENTER (to execute a command in the terminal, you hit ENTER after typing/pasting it in). You’ll need to do this for each of the channels listed.\nOnce you have accepted the TOS for all the channels, run the conda create command above again.\n\n\nCheck to ensure your environment works:\n\nClick File -&gt; “New File…”\nIn the drop down menu, select “Jupyter Notebook”.\nClick “Select Kernel” on the right then type “ist356”.\nIn the first cell, type:\nprint(\"hello world!\")\nHit the run button on the left or type SHIFT + ENTER to execute the code. You should get back “hello world!”.\nClose the ipynb file (you may optionally save it; if you do, be sure to call it something other then “Untitled.ipynb”, maybe “hello.ipynb” instead).",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Introduction and computer setup"
+    ]
+  },
+  {
+    "objectID": "00_intro/index.html#step-1-software-installs",
+    "href": "00_intro/index.html#step-1-software-installs",
+    "title": "Introduction and computer setup",
+    "section": "",
+    "text": "Here’s what you’ll need to install on your computer. Please read this entire section prior to installing. :-)\n\nVisual Studio Code: https://code.visualstudio.com/Download\nThis is a free editor with testing and debugging capabilities. As you install you can accept all defaults, except the last one: DO NOT launch the application when complete! If you do, simply close it.\nGit Source Code Manager: https://git-scm.com/download/\nAs you set it up, you will be asked several questions, for which the default selection is fine. EXCEPTION: choose Visual Studio Code as the default editor.\n\n\n\n\n\n\nWarning\n\n\n\nMac users: you’ll see multiple options for downloading Git Source Code Manager. I recommend using the Xcode version. Clicking on that link will redirect you to the Apple store; from there you will download and install Xcode.\n\n\nMiniconda Do not install this yet! You will install this using the terminal in VSCode after VSCode and Git are installed and setup; see instructions below.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Introduction and computer setup"
+    ]
+  },
+  {
+    "objectID": "00_intro/index.html#setup-2-github-account",
+    "href": "00_intro/index.html#setup-2-github-account",
+    "title": "Introduction and computer setup",
+    "section": "",
+    "text": "Being an SU student comes with some perks. One of them is a Github for Education account and accompanying “packpack” of goodies. To use this benefit, your github account must be associated with your @syr.edu email.\n\n\nAssociate your current account with SU, by adding your email:\n\nGo to to https://github.com and click Sign In\nOnce you have logged in, go to: https://github.com/settings/emails\n\nAdd and verify your SU email address.\n\n\n\n\nYou’ll need to create an account:\n\nGo to to https://github.com and click Sign In\nFollow the on-screen instructions to sign up for an account.\nMake sure to use your @syr.edu email for the account.\nAdd your personal email when you’re at it so you don’t lose Github access after you graduate!\n\n\n\n\n\n\n\nImportant\n\n\n\nOnce you have a GitHub account, please email your GitHub username to me at cdcapano@syr.edu.\n\n\n\n\n\n\nGo to the Github Backpack site: https://education.github.com/pack\nand click Sign Up For Student Developer Pack\nOnce your account is verified, you will have backpack access.\nYou’ll know its active when you check your billing plan: https://github.com/settings/billing/summary\nyou should see a credit here.\nOnce you have backpack access, you can enable Github Copilot AI. https://github.com/settings/copilot",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Introduction and computer setup"
+    ]
+  },
+  {
+    "objectID": "00_intro/index.html#step-3-configure-vs-code",
+    "href": "00_intro/index.html#step-3-configure-vs-code",
+    "title": "Introduction and computer setup",
+    "section": "",
+    "text": "The last step is to configure VS Code for Python debugging. Provided everything else is in order, this should be straightforward.\n\nOpen Visual studio code. You will be asked to configure it.\n\nSet up GitHub Copilot. To do so, you’ll need to sign into GitHub by clicking “Continue with GitHub”. After you do, you may be dropped into a “Welcome” tab in VS Code. If so, click the “Walkthrough: Setup VS Code” tab to continue set up.\nPick a theme: Light, Dark, etc…\nAdd the following Extensions: Python, Jupyter.\nWindows users only: we’ll occasionally be using bash in the terminal mode of VSCode. Mac and Linux users have bash natively installed in the operating system. Windows users will have gotten a copy of bash when they downloaded and installed Git SCM. However, you need to tell VSCode to use bash in the Terminal rather than Windows PowerShell. To do that:\n\nClick “Unlock productivity with the Command Palette” in the Walthrough tab, then “Open Command Palette”. Alternatively, if you don’t see that option, open the Command Palette by typing CTRL + SHIFT + P. (Mac users type COMMAND + SHIFT + P).\nType “Select Default Profile” then hit ENTER.\nSelect “Git Bash” from the drop-down options.\nCheck that it worked by opening a new terminal: in the file menu, click “Terminal” -&gt; “New Terminal”. You should see “bash” in the upper right of the terminal screen.\n\nClose the welcome Tab but keep VS Code open.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Introduction and computer setup"
+    ]
+  },
+  {
+    "objectID": "00_intro/index.html#step-4-install-miniconda",
+    "href": "00_intro/index.html#step-4-install-miniconda",
+    "title": "Introduction and computer setup",
+    "section": "",
+    "text": "Open a terminal in VS Code by clicking “Terminal” -&gt; “New Terminal”.\nIn the terminal window, type:\ncd\nThen hit ENTER.\nFollow the instructions Quickstart install instructions on the Miniconda website. For WSL, select “Linux”.\n\n\n\n\n\nDownload the Miniconda installer for Windows. Click the Downlad button under “Miniconda Installers”, not the one under “Distribution Installers”.\nRun the installer by double-clicking on the downloaded file and follow the steps below.\n\nClick “Run”.\nClick on “Next”.\nClick on “I agree”.\nSelect “Just me” and click on “Next”.\nClick “Next” to install to the default destination folder.\n\n\n\n\n\n\nWarning\n\n\n\nIf you had tried to install miniconda previously, you may get an error that says “Directory … is not empty, please choose a different location.” Do not choose a different location. Instead, click “OK”, then rename the previous miniconda3 directory. You can do that by going to VS Code, opening a new terminal window (click “Terminal” -&gt; “New Terminal”), and entering the following (hit ENTER after each line):\ncd\nmv miniconda3 miniconda3-old\nThen go back to the Miniconda installer and click “Next”.\n\n\nCheck the option for “Add Anaconda to my PATH environment variable” and check the option for “Register Anaconda as my default Python 3.x”.\n\nNote that even though the installation is for Miniconda, the installer uses the word Anaconda in these options.\nYou will also see a message in red text that selecting “Add Anaconda to my PATH environment variable” is not recommended; continue with this selection to make using conda easier in Git Bash. If you have questions or concerns, please contact your instructor.\n\nClick on “Install”.\nWhen the install is complete, Click on “Next”.\nClick on “Finish”.\n\nOpen a new terminal window in VS Code by clicking “Terminal” -&gt; “New Terminal”.\nType the following command to initialize conda:\nconda init bash\nOpen a new terminal window in VS Code by either hitting the “+” key next to “bash” in the upper left of the terminal window, or by cliking “Terminal” -&gt; “New Terminal”. If conda installed successfullly, you should see (base) appear next to or above your command prompt.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Introduction and computer setup"
+    ]
+  },
+  {
+    "objectID": "00_intro/index.html#step-5-create-a-conda-environment-and-test-it-in-vs-code",
+    "href": "00_intro/index.html#step-5-create-a-conda-environment-and-test-it-in-vs-code",
+    "title": "Introduction and computer setup",
+    "section": "",
+    "text": "In the bash terminal window in VS Code (make sure it says (base) to the left of or above the prompt), type:\nconda create -n ist356 -c conda-forge -y python=3.11 ipykernel\nThen hit ENTER.\n\n\n\n\n\n\nWarning\n\n\n\nThe first time you run conda, you may bet an error about Terms of Service not being accepted for certain channels. Accept the TOS for those channels by running the commands listed. For example, if one of the channels is https://repo.anaconda.com/pkgs/main, copy and paste the command into the terminal:\nconda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main\nFollowed by hitting ENTER (to execute a command in the terminal, you hit ENTER after typing/pasting it in). You’ll need to do this for each of the channels listed.\nOnce you have accepted the TOS for all the channels, run the conda create command above again.\n\n\nCheck to ensure your environment works:\n\nClick File -&gt; “New File…”\nIn the drop down menu, select “Jupyter Notebook”.\nClick “Select Kernel” on the right then type “ist356”.\nIn the first cell, type:\nprint(\"hello world!\")\nHit the run button on the left or type SHIFT + ENTER to execute the code. You should get back “hello world!”.\nClose the ipynb file (you may optionally save it; if you do, be sure to call it something other then “Untitled.ipynb”, maybe “hello.ipynb” instead).",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Introduction and computer setup"
+    ]
+  },
+  {
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "Room: Hinds Hall 021\nTime: M/W 3:45PM - 5:05PM\nInstructor: Collin Capano\nEmail: cdcapano@syr.edu\nOffice hours: Tuesdays, 11AM - 1PM in Hinds Hall 323G\nCourse website: https://su-ist356-m003-fall-2025.github.io/course-home",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#course-info",
+    "href": "syllabus.html#course-info",
+    "title": "Syllabus",
+    "section": "",
+    "text": "Room: Hinds Hall 021\nTime: M/W 3:45PM - 5:05PM\nInstructor: Collin Capano\nEmail: cdcapano@syr.edu\nOffice hours: Tuesdays, 11AM - 1PM in Hinds Hall 323G\nCourse website: https://su-ist356-m003-fall-2025.github.io/course-home",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#course-description",
+    "href": "syllabus.html#course-description",
+    "title": "Syllabus",
+    "section": "Course Description",
+    "text": "Course Description\nApproaches for building pipelines in data analytics using the Python programming language; data cleaning, extraction, wrangling, API’s, web scraping. Building data products. Programming experience required.\n\nAdditional Course Description\nThis course is a tour of programming techniques for building data pipelines for analytics. It will not just emphasize exploratory approaches, but also techniques to build extract transform load pipelines to run code in production. Throughout the course we will learn how to source data from a variety of sources (files, data streams, APIs, web scraping, etc.) and ultimately transform data as to prepare it for dashboards or machine learning. You will also learn some simple data visualization but that is not the primary emphasis of the course.\n\n\nPrerequisites\nThis courses uses the Python programming language. Proficiency n any programming language is the only pre-requisite. Students should have a clear understanding of these concepts:\n\nInput, output, variables and data types\nControl flow statements (if, for, while)\nFunctions (function definition, calling, parameters, return values)\nData structures (lists, dictionaries)\nUsing code in other libraries\n\n\n\nAudience: IST256 or IST356?\nThis course is intended as a follow up course to IST256. It is also appropriate for students with prior experience with programming who have an interest in data analytics.\n\nIST256 is for students with little to no programming experience. The course content is 75% python fundamentals and 25% python for data analytics.\nIST356 is for students with prior programming experience. The course content is 25% python fundamentals and 75% python for data analytics.\n\n\n\nCredits\n3 credits\n\n\nCourse Fees\nNone",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#learning-objectives",
+    "href": "syllabus.html#learning-objectives",
+    "title": "Syllabus",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nUpon completion of this course, students will be able to:\n\nExplain techniques for sourcing or transforming data, and be able to justify the choice of technique\nSolve data-oriented problems using programming techniques\nEvaluate different code modules and application programming interfaces for suitability\nApply data transformational programming techniques to build a larger data pipelines\nCreate production quality data pipelines from exploratory code",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#textbooks-and-supplies",
+    "href": "syllabus.html#textbooks-and-supplies",
+    "title": "Syllabus",
+    "section": "Textbooks And Supplies",
+    "text": "Textbooks And Supplies\n\nTextbooks\nThere is no textbook you need to purchase for this course. All required readings are available freely online, and in many cases, the online sources are the most up-to-date references to the relevant course material. See reading list section for additional details.\n\nMain Text\n\nPython Programming for Data Science, by T. Beuzen (2021) https://www.tomasbeuzen.com/python-programming-for-data-science/\n\n\n\n\nBring Your Own Device\nYou are expected to bring your computer to each class session. This class is very hands-on, and you will be programming in class often.\n\nSoftware to install\nThis course requires you to install software on your computer. The intro section of this course provides detailed instructions.\n\nVisual Studio Code editor\nGit Source Code Managment\nMiniconda\n\n\n\nAccounts\n\nWe will use Github for assignment submission.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#course-requirements-and-expectations",
+    "href": "syllabus.html#course-requirements-and-expectations",
+    "title": "Syllabus",
+    "section": "Course Requirements and Expectations",
+    "text": "Course Requirements and Expectations\n\nAttendance and Participation\nIn-class participation is the best way to learn and absorb the material. As such, you are expected to attend and participate in every class session. Your grade will be partially based on attendance (see below for details). If you must miss class, you are responsible for making up the work and catching up on what you missed. Lectures will be recorded and posted to the course website after the class.\n\n\nAssignments\nThe assignments are programming / problem solving activities that you will complete outside of class. The assignment due dates are posted on the course schedule. Consider these assignments formative assessments - practice so you can get better at computational thinking, problem solving and writing code. It is important to reflect upon your work and take an honest assessment of your abilities as you complete each assignment.\nEach Wednesday we will review the homework assignment. Students will be asked to contribute to the discussion.\nFactors affecting your grade:\n\nIs the code working and correct?\nWere the instructions followed? (e.g. commit after each function is written)\nGood reflection: specific, uses terminology, actionable\nHanded in on time, so your prof only needs to review submissions 1 time.\n\n\n\nExams\nExams are summative assessments. They are designed to test your knowledge of the material. The exams will be issued in class on the dates posted on the course schedule. Exams are closed-book but you may bring one 8.5x11 sheet of paper with your notes on it. Exams length is 60 minutes. They will be a mix of mix of multiple choice, short answer and code tracing and code writing.\n\n\nProject\nThe project is your opportunity to demonstrate what you have learned in an experiential fashion. In your final project you will be expected to create a data pipeline of your choosing.\n\nThe pipeline should incorporate techniques we learned in the course and the more techniques you incorporate correctly the higher your grade.\nIt is expected that you will be able to explain your choices, and they will be appropriate for the problem.\nThe pipeline should be first written exploratory, and then refactored into a production quality pipeline. Both pipelines should be submitted.\nThere should be a simple data visualization or dashboard from the pipeline output as to demonstrate its usefulness.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#grading",
+    "href": "syllabus.html#grading",
+    "title": "Syllabus",
+    "section": "Grading",
+    "text": "Grading\n\n\n\n\n\n\n\n\n\n\n\nAssessment\nType\nLearning Outcomes\nQuantity\nPoints Each\nPoints Total\n\n\n\n\nAttendance\nFormative\n\n24\n1\n24\n\n\nAssignments\nFormative\n1, 2\n8\n3\n24\n\n\nExams\nSummative\n3, 4\n2\n24\n48\n\n\nProject\nSummative\n5\n1\n24\n24\n\n\nTotal\n\n\n\n\n120\n\n\n\n\nGrading Table\nThe following grading scale translates your total points earned into a letter grade to be submitted to the University registrar.\n\n\n\n\n\n\n\n\n\nStudent Achievement\nTotal Points Earned\nRegistrar Grade\nGrade Points\n\n\n\n\nMastery\n114 - 120\nA\n4.000\n\n\n\n108 - 113\nA-\n3.666\n\n\nSatisfactory\n102 - 107\nB+\n3.333\n\n\n\n96 - 101\nB\n3.000\n\n\n\n90 - 95\nB-\n2.666\n\n\nLow Passing\n84 - 89\nC+\n2.333\n\n\n\n78 - 83\nC\n2.000\n\n\n\n72 - 77\nC-\n1.666\n\n\nUnsatisfactory\n60 - 71\nD\n1.000\n\n\n\n0 - 59\nF\n0.000",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#use-of-ai-in-this-course",
+    "href": "syllabus.html#use-of-ai-in-this-course",
+    "title": "Syllabus",
+    "section": "Use of AI in this Course",
+    "text": "Use of AI in this Course\nBased on the assignments in this course and our specified learning outcomes, the full use of artificial intelligence as a tool, with disclosure and citation, is permitted in this course. Students do not need to ask permission to use these tools before starting an assignment or exam, but they must explicitly and fully indicate which tools were used and describe how they were used.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#academic-integrity",
+    "href": "syllabus.html#academic-integrity",
+    "title": "Syllabus",
+    "section": "Academic Integrity",
+    "text": "Academic Integrity\nAs a pre-eminent and inclusive student-focused research institution, Syracuse University considers academic integrity at the forefront of learning, serving as a core value and guiding pillar of education. Syracuse University’s Academic Integrity Policy provides students with the necessary guidelines to complete academic work with integrity throughout their studies. Students are required to uphold both course-specific and university-wide academic integrity expectations such as crediting your sources, doing your own work, communicating honestly, and supporting academic integrity. The full Syracuse University Academic Integrity Policy can be viewed by visiting the Syracuse University Policies website.\nUpholding Academic Integrity includes the protection of faculty’s intellectual property. Students should not upload, distribute, or share instructors’ course materials, including presentations, assignments, exams, or other evaluative materials without permission. Using websites that charge fees or require uploading of course material (e.g., Chegg, Course Hero) to obtain exam solutions or assignments completed by others, which are then presented as your own violates academic integrity expectations in this course and may be classified as a Level 3 violation. All academic integrity expectations that apply to in-person assignments, quizzes, and exams also apply online.\nStudents found in violation of the policy are subject to grade sanctions determined by the course instructor and non-grade sanctions determined by the School or College where the course is offered. Students may not drop or withdraw from courses in which they face a suspected violation. Any established violation in this course may result in course failure regardless of violation level.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#class-schedule",
+    "href": "syllabus.html#class-schedule",
+    "title": "Syllabus",
+    "section": "Class Schedule",
+    "text": "Class Schedule\nNote: schedule subject to change as we progress through the semester.\n\n\n\nWeek\nDates\nTopic\n\n\n\n\n1\n8/25, 8/29\nIntro; CLI and Conda\n\n\n2\n9/3\nPython review - 1\n\n\n3\n9/8, 9/10\nPython review - 2\n\n\n4\n9/15, 9/17\nUI\n\n\n5\n9/22, 9/24\nData wrangling - 1\n\n\n6\n9/29, 10/1\nData wrangling - 2\n\n\n7\n10/6, 10/8\nData wrangling - 3\n\n\n8\n10/15\nExam 1\n\n\n9\n10/20, 10/22\nWeb APIs - 1\n\n\n10\n10/27, 10/29\nWeb APIs - 2\n\n\n11\n11/3, 11/5\nWeb scraping - 1\n\n\n12\n11/10, 11/12\nWeb scraping - 2\n\n\n13\n11/17, 11/19\nData visualization - 1\n\n\n14\n12/1, 12/3\nData visualization - 2\n\n\n15\n12/8\nExam 2\n\n\n16\n12/15\nProject due",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "syllabus.html#important-dates",
+    "href": "syllabus.html#important-dates",
+    "title": "Syllabus",
+    "section": "Important dates",
+    "text": "Important dates\n\n\n\n\n\n\n\nDate\n\n\n\n\n\nMon. 8/25\nFirst day of class\n\n\nMon. 9/1\nLabor day - No class\n\n\nMon. 9/15\nAcademic/Financial drop deadline; Religious observance notification deadline\n\n\nMon. 10/13\nFall break - No class\n\n\nFri. 11/21\nWithdrawal deadline\n\n\n11/23-11/30\nThanksgiving Break - No class\n\n\nMon. 12/8\nLast day of class",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "02_python/index.html",
+    "href": "02_python/index.html",
+    "title": "2. Python review",
+    "section": "",
+    "text": "In this unit we will review some basics of Python programming. You will have covered the material here in IST 256.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review"
+    ]
+  },
+  {
+    "objectID": "02_python/index.html#tutorials",
+    "href": "02_python/index.html#tutorials",
+    "title": "2. Python review",
+    "section": "Tutorials",
+    "text": "Tutorials\n\nInput, output, variables, types, conditionals",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "",
+    "text": "Room: Hinds Hall 021\nTime: M/W 3:45PM - 5:05PM\nInstructor: Collin Capano\nEmail: cdcapano@syr.edu\nOffice hours: Tuesdays, 11AM - 1PM in Hinds Hall 323G\nSyllabus"
+  },
+  {
+    "objectID": "index.html#course-info",
+    "href": "index.html#course-info",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "",
+    "text": "Room: Hinds Hall 021\nTime: M/W 3:45PM - 5:05PM\nInstructor: Collin Capano\nEmail: cdcapano@syr.edu\nOffice hours: Tuesdays, 11AM - 1PM in Hinds Hall 323G\nSyllabus"
+  },
+  {
+    "objectID": "index.html#class-schedule",
+    "href": "index.html#class-schedule",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "Class Schedule",
+    "text": "Class Schedule\nNote: schedule subject to change as we progress through the semester.\n\n\n\nWeek\nDates\nTopic\n\n\n\n\n1\n8/25, 8/29\nIntro; CLI and Conda\n\n\n2\n9/3\nPython review - 1\n\n\n3\n9/8, 9/10\nPython review - 2\n\n\n4\n9/15, 9/17\nUI\n\n\n5\n9/22, 9/24\nData wrangling - 1\n\n\n6\n9/29, 10/1\nData wrangling - 2\n\n\n7\n10/6, 10/8\nData wrangling - 3\n\n\n8\n10/15\nExam 1\n\n\n9\n10/20, 10/22\nWeb APIs - 1\n\n\n10\n10/27, 10/29\nWeb APIs - 2\n\n\n11\n11/3, 11/5\nWeb scraping - 1\n\n\n12\n11/10, 11/12\nWeb scraping - 2\n\n\n13\n11/17, 11/19\nData visualization - 1\n\n\n14\n12/1, 12/3\nData visualization - 2\n\n\n15\n12/8\nExam 2\n\n\n16\n12/15\nProject due"
+  },
+  {
+    "objectID": "index.html#important-dates",
+    "href": "index.html#important-dates",
+    "title": "IST 356: Programming Techniques for Data Analytics",
+    "section": "Important dates",
+    "text": "Important dates\n\n\n\n\n\n\n\nDate\n\n\n\n\n\nMon. 8/25\nFirst day of class\n\n\nMon. 9/1\nLabor day - No class\n\n\nMon. 9/15\nAcademic/Financial drop deadline; Religious observance notification deadline\n\n\nMon. 10/13\nFall break - No class\n\n\nFri. 11/21\nWithdrawal deadline\n\n\n11/23-11/30\nThanksgiving Break - No class\n\n\nMon. 12/8\nLast day of class"
+  },
+  {
     "objectID": "01_cli_conda/index.html",
     "href": "01_cli_conda/index.html",
     "title": "1. Command line interface and Environments",
@@ -710,33 +892,5 @@
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "1. Command line interface and Environments"
     ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "IST 356: Programming Techniques for Data Analytics",
-    "section": "",
-    "text": "Room: Hinds Hall 021\nTime: M/W 3:45PM - 5:05PM\nInstructor: Collin Capano\nEmail: cdcapano@syr.edu\nOffice hours: Tuesdays, 11AM - 1PM in Hinds Hall 323G\nSyllabus"
-  },
-  {
-    "objectID": "index.html#course-info",
-    "href": "index.html#course-info",
-    "title": "IST 356: Programming Techniques for Data Analytics",
-    "section": "",
-    "text": "Room: Hinds Hall 021\nTime: M/W 3:45PM - 5:05PM\nInstructor: Collin Capano\nEmail: cdcapano@syr.edu\nOffice hours: Tuesdays, 11AM - 1PM in Hinds Hall 323G\nSyllabus"
-  },
-  {
-    "objectID": "index.html#class-schedule",
-    "href": "index.html#class-schedule",
-    "title": "IST 356: Programming Techniques for Data Analytics",
-    "section": "Class Schedule",
-    "text": "Class Schedule\nNote: schedule subject to change as we progress through the semester.\n\n\n\nWeek\nDates\nTopic\n\n\n\n\n1\n8/25, 8/29\nIntro; CLI and Conda\n\n\n2\n9/3\nPython review - 1\n\n\n3\n9/8, 9/10\nPython review - 2\n\n\n4\n9/15, 9/17\nUI\n\n\n5\n9/22, 9/24\nData wrangling - 1\n\n\n6\n9/29, 10/1\nData wrangling - 2\n\n\n7\n10/6, 10/8\nData wrangling - 3\n\n\n8\n10/15\nExam 1\n\n\n9\n10/20, 10/22\nWeb APIs - 1\n\n\n10\n10/27, 10/29\nWeb APIs - 2\n\n\n11\n11/3, 11/5\nWeb scraping - 1\n\n\n12\n11/10, 11/12\nWeb scraping - 2\n\n\n13\n11/17, 11/19\nData visualization - 1\n\n\n14\n12/1, 12/3\nData visualization - 2\n\n\n15\n12/8\nExam 2\n\n\n16\n12/15\nProject due"
-  },
-  {
-    "objectID": "index.html#important-dates",
-    "href": "index.html#important-dates",
-    "title": "IST 356: Programming Techniques for Data Analytics",
-    "section": "Important dates",
-    "text": "Important dates\n\n\n\n\n\n\n\nDate\n\n\n\n\n\nMon. 8/25\nFirst day of class\n\n\nMon. 9/1\nLabor day - No class\n\n\nMon. 9/15\nAcademic/Financial drop deadline; Religious observance notification deadline\n\n\nMon. 10/13\nFall break - No class\n\n\nFri. 11/21\nWithdrawal deadline\n\n\n11/23-11/30\nThanksgiving Break - No class\n\n\nMon. 12/8\nLast day of class"
   }
 ]

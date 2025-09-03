@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction and computer setup – IST 356 Fall 2025</title>
+<title>2. Python review – IST 356 Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,7 +29,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../01_cli_conda/index.html" rel="next">
+<link href="../02_python/python-1.html" rel="next">
+<link href="../01_cli_conda/conda.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -104,14 +70,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="Introduction and computer setup – IST 356 Fall 2025">
-<meta property="og:description" content="IST 356 - M003, Syracuse University, Fall 2025">
+<meta property="og:title" content="2. Python review – IST 356 Fall 2025">
+<meta property="og:description" content="">
 <meta property="og:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
 <meta property="og:site_name" content="IST 356 Fall 2025">
 <meta property="og:image:height" content="105">
 <meta property="og:image:width" content="650">
-<meta name="twitter:title" content="Introduction and computer setup – IST 356 Fall 2025">
-<meta name="twitter:description" content="IST 356 - M003, Syracuse University, Fall 2025">
+<meta name="twitter:title" content="2. Python review – IST 356 Fall 2025">
+<meta name="twitter:description" content="">
 <meta name="twitter:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
 <meta name="twitter:image-height" content="105">
 <meta name="twitter:image-width" content="650">
@@ -145,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../00_intro/index.html">Introduction and computer setup</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../02_python/index.html">2. Python review</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -159,7 +125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../00_intro/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../00_intro/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction and computer setup</span></a>
   </div>
 </li>
@@ -188,13 +154,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../02_python/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../02_python/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">2. Python review</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../02_python/python-1.html" class="sidebar-item-text sidebar-link">
@@ -219,23 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setting-up-your-computer-and-yourself" id="toc-setting-up-your-computer-and-yourself" class="nav-link active" data-scroll-target="#setting-up-your-computer-and-yourself">Setting up Your Computer and Yourself!</a>
-  <ul class="collapse">
-  <li><a href="#step-1-software-installs" id="toc-step-1-software-installs" class="nav-link" data-scroll-target="#step-1-software-installs">Step 1: Software Installs</a></li>
-  <li><a href="#setup-2-github-account" id="toc-setup-2-github-account" class="nav-link" data-scroll-target="#setup-2-github-account">Setup 2: Github Account</a>
-  <ul class="collapse">
-  <li><a href="#if-you-have-a-github-account" id="toc-if-you-have-a-github-account" class="nav-link" data-scroll-target="#if-you-have-a-github-account">IF YOU HAVE A GITHUB ACCOUNT:</a></li>
-  <li><a href="#if-you-do-not-have-a-github-account" id="toc-if-you-do-not-have-a-github-account" class="nav-link" data-scroll-target="#if-you-do-not-have-a-github-account">IF YOU DO NOT HAVE A GITHUB ACCOUNT:</a></li>
-  <li><a href="#backpack-access" id="toc-backpack-access" class="nav-link" data-scroll-target="#backpack-access">Backpack Access</a></li>
-  </ul></li>
-  <li><a href="#step-3-configure-vs-code" id="toc-step-3-configure-vs-code" class="nav-link" data-scroll-target="#step-3-configure-vs-code">Step 3: Configure VS Code</a></li>
-  <li><a href="#step-4-install-miniconda" id="toc-step-4-install-miniconda" class="nav-link" data-scroll-target="#step-4-install-miniconda">Step 4: Install Miniconda</a>
-  <ul class="collapse">
-  <li><a href="#maclinuxwindows-subsystem-for-linux-wsl" id="toc-maclinuxwindows-subsystem-for-linux-wsl" class="nav-link" data-scroll-target="#maclinuxwindows-subsystem-for-linux-wsl">Mac/Linux/Windows Subsystem for Linux (WSL)</a></li>
-  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows">Windows</a></li>
-  </ul></li>
-  <li><a href="#step-5-create-a-conda-environment-and-test-it-in-vs-code" id="toc-step-5-create-a-conda-environment-and-test-it-in-vs-code" class="nav-link" data-scroll-target="#step-5-create-a-conda-environment-and-test-it-in-vs-code">Step 5: Create a conda environment and test it in VS Code</a></li>
-  </ul></li>
+  <li><a href="#tutorials" id="toc-tutorials" class="nav-link active" data-scroll-target="#tutorials">Tutorials</a></li>
   </ul>
 </nav>
     </div>
@@ -244,8 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introduction and computer setup</h1>
-<p class="subtitle lead">IST 356 - M003, Syracuse University, Fall 2025</p>
+<h1 class="title">2. Python review</h1>
 </div>
 
 
@@ -262,225 +211,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="setting-up-your-computer-and-yourself" class="level1">
-<h1>Setting up Your Computer and Yourself!</h1>
-<p>In IST356 we teach you programming for data analytics using the tools and techiques used by those in the industry. As such, you will learn how to setup and configure development environments, use git and github and learn to systematically test your code.</p>
-<p>This is unlike IST256 where the emphasis is on the programming basics and the motivations behind learning computational thinking.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th>IST356</th>
-<th>IST256</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Programming Environment</td>
-<td>Install vscode + git + python on your computer</td>
-<td>Web-hosted jupyterhub</td>
-</tr>
-<tr class="even">
-<td>Assignment Submissions</td>
-<td>Student learn and use git / github</td>
-<td>Built-in assignment submission</td>
-</tr>
-<tr class="odd">
-<td>Coursework, slides, examples</td>
-<td>You clone / diff the prof repo</td>
-<td>Autodiff and merge at login</td>
-</tr>
-</tbody>
-</table>
-<p>In this course you’ll do it the real way, nothing is hidden / abstracted away for you.</p>
-<section id="step-1-software-installs" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-software-installs">Step 1: Software Installs</h2>
-<p>Here’s what you’ll need to install on your computer. Please read this entire section prior to installing. :-)</p>
+<p>In this unit we will review some basics of Python programming. You will have covered the material here in IST 256.</p>
+<section id="tutorials" class="level2">
+<h2 class="anchored" data-anchor-id="tutorials">Tutorials</h2>
 <ol type="1">
-<li><p><strong>Visual Studio Code</strong>: https://code.visualstudio.com/Download<br>
-This is a free editor with testing and debugging capabilities. As you install you can accept all defaults, except the last one: DO NOT launch the application when complete! If you do, simply close it.</p></li>
-<li><p><strong>Git Source Code Manager</strong>: https://git-scm.com/download/<br>
-As you set it up, you will be asked several questions, for which the default selection is fine. EXCEPTION: choose Visual Studio Code as the default editor.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Mac users</strong>: you’ll see multiple options for downloading Git Source Code Manager. I recommend using the Xcode version. Clicking on that link will redirect you to the Apple store; from there you will download and install Xcode.</p>
-</div>
-</div></li>
-<li><p><a href="https://www.anaconda.com/docs/getting-started/miniconda/install#quickstart-install-instructions">Miniconda</a> <strong>Do not install this yet!</strong> You will install this using the terminal in VSCode after VSCode and Git are installed and setup; see instructions below.</p></li>
-</ol>
-</section>
-<section id="setup-2-github-account" class="level2">
-<h2 class="anchored" data-anchor-id="setup-2-github-account">Setup 2: Github Account</h2>
-<p>Being an SU student comes with some perks. One of them is a Github for Education account and accompanying “packpack” of goodies. To use this benefit, your github account must be associated with your <strong><span class="citation" data-cites="syr.edu">@syr.edu</span></strong> email.</p>
-<section id="if-you-have-a-github-account" class="level3">
-<h3 class="anchored" data-anchor-id="if-you-have-a-github-account">IF YOU HAVE A GITHUB ACCOUNT:</h3>
-<p>Associate your current account with SU, by adding your email:</p>
-<ol type="1">
-<li>Go to to https://github.com and click Sign In</li>
-<li>Once you have logged in, go to: https://github.com/settings/emails<br>
-</li>
-<li>Add and verify your SU email address.</li>
-</ol>
-</section>
-<section id="if-you-do-not-have-a-github-account" class="level3">
-<h3 class="anchored" data-anchor-id="if-you-do-not-have-a-github-account">IF YOU DO NOT HAVE A GITHUB ACCOUNT:</h3>
-<p>You’ll need to create an account:</p>
-<ol type="1">
-<li>Go to to https://github.com and click Sign In</li>
-<li>Follow the on-screen instructions to sign up for an account.</li>
-<li>Make sure to use your <strong><span class="citation" data-cites="syr.edu">@syr.edu</span></strong> email for the account.</li>
-<li>Add your personal email when you’re at it so you don’t lose Github access after you graduate!</li>
-</ol>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Once you have a GitHub account, please email your GitHub username to me at cdcapano@syr.edu.</p>
-</div>
-</div>
-</section>
-<section id="backpack-access" class="level3">
-<h3 class="anchored" data-anchor-id="backpack-access">Backpack Access</h3>
-<ol type="1">
-<li>Go to the Github Backpack site: https://education.github.com/pack<br>
-and click <strong>Sign Up For Student Developer Pack</strong></li>
-<li>Once your account is verified, you will have backpack access.</li>
-<li>You’ll know its active when you check your billing plan: https://github.com/settings/billing/summary<br>
-you should see a credit here.</li>
-<li>Once you have backpack access, you can enable Github Copilot AI. https://github.com/settings/copilot</li>
-</ol>
-</section>
-</section>
-<section id="step-3-configure-vs-code" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-configure-vs-code">Step 3: Configure VS Code</h2>
-<p>The last step is to configure VS Code for Python debugging. Provided everything else is in order, this should be straightforward.</p>
-<ol type="1">
-<li>Open Visual studio code. You will be asked to configure it.
-<ol type="1">
-<li>Set up GitHub Copilot. To do so, you’ll need to sign into GitHub by clicking “Continue with GitHub”. After you do, you may be dropped into a “Welcome” tab in VS Code. If so, click the “Walkthrough: Setup VS Code” tab to continue set up.</li>
-<li>Pick a theme: Light, Dark, etc…</li>
-<li>Add the following Extensions: Python, Jupyter.</li>
-<li><strong>Windows users only</strong>: we’ll occasionally be using <code>bash</code> in the terminal mode of VSCode. Mac and Linux users have <code>bash</code> natively installed in the operating system. Windows users will have gotten a copy of bash when they downloaded and installed Git SCM. However, you need to tell VSCode to use <code>bash</code> in the Terminal rather than Windows PowerShell. To do that:
-<ol type="a">
-<li>Click “Unlock productivity with the Command Palette” in the Walthrough tab, then “Open Command Palette”. Alternatively, if you don’t see that option, open the Command Palette by typing CTRL + SHIFT + P. (Mac users type COMMAND + SHIFT + P).</li>
-<li>Type “Select Default Profile” then hit ENTER.</li>
-<li>Select “Git Bash” from the drop-down options.</li>
-<li>Check that it worked by opening a new terminal: in the file menu, click “Terminal” -&gt; “New Terminal”. You should see “bash” in the upper right of the terminal screen.</li>
-</ol></li>
-<li>Close the welcome Tab but keep VS Code open.</li>
-</ol></li>
-</ol>
-</section>
-<section id="step-4-install-miniconda" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-install-miniconda">Step 4: Install Miniconda</h2>
-<section id="maclinuxwindows-subsystem-for-linux-wsl" class="level3">
-<h3 class="anchored" data-anchor-id="maclinuxwindows-subsystem-for-linux-wsl">Mac/Linux/Windows Subsystem for Linux (WSL)</h3>
-<ol type="1">
-<li><p>Open a terminal in VS Code by clicking “Terminal” -&gt; “New Terminal”.</p></li>
-<li><p>In the terminal window, type:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then hit ENTER.</p></li>
-<li><p>Follow the instructions <a href="https://www.anaconda.com/docs/getting-started/miniconda/install#quickstart-install-instructions">Quickstart install instructions</a> on the Miniconda website. For WSL, select “Linux”.</p></li>
-</ol>
-</section>
-<section id="windows" class="level3">
-<h3 class="anchored" data-anchor-id="windows">Windows</h3>
-<ol type="1">
-<li><p>Download the <a href="https://www.anaconda.com/download/success">Miniconda installer for Windows</a>. <strong>Click the Downlad button under “Miniconda Installers”, <em>not</em> the one under “Distribution Installers”.</strong></p></li>
-<li><p>Run the installer by double-clicking on the downloaded file and follow the steps below.</p>
-<ul>
-<li><p>Click “Run”.</p></li>
-<li><p>Click on “Next”.</p></li>
-<li><p>Click on “I agree”.</p></li>
-<li><p>Select “Just me” and click on “Next”.</p></li>
-<li><p>Click “Next” to install to the default destination folder.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you had tried to install miniconda previously, you may get an error that says “Directory … is not empty, please choose a different location.” <strong>Do not choose a different location.</strong> Instead, click “OK”, then rename the previous miniconda3 directory. You can do that by going to VS Code, opening a new terminal window (click “Terminal” -&gt; “New Terminal”), and entering the following (hit ENTER after each line):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> miniconda3 miniconda3-old</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then go back to the Miniconda installer and click “Next”.</p>
-</div>
-</div></li>
-<li><p>Check the option for “Add Anaconda to my PATH environment variable” and check the option for “Register Anaconda as my default Python 3.x”.</p>
-<ul>
-<li>Note that even though the installation is for Miniconda, the installer uses the word Anaconda in these options.</li>
-<li>You will also see a message in red text that selecting “Add Anaconda to my PATH environment variable” is not recommended; continue with this selection to make using conda easier in Git Bash. If you have questions or concerns, please contact your instructor.</li>
-</ul></li>
-<li><p>Click on “Install”.</p></li>
-<li><p>When the install is complete, Click on “Next”.</p></li>
-<li><p>Click on “Finish”.</p></li>
-</ul></li>
-<li><p>Open a new terminal window in VS Code by clicking “Terminal” -&gt; “New Terminal”.</p></li>
-<li><p>Type the following command to initialize conda:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> init bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Open a new terminal window in VS Code by either hitting the “+” key next to “bash” in the upper left of the terminal window, or by cliking “Terminal” -&gt; “New Terminal”. If conda installed successfullly, you should see <code>(base)</code> appear next to or above your command prompt.</p></li>
-</ol>
-</section>
-</section>
-<section id="step-5-create-a-conda-environment-and-test-it-in-vs-code" class="level2">
-<h2 class="anchored" data-anchor-id="step-5-create-a-conda-environment-and-test-it-in-vs-code">Step 5: Create a conda environment and test it in VS Code</h2>
-<ol type="1">
-<li><p>In the bash terminal window in VS Code (make sure it says <code>(base)</code> to the left of or above the prompt), type:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> ist356 <span class="at">-c</span> conda-forge <span class="at">-y</span> python=3.11 ipykernel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then hit ENTER.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The first time you run conda, you may bet an error about Terms of Service not being accepted for certain channels. Accept the TOS for those channels by running the commands listed. For example, if one of the channels is <code>https://repo.anaconda.com/pkgs/main</code>, copy and paste the command into the terminal:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> tos accept <span class="at">--override-channels</span> <span class="at">--channel</span> https://repo.anaconda.com/pkgs/main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Followed by hitting ENTER (to execute a command in the terminal, you hit ENTER after typing/pasting it in). You’ll need to do this for each of the channels listed.</p>
-<p>Once you have accepted the TOS for all the channels, run the <code>conda create</code> command above again.</p>
-</div>
-</div></li>
-<li><p>Check to ensure your environment works:</p>
-<ol type="1">
-<li><p>Click File -&gt; “New File…”</p></li>
-<li><p>In the drop down menu, select “Jupyter Notebook”.</p></li>
-<li><p>Click “Select Kernel” on the right then type “ist356”.</p></li>
-<li><p>In the first cell, type:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"hello world!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Hit the run button on the left or type SHIFT + ENTER to execute the code. You should get back “hello world!”.</p></li>
-<li><p>Close the ipynb file (you may optionally save it; if you do, be sure to call it something other then “Untitled.ipynb”, maybe “hello.ipynb” instead).</p></li>
-</ol></li>
+<li><a href="../02_python/python-1.html">Input, output, variables, types, conditionals</a></li>
 </ol>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -885,10 +623,13 @@ Warning
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../01_cli_conda/conda.html" class="pagination-link" aria-label="Bash variables, environments, and `conda`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Bash variables, environments, and <code>conda</code></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../01_cli_conda/index.html" class="pagination-link" aria-label="1. Command line interface and Environments">
-        <span class="nav-page-text">1. Command line interface and Environments</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../02_python/python-1.html" class="pagination-link" aria-label="1. Input, output, variables, types, conditionals">
+        <span class="nav-page-text">1. Input, output, variables, types, conditionals</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
