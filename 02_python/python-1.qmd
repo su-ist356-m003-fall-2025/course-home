@@ -1,0 +1,616 @@
+---
+title: '1. Input, output, variables, types, conditionals'
+jupyter: python3
+---
+
+
+
+## Input => Process => Output
+
+1. Identify the problem inputs (requirements)
+2. Identify the problem outputs (results)
+3. Write an algorithm to transform inputs to outputs.
+4. If you don't know how to do a step... research it!
+
+![](fig/python-1-1.png)
+
+## Python input and output
+
+`print()` does output  
+`input()` does input, returns input so you must assign it to a variable  
+
+```{python}
+#| tags: []
+#| eval: false
+x = input("Enter something: ")
+```
+
+```{python}
+#| eval: false
+print(x)
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 1.1
+
+Write a program to input your first name and last name then output your last name, first name.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+first = input("Enter your first name: ")
+last = input("Enter your last name: ")
+print(last, ",", first)
+# could also do (see next section):
+print(f"{last}, {first}")
+```
+:::
+::::
+
+
+## F-Strings
+
+- F-Strings are Python's answer to **string interpolation**.
+- This replaces the variable name with its value within a string.
+- Called an F-string because the `f` tells Python to interpolate the string.
+
+```{python}
+name = 'George'
+print("{name} was curious.")
+print(f"{name} was curious.")
+```
+
+:::: {.callout-note appearance="simple" icon="false"}
+### Check Yourself 1
+
+Which is an example of a properly used string literal?
+
+A. `print(welcome)`
+
+B. `print("welcome")`
+
+C. `print "welcome"`
+
+D. `print welcome`
+
+**Vote now at** [https://PollEv.com/ist356m3](https://PollEv.com/ist356m3)
+
+::: {.callout-note collapse="true" appearance="simple" icon="false"}
+#### Solution
+**B**
+
+*Note*: In Python 2.7 and earlier the correct answer would be C. The syntax for the `print` function was changed in Python 3. Python 2 is no longer supported. 
+:::
+::::
+
+
+## Variables
+
+- **Variables** are named areas of computer memory for storing data. 
+- The **name** can be anything but should make symbolic sense to the programmer.
+- We **write** to the variable’s memory location with the assignment statement (=)
+- We **read** from the variable by calling its name. 
+- Variable names must begin with a letter or _ and must only contain letters, numbers or _.
+
+### Variables are of a Specific Type
+
+<table style="font-size:1.2em;">
+    <thead><tr>
+        <th>Type</th>
+        <th>Purpose</th>
+        <th>Examples</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+        <td><code>int</code></td>
+        <td>Numeric type for integers only</td>
+        <td>45, -10</td>
+    </tr>
+    <tr>
+        <td><code>float</code></td>
+        <td>Numeric type floating point numbers</td>
+        <td>45, -10</td>
+    </tr>
+    <tr>
+        <td><code>bool</code></td>
+        <td>True or False values</td>
+        <td>True, False</td>
+    </tr>
+    <tr>
+        <td><code>str</code></td>
+        <td>Characters and text</td>
+        <td>"A", 'Mike'</td>
+    </tr>
+  </tbody>
+</table>
+
+### Type Detection and Conversion 
+
+<table style="font-size:1.2em;">
+    <thead><tr>
+        <th>Python Function</th>
+        <th>What It Does</th>
+        <th>Example of Use</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+        <td><code>type(<em>n</em>)</code></td>
+        <td>Returns the current type of <em>n</em></td>
+        <td><code>type(13) == int</code></td>
+    </tr>
+    <tr>
+        <td><code>int(<em>n</em>)</code></td>
+        <td>Converts <em>n</em> to type <b>int</b></td>
+        <td><code>int("45") == 45</code></td>
+    </tr>
+    <tr>
+        <td><code>float(<em>n</em>)</code></td>
+        <td>Converts <em>n</em> to type <b>float</b></td>
+        <td><code>float(45) == 45.0</code></td>
+    </tr>
+    <tr>
+        <td><code>str(<em>n</em>)</code></td>
+        <td>Converts <em>n</em> to type <b>str</b></td>
+        <td><code>str(4.0) == '4.0'</code></td>
+    </tr>
+  </tbody>
+</table>
+
+## Programmatic Expressions
+
+Programmatic Expressions contain **operators** and **operands**. They evaluate to a value, preserving type: 
+
+```{python}
+#| tags: []
+#| error: true
+print(2 + 2)
+print(2.0 + 2)
+print("sh" + 'ip')
+print('hi' + 2) # error
+```
+
+## Arithmetic Operators
+
+<table style="font-size:1.2em;">
+    <thead><tr>
+        <th>Operator</th>
+        <th>What it Does</th>
+        <th>Example of Use</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+        <td><code>+</code></td>
+        <td>Addition or string concenation</td>
+        <td><code>3 + 4 == 7</code></td>
+    </tr>
+    <tr>
+        <td><code>-</code></td>
+        <td>Subtraction</td>
+        <td><code>4 - 3 == 1</code></td>
+    </tr>
+    <tr>
+        <td><code>*</code></td>
+        <td>Multiplication</td>
+        <td><code>3 * 4 == 12</code></td>
+    </tr>
+    <tr>
+        <td><code>/</code></td>
+        <td>Division</td>
+        <td><code>4 / 3 == 1.33333</code></td>
+    </tr>
+    <tr>
+        <td><code>//</code></td>
+        <td>Intger division (quotent)</td>
+        <td><code>13 // 3 == 4</code></td>
+    </tr>
+    <tr>
+        <td><code>%</code></td>
+        <td>Modulo (remainder)</td>
+        <td><code>13 % 3 == 1</code></td>
+    </tr>
+    <tr>
+        <td><code>( )</code></td>
+        <td>Force an order of operations</td>
+        <td><code>2 * (3 + 4) == 14</code></td>
+    </tr>
+  </tbody>
+</table>
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 1.2: Program to divide up the check among diners in a party
+
+Write a program that takes as input the amount of a restaurant check, tip %, and number of diners.
+
+The program should output the total amount with tip, and the amount each diner owes.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+bill = float(input("Enter the total amount of the bill $"))
+tip = int(input("What % would you like to tip, eg. 20 == 20%? "))
+tip_pct = tip/100
+diners = int(input("How many diners? "))
+total = bill + bill*tip_pct
+share = total / diners
+print("Total Bill, with Tip: ", total)
+print(f"Even share among {diners} diners is {share:.2f}")
+```
+:::
+::::
+
+:::: {.callout-note appearance="simple" icon="false"}
+### Check Yourself 2
+
+What is the value of `str(314)` ?
+
+A. `314`  
+
+B. `"314"`  
+
+C. `int`  
+
+D. `'34.0'`
+
+**Vote now at** [https://PollEv.com/ist356m3](https://PollEv.com/ist356m3)
+
+::: {.callout-note collapse="true" appearance="simple" icon="false"}
+#### Solution
+**B**
+
+:::
+::::
+
+:::: {.callout-note appearance="simple" icon="false"}
+### Check Yourself 3
+
+What is the value of `type(314.0)` ?
+
+A. `314`  
+
+B. `float`  
+
+C. `int`  
+
+D. `'314.0'`
+
+**Vote now at** [https://PollEv.com/ist356m3](https://PollEv.com/ist356m3)
+
+::: {.callout-note collapse="true" appearance="simple" icon="false"}
+#### Solution
+**B**
+
+:::
+::::
+
+
+:::: {.callout-note appearance="simple" icon="false"}
+### Check Yourself 4
+
+What is the output of the following python code?
+```{python}
+#| eval: false
+a = 10
+b = 2
+c = 1 + (a/b)
+print(c)
+```
+
+A. `6`
+
+B. `5.5`  
+
+C. `6.0`  
+
+D. `5` 
+
+**Vote now at** [https://PollEv.com/ist356m3](https://PollEv.com/ist356m3)
+
+::: {.callout-note collapse="true" appearance="simple" icon="false"}
+#### Solution
+**C**
+
+:::
+::::
+
+## Program Flow Control with IF
+
+- The **IF** statement is used to branch your code based on a Boolean expression.  
+  
+
+```{python}
+#| eval: false
+if boolean-expression:
+    statements-when-true
+else:
+    statemrnts-when-false
+```
+
+![](fig/python-1-2.png)
+
+
+## Python’s Relational Operators 
+
+<table style="font-size:1.2em;">
+    <thead><tr>
+        <th>Operator</th>
+        <th>What it does</th>
+        <th>Examples</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+        <td><code> > </code></td>
+        <td> Greater than </td>
+        <td> 4>2 (True)</td>
+    </tr>
+    <tr>
+        <td><code> < </code></td>
+        <td> Less than </td>
+        <td> 4<2 (False)</td>
+    </tr>
+    <tr>
+        <td><code> == </code></td>
+        <td> Equal To </td>
+        <td> 4==2 (False)</td>
+    </tr>
+    <tr>
+        <td><code> != </code></td>
+        <td> Not Equal To </td>
+        <td> 4!=2 (True)</td>
+    </tr>
+    <tr>
+        <td><code> >= </code></td>
+        <td> Greater Than or Equal To </td>
+        <td> 4>=2 (True)</td>
+    <tr>
+        <td><code> <= </code></td>
+        <td> Less Than or Equal To </td>
+        <td> 4<=2 (True)</td>
+    </tr>
+  </tbody>
+</table>
+
+Expressions consisting of relational operators evaluate to a **Boolean** value
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 1.3: Presssure sensor that determines whether to open a door
+
+Write code that simulates a pressure sensor that opens a door when the pressure is larger than 10; otherwise, it closes the door.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+reading = float(input("Sensor Reading: "))
+
+if reading > 10:
+    status = "Opening"
+else:
+    status = "Closing"
+
+print(f"{status} the door")
+```
+:::
+::::
+
+:::: {.callout-note appearance="simple" icon="false"}
+### Check Yourself 5: Relational operators
+
+On Which line number is the Boolean expression True?  
+
+```{python}
+#| eval: false
+x = 15      # 1
+y = 20      # 2
+z = 2       # 3
+x > y       # 4
+z*x <= y    # 5
+y >= x-z    # 6
+z*10 == x   # 7
+```
+
+A. `4`
+
+B. `5`
+
+C. `6`
+
+D. `7`
+
+**Vote now at** [https://PollEv.com/ist356m3](https://PollEv.com/ist356m3)
+
+::: {.callout-note collapse="true" appearance="simple" icon="false"}
+#### Solution
+**C**
+
+:::
+::::
+
+
+## Python’s Logical Operators
+
+<table style="font-size:1.2em;">
+    <thead><tr>
+        <th>Operator</th>
+        <th>What it does</th>
+        <th>Examples</th>
+    </tr></thead>
+    <tbody>
+    <tr>
+        <td><code> and </code></td>
+        <td> True only when both are True </td>
+        <td> 4>2 and 4<5 (True)</td>
+    </tr>
+    <tr>
+        <td><code> or </code></td>
+        <td> False only when both are False </td>
+        <td> 4<2 or 4==4 (True)</td>
+    </tr>
+    <tr>
+        <td><code> not </code></td>
+        <td> Negation(Opposite) </td>
+        <td> not 4==2 (True)</td>
+    </tr>
+    <tr>
+        <td><code> in </code></td>
+        <td> Set operator </td>
+        <td> 4 in [2,4,7] (True)</td>
+    </tr>
+  </tbody>
+</table>
+
+:::: {.callout-note appearance="simple" icon="false"}
+### Check Yourself 6: Logical Operators
+
+In the following code, which line evaluates to `True`?  
+
+```{python}
+#| eval: false
+raining = False              # 1
+snowing = True               # 2
+age = 45                     # 3
+age < 18 and raining         # 4
+age >= 18 and not snowing    # 5
+not snowing or not raining   # 6
+age == 45 and not snowing    # 7
+```
+
+A. `4`
+
+B. `5`
+
+C. `6`
+
+D. `7`
+
+
+**Vote now at** [https://PollEv.com/ist356m3](https://PollEv.com/ist356m3)
+
+::: {.callout-note collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+**C**
+
+:::
+::::
+
+
+## Multiple Decisions: IF ladder
+
+Use elif to make more than one decision in your if statement. Only one code block within the ladder is executed.
+
+```{python}
+#| eval: false
+if boolean-expression1:
+    statements-when-exp1-true
+elif boolean-expression2:
+    statements-when-exp2-true
+elif boolean-expression3:
+    statements-when-exp3-true
+else:
+    statements-none-are-true
+```
+
+![](fig/python-1-3.png)
+
+```{python}
+#| tags: []
+#| eval: false
+#Elif versus multiple ifs...
+# One decision or multiple decisions. 
+
+x = int(input("enter an integer"))
+
+# one decision
+if x>10:
+    print("A:bigger than 10")
+elif x>20:
+    print("A:bigger than 20")    
+
+    # Multiple decisions
+if x>10:
+    print("B:bigger than 10")
+if x>20:
+    print("B:bigger than 20")
+```
+
+:::: {.callout-note appearance="simple" icon="false"}
+### Check Yourself 7: IF statement
+
+Assuming values `x = 25` and `y = 6`, what will be printed when the following code is run?
+
+```{python}
+#| eval: false
+if x > 20:
+    if y == 4:
+        print("One")
+    elif y > 4:
+        print("Two")
+    else:
+        print("Three")
+else:
+    print("Four")
+```
+
+A. `One`  
+
+B. `Two`  
+
+C. `Three`  
+
+D. `Four`  
+
+**Vote now at** [https://PollEv.com/ist356m3](https://PollEv.com/ist356m3)
+
+::: {.callout-note collapse="true" appearance="simple" icon="false"}
+#### Solution
+**B**
+
+:::
+::::
+
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 1.4: Number to letter grade
+
+- Letter grades in a college class are computed as follows: 
+    
+   - 95 and above is an A
+   - 75 and above, but below 95 is a B
+   - 50 and above, but below 75 is a C
+   - below 50 is F
+   
+- Write a program to input the number grade and calculate the letter grade
+
+- The program should also print an error message if the provided number grade is out of range (i.e., > 120 or < 0).
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+number_grade = int(input("Enter your numerical grade: 0 - 120"))
+letter_grade = "unknown"
+
+if number_grade >= 0 and number_grade <= 120:
+
+    if number_grade > 95:
+        letter_grade = "A"
+    elif number_grade > 75:
+        letter_grade = "B"
+    elif number_grade > 50:
+        letter_grade = "C"
+    else:
+        letter_grade = "F"
+
+    print(f"For {number_grade} points the letter grade is {letter_grade}")
+
+else:
+    print(f"Number grade of {number_grade} is out of range!")
+```
+:::
+::::
