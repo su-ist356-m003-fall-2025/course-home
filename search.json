@@ -639,7 +639,7 @@
     "href": "02_python/index.html#tutorials",
     "title": "2. Python review",
     "section": "Tutorials",
-    "text": "Tutorials\n\nInput, output, variables, types, conditionals",
+    "text": "Tutorials\n\nInput, output, variables, types, conditionals\nIterations, lists, dictionaries, comprehensions",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "2. Python review"
