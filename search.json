@@ -624,69 +624,47 @@
     ]
   },
   {
-    "objectID": "00_intro/index.html",
-    "href": "00_intro/index.html",
-    "title": "Introduction and computer setup",
+    "objectID": "02_python/index.html",
+    "href": "02_python/index.html",
+    "title": "2. Python review",
     "section": "",
-    "text": "In IST356 we teach you programming for data analytics using the tools and techiques used by those in the industry. As such, you will learn how to setup and configure development environments, use git and github and learn to systematically test your code.\nThis is unlike IST256 where the emphasis is on the programming basics and the motivations behind learning computational thinking.\n\n\n\n\n\n\n\n\n\nIST356\nIST256\n\n\n\n\nProgramming Environment\nInstall vscode + git + python on your computer\nWeb-hosted jupyterhub\n\n\nAssignment Submissions\nStudent learn and use git / github\nBuilt-in assignment submission\n\n\nCoursework, slides, examples\nYou clone / diff the prof repo\nAutodiff and merge at login\n\n\n\nIn this course you’ll do it the real way, nothing is hidden / abstracted away for you.\n\n\nHere’s what you’ll need to install on your computer. Please read this entire section prior to installing. :-)\n\nVisual Studio Code: https://code.visualstudio.com/Download\nThis is a free editor with testing and debugging capabilities. As you install you can accept all defaults, except the last one: DO NOT launch the application when complete! If you do, simply close it.\nGit Source Code Manager: https://git-scm.com/download/\nAs you set it up, you will be asked several questions, for which the default selection is fine. EXCEPTION: choose Visual Studio Code as the default editor.\n\n\n\n\n\n\nWarning\n\n\n\nMac users: you’ll see multiple options for downloading Git Source Code Manager. I recommend using the Xcode version. Clicking on that link will redirect you to the Apple store; from there you will download and install Xcode.\n\n\nMiniconda Do not install this yet! You will install this using the terminal in VSCode after VSCode and Git are installed and setup; see instructions below.\n\n\n\n\nBeing an SU student comes with some perks. One of them is a Github for Education account and accompanying “packpack” of goodies. To use this benefit, your github account must be associated with your @syr.edu email.\n\n\nAssociate your current account with SU, by adding your email:\n\nGo to to https://github.com and click Sign In\nOnce you have logged in, go to: https://github.com/settings/emails\n\nAdd and verify your SU email address.\n\n\n\n\nYou’ll need to create an account:\n\nGo to to https://github.com and click Sign In\nFollow the on-screen instructions to sign up for an account.\nMake sure to use your @syr.edu email for the account.\nAdd your personal email when you’re at it so you don’t lose Github access after you graduate!\n\n\n\n\n\n\n\nImportant\n\n\n\nOnce you have a GitHub account, please email your GitHub username to me at cdcapano@syr.edu.\n\n\n\n\n\n\nGo to the Github Backpack site: https://education.github.com/pack\nand click Sign Up For Student Developer Pack\nOnce your account is verified, you will have backpack access.\nYou’ll know its active when you check your billing plan: https://github.com/settings/billing/summary\nyou should see a credit here.\nOnce you have backpack access, you can enable Github Copilot AI. https://github.com/settings/copilot\n\n\n\n\n\nThe last step is to configure VS Code for Python debugging. Provided everything else is in order, this should be straightforward.\n\nOpen Visual studio code. You will be asked to configure it.\n\nSet up GitHub Copilot. To do so, you’ll need to sign into GitHub by clicking “Continue with GitHub”. After you do, you may be dropped into a “Welcome” tab in VS Code. If so, click the “Walkthrough: Setup VS Code” tab to continue set up.\nPick a theme: Light, Dark, etc…\nAdd the following Extensions: Python, Jupyter.\nWindows users only: we’ll occasionally be using bash in the terminal mode of VSCode. Mac and Linux users have bash natively installed in the operating system. Windows users will have gotten a copy of bash when they downloaded and installed Git SCM. However, you need to tell VSCode to use bash in the Terminal rather than Windows PowerShell. To do that:\n\nClick “Unlock productivity with the Command Palette” in the Walthrough tab, then “Open Command Palette”. Alternatively, if you don’t see that option, open the Command Palette by typing CTRL + SHIFT + P. (Mac users type COMMAND + SHIFT + P).\nType “Select Default Profile” then hit ENTER.\nSelect “Git Bash” from the drop-down options.\nCheck that it worked by opening a new terminal: in the file menu, click “Terminal” -&gt; “New Terminal”. You should see “bash” in the upper right of the terminal screen.\n\nClose the welcome Tab but keep VS Code open.\n\n\n\n\n\n\n\n\nOpen a terminal in VS Code by clicking “Terminal” -&gt; “New Terminal”.\nIn the terminal window, type:\ncd\nThen hit ENTER.\nFollow the instructions Quickstart install instructions on the Miniconda website. For WSL, select “Linux”.\n\n\n\n\n\nDownload the Miniconda installer for Windows. Click the Downlad button under “Miniconda Installers”, not the one under “Distribution Installers”.\nRun the installer by double-clicking on the downloaded file and follow the steps below.\n\nClick “Run”.\nClick on “Next”.\nClick on “I agree”.\nSelect “Just me” and click on “Next”.\nClick “Next” to install to the default destination folder.\n\n\n\n\n\n\nWarning\n\n\n\nIf you had tried to install miniconda previously, you may get an error that says “Directory … is not empty, please choose a different location.” Do not choose a different location. Instead, click “OK”, then rename the previous miniconda3 directory. You can do that by going to VS Code, opening a new terminal window (click “Terminal” -&gt; “New Terminal”), and entering the following (hit ENTER after each line):\ncd\nmv miniconda3 miniconda3-old\nThen go back to the Miniconda installer and click “Next”.\n\n\nCheck the option for “Add Anaconda to my PATH environment variable” and check the option for “Register Anaconda as my default Python 3.x”.\n\nNote that even though the installation is for Miniconda, the installer uses the word Anaconda in these options.\nYou will also see a message in red text that selecting “Add Anaconda to my PATH environment variable” is not recommended; continue with this selection to make using conda easier in Git Bash. If you have questions or concerns, please contact your instructor.\n\nClick on “Install”.\nWhen the install is complete, Click on “Next”.\nClick on “Finish”.\n\nOpen a new terminal window in VS Code by clicking “Terminal” -&gt; “New Terminal”.\nType the following command to initialize conda:\nconda init bash\nOpen a new terminal window in VS Code by either hitting the “+” key next to “bash” in the upper left of the terminal window, or by cliking “Terminal” -&gt; “New Terminal”. If conda installed successfullly, you should see (base) appear next to or above your command prompt.\n\n\n\n\n\n\nIn the bash terminal window in VS Code (make sure it says (base) to the left of or above the prompt), type:\nconda create -n ist356 -c conda-forge -y python=3.11 ipykernel\nThen hit ENTER.\n\n\n\n\n\n\nWarning\n\n\n\nThe first time you run conda, you may bet an error about Terms of Service not being accepted for certain channels. Accept the TOS for those channels by running the commands listed. For example, if one of the channels is https://repo.anaconda.com/pkgs/main, copy and paste the command into the terminal:\nconda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main\nFollowed by hitting ENTER (to execute a command in the terminal, you hit ENTER after typing/pasting it in). You’ll need to do this for each of the channels listed.\nOnce you have accepted the TOS for all the channels, run the conda create command above again.\n\n\nCheck to ensure your environment works:\n\nClick File -&gt; “New File…”\nIn the drop down menu, select “Jupyter Notebook”.\nClick “Select Kernel” on the right then type “ist356”.\nIn the first cell, type:\nprint(\"hello world!\")\nHit the run button on the left or type SHIFT + ENTER to execute the code. You should get back “hello world!”.\nClose the ipynb file (you may optionally save it; if you do, be sure to call it something other then “Untitled.ipynb”, maybe “hello.ipynb” instead).",
+    "text": "In this unit we will review some basics of Python programming. You will have covered the material here in IST 256.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Introduction and computer setup"
+      "2. Python review"
     ]
   },
   {
-    "objectID": "00_intro/index.html#step-1-software-installs",
-    "href": "00_intro/index.html#step-1-software-installs",
-    "title": "Introduction and computer setup",
-    "section": "",
-    "text": "Here’s what you’ll need to install on your computer. Please read this entire section prior to installing. :-)\n\nVisual Studio Code: https://code.visualstudio.com/Download\nThis is a free editor with testing and debugging capabilities. As you install you can accept all defaults, except the last one: DO NOT launch the application when complete! If you do, simply close it.\nGit Source Code Manager: https://git-scm.com/download/\nAs you set it up, you will be asked several questions, for which the default selection is fine. EXCEPTION: choose Visual Studio Code as the default editor.\n\n\n\n\n\n\nWarning\n\n\n\nMac users: you’ll see multiple options for downloading Git Source Code Manager. I recommend using the Xcode version. Clicking on that link will redirect you to the Apple store; from there you will download and install Xcode.\n\n\nMiniconda Do not install this yet! You will install this using the terminal in VSCode after VSCode and Git are installed and setup; see instructions below.",
+    "objectID": "02_python/index.html#tutorials",
+    "href": "02_python/index.html#tutorials",
+    "title": "2. Python review",
+    "section": "Tutorials",
+    "text": "Tutorials\n\nInput, output, variables, types, conditionals",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Introduction and computer setup"
+      "2. Python review"
     ]
   },
   {
-    "objectID": "00_intro/index.html#setup-2-github-account",
-    "href": "00_intro/index.html#setup-2-github-account",
-    "title": "Introduction and computer setup",
-    "section": "",
-    "text": "Being an SU student comes with some perks. One of them is a Github for Education account and accompanying “packpack” of goodies. To use this benefit, your github account must be associated with your @syr.edu email.\n\n\nAssociate your current account with SU, by adding your email:\n\nGo to to https://github.com and click Sign In\nOnce you have logged in, go to: https://github.com/settings/emails\n\nAdd and verify your SU email address.\n\n\n\n\nYou’ll need to create an account:\n\nGo to to https://github.com and click Sign In\nFollow the on-screen instructions to sign up for an account.\nMake sure to use your @syr.edu email for the account.\nAdd your personal email when you’re at it so you don’t lose Github access after you graduate!\n\n\n\n\n\n\n\nImportant\n\n\n\nOnce you have a GitHub account, please email your GitHub username to me at cdcapano@syr.edu.\n\n\n\n\n\n\nGo to the Github Backpack site: https://education.github.com/pack\nand click Sign Up For Student Developer Pack\nOnce your account is verified, you will have backpack access.\nYou’ll know its active when you check your billing plan: https://github.com/settings/billing/summary\nyou should see a credit here.\nOnce you have backpack access, you can enable Github Copilot AI. https://github.com/settings/copilot",
+    "objectID": "02_python/index.html#lectures",
+    "href": "02_python/index.html#lectures",
+    "title": "2. Python review",
+    "section": "Lectures",
+    "text": "Lectures",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Introduction and computer setup"
+      "2. Python review"
     ]
   },
   {
-    "objectID": "00_intro/index.html#step-3-configure-vs-code",
-    "href": "00_intro/index.html#step-3-configure-vs-code",
-    "title": "Introduction and computer setup",
-    "section": "",
-    "text": "The last step is to configure VS Code for Python debugging. Provided everything else is in order, this should be straightforward.\n\nOpen Visual studio code. You will be asked to configure it.\n\nSet up GitHub Copilot. To do so, you’ll need to sign into GitHub by clicking “Continue with GitHub”. After you do, you may be dropped into a “Welcome” tab in VS Code. If so, click the “Walkthrough: Setup VS Code” tab to continue set up.\nPick a theme: Light, Dark, etc…\nAdd the following Extensions: Python, Jupyter.\nWindows users only: we’ll occasionally be using bash in the terminal mode of VSCode. Mac and Linux users have bash natively installed in the operating system. Windows users will have gotten a copy of bash when they downloaded and installed Git SCM. However, you need to tell VSCode to use bash in the Terminal rather than Windows PowerShell. To do that:\n\nClick “Unlock productivity with the Command Palette” in the Walthrough tab, then “Open Command Palette”. Alternatively, if you don’t see that option, open the Command Palette by typing CTRL + SHIFT + P. (Mac users type COMMAND + SHIFT + P).\nType “Select Default Profile” then hit ENTER.\nSelect “Git Bash” from the drop-down options.\nCheck that it worked by opening a new terminal: in the file menu, click “Terminal” -&gt; “New Terminal”. You should see “bash” in the upper right of the terminal screen.\n\nClose the welcome Tab but keep VS Code open.",
+    "objectID": "02_python/index.html#wednesday-932025",
+    "href": "02_python/index.html#wednesday-932025",
+    "title": "2. Python review",
+    "section": "Wednesday, 9/3/2025",
+    "text": "Wednesday, 9/3/2025\nInstructions on how to use GitHub Classroom; start of Python review.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Introduction and computer setup"
-    ]
-  },
-  {
-    "objectID": "00_intro/index.html#step-4-install-miniconda",
-    "href": "00_intro/index.html#step-4-install-miniconda",
-    "title": "Introduction and computer setup",
-    "section": "",
-    "text": "Open a terminal in VS Code by clicking “Terminal” -&gt; “New Terminal”.\nIn the terminal window, type:\ncd\nThen hit ENTER.\nFollow the instructions Quickstart install instructions on the Miniconda website. For WSL, select “Linux”.\n\n\n\n\n\nDownload the Miniconda installer for Windows. Click the Downlad button under “Miniconda Installers”, not the one under “Distribution Installers”.\nRun the installer by double-clicking on the downloaded file and follow the steps below.\n\nClick “Run”.\nClick on “Next”.\nClick on “I agree”.\nSelect “Just me” and click on “Next”.\nClick “Next” to install to the default destination folder.\n\n\n\n\n\n\nWarning\n\n\n\nIf you had tried to install miniconda previously, you may get an error that says “Directory … is not empty, please choose a different location.” Do not choose a different location. Instead, click “OK”, then rename the previous miniconda3 directory. You can do that by going to VS Code, opening a new terminal window (click “Terminal” -&gt; “New Terminal”), and entering the following (hit ENTER after each line):\ncd\nmv miniconda3 miniconda3-old\nThen go back to the Miniconda installer and click “Next”.\n\n\nCheck the option for “Add Anaconda to my PATH environment variable” and check the option for “Register Anaconda as my default Python 3.x”.\n\nNote that even though the installation is for Miniconda, the installer uses the word Anaconda in these options.\nYou will also see a message in red text that selecting “Add Anaconda to my PATH environment variable” is not recommended; continue with this selection to make using conda easier in Git Bash. If you have questions or concerns, please contact your instructor.\n\nClick on “Install”.\nWhen the install is complete, Click on “Next”.\nClick on “Finish”.\n\nOpen a new terminal window in VS Code by clicking “Terminal” -&gt; “New Terminal”.\nType the following command to initialize conda:\nconda init bash\nOpen a new terminal window in VS Code by either hitting the “+” key next to “bash” in the upper left of the terminal window, or by cliking “Terminal” -&gt; “New Terminal”. If conda installed successfullly, you should see (base) appear next to or above your command prompt.",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Introduction and computer setup"
-    ]
-  },
-  {
-    "objectID": "00_intro/index.html#step-5-create-a-conda-environment-and-test-it-in-vs-code",
-    "href": "00_intro/index.html#step-5-create-a-conda-environment-and-test-it-in-vs-code",
-    "title": "Introduction and computer setup",
-    "section": "",
-    "text": "In the bash terminal window in VS Code (make sure it says (base) to the left of or above the prompt), type:\nconda create -n ist356 -c conda-forge -y python=3.11 ipykernel\nThen hit ENTER.\n\n\n\n\n\n\nWarning\n\n\n\nThe first time you run conda, you may bet an error about Terms of Service not being accepted for certain channels. Accept the TOS for those channels by running the commands listed. For example, if one of the channels is https://repo.anaconda.com/pkgs/main, copy and paste the command into the terminal:\nconda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main\nFollowed by hitting ENTER (to execute a command in the terminal, you hit ENTER after typing/pasting it in). You’ll need to do this for each of the channels listed.\nOnce you have accepted the TOS for all the channels, run the conda create command above again.\n\n\nCheck to ensure your environment works:\n\nClick File -&gt; “New File…”\nIn the drop down menu, select “Jupyter Notebook”.\nClick “Select Kernel” on the right then type “ist356”.\nIn the first cell, type:\nprint(\"hello world!\")\nHit the run button on the left or type SHIFT + ENTER to execute the code. You should get back “hello world!”.\nClose the ipynb file (you may optionally save it; if you do, be sure to call it something other then “Untitled.ipynb”, maybe “hello.ipynb” instead).",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "Introduction and computer setup"
+      "2. Python review"
     ]
   },
   {
@@ -811,47 +789,141 @@
     ]
   },
   {
-    "objectID": "02_python/index.html",
-    "href": "02_python/index.html",
-    "title": "2. Python review",
+    "objectID": "00_intro/index.html",
+    "href": "00_intro/index.html",
+    "title": "Introduction and computer setup",
     "section": "",
-    "text": "In this unit we will review some basics of Python programming. You will have covered the material here in IST 256.",
+    "text": "In IST356 we teach you programming for data analytics using the tools and techiques used by those in the industry. As such, you will learn how to setup and configure development environments, use git and github and learn to systematically test your code.\nThis is unlike IST256 where the emphasis is on the programming basics and the motivations behind learning computational thinking.\n\n\n\n\n\n\n\n\n\nIST356\nIST256\n\n\n\n\nProgramming Environment\nInstall vscode + git + python on your computer\nWeb-hosted jupyterhub\n\n\nAssignment Submissions\nStudent learn and use git / github\nBuilt-in assignment submission\n\n\nCoursework, slides, examples\nYou clone / diff the prof repo\nAutodiff and merge at login\n\n\n\nIn this course you’ll do it the real way, nothing is hidden / abstracted away for you.\n\n\nHere’s what you’ll need to install on your computer. Please read this entire section prior to installing. :-)\n\nVisual Studio Code: https://code.visualstudio.com/Download\nThis is a free editor with testing and debugging capabilities. As you install you can accept all defaults, except the last one: DO NOT launch the application when complete! If you do, simply close it.\nGit Source Code Manager: https://git-scm.com/download/\nAs you set it up, you will be asked several questions, for which the default selection is fine. EXCEPTION: choose Visual Studio Code as the default editor.\n\n\n\n\n\n\nWarning\n\n\n\nMac users: you’ll see multiple options for downloading Git Source Code Manager. I recommend using the Xcode version. Clicking on that link will redirect you to the Apple store; from there you will download and install Xcode.\n\n\nMiniconda Do not install this yet! You will install this using the terminal in VSCode after VSCode and Git are installed and setup; see instructions below.\n\n\n\n\nBeing an SU student comes with some perks. One of them is a Github for Education account and accompanying “packpack” of goodies. To use this benefit, your github account must be associated with your @syr.edu email.\n\n\nAssociate your current account with SU, by adding your email:\n\nGo to to https://github.com and click Sign In\nOnce you have logged in, go to: https://github.com/settings/emails\n\nAdd and verify your SU email address.\n\n\n\n\nYou’ll need to create an account:\n\nGo to to https://github.com and click Sign In\nFollow the on-screen instructions to sign up for an account.\nMake sure to use your @syr.edu email for the account.\nAdd your personal email when you’re at it so you don’t lose Github access after you graduate!\n\n\n\n\n\n\n\nImportant\n\n\n\nOnce you have a GitHub account, please email your GitHub username to me at cdcapano@syr.edu.\n\n\n\n\n\n\nGo to the Github Backpack site: https://education.github.com/pack\nand click Sign Up For Student Developer Pack\nOnce your account is verified, you will have backpack access.\nYou’ll know its active when you check your billing plan: https://github.com/settings/billing/summary\nyou should see a credit here.\nOnce you have backpack access, you can enable Github Copilot AI. https://github.com/settings/copilot\n\n\n\n\n\nThe last step is to configure VS Code for Python debugging. Provided everything else is in order, this should be straightforward.\n\nOpen Visual studio code. You will be asked to configure it.\n\nSet up GitHub Copilot. To do so, you’ll need to sign into GitHub by clicking “Continue with GitHub”. After you do, you may be dropped into a “Welcome” tab in VS Code. If so, click the “Walkthrough: Setup VS Code” tab to continue set up.\nPick a theme: Light, Dark, etc…\nAdd the following Extensions: Python, Jupyter.\nWindows users only: we’ll occasionally be using bash in the terminal mode of VSCode. Mac and Linux users have bash natively installed in the operating system. Windows users will have gotten a copy of bash when they downloaded and installed Git SCM. However, you need to tell VSCode to use bash in the Terminal rather than Windows PowerShell. To do that:\n\nClick “Unlock productivity with the Command Palette” in the Walthrough tab, then “Open Command Palette”. Alternatively, if you don’t see that option, open the Command Palette by typing CTRL + SHIFT + P. (Mac users type COMMAND + SHIFT + P).\nType “Select Default Profile” then hit ENTER.\nSelect “Git Bash” from the drop-down options.\nCheck that it worked by opening a new terminal: in the file menu, click “Terminal” -&gt; “New Terminal”. You should see “bash” in the upper right of the terminal screen.\n\nClose the welcome Tab but keep VS Code open.\n\n\n\n\n\n\n\n\nOpen a terminal in VS Code by clicking “Terminal” -&gt; “New Terminal”.\nIn the terminal window, type:\ncd\nThen hit ENTER.\nFollow the instructions Quickstart install instructions on the Miniconda website. For WSL, select “Linux”.\n\n\n\n\n\nDownload the Miniconda installer for Windows. Click the Downlad button under “Miniconda Installers”, not the one under “Distribution Installers”.\nRun the installer by double-clicking on the downloaded file and follow the steps below.\n\nClick “Run”.\nClick on “Next”.\nClick on “I agree”.\nSelect “Just me” and click on “Next”.\nClick “Next” to install to the default destination folder.\n\n\n\n\n\n\nWarning\n\n\n\nIf you had tried to install miniconda previously, you may get an error that says “Directory … is not empty, please choose a different location.” Do not choose a different location. Instead, click “OK”, then rename the previous miniconda3 directory. You can do that by going to VS Code, opening a new terminal window (click “Terminal” -&gt; “New Terminal”), and entering the following (hit ENTER after each line):\ncd\nmv miniconda3 miniconda3-old\nThen go back to the Miniconda installer and click “Next”.\n\n\nCheck the option for “Add Anaconda to my PATH environment variable” and check the option for “Register Anaconda as my default Python 3.x”.\n\nNote that even though the installation is for Miniconda, the installer uses the word Anaconda in these options.\nYou will also see a message in red text that selecting “Add Anaconda to my PATH environment variable” is not recommended; continue with this selection to make using conda easier in Git Bash. If you have questions or concerns, please contact your instructor.\n\nClick on “Install”.\nWhen the install is complete, Click on “Next”.\nClick on “Finish”.\n\nOpen a new terminal window in VS Code by clicking “Terminal” -&gt; “New Terminal”.\nType the following command to initialize conda:\nconda init bash\nOpen a new terminal window in VS Code by either hitting the “+” key next to “bash” in the upper left of the terminal window, or by cliking “Terminal” -&gt; “New Terminal”. If conda installed successfullly, you should see (base) appear next to or above your command prompt.\n\n\n\n\n\n\nIn the bash terminal window in VS Code (make sure it says (base) to the left of or above the prompt), type:\nconda create -n ist356 -c conda-forge -y python=3.11 ipykernel\nThen hit ENTER.\n\n\n\n\n\n\nWarning\n\n\n\nThe first time you run conda, you may bet an error about Terms of Service not being accepted for certain channels. Accept the TOS for those channels by running the commands listed. For example, if one of the channels is https://repo.anaconda.com/pkgs/main, copy and paste the command into the terminal:\nconda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main\nFollowed by hitting ENTER (to execute a command in the terminal, you hit ENTER after typing/pasting it in). You’ll need to do this for each of the channels listed.\nOnce you have accepted the TOS for all the channels, run the conda create command above again.\n\n\nCheck to ensure your environment works:\n\nClick File -&gt; “New File…”\nIn the drop down menu, select “Jupyter Notebook”.\nClick “Select Kernel” on the right then type “ist356”.\nIn the first cell, type:\nprint(\"hello world!\")\nHit the run button on the left or type SHIFT + ENTER to execute the code. You should get back “hello world!”.\nClose the ipynb file (you may optionally save it; if you do, be sure to call it something other then “Untitled.ipynb”, maybe “hello.ipynb” instead).",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "2. Python review"
+      "Introduction and computer setup"
     ]
   },
   {
-    "objectID": "02_python/index.html#tutorials",
-    "href": "02_python/index.html#tutorials",
-    "title": "2. Python review",
-    "section": "Tutorials",
-    "text": "Tutorials\n\nInput, output, variables, types, conditionals",
+    "objectID": "00_intro/index.html#step-1-software-installs",
+    "href": "00_intro/index.html#step-1-software-installs",
+    "title": "Introduction and computer setup",
+    "section": "",
+    "text": "Here’s what you’ll need to install on your computer. Please read this entire section prior to installing. :-)\n\nVisual Studio Code: https://code.visualstudio.com/Download\nThis is a free editor with testing and debugging capabilities. As you install you can accept all defaults, except the last one: DO NOT launch the application when complete! If you do, simply close it.\nGit Source Code Manager: https://git-scm.com/download/\nAs you set it up, you will be asked several questions, for which the default selection is fine. EXCEPTION: choose Visual Studio Code as the default editor.\n\n\n\n\n\n\nWarning\n\n\n\nMac users: you’ll see multiple options for downloading Git Source Code Manager. I recommend using the Xcode version. Clicking on that link will redirect you to the Apple store; from there you will download and install Xcode.\n\n\nMiniconda Do not install this yet! You will install this using the terminal in VSCode after VSCode and Git are installed and setup; see instructions below.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "2. Python review"
+      "Introduction and computer setup"
     ]
   },
   {
-    "objectID": "02_python/index.html#lectures",
-    "href": "02_python/index.html#lectures",
-    "title": "2. Python review",
-    "section": "Lectures",
-    "text": "Lectures",
+    "objectID": "00_intro/index.html#setup-2-github-account",
+    "href": "00_intro/index.html#setup-2-github-account",
+    "title": "Introduction and computer setup",
+    "section": "",
+    "text": "Being an SU student comes with some perks. One of them is a Github for Education account and accompanying “packpack” of goodies. To use this benefit, your github account must be associated with your @syr.edu email.\n\n\nAssociate your current account with SU, by adding your email:\n\nGo to to https://github.com and click Sign In\nOnce you have logged in, go to: https://github.com/settings/emails\n\nAdd and verify your SU email address.\n\n\n\n\nYou’ll need to create an account:\n\nGo to to https://github.com and click Sign In\nFollow the on-screen instructions to sign up for an account.\nMake sure to use your @syr.edu email for the account.\nAdd your personal email when you’re at it so you don’t lose Github access after you graduate!\n\n\n\n\n\n\n\nImportant\n\n\n\nOnce you have a GitHub account, please email your GitHub username to me at cdcapano@syr.edu.\n\n\n\n\n\n\nGo to the Github Backpack site: https://education.github.com/pack\nand click Sign Up For Student Developer Pack\nOnce your account is verified, you will have backpack access.\nYou’ll know its active when you check your billing plan: https://github.com/settings/billing/summary\nyou should see a credit here.\nOnce you have backpack access, you can enable Github Copilot AI. https://github.com/settings/copilot",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "2. Python review"
+      "Introduction and computer setup"
     ]
   },
   {
-    "objectID": "02_python/index.html#wednesday-932025",
-    "href": "02_python/index.html#wednesday-932025",
-    "title": "2. Python review",
-    "section": "Wednesday, 9/3/2025",
-    "text": "Wednesday, 9/3/2025\nInstructions on how to use GitHub Classroom; start of Python review.",
+    "objectID": "00_intro/index.html#step-3-configure-vs-code",
+    "href": "00_intro/index.html#step-3-configure-vs-code",
+    "title": "Introduction and computer setup",
+    "section": "",
+    "text": "The last step is to configure VS Code for Python debugging. Provided everything else is in order, this should be straightforward.\n\nOpen Visual studio code. You will be asked to configure it.\n\nSet up GitHub Copilot. To do so, you’ll need to sign into GitHub by clicking “Continue with GitHub”. After you do, you may be dropped into a “Welcome” tab in VS Code. If so, click the “Walkthrough: Setup VS Code” tab to continue set up.\nPick a theme: Light, Dark, etc…\nAdd the following Extensions: Python, Jupyter.\nWindows users only: we’ll occasionally be using bash in the terminal mode of VSCode. Mac and Linux users have bash natively installed in the operating system. Windows users will have gotten a copy of bash when they downloaded and installed Git SCM. However, you need to tell VSCode to use bash in the Terminal rather than Windows PowerShell. To do that:\n\nClick “Unlock productivity with the Command Palette” in the Walthrough tab, then “Open Command Palette”. Alternatively, if you don’t see that option, open the Command Palette by typing CTRL + SHIFT + P. (Mac users type COMMAND + SHIFT + P).\nType “Select Default Profile” then hit ENTER.\nSelect “Git Bash” from the drop-down options.\nCheck that it worked by opening a new terminal: in the file menu, click “Terminal” -&gt; “New Terminal”. You should see “bash” in the upper right of the terminal screen.\n\nClose the welcome Tab but keep VS Code open.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "2. Python review"
+      "Introduction and computer setup"
+    ]
+  },
+  {
+    "objectID": "00_intro/index.html#step-4-install-miniconda",
+    "href": "00_intro/index.html#step-4-install-miniconda",
+    "title": "Introduction and computer setup",
+    "section": "",
+    "text": "Open a terminal in VS Code by clicking “Terminal” -&gt; “New Terminal”.\nIn the terminal window, type:\ncd\nThen hit ENTER.\nFollow the instructions Quickstart install instructions on the Miniconda website. For WSL, select “Linux”.\n\n\n\n\n\nDownload the Miniconda installer for Windows. Click the Downlad button under “Miniconda Installers”, not the one under “Distribution Installers”.\nRun the installer by double-clicking on the downloaded file and follow the steps below.\n\nClick “Run”.\nClick on “Next”.\nClick on “I agree”.\nSelect “Just me” and click on “Next”.\nClick “Next” to install to the default destination folder.\n\n\n\n\n\n\nWarning\n\n\n\nIf you had tried to install miniconda previously, you may get an error that says “Directory … is not empty, please choose a different location.” Do not choose a different location. Instead, click “OK”, then rename the previous miniconda3 directory. You can do that by going to VS Code, opening a new terminal window (click “Terminal” -&gt; “New Terminal”), and entering the following (hit ENTER after each line):\ncd\nmv miniconda3 miniconda3-old\nThen go back to the Miniconda installer and click “Next”.\n\n\nCheck the option for “Add Anaconda to my PATH environment variable” and check the option for “Register Anaconda as my default Python 3.x”.\n\nNote that even though the installation is for Miniconda, the installer uses the word Anaconda in these options.\nYou will also see a message in red text that selecting “Add Anaconda to my PATH environment variable” is not recommended; continue with this selection to make using conda easier in Git Bash. If you have questions or concerns, please contact your instructor.\n\nClick on “Install”.\nWhen the install is complete, Click on “Next”.\nClick on “Finish”.\n\nOpen a new terminal window in VS Code by clicking “Terminal” -&gt; “New Terminal”.\nType the following command to initialize conda:\nconda init bash\nOpen a new terminal window in VS Code by either hitting the “+” key next to “bash” in the upper left of the terminal window, or by cliking “Terminal” -&gt; “New Terminal”. If conda installed successfullly, you should see (base) appear next to or above your command prompt.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Introduction and computer setup"
+    ]
+  },
+  {
+    "objectID": "00_intro/index.html#step-5-create-a-conda-environment-and-test-it-in-vs-code",
+    "href": "00_intro/index.html#step-5-create-a-conda-environment-and-test-it-in-vs-code",
+    "title": "Introduction and computer setup",
+    "section": "",
+    "text": "In the bash terminal window in VS Code (make sure it says (base) to the left of or above the prompt), type:\nconda create -n ist356 -c conda-forge -y python=3.11 ipykernel\nThen hit ENTER.\n\n\n\n\n\n\nWarning\n\n\n\nThe first time you run conda, you may bet an error about Terms of Service not being accepted for certain channels. Accept the TOS for those channels by running the commands listed. For example, if one of the channels is https://repo.anaconda.com/pkgs/main, copy and paste the command into the terminal:\nconda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main\nFollowed by hitting ENTER (to execute a command in the terminal, you hit ENTER after typing/pasting it in). You’ll need to do this for each of the channels listed.\nOnce you have accepted the TOS for all the channels, run the conda create command above again.\n\n\nCheck to ensure your environment works:\n\nClick File -&gt; “New File…”\nIn the drop down menu, select “Jupyter Notebook”.\nClick “Select Kernel” on the right then type “ist356”.\nIn the first cell, type:\nprint(\"hello world!\")\nHit the run button on the left or type SHIFT + ENTER to execute the code. You should get back “hello world!”.\nClose the ipynb file (you may optionally save it; if you do, be sure to call it something other then “Untitled.ipynb”, maybe “hello.ipynb” instead).",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Introduction and computer setup"
+    ]
+  },
+  {
+    "objectID": "02_python/python-2.html",
+    "href": "02_python/python-2.html",
+    "title": "2. Iterations, lists, dictionaries, comprehensions",
+    "section": "",
+    "text": "Iterations are code strucures which allow us to repeat sections of code while a condition is true, or a fixed number of time.\nThey allow us to do more with less code!",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review",
+      "2. Iterations, lists, dictionaries, comprehensions"
+    ]
+  },
+  {
+    "objectID": "02_python/python-2.html#the-break-command",
+    "href": "02_python/python-2.html#the-break-command",
+    "title": "2. Iterations, lists, dictionaries, comprehensions",
+    "section": "The break command",
+    "text": "The break command\n\nbreak keyword exits the loop immediately.\nCommonly used when there is no longer a reason to loop (you achieved your goal).\nYou can add an else to the for loop to execute when break does not happen.\n\n\n# Example: find a letter in a text string\n\ntext = input(\"Enter Some Text:\")\nfind = input(\"Enter character to find:\")\nfor ch in text:\n    if ch == find:\n        print(f\"Found {find} in {text}!\")\n        break\nelse:\n    print(f\"Unable to find {find} in {text}!\")\n\nEnter Some Text: testing\nEnter character to find: n\nFound n in testing!\n\nEnter Some Text: testing\nEnter character to find: x\nUnable to find x in testing!\n\n\n\n\n\n\n\nChallenge 1-2-1\n\n\n\nWrite a program to accept a password as input. If the password input is “secret” display “access granted” else say “invalid password”\nrepeat the above up to 5 times. when the correct password is entered, stop looping when 5 loops have exhausted, print “you are locked out”\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nvalid_password = \"secret\"\nfor i in range(5):\n    pw = input(\"Enter Password:\")\n    if pw == valid_password:\n        print(\"Access Granted!\")\n        break\n    else:\n        print(\"Invalid Password.\")\nelse:\n    print(\"You are locked out\")",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review",
+      "2. Iterations, lists, dictionaries, comprehensions"
+    ]
+  },
+  {
+    "objectID": "02_python/python-2.html#the-in-operator",
+    "href": "02_python/python-2.html#the-in-operator",
+    "title": "2. Iterations, lists, dictionaries, comprehensions",
+    "section": "The in operator",
+    "text": "The in operator\nThe in operator checks for existence of an item in a list.\n\n# Example: whats in the list?\nnumbers = [10, 15, 20]\nprint(f\"5 in {numbers}?\", 5 in numbers)\nprint(f\"20 in {numbers}?\", 20 in numbers)\n\n5 in [10, 15, 20]? False\n20 in [10, 15, 20]? True",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review",
+      "2. Iterations, lists, dictionaries, comprehensions"
+    ]
+  },
+  {
+    "objectID": "02_python/python-2.html#list-methods",
+    "href": "02_python/python-2.html#list-methods",
+    "title": "2. Iterations, lists, dictionaries, comprehensions",
+    "section": "List Methods",
+    "text": "List Methods\nThere are numerous list methods which allow you to add, remove, and find values in the list, etc…\nhttps://docs.python.org/3/library/stdtypes.html?highlight=list#mutable-sequence-types\n\n# Example: manipulating a list\n\n# An empty list\ncolors = []\n\n# Add \"blue\" to the end\ncolors.append(\"blue\")\n\n# add \"red\" to the beginning\ncolors.insert(0, \"red\")\n\n# add \"white\" in the 2nd position\ncolors.insert(1, \"white\")\n\n# print ['red', 'white', 'blue']\nprint(colors)\n\n# remove the last color\nblue = colors.pop(-1)\n\n# remove \"white\"\nwhite = colors.remove(\"white\")\n\n# print ['red']\nprint(colors)\n\n['red', 'white', 'blue']\n['red']\n\n\n\n\n\n\n\n\nChallenge 1-2-3\n\n\n\nWrite a sentinel controlled loop to input a color until “quit” is entered. Add each color to a list only when the color is not already in the list. Print the list each time in the loop.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ncolors = []\n\nwhile True:\n    color = input(\"Enter a color:\")\n    if color == 'quit':\n        break\n    if color not in colors:\n        colors.append(color)\n        op = \"added to\"\n    else:\n        op = \"already in\"\n\n    print(f\"{color} {op} {colors}\")",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review",
+      "2. Iterations, lists, dictionaries, comprehensions"
+    ]
+  },
+  {
+    "objectID": "02_python/python-2.html#dictionary-methods",
+    "href": "02_python/python-2.html#dictionary-methods",
+    "title": "2. Iterations, lists, dictionaries, comprehensions",
+    "section": "Dictionary Methods",
+    "text": "Dictionary Methods\nLike str and list, the dict type has its own set of built-in functions. https://docs.python.org/3/library/stdtypes.html#mapping-types-dict\n\nfont = {'name': 'Arial','size': 8}\n\nprint(font.keys()) # this is an iterable\n\nprint(font.values()) # this is an iterable\n\nprint(font['name'])\n\nfont['name'] = 'Courier'\n\nprint(font['name'])\n\nprint('size' in font)\n\nprint(font.get('style', 'normal')) # get with default value\n\ndict_keys(['name', 'size'])\ndict_values(['Arial', 8])\nArial\nCourier\nTrue\nnormal",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review",
+      "2. Iterations, lists, dictionaries, comprehensions"
+    ]
+  },
+  {
+    "objectID": "02_python/python-2.html#complex-data-stuctures",
+    "href": "02_python/python-2.html#complex-data-stuctures",
+    "title": "2. Iterations, lists, dictionaries, comprehensions",
+    "section": "Complex Data Stuctures",
+    "text": "Complex Data Stuctures\nWe can combine lists and dictionaries to create complex data structures in python.\nThese allow us to represent real-world data in code\n\nstudents = [\n    { 'name' : 'abby', 'grades' : [100,80,90] },\n    { 'name' : 'bob', 'grades' : [100,90,90] },\n    { 'name' : 'chris', 'grades' : [90,100,100] }\n]\n\n\n# just print each student name\nfor student in students:\n    print(student['name'])\n\nabby\nbob\nchris\n\n\n\n# print each student name and average grade\nfor student in students:\n    avg_grade = sum(student['grades'])/len(student['grades'])\n    print(f\"{student['name']}  {avg_grade:.2f}\")\n\nabby  90.00\nbob  93.33\nchris  96.67\n\n\n\n\n\n\n\n\nChallenge 1-2-4\n\n\n\nWrite a program to create a shopping list:\n\nloop until “quit” is entered\ninput a grocery item\ninput a quantity\nsave the item as the key in the dictionary and quantity as the value\nif the item is in the dictionary already, add the quantity to the existing value\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nitems = {}\n\nwhile True:\n    item = input(\"Enter shopping item, or 'quit': \")\n    if item == 'quit':\n        break\n    qty = int(input(\"Enter quantity: \"))\n    if item in items.keys():\n        items[item] = items[item] + qty\n    else:\n        items[item] = qty\n\n    print(\"ITEMS:\", items)",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review",
+      "2. Iterations, lists, dictionaries, comprehensions"
     ]
   },
   {
