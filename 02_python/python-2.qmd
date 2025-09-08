@@ -1,0 +1,406 @@
+---
+title: '2. Iterations, lists, dictionaries, comprehensions'
+jupyter: python3
+---
+
+
+# Iterations
+
+- Iterations are code strucures which allow us to repeat sections of code while a condition is true, or a fixed number of time.
+- They allow us to do more with less code!
+
+# Definite loops (For Loop)
+
+- A **Definite loop** iterates over a a fixed set of values.
+- Real life iterations: Knocking on every door in your dorm. Calling each person in the contact list on your phone.
+- In Python, the `for` statement is used for definite loops 
+- The `for` loop uses an **iterator** to select each item from the list or range and take action in the loop body. 
+- The `range()` function is useful for getting an iterator of numbers.
+- The `for` loop can iterate over any value that is **iterable**. 
+
+```{python}
+#| tags: []
+# Example: Using the range() function to iterarate over a sequence
+
+for i in range(5):
+    print(i)
+```
+
+In the example above:
+
+- the `print()` statement repeats as part of the loop body.
+- the variable `i` is the **iterator**. It stores the current value of the `range(5)` for each iteration of the loop
+- `range(5)` is an example of the **iterable** - the thing we are looping over.
+- `range(5)` by definition creates an **iterable** of sequential numbers from 0 to 4: `0,1,2,3,4`
+- Therefore the code repeats `5` times...
+
+```{python}
+#| tags: []
+# Example: strings are iterable by their individual characters
+for ch in "testing":
+    if ch == "t":
+        print(ch)
+```
+
+Questions about the example above:
+
+- What is the iterator variable?
+- What is the iterable?
+- How many times does this loop "iterate"?
+- Why does it only print two `t`'s?
+
+## The break command
+
+- `break` keyword exits the loop immediately.
+- Commonly used when there is no longer a reason to loop (you achieved your goal).
+- You can add an `else` to the `for` loop to execute when break does not happen.
+
+```{python}
+#| tags: []
+#| eval: false
+# Example: find a letter in a text string
+
+text = input("Enter Some Text:")
+find = input("Enter character to find:")
+for ch in text:
+    if ch == find:
+        print(f"Found {find} in {text}!")
+        break
+else:
+    print(f"Unable to find {find} in {text}!")
+```
+
+```
+Enter Some Text: testing
+Enter character to find: n
+Found n in testing!
+
+Enter Some Text: testing
+Enter character to find: x
+Unable to find x in testing!
+
+```
+:::: {.callout-caution appearance="simple" icon="false"}
+### Challenge 1-2-1
+
+Write a program to accept a password as input. 
+If the password input is "secret" display "access granted"
+else say "invalid password"
+
+repeat the above up to 5 times. when the correct password is entered, stop looping
+when 5 loops have exhausted, print "you are locked out"
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+```{python}
+#| eval: false
+valid_password = "secret"
+for i in range(5):
+    pw = input("Enter Password:")
+    if pw == valid_password:
+        print("Access Granted!")
+        break
+    else:
+        print("Invalid Password.")
+else:
+    print("You are locked out")
+```
+:::
+::::
+
+# Indefinite loops
+
+- Indefinite loops are based on external input and are **non-deterministic**.
+- Unlike definite loops we do not know when the loop will stop.
+- Examples: get tutoring when you fail an exam (you may never fail an exam). When the temperature drops below 0 turn on the de-icer.
+- In Python, we use `while` statement for indefinite loops.
+- The classic indefinite loop is a sentinel-controlled loop that repeats until a specific event occurs.
+
+```{python}
+#| tags: []
+#| eval: false
+# Example: Will I ever say the magic word?
+while True:
+    word = input("Say the magic word!")
+    if word == 'please':
+        break
+    print("You didn't say the magic word!")
+```
+
+In the above example the word "please" is the **sentinel value**
+
+```{python}
+#| tags: []
+#| eval: false
+# Example: Sentinel loop
+count = 0
+while True:
+    raw = input("Enter a number or type 'stop':")
+    if raw == 'stop':
+        break
+    count = count + 1
+
+print(f"You entered {count} items.")
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Challenge 1-2-2
+
+Write a program to accept numbers until the user enters: 0
+
+The program should count the number of positive and negative numbers entered, 
+and print those values after the 0 is entered.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+```{python}
+#| eval: False
+pos = 0
+neg = 0
+
+while True:
+    num = int(input("Enter an integer:"))
+    if num > 0:
+        pos = pos + 1
+    elif num < 0:
+        neg = neg + 1
+    else:
+        break
+
+print(f"Number of + numbers entered: {pos}")
+print(f"Number of - numbers entered: {neg}")
+```
+:::
+::::
+
+# Lists
+
+- lists are **iterable**, sequences of values
+- The values in the list are **mutable** - you can change them.
+- items in the list can be accessed by a **zero-based** index.
+
+```{python}
+#| tags: []
+# Example: Items in the list
+items = [ 'milk', 'bread' ,'cheese', 'apples' ]
+
+print("The first item is:", items[0])
+print("The second item is:", items[1])
+print("The last item is:", items[-1])
+```
+
+```{python}
+#| tags: []
+# Lists are iterable
+items = [ 'milk', 'bread' ,'cheese', 'apples' ]
+for item in items:
+    print(item)
+```
+
+Questions about the example above:
+
+- What is the iterator variable?
+- What is the iterable?
+- How many times does this loop "iterate"?
+
+## The in operator
+
+The `in` operator checks for existence of an item in a list.
+
+```{python}
+#| tags: []
+# Example: whats in the list?
+numbers = [10, 15, 20]
+print(f"5 in {numbers}?", 5 in numbers)
+print(f"20 in {numbers}?", 20 in numbers)
+```
+
+## List Methods
+
+There are numerous list methods which allow you to add, remove, and find values in the list, etc...
+
+<https://docs.python.org/3/library/stdtypes.html?highlight=list#mutable-sequence-types>
+
+```{python}
+#| tags: []
+# Example: manipulating a list
+
+# An empty list
+colors = []
+
+# Add "blue" to the end
+colors.append("blue")
+
+# add "red" to the beginning
+colors.insert(0, "red")
+
+# add "white" in the 2nd position
+colors.insert(1, "white")
+
+# print ['red', 'white', 'blue']
+print(colors)
+
+# remove the last color
+blue = colors.pop(-1)
+
+# remove "white"
+white = colors.remove("white")
+
+# print ['red']
+print(colors)
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Challenge 1-2-3
+
+Write a sentinel controlled loop to input a color until "quit" is entered.
+Add each color to a list only when the color is not already in the list.
+Print the list each time in the loop.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+```{python}
+#| eval: false
+colors = []
+
+while True:
+    color = input("Enter a color:")
+    if color == 'quit':
+        break
+    if color not in colors:
+        colors.append(color)
+        op = "added to"
+    else:
+        op = "already in"
+
+    print(f"{color} {op} {colors}")
+```
+:::
+::::
+
+# list comprehensions
+
+List comprehensions allow us to create lists from operations on existing lists.
+
+Consider the following:
+
+```{python}
+#| tags: []
+numbers = [1, 2, 4, 5, 7]
+evens = []
+for num in numbers:
+    if num % 2 == 0: #even
+        evens.append(num)
+print(evens)
+```
+
+```{python}
+#| tags: []
+# Same thing as a list comprehension
+numbers = [1, 2, 4, 5, 7]
+evens = [ num for num in numbers if num % 2 == 0]
+print(evens)
+```
+
+```{python}
+#| tags: []
+# This comprehension makes a list out of the first letter in each work
+words = ["welcome", "other", "rent", "math" ]
+firsts = [ word[0] for word in words ]
+print(firsts)
+```
+
+# Dictionaries
+
+- The **dict** type is designed to store **key**-**value** pairs. In Python this is known as a **mapping type**.  
+`font = {'name': 'Arial','size': 8}`
+- Python dictionaries are **mutable** which means you can change the values of the keys after they have been set.
+- Dictionary values are accessed and set by **key** not by **index**.  
+`font['name'] = 'Courier'`
+- the keys are unique in the dictionary
+
+## Dictionary Methods
+
+Like **str** and **list**, the **dict** type has its own set of built-in functions.
+<https://docs.python.org/3/library/stdtypes.html#mapping-types-dict>
+
+```{python}
+#| tags: []
+font = {'name': 'Arial','size': 8}
+
+print(font.keys()) # this is an iterable
+
+print(font.values()) # this is an iterable
+
+print(font['name'])
+
+font['name'] = 'Courier'
+
+print(font['name'])
+
+print('size' in font)
+
+print(font.get('style', 'normal')) # get with default value
+```
+
+## Complex Data Stuctures
+
+We can combine lists and dictionaries to create complex data structures in python.
+
+These allow us to represent real-world data in code
+
+```{python}
+#| tags: []
+students = [
+    { 'name' : 'abby', 'grades' : [100,80,90] },
+    { 'name' : 'bob', 'grades' : [100,90,90] },
+    { 'name' : 'chris', 'grades' : [90,100,100] }
+]
+```
+
+```{python}
+#| tags: []
+# just print each student name
+for student in students:
+    print(student['name'])
+```
+
+```{python}
+#| tags: []
+# print each student name and average grade
+for student in students:
+    avg_grade = sum(student['grades'])/len(student['grades'])
+    print(f"{student['name']}  {avg_grade:.2f}")
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Challenge 1-2-4
+
+Write a program to create a shopping list:
+
+- loop until "quit" is entered
+- input a grocery item
+- input a quantity
+- save the item as the key in the dictionary and quantity as the value
+- if the item is in the dictionary already, add the quantity to the existing value
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+```{python}
+#| eval: false
+items = {}
+
+while True:
+    item = input("Enter shopping item, or 'quit': ")
+    if item == 'quit':
+        break
+    qty = int(input("Enter quantity: "))
+    if item in items.keys():
+        items[item] = items[item] + qty
+    else:
+        items[item] = qty
+
+    print("ITEMS:", items)
+```
+:::
+::::
