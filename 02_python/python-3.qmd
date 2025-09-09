@@ -1,0 +1,411 @@
+---
+title: '3. Functions, documentation, strings, files'
+jupyter: python3
+---
+
+# Functions
+
+## What are functions?
+
+- A **Function** is a named sequence of statements which accomplish a task. They promote modularity, making our code less complex, easier to understand and encourage code-reuse.
+- When you “run” a defined function it’s known as a **function call**. Functions are designed to be ***written once***, but ***called many times***.
+- We've seen functions before:  
+
+```{python}
+#| eval: false
+#| tags: []
+# We call functions all the time
+# input(). random.randint(), and int() are all functions!
+import random
+x = input("Enter Name: ")  
+y = random.randint(1, 10)  #random is the module, randint() is the function
+z = int("9")
+print(x, y, z)
+```
+
+## Function Definitions
+
+Functions are like their own little programs. They take input, which we call the **function arguments (or parameters)** and give us back output that we refer to as **return values**.
+
+```
+INPUT      ==> PROCESS     ==> OUTPUT
+Function   ==> Function    ==> Function 
+Arguments      Definition       Return
+```
+
+We use the `def` keyword to define a function.
+
+```{python}
+#| tags: []
+# Example Function
+def area_of_triangle(base, height): # <== INPUTs
+    area = 0.5 * base * height
+    return area # <== OUTPUT
+
+# Function call: using your function
+a = area_of_triangle(10, 5)
+print(a)
+```
+
+```{python}
+#| tags: []
+# When you call a function you can name your arguments:
+# This allows you to override the order of the arguments
+
+# These are the same order as defined
+area1 = area_of_triangle(base = 10, height = 5)
+# Different order than defined
+area2 = area_of_triangle(height = 5, base = 10)
+print(area1, area2)
+```
+
+### Multiple Return Values
+
+```{python}
+def division_and_modulo(dividend, divisor):
+    quotient = dividend // divisor # int division
+    remainder = dividend % divisor # modulo
+    return quotient, remainder
+
+q, r = division_and_modulo(10, 3)
+print(f"10 divided by 3 is {q}, with a remainder of {r}")
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 3.1
+
+Write a function called `average` which takes a list of numbers as input then outputs the average of the numbers sum / count
+
+Call your function with an arbitrary list of numbers you create.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+def average(list_of_numbers):
+    total = 0
+    count = 0
+    for n in list_of_numbers:
+        total += n
+        count += 1
+    return total/count
+
+nums = [10, 15, 10, 5]
+avg = average(nums)
+print(f"Average of {nums} is {avg}")
+```
+:::
+::::
+
+## Type Hints
+
+Types can be added to the `def` statement to help the caller understand what type of data the function expects. These are known as **type hints**
+
+In this example the expected arguments are `float` and the return is `float`
+
+```{python}
+#| tags: []
+def area_of_triangle(base: float, height: float) -> float: 
+    area = 0.5 * base *height
+    return area
+```
+
+You can see type hints in action by calling the function
+
+Run the cell above to create the function.  
+In the code below, start a left paren `(` to see the type hints
+
+```{python}
+area_of_triangle
+```
+
+## Docstrings
+
+A **Docstring** is a  multi-line comment which explains what the function does to the function caller.
+
+The same function with type hints and docstring:
+
+```{python}
+#| tags: []
+def area_of_triangle(base: float, height: float) -> float: 
+    '''
+    Calculates the area of a triangle given base and height
+    returns the area defined as 1/2 the base times height
+    '''
+    area = 0.5 * base *height
+    return area
+```
+
+You can see doc strings in action by calling the function
+
+Run the cell above to create the function.
+In the code below, start a left paren `(` to see the doc string
+
+```{python}
+area_of_triangle
+```
+
+You can also use `?` or `help()` to see the docstring and type hints:
+
+```{python}
+help(area_of_triangle)
+```
+
+# Strings
+
+## Strings are sequence types
+
+You can use slice notation like with lists.
+
+These are zero based.
+
+`var[start:stop]`
+
+Takes `stop - start` characters from `var` starting at position `start`
+
+```{python}
+#| tags: []
+x = "fudge"
+print(x[0:2]) # fu
+print(x[2:5]) # dge
+print(x[:4]) # fudg
+print(x[:]) # fudge
+print(x[:-1]) # fudg
+```
+
+## String Methods
+
+<https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str>
+
+Method functions attach to the string   `x.strip()`
+
+Common methods
+```
+strip()
+upper()
+lower()
+find()
+count()
+split()
+join()
+replace()
+```
+
+```{python}
+#| tags: []
+# Samples
+s = "this is a test"
+print(s.count("is")) # 2
+print(s.count("t"))  # 3
+print(s.upper()[:4]) # TEST
+print(s.find(" a ")) # 7
+print(s.find("this")) # 9
+print("   x   ".strip()) # x
+print(s.replace("this", "that")) # that is a test
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 3.2
+
+Write a function called `cleanup` which takes a string as input and returns a "cleaned string" meaning:
+ - remove any ? , . or !
+ - strip off the whitespace from the ends
+ - return text in lower case
+ 
+Write code to call your function and test it
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+```{python}
+def cleanup(text: str) -> str:
+    for ch in "!?,.":
+        if ch in text:
+            text = text.replace(ch, "")
+    return text.lower().strip()
+
+text = "  THis! Is. , a tEST? "
+cleaned = cleanup(text)
+print(cleaned)
+```
+:::
+::::
+
+## String Tokenization and Parsing
+
+- **Tokenization**  is the process of breaking up a string into words, phrases, or symbols. 
+    - Tokenize a sentence into words.
+    - `"mike is here"` becomes the iterable  `['mike', 'is', 'here']`
+- **Parsing** is the process of extracting meaning from a string. 
+    - Parse text to a numerical value or date.
+    - `int('45')` becomes `45`
+
+```{python}
+#| tags: []
+# tokenize with split()
+# parse with int(), or float()
+
+text = "30 40 90 10"
+tokens = text.split()
+numbers = [int(t) for t in tokens]
+total = sum(numbers)
+print(total)
+```
+
+```{python}
+#| tags: []
+# What you split on is called the delimiter:
+text = "name, age, phone, gpa"
+items = [ x.upper().strip() for x in text.split(',') ]
+print(items)
+```
+
+# Files
+
+## Files == Persistence
+
+- Files add a **Persistence Layer** to our computing environment where we can store our data  **after the program completes**. 
+- **Think: Saving a game's progress or saving your work!**
+- When our program **Stores** data, we open the file for **writing**.
+- When our program **Reads** data, we open the file for **reading**.
+- To read or write a file we must first **open** it, which gives us a special variable called a **file handle**. 
+- We then use the **file handle** to read or write from the file.
+- The **read()** function reads from the **write()** function writes to the file through the file handle. 
+
+### Reading from a file
+
+```{python}
+#| tags: []
+filename = "data/sample.txt"
+print("=== All at once ===")
+with open(filename, 'r') as handle:
+    contents = handle.read()
+    print(contents)
+
+print("=== A Line at a time ===")
+i = 1
+with open(filename, 'r') as handle:
+    for line in handle.readlines():
+        print(i, line.strip())
+        i += 1
+```
+
+### Writing to a file
+
+```{python}
+#| tags: []
+filename = "data/demo.txt"
+print("=== Create file and write to it ===")
+with open(filename, "w") as f:
+    f.write("message!\n")
+
+print("=== Append (add to end) of existing file ===")
+with open(filename, "a") as f:
+    f.write("message # 2!\n")
+    
+```
+
+```{python}
+%%bash
+# switch to bash interpreter
+cat data/demo.txt
+```
+
+### Handling missing files
+
+```{python}
+#| tags: []
+# Try / Except to handle FileNotFound
+try:
+    file = 'data/data.txt'
+    with open(file,'r') as f:
+        print( f.read() )
+except FileNotFoundError:
+    print(f"{file} was not found!")
+```
+
+## JSON and Python Dictionaries
+
+- [JSON](https://www.w3schools.com/whatis/whatis_json.asp) (**JavaScript Object Notation**) is a standard, human-readable  data format. It's a popular format for data on the web.
+- JSON can be easily converted to lists of dictionaries using Python's **json** module.
+- Transferring a JSON string to Python is known as **de-serializing**. 
+- Transferring Python to a JSON string is known as **serializing**. 
+- **<font color='red'>This is easy to do in Python but challenging to do in most other languages.</font>**
+
+### Serialization
+
+```{python}
+#| tags: []
+# Serialize a python object as json
+import json
+grades = { 'CHE101' : [100, 80, 70], 'IST195' : [100, 80, 100] }
+with open("data/grades.json", "w") as f:
+    json.dump(grades, f, indent=4) # write grades to file as JSON
+```
+
+```{python}
+%%bash
+# switch to bash interpreter
+cat data/grades.json
+```
+
+### Deserialization
+
+```{python}
+#| tags: []
+# de-serialize some json
+file = "data/stocks.json"
+with open(file, "r") as f:
+    stocks = json.load(f)
+    
+# stocks is a python object
+# Deserialized from text!
+for stock in stocks:
+    print(stock['symbol'])
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 3.3
+
+write a program to read in a string of students and gpas in one input statement like this:
+
+`mike 3.4, noel 3.2, obby 3.5, peta 3.4`
+
+and write out JSON like this:
+
+```
+[
+    { "name" : "mike", "gpa" : 3.4 },
+    { "name" : "noel", "gpa" : 3.2 },
+    { "name" : "obby", "gpa" : 3.5 },
+    { "name" : "peta", "gpa" : 3.4 }
+]
+```
+
+Suggested approach:
+
+1. input text
+2. split on "," from the text
+3. for each student:
+    - split the student into name and gpa
+    - parse the gpa so its a float
+    - add the name and gpa to the list as a dictionary
+4. write the list to students.json as JSON
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+import json 
+text = input("Enter names and grades: ")
+students = []
+for student in text.split(","):
+    name, gpa = student.strip().split()
+    gpa = float(gpa)
+    students.append({ "name": name, "gpa": gpa })
+with open ("students.json", "w") as f:
+    json.dump(students, f)
+```
+
+:::
+::::
