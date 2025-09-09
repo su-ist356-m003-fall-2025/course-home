@@ -208,6 +208,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">2. Iterations, lists, dictionaries, comprehensions</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02_python/python-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Functions, documentation, strings, files</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -279,10 +285,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="python-input-and-output">Python input and output</h2>
 <p><code>print()</code> does output<br>
 <code>input()</code> does input, returns input so you must assign it to a variable</p>
-<div id="2afe0e01" class="cell" data-tags="[]" data-execution_count="1">
+<div id="09a1cd2b" class="cell" data-tags="[]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Enter something: "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="0897f56c" class="cell" data-execution_count="2">
+<div id="430ecd99" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-simple callout-caution no-icon callout-titled">
@@ -308,7 +314,7 @@ Solution
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="83229ea9" class="cell" data-execution_count="3">
+<div id="3755bcd2" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>first <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Enter your first name: "</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>last <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Enter your last name: "</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(last, <span class="st">","</span>, first)</span>
@@ -328,7 +334,7 @@ Solution
 <li>This replaces the variable name with its value within a string.</li>
 <li>Called an F-string because the <code>f</code> tells Python to interpolate the string.</li>
 </ul>
-<div id="8fecf54b" class="cell" data-execution_count="4">
+<div id="1e25277b" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">'George'</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="sc">{name}</span><span class="st"> was curious."</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss"> was curious."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -514,7 +520,7 @@ Converts <em>n</em> to type <b>str</b>
 <section id="programmatic-expressions" class="level2">
 <h2 class="anchored" data-anchor-id="programmatic-expressions">Programmatic Expressions</h2>
 <p>Programmatic Expressions contain <strong>operators</strong> and <strong>operands</strong>. They evaluate to a value, preserving type:</p>
-<div id="d41c30c0" class="cell" data-execution_count="5">
+<div id="aa627370" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">2.0</span> <span class="op">+</span> <span class="dv">2</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"sh"</span> <span class="op">+</span> <span class="st">'ip'</span>)</span>
@@ -658,7 +664,7 @@ Solution
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="3e3b5d98" class="cell" data-execution_count="6">
+<div id="cc865ad7" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bill <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Enter the total amount of the bill $"</span>))</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tip <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"What % would you like to tip, eg. 20 == 20%? "</span>))</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>tip_pct <span class="op">=</span> tip<span class="op">/</span><span class="dv">100</span></span>
@@ -752,7 +758,7 @@ Check Yourself 4
 </div>
 <div class="callout-body-container callout-body">
 <p>What is the output of the following python code?</p>
-<div id="1695d9e7" class="cell" data-execution_count="7">
+<div id="833305b1" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> (a<span class="op">/</span>b)</span>
@@ -787,7 +793,7 @@ Solution
 <ul>
 <li>The <strong>IF</strong> statement is used to branch your code based on a Boolean expression.</li>
 </ul>
-<div id="9f3bb238" class="cell" data-execution_count="8">
+<div id="d3b82176" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> boolean<span class="op">-</span>expression:</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    statements<span class="op">-</span>when<span class="op">-</span>true</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
@@ -903,7 +909,7 @@ Solution
 </div>
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="15b1b97b" class="cell" data-execution_count="9">
+<div id="b09d0aed" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>reading <span class="op">=</span> <span class="bu">float</span>(<span class="bu">input</span>(<span class="st">"Sensor Reading: "</span>))</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> reading <span class="op">&gt;</span> <span class="dv">10</span>:</span>
@@ -929,7 +935,7 @@ Check Yourself 5: Relational operators
 </div>
 <div class="callout-body-container callout-body">
 <p>On Which line number is the Boolean expression True?</p>
-<div id="c31dc386" class="cell" data-execution_count="10">
+<div id="4b0d640f" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">15</span>      <span class="co"># 1</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">20</span>      <span class="co"># 2</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="dv">2</span>       <span class="co"># 3</span></span>
@@ -1036,7 +1042,7 @@ Check Yourself 6: Logical Operators
 </div>
 <div class="callout-body-container callout-body">
 <p>In the following code, which line evaluates to <code>True</code>?</p>
-<div id="afc9c0f4" class="cell" data-execution_count="11">
+<div id="40d59203" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>raining <span class="op">=</span> <span class="va">False</span>              <span class="co"># 1</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>snowing <span class="op">=</span> <span class="va">True</span>               <span class="co"># 2</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">45</span>                     <span class="co"># 3</span></span>
@@ -1072,7 +1078,7 @@ Solution
 <section id="multiple-decisions-if-ladder" class="level2">
 <h2 class="anchored" data-anchor-id="multiple-decisions-if-ladder">Multiple Decisions: IF ladder</h2>
 <p>Use elif to make more than one decision in your if statement. Only one code block within the ladder is executed.</p>
-<div id="762e2b3c" class="cell" data-execution_count="12">
+<div id="00f6f204" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> boolean<span class="op">-</span>expression1:</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    statements<span class="op">-</span>when<span class="op">-</span>exp1<span class="op">-</span>true</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> boolean<span class="op">-</span>expression2:</span>
@@ -1083,7 +1089,7 @@ Solution
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    statements<span class="op">-</span>none<span class="op">-</span>are<span class="op">-</span>true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img src="fig/python-1-3.png" class="img-fluid"></p>
-<div id="25542718" class="cell" data-tags="[]" data-execution_count="13">
+<div id="1e94de58" class="cell" data-tags="[]" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Elif versus multiple ifs...</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># One decision or multiple decisions. </span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1112,7 +1118,7 @@ Check Yourself 7: IF statement
 </div>
 <div class="callout-body-container callout-body">
 <p>Assuming values <code>x = 25</code> and <code>y = 6</code>, what will be printed when the following code is run?</p>
-<div id="5b7885fe" class="cell" data-execution_count="14">
+<div id="c3c048c9" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">20</span>:</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> y <span class="op">==</span> <span class="dv">4</span>:</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"One"</span>)</span>
@@ -1179,17 +1185,17 @@ Solution
 </div>
 <div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="40fa2a0c" class="cell" data-execution_count="15">
+<div id="bedb56bb" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>number_grade <span class="op">=</span> <span class="bu">int</span>(<span class="bu">input</span>(<span class="st">"Enter your numerical grade: 0 - 120"</span>))</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>letter_grade <span class="op">=</span> <span class="st">"unknown"</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> number_grade <span class="op">&gt;=</span> <span class="dv">0</span> <span class="kw">and</span> number_grade <span class="op">&lt;=</span> <span class="dv">120</span>:</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> number_grade <span class="op">&gt;</span> <span class="dv">95</span>:</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> number_grade <span class="op">&gt;=</span> <span class="dv">95</span>:</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        letter_grade <span class="op">=</span> <span class="st">"A"</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> number_grade <span class="op">&gt;</span> <span class="dv">75</span>:</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> number_grade <span class="op">&gt;=</span> <span class="dv">75</span>:</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        letter_grade <span class="op">=</span> <span class="st">"B"</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> number_grade <span class="op">&gt;</span> <span class="dv">50</span>:</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> number_grade <span class="op">&gt;=</span> <span class="dv">50</span>:</span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>        letter_grade <span class="op">=</span> <span class="st">"C"</span></span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>        letter_grade <span class="op">=</span> <span class="st">"F"</span></span>
