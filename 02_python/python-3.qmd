@@ -47,11 +47,10 @@ a = area_of_triangle(10, 5)
 print(a)
 ```
 
+When you call a function you can name your arguments. This allows you to override the order of the arguments.
+
 ```{python}
 #| tags: []
-# When you call a function you can name your arguments:
-# This allows you to override the order of the arguments
-
 # These are the same order as defined
 area1 = area_of_triangle(base = 10, height = 5)
 # Different order than defined
