@@ -294,7 +294,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>When you “run” a defined function it’s known as a <strong>function call</strong>. Functions are designed to be <strong><em>written once</em></strong>, but <strong><em>called many times</em></strong>.</li>
 <li>We’ve seen functions before:</li>
 </ul>
-<div id="ad580829" class="cell" data-tags="[]" data-execution_count="1">
+<div id="3d7d8675" class="cell" data-tags="[]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We call functions all the time</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># input(). random.randint(), and int() are all functions!</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
@@ -311,7 +311,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Function   ==&gt; Function    ==&gt; Function 
 Arguments      Definition       Return</code></pre>
 <p>We use the <code>def</code> keyword to define a function.</p>
-<div id="8c0ee610" class="cell" data-tags="[]" data-execution_count="2">
+<div id="f442ceec" class="cell" data-tags="[]" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example Function</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> area_of_triangle(base, height): <span class="co"># &lt;== INPUTs</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    area <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> base <span class="op">*</span> height</span>
@@ -324,22 +324,20 @@ Arguments      Definition       Return</code></pre>
 <pre><code>25.0</code></pre>
 </div>
 </div>
-<div id="8c8ef228" class="cell" data-tags="[]" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># When you call a function you can name your arguments:</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This allows you to override the order of the arguments</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># These are the same order as defined</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>area1 <span class="op">=</span> area_of_triangle(base <span class="op">=</span> <span class="dv">10</span>, height <span class="op">=</span> <span class="dv">5</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Different order than defined</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>area2 <span class="op">=</span> area_of_triangle(height <span class="op">=</span> <span class="dv">5</span>, base <span class="op">=</span> <span class="dv">10</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(area1, area2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When you call a function you can name your arguments. This allows you to override the order of the arguments.</p>
+<div id="54e99851" class="cell" data-tags="[]" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># These are the same order as defined</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>area1 <span class="op">=</span> area_of_triangle(base <span class="op">=</span> <span class="dv">10</span>, height <span class="op">=</span> <span class="dv">5</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Different order than defined</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>area2 <span class="op">=</span> area_of_triangle(height <span class="op">=</span> <span class="dv">5</span>, base <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(area1, area2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>25.0 25.0</code></pre>
 </div>
 </div>
 <section id="multiple-return-values" class="level3">
 <h3 class="anchored" data-anchor-id="multiple-return-values">Multiple Return Values</h3>
-<div id="39c6b556" class="cell" data-execution_count="4">
+<div id="833588e8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> division_and_modulo(dividend, divisor):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    quotient <span class="op">=</span> dividend <span class="op">//</span> divisor <span class="co"># int division</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    remainder <span class="op">=</span> dividend <span class="op">%</span> divisor <span class="co"># modulo</span></span>
@@ -375,7 +373,7 @@ Solution
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="7c7d938b" class="cell" data-execution_count="5">
+<div id="548acebe" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> average(list_of_numbers):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span></span>
@@ -402,7 +400,7 @@ Solution
 <h2 class="anchored" data-anchor-id="type-hints">Type Hints</h2>
 <p>Types can be added to the <code>def</code> statement to help the caller understand what type of data the function expects. These are known as <strong>type hints</strong></p>
 <p>In this example the expected arguments are <code>float</code> and the return is <code>float</code></p>
-<div id="4e986111" class="cell" data-tags="[]" data-execution_count="6">
+<div id="474529dc" class="cell" data-tags="[]" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> area_of_triangle(base: <span class="bu">float</span>, height: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>: </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    area <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> base <span class="op">*</span>height</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> area</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -410,7 +408,7 @@ Solution
 <p>You can see type hints in action by calling the function</p>
 <p>Run the cell above to create the function.<br>
 In the code below, start a left paren <code>(</code> to see the type hints</p>
-<div id="3e65b020" class="cell" data-execution_count="7">
+<div id="e9768bba" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>area_of_triangle</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>&lt;function __main__.area_of_triangle(base: float, height: float) -&gt; float&gt;</code></pre>
@@ -421,7 +419,7 @@ In the code below, start a left paren <code>(</code> to see the type hints</p>
 <h2 class="anchored" data-anchor-id="docstrings">Docstrings</h2>
 <p>A <strong>Docstring</strong> is a multi-line comment which explains what the function does to the function caller.</p>
 <p>The same function with type hints and docstring:</p>
-<div id="3892a789" class="cell" data-tags="[]" data-execution_count="8">
+<div id="5197d053" class="cell" data-tags="[]" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> area_of_triangle(base: <span class="bu">float</span>, height: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>: </span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Calculates the area of a triangle given base and height</span></span>
@@ -432,14 +430,14 @@ In the code below, start a left paren <code>(</code> to see the type hints</p>
 </div>
 <p>You can see doc strings in action by calling the function</p>
 <p>Run the cell above to create the function. In the code below, start a left paren <code>(</code> to see the doc string</p>
-<div id="5d63e88e" class="cell" data-execution_count="9">
+<div id="66d36d88" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>area_of_triangle</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>&lt;function __main__.area_of_triangle(base: float, height: float) -&gt; float&gt;</code></pre>
 </div>
 </div>
 <p>You can also use <code>?</code> or <code>help()</code> to see the docstring and type hints:</p>
-<div id="f497ee7b" class="cell" data-execution_count="10">
+<div id="b15335ab" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">help</span>(area_of_triangle)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Help on function area_of_triangle in module __main__:
@@ -460,7 +458,7 @@ area_of_triangle(base: float, height: float) -&gt; float
 <p>These are zero based.</p>
 <p><code>var[start:stop]</code></p>
 <p>Takes <code>stop - start</code> characters from <code>var</code> starting at position <code>start</code></p>
-<div id="4a3e57d1" class="cell" data-tags="[]" data-execution_count="11">
+<div id="1e7f6537" class="cell" data-tags="[]" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="st">"fudge"</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[<span class="dv">0</span>:<span class="dv">2</span>]) <span class="co"># fu</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[<span class="dv">2</span>:<span class="dv">5</span>]) <span class="co"># dge</span></span>
@@ -489,7 +487,7 @@ count()
 split()
 join()
 replace()</code></pre>
-<div id="49d5ff31" class="cell" data-tags="[]" data-execution_count="12">
+<div id="99203a24" class="cell" data-tags="[]" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Samples</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="st">"this is a test"</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s.count(<span class="st">"is"</span>)) <span class="co"># 2</span></span>
@@ -533,7 +531,7 @@ Solution
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="2d51f408" class="cell" data-execution_count="13">
+<div id="7b33bb21" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cleanup(text: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ch <span class="kw">in</span> <span class="st">"!?,."</span>:</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> ch <span class="kw">in</span> text:</span>
@@ -567,7 +565,7 @@ Solution
 <li><code>int('45')</code> becomes <code>45</code></li>
 </ul></li>
 </ul>
-<div id="719b61fd" class="cell" data-tags="[]" data-execution_count="14">
+<div id="661bc631" class="cell" data-tags="[]" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tokenize with split()</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># parse with int(), or float()</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -580,7 +578,7 @@ Solution
 <pre><code>170</code></pre>
 </div>
 </div>
-<div id="0fe82ed7" class="cell" data-tags="[]" data-execution_count="15">
+<div id="7cc5e858" class="cell" data-tags="[]" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What you split on is called the delimiter:</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"name, age, phone, gpa"</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>items <span class="op">=</span> [ x.upper().strip() <span class="cf">for</span> x <span class="kw">in</span> text.split(<span class="st">','</span>) ]</span>
@@ -606,7 +604,7 @@ Solution
 </ul>
 <section id="reading-from-a-file" class="level3">
 <h3 class="anchored" data-anchor-id="reading-from-a-file">Reading from a file</h3>
-<div id="2996eabc" class="cell" data-tags="[]" data-execution_count="16">
+<div id="5257b62a" class="cell" data-tags="[]" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>filename <span class="op">=</span> <span class="st">"data/sample.txt"</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== All at once ==="</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(filename, <span class="st">'r'</span>) <span class="im">as</span> handle:</span>
@@ -635,7 +633,7 @@ Sample
 </section>
 <section id="writing-to-a-file" class="level3">
 <h3 class="anchored" data-anchor-id="writing-to-a-file">Writing to a file</h3>
-<div id="5b5e9bb2" class="cell" data-tags="[]" data-execution_count="17">
+<div id="1649ecf0" class="cell" data-tags="[]" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>filename <span class="op">=</span> <span class="st">"data/demo.txt"</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"=== Create file and write to it ==="</span>)</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(filename, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
@@ -649,7 +647,7 @@ Sample
 === Append (add to end) of existing file ===</code></pre>
 </div>
 </div>
-<div id="e5d760eb" class="cell" data-execution_count="18">
+<div id="2ed9ced6" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># switch to bash interpreter</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>cat data<span class="op">/</span>demo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -661,7 +659,7 @@ message # 2!</code></pre>
 </section>
 <section id="handling-missing-files" class="level3">
 <h3 class="anchored" data-anchor-id="handling-missing-files">Handling missing files</h3>
-<div id="a9078a26" class="cell" data-tags="[]" data-execution_count="19">
+<div id="906c3ae2" class="cell" data-tags="[]" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Try / Except to handle FileNotFound</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">file</span> <span class="op">=</span> <span class="st">'data/data.txt'</span></span>
@@ -686,14 +684,14 @@ message # 2!</code></pre>
 </ul>
 <section id="serialization" class="level3">
 <h3 class="anchored" data-anchor-id="serialization">Serialization</h3>
-<div id="7bc05f76" class="cell" data-tags="[]" data-execution_count="20">
+<div id="146f59e8" class="cell" data-tags="[]" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Serialize a python object as json</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>grades <span class="op">=</span> { <span class="st">'CHE101'</span> : [<span class="dv">100</span>, <span class="dv">80</span>, <span class="dv">70</span>], <span class="st">'IST195'</span> : [<span class="dv">100</span>, <span class="dv">80</span>, <span class="dv">100</span>] }</span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data/grades.json"</span>, <span class="st">"w"</span>) <span class="im">as</span> f:</span>
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    json.dump(grades, f, indent<span class="op">=</span><span class="dv">4</span>) <span class="co"># write grades to file as JSON</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="1a48a633" class="cell" data-execution_count="21">
+<div id="ca266563" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># switch to bash interpreter</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>cat data<span class="op">/</span>grades.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -715,7 +713,7 @@ message # 2!</code></pre>
 </section>
 <section id="deserialization" class="level3">
 <h3 class="anchored" data-anchor-id="deserialization">Deserialization</h3>
-<div id="666c0629" class="cell" data-tags="[]" data-execution_count="22">
+<div id="dadd0911" class="cell" data-tags="[]" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># de-serialize some json</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="st">"data/stocks.json"</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="bu">file</span>, <span class="st">"r"</span>) <span class="im">as</span> f:</span>
@@ -781,7 +779,7 @@ Solution
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="a6935a0b" class="cell" data-execution_count="23">
+<div id="f8875a2c" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json </span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Enter names and grades: "</span>)</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>students <span class="op">=</span> []</span>
