@@ -81,14 +81,11 @@ Unable to find x in testing!
 
 ```
 :::: {.callout-caution appearance="simple" icon="false"}
-### Challenge 1-2-1
+### Code Challenge 2.1
 
-Write a program to accept a password as input. 
-If the password input is "secret" display "access granted"
-else say "invalid password"
+Write a program to accept a password as input. If the password input is "secret" display "access granted". Otherwise say "invalid password".
 
-repeat the above up to 5 times. when the correct password is entered, stop looping
-when 5 loops have exhausted, print "you are locked out"
+Repeat the above up to 5 times. When the correct password is entered, stop looping. When 5 loops have exhausted, print "you are locked out".
 
 ::: {.callout-caution collapse="true" appearance="simple" icon="false"}
 #### Solution
@@ -144,7 +141,7 @@ print(f"You entered {count} items.")
 ```
 
 :::: {.callout-caution appearance="simple" icon="false"}
-### Challenge 1-2-2
+### Code Challenge 2.2
 
 Write a program to accept numbers until the user enters: 0
 
@@ -251,11 +248,9 @@ print(colors)
 ```
 
 :::: {.callout-caution appearance="simple" icon="false"}
-### Challenge 1-2-3
+### Code Challenge 2.3
 
-Write a sentinel controlled loop to input a color until "quit" is entered.
-Add each color to a list only when the color is not already in the list.
-Print the list each time in the loop.
+Write a sentinel controlled loop to input a color until "quit" is entered. Add each color to a list only when the color is not already in the list. Print the list each time in the loop.
 
 ::: {.callout-caution collapse="true" appearance="simple" icon="false"}
 #### Solution
@@ -374,7 +369,7 @@ for student in students:
 ```
 
 :::: {.callout-caution appearance="simple" icon="false"}
-### Challenge 1-2-4
+### Code Challenge 2.4
 
 Write a program to create a shopping list:
 
