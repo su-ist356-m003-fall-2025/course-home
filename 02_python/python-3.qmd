@@ -73,7 +73,7 @@ print(f"10 divided by 3 is {q}, with a remainder of {r}")
 :::: {.callout-caution appearance="simple" icon="false"}
 ### Code Challenge 3.1
 
-Write a function called `average` which takes a list of numbers as input then outputs the average of the numbers sum / count
+Write a function called `average` which takes a list of numbers as input then outputs the average of the numbers (sum / count)
 
 Call your function with an arbitrary list of numbers you create.
 
@@ -207,9 +207,10 @@ print(s.replace("this", "that")) # that is a test
 ### Code Challenge 3.2
 
 Write a function called `cleanup` which takes a string as input and returns a "cleaned string" meaning:
- - remove any ? , . or !
- - strip off the whitespace from the ends
- - return text in lower case
+
+- remove any ? , . or !
+- strip off the whitespace from the ends
+- return text in lower case
  
 Write code to call your function and test it
 
