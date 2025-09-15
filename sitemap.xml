@@ -1,47 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>enter_gitHub_pages_URL_here/03_ui/index.html</loc>
+    <lastmod>2025-09-15T19:27:57.653Z</lastmod>
+  </url>
+  <url>
     <loc>enter_gitHub_pages_URL_here/01_cli_conda/conda.html</loc>
-    <lastmod>2025-09-15T18:57:43.761Z</lastmod>
+    <lastmod>2025-09-15T19:27:57.647Z</lastmod>
   </url>
   <url>
     <loc>enter_gitHub_pages_URL_here/01_cli_conda/shell-intro.html</loc>
-    <lastmod>2025-09-15T18:57:43.765Z</lastmod>
+    <lastmod>2025-09-15T19:27:57.650Z</lastmod>
   </url>
   <url>
     <loc>enter_gitHub_pages_URL_here/02_python/python-3.html</loc>
-    <lastmod>2025-09-15T18:57:43.767Z</lastmod>
+    <lastmod>2025-09-15T19:27:57.653Z</lastmod>
   </url>
   <url>
     <loc>enter_gitHub_pages_URL_here/02_python/python-2.html</loc>
-    <lastmod>2025-09-15T18:57:43.767Z</lastmod>
+    <lastmod>2025-09-15T19:27:57.653Z</lastmod>
   </url>
   <url>
     <loc>enter_gitHub_pages_URL_here/02_python/python-4.html</loc>
-    <lastmod>2025-09-15T18:57:43.767Z</lastmod>
+    <lastmod>2025-09-15T19:27:57.653Z</lastmod>
   </url>
   <url>
     <loc>enter_gitHub_pages_URL_here/syllabus.html</loc>
-    <lastmod>2025-09-15T18:57:43.783Z</lastmod>
+    <lastmod>2025-09-15T19:27:57.669Z</lastmod>
   </url>
   <url>
     <loc>enter_gitHub_pages_URL_here/00_intro/index.html</loc>
-    <lastmod>2025-09-15T18:57:43.761Z</lastmod>
+    <lastmod>2025-09-15T19:27:57.646Z</lastmod>
   </url>
   <url>
     <loc>enter_gitHub_pages_URL_here/02_python/index.html</loc>
-    <lastmod>2025-09-15T18:57:43.767Z</lastmod>
+    <lastmod>2025-09-15T19:27:57.652Z</lastmod>
   </url>
   <url>
     <loc>enter_gitHub_pages_URL_here/02_python/python-1.html</loc>
-    <lastmod>2025-09-15T18:57:43.767Z</lastmod>
+    <lastmod>2025-09-15T19:27:57.652Z</lastmod>
   </url>
   <url>
     <loc>enter_gitHub_pages_URL_here/index.html</loc>
-    <lastmod>2025-09-15T18:57:43.782Z</lastmod>
+    <lastmod>2025-09-15T19:27:57.668Z</lastmod>
   </url>
   <url>
     <loc>enter_gitHub_pages_URL_here/01_cli_conda/index.html</loc>
-    <lastmod>2025-09-15T18:57:43.764Z</lastmod>
+    <lastmod>2025-09-15T19:27:57.650Z</lastmod>
+  </url>
+  <url>
+    <loc>enter_gitHub_pages_URL_here/03_ui/ui-1.html</loc>
+    <lastmod>2025-09-15T19:27:57.653Z</lastmod>
   </url>
 </urlset>
