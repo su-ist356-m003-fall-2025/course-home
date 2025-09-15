@@ -1,0 +1,261 @@
+---
+title: '4. Modules, import, pip, testing'
+jupyter: python3
+---
+
+# Modules and Packages
+
+- A **Module** is a file containing Python code. 
+- The Code in the module can be included in your code using the `import` command
+- A collection of modules bundled for re-distribution is known as a **Package**
+
+## Built in Modules vs. External
+
+- The Python language has several modules which are included with the base language: **Python Standard Library** https://docs.python.org/3/library/ 
+- In addition you can import other libraries found on the Internet. 
+- The Python Package Index is a website which allows you to search for other code avaialbe for use. https://pypi.org/
+- Once you know which package you want, **you can install it with the `pip` command from the terminal.**
+- example: `pip install <name-of-package>`
+
+## Requirements.txt
+
+- `requirements.txt` is a file which stores the names of all the packages a project uses
+- adding them to the file is a replacement for installing each of them manually
+- to install the packages: `pip install -r requirements.txt`
+
+## Importing Modules 
+
+Code in the module can be included in your code using the `import` command. There are a few different ways to import some code:
+
+- `import foo` imports code from module `foo`. Functions in that module can then be referenced in the current code by prefixing the function with `foo.`. For example, if `foo` has a function `bar` defined in it, then after the `import foo` statement you can use the `bar` function by writing `foo.bar(...)` (where the `...` indicate the arguments you need to pass to `bar`).
+- `from foo import bar,baz` only imports the `bar` and `baz` functions from module `foo`. When imported in this manner, the `bar` and `baz` functions are referenced directly, without the module prefix. For example, in this case, to execute the bar function, you run `bar(...)` instead of `foo.bar(...)`.
+
+:::: {.callout-note appearance="simple" icon="false"}
+### Concept check 
+
+What's wrong with the following code?
+
+```{python}
+#| eval: false
+
+exp = 'Dear {name}, we would like to express our gratitude for your donation!'
+
+from math import exp
+
+print(exp.format(name="Jeff"))
+```
+
+::: {.callout-note collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+The `from math import exp` line will cause the `exp` variable in the namespace that's defined in the first line to be replaced by the exponential function in the math module. This will cause an error in the last line, which expects `exp` to be a string, not a function.
+
+:::
+::::
+
+- **Renaming imports**: You can avoid namespace collisions by renaming an imported module or functions via: `import foo as f`. For example, in the Concept check above, doing `from math import exp as mathexp` would avoid the error.
+
+
+## Whats in the module?
+
+- Use the `dir(<module>)` to list the functions in the module
+- Use `help(module.function)` to get the docstring for a function in a module.
+
+```{python}
+#| tags: []
+# Examples
+import math
+```
+
+```{python}
+#| tags: []
+# get the functions
+dir(math)
+```
+
+```{python}
+#| tags: []
+help(math.pow)
+```
+
+```{python}
+#| tags: []
+math.pow(2,5) # 2*2*2*2*2
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 4.1
+
+Use the `datetime` module to parse a "Month/Day/Year" string (e.g., "9/15/2025") into a datetime then print it in YYYY-MM-DD format (e.g., "2025-09-15"). 
+
+You will need to read through the module with `dir()` and `help()` or read the python docs to determine which functions to use.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+from datetime import datetime
+
+text = input("Enter date m/d/y: ")
+now = datetime.strptime(text, "%m/%d/%Y")
+nowstr = now.strftime("%Y-%m-%d")
+print(nowstr)
+```
+:::
+::::
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 4.2
+
+Let's make the code in Challenge 4.2 more resusable:
+
+1.  Re-write the date parse into a function `parsedate_mdy(text: str) -> datetime:`.
+
+1.  Re-write the date format into a function `formatdate_ymd(date: datetime) -> str:`. 
+
+1.  Re-write the main program to use both functions. input -> parsedate -> formatdate -> output
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+from datetime import datetime
+
+def parsedate_mdy(text: str) -> datetime:
+    dt = datetime.strptime(text, "%m/%d/%Y")
+    return dt
+
+
+def formatdate_ymd(date: datetime) -> str:
+    return date.strftime("%Y-%m-%d")
+
+
+text = input("Enter date m/d/y: ")
+date = parsedate_mdy(text)
+date_str = formatdate_ymd(date)
+print(date_str)
+```
+:::
+::::
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 4.3
+
+Let's make the code in Challenge 4.2 even more resusable!
+
+1.  Move your functions into a module name `dateutils.py`.
+
+1.  Import your functions from `dateutils.py` into `4-3.py`
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+1.  Create the `dateutils.py` file in VS Code by clicking "File" -> "New File". Name it `dateutils.py`. Then copy the functions you wrote in Challenge 4.2 into it (don't forget the `from datetime import datetime` at the top!). Save the file by typing CTRL/CMD + S or clicking File -> Save.
+
+1.  To use your functions in a notebook or another python script:
+
+    ```{python}
+    #| eval: false
+    from dateutils import parsedate_mdy, formatdate_ymd
+
+    text = input("Enter date m/d/y: ")
+    date = parsedate_mdy(text)
+    date_str = formatdate_ymd(date)
+    print(date_str)
+
+    ```
+:::
+::::
+
+::: {.callout-important}
+## Avoid wildcard imports!
+
+It's possible to use a wildcard `*` when importing. For example,
+
+```{python}
+#| eval: false
+from math import *
+```
+
+will import all functions that are in the math module into the current namespace. This means that you could then call `math.pow` with just `pow`, for example.
+
+**Don't do this!** The problem with this is you can accidentally override variables in your program without realizing it. For example, if you defined a variable called `e` then did `from math import *`, `e` would be replaced with the value of the natural exponent, since `e` is defined in the `math` module. Doing wildcard imports also makes it difficult to debug code, since it's a challenge to determine what module a particular variable came from. Wildcard imports should only be used in very limited situations, which you are unlikely to run in to. Long story short... **don't use wildcard imports!** I only tell you about it in case you see it in the wild (no pun intended).
+
+:::
+
+
+# Testing Your Code
+
+- For every function you write you should get in the habit of writing code to test the function
+- We want this to be automated so that we can easily determine if a change to our code has affected other code
+- This is especially useful with large projects
+
+## Assert
+
+`assert` is a python command which throws an exception if the expression asserted is false.
+
+When an `assert` fails, it raises an `AssertionError` exception  which alerts us that something did not go as planned.
+
+```{python}
+#| tags: []
+assert 1 + 1 == 2   # This is true, no worries
+```
+
+```{python}
+#| tags: []
+#| error: true 
+assert 2 + 2 == 5 # False AssertionError
+```
+
+## Pytest
+
+[Pytest](https://docs.pytest.org/en/stable/index.html) is testing framework for Python. It can automatically discover tests in your code; for example, any function that starts with `test` is executed when you invoke pytest. (See [here](https://docs.pytest.org/en/stable/explanation/goodpractices.html#conventions-for-python-test-discovery) for the full list of rules that `pytest` uses to discover test functions.)
+
+You can invoke it at the terminal like this:
+
+`python -m pytest <filetotest>`
+
+::: {.callout-warning}
+
+Pytest is not installed by default when you create a new conda environment. If you have not installed `pytest` into your `ist356` environment yet, you can do so by opening a terminal and running:
+
+```bash
+conda activate ist356
+pip install pytest
+```
+
+:::
+
+The VS Code test plugin should discover the tests.
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 4.4
+
+Write a "round robin" test that tests the `parsedate_mdy` and `formatdate_ymd` functions you wrote in Code Challenge 4.3. The test should start with a known input, run the two functions on it, then check if it yields the known output.
+
+Run pytest or VS Code test to make sure your tests pass!
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+1.  Add the following to `dateutils.py`:
+```{python}
+#! eval: false
+def test_round_robin():
+    date_str = "9/15/2025"
+    date_obj = parsedate_mdy(date_str)
+    assert formatdate_ymd(date_obj) == "2025-09-15"
+```
+
+2.  To run the test, open a terminal (in VS Code, select Terminal -> New Terminal). If your `ist356` conda environment is not active, activate it by running: `conda activate ist356`. Now `cd` into the directory that `dateutils.py` is in (you're probably already there; run `ls` to check), then run:
+
+```bash
+python -m pytest dateutils.py
+```
+
+Note: if you not have installed pytest in your environment yet you will get an error `No module named pytest`. In that case, install `pytest` by either running `pip install pytest` or `conda install -c conda-forge -y pytest`.
+
+:::
+::::
