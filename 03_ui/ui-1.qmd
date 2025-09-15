@@ -1,0 +1,117 @@
+---
+title: "1. Interaction in Jupyter using ipywidgets"
+jupyter: python3
+---
+
+::: {.callout-note}
+
+To do this tutorial you will need `ipywidgets` installed in your conda environment. To do that:
+
+1.  Open a terminal (from in VS Code, click "Terminal" -> "New Terminal").
+
+1.  Activate your `ist356` conda environment by running:
+
+    ```bash
+    conda activate ist356
+    ```
+
+1.  Install `ipywidgets` by either running:
+
+    ```bash
+    pip install ipywidgets
+    ```
+
+    or:
+
+    ```bash
+    conda install -c conda-forge -y ipywidgets
+    ```
+
+:::
+
+
+## Notebook widgets:  ipywidgets
+
+The jupyter notebook widgets create better UI interactions in notebooks. This is called the ipywidgets library. There is a lot to this library but we will keep our interactions simple.
+
+To replace `input()` statements we use the `interact_manual` decorator function. Like a hat decorates your head, decorator function adds code to another function.
+
+`interact_manual` decorator does the following:
+
+- generates a *textbox* for any string input
+- generates a *slider* for any int/float input
+- generates a *dropdown* for any list input
+- generates a *button* titled "Run interact"
+
+When the **button is clicked** the code inside the decorated function is executed and the widget values are used as input. Use `display()` instead of `print()` for output.
+
+```{python}
+# Necessary imports to make this work
+from IPython.display import display
+from ipywidgets import interact_manual
+```
+
+```{python}
+#| eval: false
+# Example:
+vals = [ 'red', 'white', 'blue'] # this is a list type, it will generate a dropdown widget
+min, max, step = 0, 20, 0.5      # this is the range of the slider, and the steps
+text = "testing"                 # this is a string type, it will generate a textbox
+
+@interact_manual(color=vals, grade=(min,max,step), name=text) # DECORATOR function with values
+def on_click(color, grade, name):                             # DECORATED function. This code 
+    display(color)                                            # runs when the button is clicked 
+    display(grade)                                            # (thus the name on_click)
+    display(name)
+```
+
+::: {.callout-note}
+
+For more complex interactions we will use the streamlit library
+
+:::
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 1.1
+
+Create a simple widget interaction that will display student status for their GPA. The widget should take as inputs:
+
+- the student's name;
+- their major: one of "IMT", "IST", or "ADA";
+- a gpa between 0.0 and 4.0.
+
+The widget should process:
+
+- when gpa < 1.8 then status is "probation"
+- when gpa > 3.4 then status is "deans list"
+- else status is "no list".
+
+The widget should then display the following statement:
+
+```{python}
+#| eval: false
+"NAME in MAJOR with GPA is on STATUS"
+```
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+from IPython.display import display
+from ipywidgets import interact_manual
+
+
+@interact_manual(name="", major=["IMT", "IST", "ADA"], gpa=(0.0,4.0,0.05))
+def onclick(name,major,gpa):
+    if gpa < 1.8:
+        status = "probation"
+    elif gpa > 3.4:
+        status = "deans list"
+    else:
+        status = "no list"
+    display(f"{name} in {major} with gpa of {gpa} is on {status}.")
+```
+
+:::
+::::
