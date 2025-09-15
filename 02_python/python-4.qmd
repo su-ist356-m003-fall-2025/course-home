@@ -15,7 +15,9 @@ jupyter: python3
 - In addition you can import other libraries found on the Internet. 
 - The Python Package Index is a website which allows you to search for other code avaialbe for use. https://pypi.org/
 - Once you know which package you want, **you can install it with the `pip` command from the terminal.**
-- example: `pip install <name-of-package>`
+- Example: `pip install <name-of-package>` (Make sure you activate your conda environment first!)
+- You can also install packages using conda. For example, `conda install -c conda-forge <name-of-package>`.
+- Which to use? Basically, `conda` and `pip` can be used interchangeably within a conda environment. Some packages may be in PyPI that are not in conda-forge and vice versa.
 
 ## Requirements.txt
 
@@ -217,7 +219,7 @@ You can invoke it at the terminal like this:
 
 `python -m pytest <filetotest>`
 
-::: {.callout-warning}
+::: {.callout-note}
 
 Pytest is not installed by default when you create a new conda environment. If you have not installed `pytest` into your `ist356` environment yet, you can do so by opening a terminal and running:
 
