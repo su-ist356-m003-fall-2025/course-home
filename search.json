@@ -1021,6 +1021,28 @@
     ]
   },
   {
+    "objectID": "02_python/index.html#monday-982025",
+    "href": "02_python/index.html#monday-982025",
+    "title": "2. Python review",
+    "section": "Monday, 9/8/2025",
+    "text": "Monday, 9/8/2025\nContinuation of Python review: conditionals, loops, lists, and dictionaries (2 parts)",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review"
+    ]
+  },
+  {
+    "objectID": "02_python/index.html#wednesday-9102025",
+    "href": "02_python/index.html#wednesday-9102025",
+    "title": "2. Python review",
+    "section": "Wednesday, 9/10/2025",
+    "text": "Wednesday, 9/10/2025\nContinuation of Python review: functions, strings, and files",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review"
+    ]
+  },
+  {
     "objectID": "02_python/python-1.html",
     "href": "02_python/python-1.html",
     "title": "1. Input, output, variables, types, conditionals",
