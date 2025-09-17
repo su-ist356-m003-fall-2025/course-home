@@ -8,3 +8,4 @@ In this unit we will learn about some useful Python modules for creating dynamic
 ## Tutorials
 
 1. [Interaction in Jupyter using ipywidgets](ui-1.qmd)
+2. [Creating simple web apps with Streamlit](ui-2.qmd)
