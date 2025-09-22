@@ -391,6 +391,17 @@
     ]
   },
   {
+    "objectID": "02_python/index.html#monday-9152025",
+    "href": "02_python/index.html#monday-9152025",
+    "title": "2. Python review",
+    "section": "Monday, 9/15/2025",
+    "text": "Monday, 9/15/2025\nFinishing Python review: modules and testing",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "2. Python review"
+    ]
+  },
+  {
     "objectID": "00_intro/index.html",
     "href": "00_intro/index.html",
     "title": "Introduction and computer setup",
@@ -1379,11 +1390,11 @@
     ]
   },
   {
-    "objectID": "03_ui/index.html#monday-9152025",
-    "href": "03_ui/index.html#monday-9152025",
+    "objectID": "03_ui/index.html#wednesday-9172025",
+    "href": "03_ui/index.html#wednesday-9172025",
     "title": "3. UI",
-    "section": "Monday, 9/15/2025",
-    "text": "Monday, 9/15/2025\nFinishing Python review: modules and testing",
+    "section": "Wednesday, 9/17/2025",
+    "text": "Wednesday, 9/17/2025\nWalkthrough of how to run pytest in VS Code; Jupyter Widgets and Streamlit",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "3. UI"
