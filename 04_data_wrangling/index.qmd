@@ -1,0 +1,13 @@
+---
+title: "4. Data Wrangling"
+order: 4
+---
+
+In this unit we will learn about how to easily manage and manipulate data in Python using NumPy and Pandas.
+
+## Tutorials
+
+1. [Introduction to NumPy](numpy_basics.qmd)
+
+## Lectures
+
