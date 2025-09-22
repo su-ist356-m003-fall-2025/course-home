@@ -1,0 +1,405 @@
+---
+title: "1. Introduction to NumPy"
+jupyter: python3
+---
+
+Data manipulation in Python is nearly synonymous with NumPy array manipulation: even tools like Pandas are built around the NumPy array.
+Numpy arrays can be thought of as **mathematical vectors** and behave correspondingly; contrary to Python lists, which are a container that stores arbitrary objects.
+
+
+## Python list recap
+
+We saw previously that arrays allow us to store a series of values in a single variable. For example:
+
+```{python}
+listnumbers = [1, 2, 3]
+print(listnumbers)
+```
+
+Notably, in Python, a list can contain objects that are not of the same data type. For example:
+
+```{python}
+list1 = [1, "string", {'a':1}, [[1, 3], set()]]  # arbitrary objects
+print(list1)
+```
+
+Adding two lists concatenates them, there is no mathematical operation: adding two containers that contain arbitrary objects means "combining" them.
+
+```{python}
+listadd = list1 + listnumbers
+print(listadd)
+```
+
+Being able to store multiple data types in a single list can be convenient. However, Python lists can be cumbersome to work with when doing mathematical operations, and for more complex and multi-dimensional data. They are also relatively slow to process. For example, say we wanted to add two large lists of values together. We would need to do the following:
+
+```{python}
+# create large list a
+a = range(1000000)
+b = range(1000000)
+added_list = [ai+bi for ai, bi in zip(a, b)]
+```
+
+Let's time how long it took to do that last line. For that, we can use the `%timeit` magic command in a jupyter notebook:
+
+```{python}
+%timeit added_list = [ai+bi for ai, bi in zip(a, b)]
+```
+
+While this may seem fast in human time, it's quite slow computationally wise. If you had multiple operations like this it would quickly add up. As we will see below, it's possible to do array operations like this much more quickly using NumPy.
+
+## NumPy arrays
+
+For much faster, easier manipulation of numerical arrays, we use [NumPy](https://numpy.org/). What is NumPy? A good summary is provided by Claude AI:
+
+> NumPy is a fundamental Python library for scientific computing that provides support for large, multi-dimensional arrays and matrices. It offers a comprehensive collection of mathematical functions to operate on these arrays efficiently, with operations implemented in C for high performance. NumPy serves as the foundation for most other scientific Python libraries like pandas, scikit-learn, and matplotlib, making it essential for data science, machine learning, and numerical analysis workflows.
+
+Let's see how to do some basic array operations with numpy. First, if you have not done so, you'll need to install numpy into your conda environment. To do so, in a terminal, activate your conda environment, then either run:
+
+```bash
+pip install numpy
+```
+or
+```bash
+conda install -y -c conda-forge numpy
+```
+
+We can now import numpy:
+
+```{python}
+import numpy as np
+```
+
+### NumPy array creation
+There are multiple ways to create an array using numpy. Some examples:
+
+```{python}
+# from a Python list:
+arrnumbers = np.array(listnumbers)
+print("arrnumbers:", arrnumbers)
+
+# manually creating it:
+arrnumbers2 = np.array([5, 3, 42])
+print("arrnumbers2:", arrnumbers2)
+
+# from a range of values (compare to range above):
+arrnumbers3 = np.arange(1000000)
+print("arrnumbers3:", arrnumbers3)
+
+# an array of values linearlly spaced between two endpoints:
+arrlinspace = np.linspace(0, 10, 5)  # 5 values equally spaced between 0 and 10
+print("arrlinspace:", arrlinspace)
+
+# an array of zeros:
+arrzeros = np.zeros(4)
+print("arrzeros:", arrzeros)
+
+# an array of ones:
+arrones = np.ones(4)
+print("arrones:", arrones)
+
+# an empty array (values will be whatever is in memory at the time):
+arrempty = np.empty(4)
+print("arrempty:", arrempty)
+```
+
+NumPy arrays can have multiple dimensions:
+
+```{python}
+arr2d = np.array([[1, 2, 3], [4, 5, 6]])
+print(arr2d)
+
+# we can get the number of dimensions with .ndim:
+print("arr2d.ndim:", arr2d.ndim)
+
+# or the shape with .shape:
+print("arr2d.shape:", arr2d.shape) # returns the number of rows and columns
+```
+
+Many array constructor functions take a `shape` argument to create a mult-dimensional array:
+
+```{python}
+zeros2d = np.zeros((3, 4))  # 3 rows, 4 columns
+print("zeros2d:\n", zeros2d)
+
+ones3d = np.ones((2, 3, 4))  # 2 blocks, 3 rows, 4 columns
+print("ones3d:\n", ones3d)
+```
+
+Or, we can reshape a current array:
+
+```{python}
+arrnumbers2d = arrnumbers3.reshape(1000, 1000)  # 1000 rows, 1000 columns
+print("arrnumbers3.shape:", arrnumbers3.shape)
+print("arrnumbers3:\n", arrnumbers3)
+
+print("arrnumbers2d.shape:", arrnumbers2d.shape)
+print("arrnumbers2d:\n", arrnumbers2d)
+```
+
+### Array slicing
+Similar to Python lists, we can access elements of a list using braces and indices. The syntax is:
+```python
+arr[start:end:step]
+```
+Some examples:
+
+```{python}
+# print a single element in arrnumbers:
+print(arrnumbers[0]) # first element
+print(arrnumbers[1]) # second element
+```
+
+```{python}
+# print a range of elements in arrnumbers:
+print('arrnumbers[0:2]:', arrnumbers[0:2])
+
+# equivalently:
+print('arrnumbers[:2]:', arrnumbers[:2])  # start is 0 by default
+
+# or to print from an index to the end:
+print('arrnumbers[1:]:', arrnumbers[1:])  # goes to the end by default
+
+# or to print all numbers:
+print('arrnumbers[:]:', arrnumbers[:])  # start and end are default
+
+# print every second element:
+print('arrnumbers[::2]:', arrnumbers[::2])
+```
+
+Negative indices can be used to slice starting from the end, and to reverse order. For example:
+
+```{python}
+print('arrnumbers[-2:]', arrnumbers[-2:])  # print the last two elements
+print('arrnumbers[::-1]', arrnumbers[::-1])  # print all elements in reverse order
+```
+
+For multi-dimensional arrays, the same rules apply, you just separate the indexing for each dimension by commas. For example:
+
+```{python}
+print("arr2d:\n", arr2d)
+print("arr2d[0, 0]:", arr2d[0, 0])  # first row, first column
+print("arr2d[:, 0]:", arr2d[:, 0])  # all rows, first column
+print("arr2d[0, :]:", arr2d[0, :])  # first row, all columns
+print("arr2d[0:2, 1:3]:\n", arr2d[0:2, 1:3])  # first two rows, columns 1 and 2
+```
+
+### Subarrays as no-copy views
+
+One important–and extremely useful–thing to know about array slices is that they return *views* rather than *copies* of the array data.
+This is one area in which NumPy array slicing differs from Python list slicing: in lists, slices will be copies.
+Consider our two-dimensional array from before:
+
+```{python}
+print(arr2d)
+```
+
+Let's extract a $2 \times 2$ subarray from this:
+
+```{python}
+arr2d_sub = arr2d[:2, :2]
+print(arr2d_sub)
+```
+
+Now if we modify this subarray, we'll see that the original array is changed! Observe:
+
+```{python}
+arr2d_sub[0, 0] = 99
+print(arr2d_sub)
+```
+
+```{python}
+print(arr2d)
+```
+
+This default behavior is actually quite useful: it means that when we work with large datasets, we can access and process pieces of these datasets without the need to copy the underlying data buffer.
+
+### Creating copies of arrays
+
+Despite the nice features of array views, it is sometimes useful to instead explicitly copy the data within an array or a subarray. This can be most easily done with the ``copy()`` method:
+
+```{python}
+arr2d_sub_copy = arr2d[:2, :2].copy()
+print(arr2d_sub_copy)
+```
+
+If we now modify this subarray, the original array is not touched:
+
+```{python}
+arr2d_sub_copy[0, 0] = 42
+print(arr2d_sub_copy)
+```
+
+```{python}
+print(arr2d)
+```
+
+### Boolean slicing
+You can use boolean expressions to retrieve certain values in an array. For example:
+
+```{python}
+# print all the values in arrnumbers2 greater than 4:
+print("arrnumbers:\n", arrnumbers2)
+print("arrnumbers > 5:\n", arrnumbers2[arrnumbers2 > 4])  # boolean array
+```
+
+What's actually happening here is you're first creating a *boolean* array. This is an array in which each element is either True or False. In this case, `arrnumbers2 > 4` is creating an array indicating which indices in `arrnumbers2` are greater than 4. Passing the boolean array as an index then pulls out those values. We can see this if we break it into two steps:
+
+```{python}
+mask = arrnumbers2 > 4
+print("mask:\n", mask)
+print("arrnumbers2[mask]:\n", arrnumbers2[mask])
+```
+
+## Data types
+A key difference between NumPy arrays and Python arrays is that **the data in a NumPy array must all be of the same type**. You can get the data type of the values in an array using `.dtype`. For example:
+
+```{python}
+print('arrnumbers:', arrnumbers)
+print('arrnumbers.dtype:', arrnumbers.dtype)
+```
+
+```{python}
+print('arrones:', arrones)
+print('arrones.dtype:', arrones.dtype)
+```
+
+```{python}
+print('mask:', mask)
+print('mask.dtype:', mask.dtype)
+```
+
+If you try to create an array with different data types, numpy will automatically cast them to all be the same. For example:
+
+```{python}
+mixed = np.array([1, 2.0, 3, 4.8, True, False])  # ints, floats, bools
+print("mixed:", mixed)
+print("mixed.dtype:", mixed.dtype)  # everything cast to float (note that True -> 1, False -> 0)
+```
+
+You can cast an array to a different type using `.astype`. This will create a copy of the array with values cast to the type you specified. For example:
+
+```{python}
+mixedint = mixed.astype(int)  # cast to int
+print("mixedint:", mixedint)
+print("mixedint.dtype:", mixedint.dtype)  # everything cast to int
+```
+
+## Array operations
+
+One of the most useful aspects about NumPy arrays is they allow you to perform mathematical operations on the all the elements in the list using the same syntax you would for single variables. For example, we can add all the values in one array to another by doing:
+
+```{python}
+a = np.arange(1000000)
+b = np.arange(1000000)
+c = a + b  # add element-wise
+print("c:", c)
+```
+
+Compare that to the way we had to add two Python lists together above. Note that if `a` and `b` were Python lists `a+b` concatenates them together (i.e., appends the values of `b` on to the end of `a`) where as if `a` and `b` are Numpy arrays, the values are added together element-wise.
+
+Aside from being easier to write, NumPy array operations are also much faster than Python operations. Let's time how long it took to create `c`:
+
+```{python}
+%timeit c = a + b
+```
+
+Compare to what we got when we did the same thing with Python lists above. It's about 100 times faster!
+
+### More advanced math operations
+Numpy comes with a large number of math functions built-in, which we can run on NumPy arrays. For example:
+
+```{python}
+# take the sine of every element in a:
+print(np.sin(a))
+
+# sum up all the values in a:
+print(np.sum(a))
+
+# take the average of all the values in a:
+print(np.mean(a))
+```
+
+Some operations can also be executed as methods on the array. For example:
+
+```{python}
+# sum up all the values in a:
+print(a.sum())  
+
+# take the average of all the values in a:
+print(a.mean())
+```
+
+Note that this doesn't work with the sine function, however:
+
+```{python}
+#| error: true
+a.sin()
+```
+
+In VS Code, you can see all the operations you can call as methods of the array by typing the array name + `.`; e.g., `a.`. That will show a drop-down list that you can cycle through.
+
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 1.1
+
+Let's illustrate the speed and simplicity of NumPy vs native Python lists.
+
+1.  Create a Python array that has 100,000 values equally spaced between 0 and `2*pi` (`pi = 3.141592653589793`).
+
+1.  Calculate the average of the cosine of every value in the Python array. For the `cos` function, you will need to import the `math` module.
+
+1.  Repeat steps 1 and 2, but using purely NumPy arrays and functions. You should be able to do step 2 in a single line of code. Note that NumPy has an in-built `pi` value (`np.pi`).
+
+1.  Time how long it takes the computer to do Step 2. Compare how long that takes when you use NumPy. When doing the comparison, just time the math operation step, not the array creation. Which is faster? *Hint*: for timing the Python version, you'll need to use `%%timeit` rather than `%timeit`, as the Python version will require multiple lines of code. Put all the lines in a single cell in your notebook, and put `%%timeit` at the top to time the entire cell, rather than just a single line.
+
+1.  Which is computationally faster? By what factor?
+
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+1. To create the Python array:
+
+```{python}
+xsize = 100000
+x = [xi*2*np.pi/xsize for xi in range(xsize)]
+```
+
+2.  Evaluation:
+
+```{python}
+import math
+y = [math.cos(xi) for xi in x]
+sum(y)/len(y)
+```
+
+3. Same, with numpy:
+
+```{python}
+import numpy as np
+# create the array
+x = np.linspace(0, 2*np.pi, xsize)
+# take the average of the cosine of the values
+np.cos(x).mean()
+```
+
+4. Python timing, in a Jupyter cell:
+
+```{python}
+#| eval: false
+%%timeit
+y = [math.cos(xi) for xi in x]
+sum(y)/len(y)
+```
+
+Numpy:
+
+```{python}
+#| eval: false
+%timeit np.cos(x).mean()
+```
+
+You should get that the numpy version is faster, by a factor of 10-100.
+
+:::
+::::
