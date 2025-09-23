@@ -12,7 +12,7 @@ In this unit we will learn about some useful Python modules for creating dynamic
 
 ## Lectures
 
-## Wednesday, 9/17/2025
+### Wednesday, 9/17/2025
 
 Walkthrough of how to run pytest in VS Code; Jupyter Widgets and Streamlit
 
