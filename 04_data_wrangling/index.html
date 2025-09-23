@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3. UI – IST 356 Fall 2025</title>
+<title>4. Data Wrangling – IST 356 Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../03_ui/ui-1.html" rel="next">
-<link href="../02_python/python-4.html" rel="prev">
+<link href="../04_data_wrangling/numpy_basics.html" rel="next">
+<link href="../03_ui/ui-2.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -71,13 +71,13 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="3. UI – IST 356 Fall 2025">
+<meta property="og:title" content="4. Data Wrangling – IST 356 Fall 2025">
 <meta property="og:description" content="">
 <meta property="og:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
 <meta property="og:site_name" content="IST 356 Fall 2025">
 <meta property="og:image:height" content="105">
 <meta property="og:image:width" content="650">
-<meta name="twitter:title" content="3. UI – IST 356 Fall 2025">
+<meta name="twitter:title" content="4. Data Wrangling – IST 356 Fall 2025">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
 <meta name="twitter:image-height" content="105">
@@ -114,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../03_ui/index.html">3. UI</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../04_data_wrangling/index.html">4. Data Wrangling</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -196,13 +196,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../03_ui/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../03_ui/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3. UI</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../03_ui/ui-1.html" class="sidebar-item-text sidebar-link">
@@ -219,13 +219,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../04_data_wrangling/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../04_data_wrangling/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">4. Data Wrangling</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../04_data_wrangling/numpy_basics.html" class="sidebar-item-text sidebar-link">
@@ -253,7 +253,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#tutorials" id="toc-tutorials" class="nav-link active" data-scroll-target="#tutorials">Tutorials</a></li>
   <li><a href="#lectures" id="toc-lectures" class="nav-link" data-scroll-target="#lectures">Lectures</a>
   <ul class="collapse">
-  <li><a href="#wednesday-9172025" id="toc-wednesday-9172025" class="nav-link" data-scroll-target="#wednesday-9172025">Wednesday, 9/17/2025</a></li>
+  <li><a href="#monday-9222025" id="toc-monday-9222025" class="nav-link" data-scroll-target="#monday-9222025">Monday, 9/22/2025</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -263,7 +263,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">3. UI</h1>
+<h1 class="title">4. Data Wrangling</h1>
 </div>
 
 
@@ -280,20 +280,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In this unit we will learn about some useful Python modules for creating dynamic user interface (UI) to your code.</p>
+<p>In this unit we will learn about how to easily manage and manipulate data in Python using NumPy and Pandas.</p>
 <section id="tutorials" class="level2">
 <h2 class="anchored" data-anchor-id="tutorials">Tutorials</h2>
 <ol type="1">
-<li><a href="../03_ui/ui-1.html">Interaction in Jupyter using ipywidgets</a></li>
-<li><a href="../03_ui/ui-2.html">Creating simple web apps with Streamlit</a></li>
+<li><a href="../04_data_wrangling/numpy_basics.html">Introduction to NumPy</a></li>
 </ol>
 </section>
 <section id="lectures" class="level2">
 <h2 class="anchored" data-anchor-id="lectures">Lectures</h2>
-<section id="wednesday-9172025" class="level3">
-<h3 class="anchored" data-anchor-id="wednesday-9172025">Wednesday, 9/17/2025</h3>
-<p>Walkthrough of how to run pytest in VS Code; Jupyter Widgets and Streamlit</p>
-<iframe id="kmsembed-1_ikmnfhvf" width="640" height="360" src="https://video.syr.edu/embed/secure/iframe/entryId/1_ikmnfhvf/uiConfId/45992161/st/0" class="kmsembed" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" referrerpolicy="no-referrer-when-downgrade" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="IST 356 Lecture - 9-17-25">
+<section id="monday-9222025" class="level3">
+<h3 class="anchored" data-anchor-id="monday-9222025">Monday, 9/22/2025</h3>
+<p>Instructions on how to use Git on the command line. Introduction to NumPy.</p>
+<iframe id="kmsembed-1_nkv9vmc2" width="640" height="360" src="https://video.syr.edu/embed/secure/iframe/entryId/1_nkv9vmc2/uiConfId/45992161/st/0" class="kmsembed" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" referrerpolicy="no-referrer-when-downgrade" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="IST 356 Lecture - 9-22-25">
 </iframe>
 
 
@@ -703,13 +702,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../02_python/python-4.html" class="pagination-link" aria-label="4. Modules, import, pip, testing">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">4. Modules, import, pip, testing</span>
+      <a href="../03_ui/ui-2.html" class="pagination-link" aria-label="2. Creating simple web apps with Streamlit">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">2. Creating simple web apps with Streamlit</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../03_ui/ui-1.html" class="pagination-link" aria-label="1. Interaction in Jupyter using ipywidgets">
-        <span class="nav-page-text">1. Interaction in Jupyter using ipywidgets</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../04_data_wrangling/numpy_basics.html" class="pagination-link" aria-label="1. Introduction to NumPy">
+        <span class="nav-page-text">1. Introduction to NumPy</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

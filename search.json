@@ -143,22 +143,22 @@
     ]
   },
   {
-    "objectID": "01_cli_conda/index.html#wednesday-8282025",
-    "href": "01_cli_conda/index.html#wednesday-8282025",
+    "objectID": "01_cli_conda/index.html#tutorials",
+    "href": "01_cli_conda/index.html#tutorials",
     "title": "1. Command line interface and Environments",
-    "section": "Wednesday, 8/28/2025",
-    "text": "Wednesday, 8/28/2025",
+    "section": "Tutorials",
+    "text": "Tutorials\n\nIntroduction to CLI\nEnvironments and Conda",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "1. Command line interface and Environments"
     ]
   },
   {
-    "objectID": "01_cli_conda/index.html#tutorials",
-    "href": "01_cli_conda/index.html#tutorials",
+    "objectID": "01_cli_conda/index.html#lecture",
+    "href": "01_cli_conda/index.html#lecture",
     "title": "1. Command line interface and Environments",
-    "section": "Tutorials",
-    "text": "Tutorials\n\nIntroduction to CLI\nEnvironments and Conda",
+    "section": "Lecture",
+    "text": "Lecture\n\nWednesday, 8/28/2025",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "1. Command line interface and Environments"
@@ -351,51 +351,7 @@
     "href": "02_python/index.html#lectures",
     "title": "2. Python review",
     "section": "Lectures",
-    "text": "Lectures",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "2. Python review"
-    ]
-  },
-  {
-    "objectID": "02_python/index.html#wednesday-932025",
-    "href": "02_python/index.html#wednesday-932025",
-    "title": "2. Python review",
-    "section": "Wednesday, 9/3/2025",
-    "text": "Wednesday, 9/3/2025\nInstructions on how to use GitHub Classroom; start of Python review.",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "2. Python review"
-    ]
-  },
-  {
-    "objectID": "02_python/index.html#monday-982025",
-    "href": "02_python/index.html#monday-982025",
-    "title": "2. Python review",
-    "section": "Monday, 9/8/2025",
-    "text": "Monday, 9/8/2025\nContinuation of Python review: conditionals, loops, lists, and dictionaries (2 parts)",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "2. Python review"
-    ]
-  },
-  {
-    "objectID": "02_python/index.html#wednesday-9102025",
-    "href": "02_python/index.html#wednesday-9102025",
-    "title": "2. Python review",
-    "section": "Wednesday, 9/10/2025",
-    "text": "Wednesday, 9/10/2025\nContinuation of Python review: functions, strings, and files",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "2. Python review"
-    ]
-  },
-  {
-    "objectID": "02_python/index.html#monday-9152025",
-    "href": "02_python/index.html#monday-9152025",
-    "title": "2. Python review",
-    "section": "Monday, 9/15/2025",
-    "text": "Monday, 9/15/2025\nFinishing Python review: modules and testing",
+    "text": "Lectures\n\nWednesday, 9/3/2025\nInstructions on how to use GitHub Classroom; start of Python review.\n\n\n\n\nMonday, 9/8/2025\nContinuation of Python review: conditionals, loops, lists, and dictionaries (2 parts)\n\n\n\n\n\n\nWednesday, 9/10/2025\nContinuation of Python review: functions, strings, and files\n\n\n\n\nMonday, 9/15/2025\nFinishing Python review: modules and testing",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "2. Python review"
@@ -465,6 +421,66 @@
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "Introduction and computer setup"
+    ]
+  },
+  {
+    "objectID": "04_data_wrangling/numpy_basics.html",
+    "href": "04_data_wrangling/numpy_basics.html",
+    "title": "1. Introduction to NumPy",
+    "section": "",
+    "text": "Data manipulation in Python is nearly synonymous with NumPy array manipulation: even tools like Pandas are built around the NumPy array. Numpy arrays can be thought of as mathematical vectors and behave correspondingly; contrary to Python lists, which are a container that stores arbitrary objects.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "4. Data Wrangling",
+      "1. Introduction to NumPy"
+    ]
+  },
+  {
+    "objectID": "04_data_wrangling/numpy_basics.html#python-list-recap",
+    "href": "04_data_wrangling/numpy_basics.html#python-list-recap",
+    "title": "1. Introduction to NumPy",
+    "section": "Python list recap",
+    "text": "Python list recap\nWe saw previously that arrays allow us to store a series of values in a single variable. For example:\n\nlistnumbers = [1, 2, 3]\nprint(listnumbers)\n\n[1, 2, 3]\n\n\nNotably, in Python, a list can contain objects that are not of the same data type. For example:\n\nlist1 = [1, \"string\", {'a':1}, [[1, 3], set()]]  # arbitrary objects\nprint(list1)\n\n[1, 'string', {'a': 1}, [[1, 3], set()]]\n\n\nAdding two lists concatenates them, there is no mathematical operation: adding two containers that contain arbitrary objects means “combining” them.\n\nlistadd = list1 + listnumbers\nprint(listadd)\n\n[1, 'string', {'a': 1}, [[1, 3], set()], 1, 2, 3]\n\n\nBeing able to store multiple data types in a single list can be convenient. However, Python lists can be cumbersome to work with when doing mathematical operations, and for more complex and multi-dimensional data. They are also relatively slow to process. For example, say we wanted to add two large lists of values together. We would need to do the following:\n\n# create large list a\na = range(1000000)\nb = range(1000000)\nadded_list = [ai+bi for ai, bi in zip(a, b)]\n\nLet’s time how long it took to do that last line. For that, we can use the %timeit magic command in a jupyter notebook:\n\n%timeit added_list = [ai+bi for ai, bi in zip(a, b)]\n\n94.3 ms ± 819 μs per loop (mean ± std. dev. of 7 runs, 10 loops each)\n\n\nWhile this may seem fast in human time, it’s quite slow computationally wise. If you had multiple operations like this it would quickly add up. As we will see below, it’s possible to do array operations like this much more quickly using NumPy.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "4. Data Wrangling",
+      "1. Introduction to NumPy"
+    ]
+  },
+  {
+    "objectID": "04_data_wrangling/numpy_basics.html#numpy-arrays",
+    "href": "04_data_wrangling/numpy_basics.html#numpy-arrays",
+    "title": "1. Introduction to NumPy",
+    "section": "NumPy arrays",
+    "text": "NumPy arrays\nFor much faster, easier manipulation of numerical arrays, we use NumPy. What is NumPy? A good summary is provided by Claude AI:\n\nNumPy is a fundamental Python library for scientific computing that provides support for large, multi-dimensional arrays and matrices. It offers a comprehensive collection of mathematical functions to operate on these arrays efficiently, with operations implemented in C for high performance. NumPy serves as the foundation for most other scientific Python libraries like pandas, scikit-learn, and matplotlib, making it essential for data science, machine learning, and numerical analysis workflows.\n\nLet’s see how to do some basic array operations with numpy. First, if you have not done so, you’ll need to install numpy into your conda environment. To do so, in a terminal, activate your conda environment, then either run:\npip install numpy\nor\nconda install -y -c conda-forge numpy\nWe can now import numpy:\n\nimport numpy as np\n\n\nNumPy array creation\nThere are multiple ways to create an array using numpy. Some examples:\n\n# from a Python list:\narrnumbers = np.array(listnumbers)\nprint(\"arrnumbers:\", arrnumbers)\n\n# manually creating it:\narrnumbers2 = np.array([5, 3, 42])\nprint(\"arrnumbers2:\", arrnumbers2)\n\n# from a range of values (compare to range above):\narrnumbers3 = np.arange(1000000)\nprint(\"arrnumbers3:\", arrnumbers3)\n\n# an array of values linearlly spaced between two endpoints:\narrlinspace = np.linspace(0, 10, 5)  # 5 values equally spaced between 0 and 10\nprint(\"arrlinspace:\", arrlinspace)\n\n# an array of zeros:\narrzeros = np.zeros(4)\nprint(\"arrzeros:\", arrzeros)\n\n# an array of ones:\narrones = np.ones(4)\nprint(\"arrones:\", arrones)\n\n# an empty array (values will be whatever is in memory at the time):\narrempty = np.empty(4)\nprint(\"arrempty:\", arrempty)\n\narrnumbers: [1 2 3]\narrnumbers2: [ 5  3 42]\narrnumbers3: [     0      1      2 ... 999997 999998 999999]\narrlinspace: [ 0.   2.5  5.   7.5 10. ]\narrzeros: [0. 0. 0. 0.]\narrones: [1. 1. 1. 1.]\narrempty: [1. 1. 1. 1.]\n\n\nNumPy arrays can have multiple dimensions:\n\narr2d = np.array([[1, 2, 3], [4, 5, 6]])\nprint(arr2d)\n\n# we can get the number of dimensions with .ndim:\nprint(\"arr2d.ndim:\", arr2d.ndim)\n\n# or the shape with .shape:\nprint(\"arr2d.shape:\", arr2d.shape) # returns the number of rows and columns\n\n[[1 2 3]\n [4 5 6]]\narr2d.ndim: 2\narr2d.shape: (2, 3)\n\n\nMany array constructor functions take a shape argument to create a mult-dimensional array:\n\nzeros2d = np.zeros((3, 4))  # 3 rows, 4 columns\nprint(\"zeros2d:\\n\", zeros2d)\n\nones3d = np.ones((2, 3, 4))  # 2 blocks, 3 rows, 4 columns\nprint(\"ones3d:\\n\", ones3d)\n\nzeros2d:\n [[0. 0. 0. 0.]\n [0. 0. 0. 0.]\n [0. 0. 0. 0.]]\nones3d:\n [[[1. 1. 1. 1.]\n  [1. 1. 1. 1.]\n  [1. 1. 1. 1.]]\n\n [[1. 1. 1. 1.]\n  [1. 1. 1. 1.]\n  [1. 1. 1. 1.]]]\n\n\nOr, we can reshape a current array:\n\narrnumbers2d = arrnumbers3.reshape(1000, 1000)  # 1000 rows, 1000 columns\nprint(\"arrnumbers3.shape:\", arrnumbers3.shape)\nprint(\"arrnumbers3:\\n\", arrnumbers3)\n\nprint(\"arrnumbers2d.shape:\", arrnumbers2d.shape)\nprint(\"arrnumbers2d:\\n\", arrnumbers2d)\n\narrnumbers3.shape: (1000000,)\narrnumbers3:\n [     0      1      2 ... 999997 999998 999999]\narrnumbers2d.shape: (1000, 1000)\narrnumbers2d:\n [[     0      1      2 ...    997    998    999]\n [  1000   1001   1002 ...   1997   1998   1999]\n [  2000   2001   2002 ...   2997   2998   2999]\n ...\n [997000 997001 997002 ... 997997 997998 997999]\n [998000 998001 998002 ... 998997 998998 998999]\n [999000 999001 999002 ... 999997 999998 999999]]\n\n\n\n\nArray slicing\nSimilar to Python lists, we can access elements of a list using braces and indices. The syntax is:\narr[start:end:step]\nSome examples:\n\n# print a single element in arrnumbers:\nprint(arrnumbers[0]) # first element\nprint(arrnumbers[1]) # second element\n\n1\n2\n\n\n\n# print a range of elements in arrnumbers:\nprint('arrnumbers[0:2]:', arrnumbers[0:2])\n\n# equivalently:\nprint('arrnumbers[:2]:', arrnumbers[:2])  # start is 0 by default\n\n# or to print from an index to the end:\nprint('arrnumbers[1:]:', arrnumbers[1:])  # goes to the end by default\n\n# or to print all numbers:\nprint('arrnumbers[:]:', arrnumbers[:])  # start and end are default\n\n# print every second element:\nprint('arrnumbers[::2]:', arrnumbers[::2])\n\narrnumbers[0:2]: [1 2]\narrnumbers[:2]: [1 2]\narrnumbers[1:]: [2 3]\narrnumbers[:]: [1 2 3]\narrnumbers[::2]: [1 3]\n\n\nNegative indices can be used to slice starting from the end, and to reverse order. For example:\n\nprint('arrnumbers[-2:]', arrnumbers[-2:])  # print the last two elements\nprint('arrnumbers[::-1]', arrnumbers[::-1])  # print all elements in reverse order\n\narrnumbers[-2:] [2 3]\narrnumbers[::-1] [3 2 1]\n\n\nFor multi-dimensional arrays, the same rules apply, you just separate the indexing for each dimension by commas. For example:\n\nprint(\"arr2d:\\n\", arr2d)\nprint(\"arr2d[0, 0]:\", arr2d[0, 0])  # first row, first column\nprint(\"arr2d[:, 0]:\", arr2d[:, 0])  # all rows, first column\nprint(\"arr2d[0, :]:\", arr2d[0, :])  # first row, all columns\nprint(\"arr2d[0:2, 1:3]:\\n\", arr2d[0:2, 1:3])  # first two rows, columns 1 and 2\n\narr2d:\n [[1 2 3]\n [4 5 6]]\narr2d[0, 0]: 1\narr2d[:, 0]: [1 4]\narr2d[0, :]: [1 2 3]\narr2d[0:2, 1:3]:\n [[2 3]\n [5 6]]\n\n\n\n\nSubarrays as no-copy views\nOne important–and extremely useful–thing to know about array slices is that they return views rather than copies of the array data. This is one area in which NumPy array slicing differs from Python list slicing: in lists, slices will be copies. Consider our two-dimensional array from before:\n\nprint(arr2d)\n\n[[1 2 3]\n [4 5 6]]\n\n\nLet’s extract a \\(2 \\times 2\\) subarray from this:\n\narr2d_sub = arr2d[:2, :2]\nprint(arr2d_sub)\n\n[[1 2]\n [4 5]]\n\n\nNow if we modify this subarray, we’ll see that the original array is changed! Observe:\n\narr2d_sub[0, 0] = 99\nprint(arr2d_sub)\n\n[[99  2]\n [ 4  5]]\n\n\n\nprint(arr2d)\n\n[[99  2  3]\n [ 4  5  6]]\n\n\nThis default behavior is actually quite useful: it means that when we work with large datasets, we can access and process pieces of these datasets without the need to copy the underlying data buffer.\n\n\nCreating copies of arrays\nDespite the nice features of array views, it is sometimes useful to instead explicitly copy the data within an array or a subarray. This can be most easily done with the copy() method:\n\narr2d_sub_copy = arr2d[:2, :2].copy()\nprint(arr2d_sub_copy)\n\n[[99  2]\n [ 4  5]]\n\n\nIf we now modify this subarray, the original array is not touched:\n\narr2d_sub_copy[0, 0] = 42\nprint(arr2d_sub_copy)\n\n[[42  2]\n [ 4  5]]\n\n\n\nprint(arr2d)\n\n[[99  2  3]\n [ 4  5  6]]\n\n\n\n\nBoolean slicing\nYou can use boolean expressions to retrieve certain values in an array. For example:\n\n# print all the values in arrnumbers2 greater than 4:\nprint(\"arrnumbers:\\n\", arrnumbers2)\nprint(\"arrnumbers &gt; 5:\\n\", arrnumbers2[arrnumbers2 &gt; 4])  # boolean array\n\narrnumbers:\n [ 5  3 42]\narrnumbers &gt; 5:\n [ 5 42]\n\n\nWhat’s actually happening here is you’re first creating a boolean array. This is an array in which each element is either True or False. In this case, arrnumbers2 &gt; 4 is creating an array indicating which indices in arrnumbers2 are greater than 4. Passing the boolean array as an index then pulls out those values. We can see this if we break it into two steps:\n\nmask = arrnumbers2 &gt; 4\nprint(\"mask:\\n\", mask)\nprint(\"arrnumbers2[mask]:\\n\", arrnumbers2[mask])\n\nmask:\n [ True False  True]\narrnumbers2[mask]:\n [ 5 42]",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "4. Data Wrangling",
+      "1. Introduction to NumPy"
+    ]
+  },
+  {
+    "objectID": "04_data_wrangling/numpy_basics.html#data-types",
+    "href": "04_data_wrangling/numpy_basics.html#data-types",
+    "title": "1. Introduction to NumPy",
+    "section": "Data types",
+    "text": "Data types\nA key difference between NumPy arrays and Python arrays is that the data in a NumPy array must all be of the same type. You can get the data type of the values in an array using .dtype. For example:\n\nprint('arrnumbers:', arrnumbers)\nprint('arrnumbers.dtype:', arrnumbers.dtype)\n\narrnumbers: [1 2 3]\narrnumbers.dtype: int64\n\n\n\nprint('arrones:', arrones)\nprint('arrones.dtype:', arrones.dtype)\n\narrones: [1. 1. 1. 1.]\narrones.dtype: float64\n\n\n\nprint('mask:', mask)\nprint('mask.dtype:', mask.dtype)\n\nmask: [ True False  True]\nmask.dtype: bool\n\n\nIf you try to create an array with different data types, numpy will automatically cast them to all be the same. For example:\n\nmixed = np.array([1, 2.0, 3, 4.8, True, False])  # ints, floats, bools\nprint(\"mixed:\", mixed)\nprint(\"mixed.dtype:\", mixed.dtype)  # everything cast to float (note that True -&gt; 1, False -&gt; 0)\n\nmixed: [1.  2.  3.  4.8 1.  0. ]\nmixed.dtype: float64\n\n\nYou can cast an array to a different type using .astype. This will create a copy of the array with values cast to the type you specified. For example:\n\nmixedint = mixed.astype(int)  # cast to int\nprint(\"mixedint:\", mixedint)\nprint(\"mixedint.dtype:\", mixedint.dtype)  # everything cast to int\n\nmixedint: [1 2 3 4 1 0]\nmixedint.dtype: int64",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "4. Data Wrangling",
+      "1. Introduction to NumPy"
+    ]
+  },
+  {
+    "objectID": "04_data_wrangling/numpy_basics.html#array-operations",
+    "href": "04_data_wrangling/numpy_basics.html#array-operations",
+    "title": "1. Introduction to NumPy",
+    "section": "Array operations",
+    "text": "Array operations\nOne of the most useful aspects about NumPy arrays is they allow you to perform mathematical operations on the all the elements in the list using the same syntax you would for single variables. For example, we can add all the values in one array to another by doing:\n\na = np.arange(1000000)\nb = np.arange(1000000)\nc = a + b  # add element-wise\nprint(\"c:\", c)\n\nc: [      0       2       4 ... 1999994 1999996 1999998]\n\n\nCompare that to the way we had to add two Python lists together above. Note that if a and b were Python lists a+b concatenates them together (i.e., appends the values of b on to the end of a) where as if a and b are Numpy arrays, the values are added together element-wise.\nAside from being easier to write, NumPy array operations are also much faster than Python operations. Let’s time how long it took to create c:\n\n%timeit c = a + b\n\n381 μs ± 20.5 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)\n\n\nCompare to what we got when we did the same thing with Python lists above. It’s about 100 times faster!\n\nMore advanced math operations\nNumpy comes with a large number of math functions built-in, which we can run on NumPy arrays. For example:\n\n# take the sine of every element in a:\nprint(np.sin(a))\n\n# sum up all the values in a:\nprint(np.sum(a))\n\n# take the average of all the values in a:\nprint(np.mean(a))\n\n[ 0.          0.84147098  0.90929743 ...  0.21429647 -0.70613761\n -0.97735203]\n499999500000\n499999.5\n\n\nSome operations can also be executed as methods on the array. For example:\n\n# sum up all the values in a:\nprint(a.sum())  \n\n# take the average of all the values in a:\nprint(a.mean())\n\n499999500000\n499999.5\n\n\nNote that this doesn’t work with the sine function, however:\n\na.sin()\n\n\n---------------------------------------------------------------------------\nAttributeError                            Traceback (most recent call last)\nCell In[33], line 1\n----&gt; 1 a.sin()\n\nAttributeError: 'numpy.ndarray' object has no attribute 'sin'\n\n\n\nIn VS Code, you can see all the operations you can call as methods of the array by typing the array name + .; e.g., a.. That will show a drop-down list that you can cycle through.\n\n\n\n\n\n\nCautionCode Challenge 1.1\n\n\n\nLet’s illustrate the speed and simplicity of NumPy vs native Python lists.\n\nCreate a Python array that has 100,000 values equally spaced between 0 and 2*pi (pi = 3.141592653589793).\nCalculate the average of the cosine of every value in the Python array. For the cos function, you will need to import the math module.\nRepeat steps 1 and 2, but using purely NumPy arrays and functions. You should be able to do step 2 in a single line of code. Note that NumPy has an in-built pi value (np.pi).\nTime how long it takes the computer to do Step 2. Compare how long that takes when you use NumPy. When doing the comparison, just time the math operation step, not the array creation. Which is faster? Hint: for timing the Python version, you’ll need to use %%timeit rather than %timeit, as the Python version will require multiple lines of code. Put all the lines in a single cell in your notebook, and put %%timeit at the top to time the entire cell, rather than just a single line.\nWhich is computationally faster? By what factor?\n\n\n\n\n\n\n\nCautionSolution\n\n\n\n\n\n\nTo create the Python array:\n\n\nxsize = 100000\nx = [xi*2*np.pi/xsize for xi in range(xsize)]\n\n\nEvaluation:\n\n\nimport math\ny = [math.cos(xi) for xi in x]\nsum(y)/len(y)\n\n-3.8771274778262895e-17\n\n\n\nSame, with numpy:\n\n\nimport numpy as np\n# create the array\nx = np.linspace(0, 2*np.pi, xsize)\n# take the average of the cosine of the values\nnp.cos(x).mean()\n\nnp.float64(9.99999999994543e-06)\n\n\n\nPython timing, in a Jupyter cell:\n\n\n%%timeit\ny = [math.cos(xi) for xi in x]\nsum(y)/len(y)\n\nNumpy:\n\n%timeit np.cos(x).mean()\n\nYou should get that the numpy version is faster, by a factor of 10-100.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "4. Data Wrangling",
+      "1. Introduction to NumPy"
     ]
   },
   {
@@ -586,6 +602,39 @@
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "Syllabus"
+    ]
+  },
+  {
+    "objectID": "04_data_wrangling/index.html",
+    "href": "04_data_wrangling/index.html",
+    "title": "4. Data Wrangling",
+    "section": "",
+    "text": "In this unit we will learn about how to easily manage and manipulate data in Python using NumPy and Pandas.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "4. Data Wrangling"
+    ]
+  },
+  {
+    "objectID": "04_data_wrangling/index.html#tutorials",
+    "href": "04_data_wrangling/index.html#tutorials",
+    "title": "4. Data Wrangling",
+    "section": "Tutorials",
+    "text": "Tutorials\n\nIntroduction to NumPy",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "4. Data Wrangling"
+    ]
+  },
+  {
+    "objectID": "04_data_wrangling/index.html#lectures",
+    "href": "04_data_wrangling/index.html#lectures",
+    "title": "4. Data Wrangling",
+    "section": "Lectures",
+    "text": "Lectures\n\nMonday, 9/22/2025\nInstructions on how to use Git on the command line. Introduction to NumPy.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "4. Data Wrangling"
     ]
   },
   {
@@ -1383,18 +1432,7 @@
     "href": "03_ui/index.html#lectures",
     "title": "3. UI",
     "section": "Lectures",
-    "text": "Lectures",
-    "crumbs": [
-      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
-      "3. UI"
-    ]
-  },
-  {
-    "objectID": "03_ui/index.html#wednesday-9172025",
-    "href": "03_ui/index.html#wednesday-9172025",
-    "title": "3. UI",
-    "section": "Wednesday, 9/17/2025",
-    "text": "Wednesday, 9/17/2025\nWalkthrough of how to run pytest in VS Code; Jupyter Widgets and Streamlit",
+    "text": "Lectures\n\nWednesday, 9/17/2025\nWalkthrough of how to run pytest in VS Code; Jupyter Widgets and Streamlit",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "3. UI"
