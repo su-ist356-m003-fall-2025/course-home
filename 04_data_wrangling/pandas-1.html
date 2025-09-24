@@ -356,7 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="null-no-value" class="level3">
 <h3 class="anchored" data-anchor-id="null-no-value">Null / No Value</h3>
 <p>The constant <code>np.nan</code> is used to represent “no value”</p>
-<div id="7b275e16" class="cell" data-execution_count="1">
+<div id="3b34c408" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -366,7 +366,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="series">Series</h2>
 <p>A <code>Series</code> is a named list of values.</p>
 <p>The series has an index, too to reference each value. The default index is a zero based, similar to a python list.</p>
-<div id="79db1bec" class="cell" data-execution_count="2">
+<div id="cb9e2f05" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>grades <span class="op">=</span> pd.Series(data<span class="op">=</span>[<span class="dv">100</span>,<span class="dv">80</span>,<span class="dv">90</span>,np.nan,<span class="dv">100</span>], name<span class="op">=</span><span class="st">"Midterm Grades"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>grades</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
@@ -378,7 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Name: Midterm Grades, dtype: float64</code></pre>
 </div>
 </div>
-<div id="2a10b8c0" class="cell" data-execution_count="3">
+<div id="d7273927" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The the value at index 2</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>grades[<span class="dv">2</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -386,7 +386,7 @@ Name: Midterm Grades, dtype: float64</code></pre>
 </div>
 </div>
 <p>The index can be anyting . Here’s the same grades with student names as the index.</p>
-<div id="a582e3a6" class="cell" data-execution_count="4">
+<div id="95b8e754" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>grades2 <span class="op">=</span> pd.Series( data<span class="op">=</span>[<span class="dv">100</span>,<span class="dv">80</span>,<span class="dv">90</span>,np.nan,<span class="dv">100</span>], </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                    name<span class="op">=</span><span class="st">"Midterm Grades"</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                    index<span class="op">=</span>[<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>, <span class="st">"David"</span>, <span class="st">"Eve"</span>])</span>
@@ -400,7 +400,7 @@ Eve        100.0
 Name: Midterm Grades, dtype: float64</code></pre>
 </div>
 </div>
-<div id="0da8be69" class="cell" data-execution_count="5">
+<div id="18ec9ef7" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get Charlie's grade</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>grades2[<span class="st">"Charlie"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -410,7 +410,7 @@ Name: Midterm Grades, dtype: float64</code></pre>
 <section id="series-vectorized-functions" class="level4">
 <h4 class="anchored" data-anchor-id="series-vectorized-functions">Series Vectorized Functions</h4>
 <p>Like NumPy arrays, you can perform element-wise mathematical operations on Pandas series without needing for loops (i.e., <a href="https://en.wikipedia.org/wiki/Array_programming">vectorization</a>). For example:</p>
-<div id="f20247c4" class="cell" data-execution_count="6">
+<div id="59721c08" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add 5 points to all the grades</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>grades3 <span class="op">=</span> grades2 <span class="op">+</span> <span class="dv">5</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -423,7 +423,7 @@ Eve        105.0
 Name: Midterm Grades, dtype: float64</code></pre>
 </div>
 </div>
-<div id="7e3cae3e" class="cell" data-execution_count="7">
+<div id="a8e382b1" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># square the grades</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>gradesq <span class="op">=</span> grades2<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gradesq)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -436,7 +436,7 @@ Eve        10000.0
 Name: Midterm Grades, dtype: float64</code></pre>
 </div>
 </div>
-<div id="22c735d9" class="cell" data-execution_count="8">
+<div id="37c7b772" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add two series together</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>grades4 <span class="op">=</span> grades2 <span class="op">+</span> grades3</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grades4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -450,7 +450,7 @@ Name: Midterm Grades, dtype: float64</code></pre>
 </div>
 </div>
 <p>Pandas series also have a number of vectorized methods that you can call on the series themselves, again like NumPy arrays. Some examples:</p>
-<div id="51fb6164" class="cell" data-execution_count="9">
+<div id="0ab5cae1" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Highest grade:"</span>, grades.<span class="bu">max</span>())</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average grade:"</span>, grades.mean())</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"lowest grade:"</span>, grades.<span class="bu">min</span>())</span>
@@ -470,7 +470,7 @@ Count of grades 4</code></pre>
 <p>We can use the <code>unique()</code> method function to return only the non-duplicate values from the series.</p>
 <p>The <code>value_counts()</code> method function adds up values, creating a new series where the index is the value and the value is the count.</p>
 <p>For example consider the following series:</p>
-<div id="12981898" class="cell" data-execution_count="10">
+<div id="e92998be" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>votes <span class="op">=</span> pd.Series(data<span class="op">=</span>[ <span class="st">'y'</span>,<span class="st">'y'</span>,<span class="st">'y'</span>,<span class="st">'n'</span>,<span class="st">'y'</span>,np.nan,<span class="st">'n'</span>,<span class="st">'n'</span>,<span class="st">'y'</span>], name<span class="op">=</span><span class="st">"Vote"</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"deduplicate the votes:"</span>, votes.unique())</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"counts by value:"</span>, votes.value_counts())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -486,24 +486,24 @@ Name: count, dtype: int64</code></pre>
 <section id="comparison-to-numpy" class="level3">
 <h3 class="anchored" data-anchor-id="comparison-to-numpy">Comparison to NumPy</h3>
 <p>In many ways, you can think of a Pandas series as being like a NumPy array (in fact, series are built on top of NumPy arrays). It even has similar performance. For example:</p>
-<div id="20f29893" class="cell" data-execution_count="11">
+<div id="77ce3877" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.arange(<span class="dv">1000000</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>aseries <span class="op">=</span> pd.Series(a)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="8918793a" class="cell" data-execution_count="12">
+<div id="a265eec0" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit a.mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>531 μs ± 761 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
+<pre><code>537 μs ± 807 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
 </div>
 </div>
-<div id="d7719ab7" class="cell" data-execution_count="13">
+<div id="a85e9371" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit aseries.mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>544 μs ± 908 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
+<pre><code>549 μs ± 1.05 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
 </div>
 </div>
 <p>However, unlike NumPy arrays, <strong>Pandas series can only be one dimensional</strong>. Example:</p>
-<div id="94ca6828" class="cell" data-execution_count="14">
+<div id="d891b581" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2D NumPy array? No problem!</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.ones((<span class="dv">1000</span>, <span class="dv">1000</span>))</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -511,7 +511,7 @@ Name: count, dtype: int64</code></pre>
 <pre><code>(1000, 1000)</code></pre>
 </div>
 </div>
-<div id="f2472406" class="cell" data-execution_count="15">
+<div id="9d479413" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2D Pandas series? Nope!</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>aseries <span class="op">=</span> pd.Series(a)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
@@ -557,7 +557,7 @@ Name: count, dtype: int64</code></pre>
 <h2 class="anchored" data-anchor-id="dataframe">DataFrame</h2>
 <p>For 2D data, you use a Pandas <strong>DataFrame</strong>. A <code>DataFrame</code> is a table representation of data. It is the primary use case for pandas itself. A <code>DataFrame</code> is simply a collection of <code>Series</code> that share a common index. It’s like a programmable spreadsheet: it has rows and columns which can be accessed and manipulated with Python.</p>
 <p>An example:</p>
-<div id="66fdcd0d" class="cell" data-execution_count="16">
+<div id="5a31aa70" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> pd.Series( data <span class="op">=</span> [<span class="st">'Allen'</span>,<span class="st">'Bob'</span>,<span class="st">'Chris'</span>,<span class="st">'Dave'</span>,<span class="st">'Ed'</span>,<span class="st">'Frank'</span>,<span class="st">'Gus'</span>])</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>gpas <span class="op">=</span> pd.Series( data <span class="op">=</span> [<span class="fl">4.0</span>, np.nan, <span class="fl">3.4</span>, <span class="fl">2.8</span>, <span class="fl">2.5</span>, <span class="fl">3.8</span>, <span class="fl">3.0</span>])</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> pd.Series( data <span class="op">=</span> [<span class="st">'So'</span>, <span class="st">'Fr'</span>, <span class="st">'Fr'</span>, <span class="st">'Jr'</span>, <span class="st">'Sr'</span>, <span class="st">'Sr'</span>, <span class="st">'Fr'</span>])</span>
@@ -628,7 +628,7 @@ Name: count, dtype: int64</code></pre>
 </div>
 <section id="other-ways-to-create-dataframes" class="level3">
 <h3 class="anchored" data-anchor-id="other-ways-to-create-dataframes">Other Ways to create dataframes:</h3>
-<div id="6ebd2e17" class="cell" data-execution_count="17">
+<div id="1d6a02f7" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lists of lists</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>pd.DataFrame([[<span class="st">'Tom'</span>, <span class="dv">7</span>], [<span class="st">'Mike'</span>, <span class="dv">15</span>], [<span class="st">'Tiffany'</span>, <span class="dv">3</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
@@ -665,7 +665,7 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div id="30e935a9" class="cell" data-execution_count="18">
+<div id="89afd52c" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dictionary</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({<span class="st">"Name"</span>: [<span class="st">'Tom'</span>, <span class="st">'Mike'</span>, <span class="st">'Tiffany'</span>], <span class="st">"Number"</span>: [<span class="dv">7</span>, <span class="dv">15</span>, <span class="dv">3</span>]})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
@@ -707,7 +707,7 @@ Name: count, dtype: int64</code></pre>
 <section id="dataframes-share-the-index" class="level3">
 <h3 class="anchored" data-anchor-id="dataframes-share-the-index">DataFrames share the index</h3>
 <p>The dataframe is stitched together from values macthing on their index. For example:</p>
-<div id="282e2812" class="cell" data-execution_count="19">
+<div id="6ef274b6" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>gpas <span class="op">=</span> pd.Series(data<span class="op">=</span>[<span class="fl">4.0</span>, np.nan, <span class="fl">3.4</span>, <span class="fl">2.8</span>, <span class="fl">2.5</span> ], index<span class="op">=</span>[<span class="st">'Allen'</span>,<span class="st">'Bob'</span>,<span class="st">'Chris'</span>,<span class="st">'Ed'</span>, <span class="st">'Frank'</span>])</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>yrs <span class="op">=</span> pd.Series(data<span class="op">=</span>[<span class="st">'So'</span>, <span class="st">'Fr'</span>, <span class="st">'Jr'</span>, <span class="st">'Sr'</span>], index<span class="op">=</span>[<span class="st">'Allen'</span>,<span class="st">'Bob'</span>,<span class="st">'Dave'</span>, <span class="st">'Frank'</span>])</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>students <span class="op">=</span> pd.DataFrame( {<span class="st">'GPA'</span>: gpas, <span class="st">'Year'</span>: yrs})</span>
@@ -765,7 +765,7 @@ Name: count, dtype: int64</code></pre>
 <section id="accessing-elements-with-indexing" class="level3">
 <h3 class="anchored" data-anchor-id="accessing-elements-with-indexing">Accessing elements with indexing</h3>
 <p>You can access columns in the <code>DataFrame</code> using the names of the series, much in the same way you would a dictionary. For example:</p>
-<div id="c8e12b09" class="cell" data-execution_count="20">
+<div id="8288cfbd" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>students[<span class="st">'GPA'</span>] <span class="co"># slicing by row label</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>Allen    4.0
@@ -778,7 +778,7 @@ Name: GPA, dtype: float64</code></pre>
 </div>
 </div>
 <p>Since the values in a <code>DataFrame</code> are <code>Series</code>, you can then access a particular value using the <code>Series</code> index. For example, since the <code>Series</code> data in <code>studentsn</code> were indexed by name, we can get Chris’s grade by doing:</p>
-<div id="d22eb536" class="cell" data-execution_count="21">
+<div id="a8cb53fe" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>students[<span class="st">'GPA'</span>][<span class="st">'Chris'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>np.float64(3.4)</code></pre>
@@ -789,7 +789,7 @@ Name: GPA, dtype: float64</code></pre>
 <h4 class="anchored" data-anchor-id="accessing-elements-with-loc-and-iloc">Accessing elements with loc and iloc</h4>
 <p>The <code>loc[index, col]</code> and <code>iloc[row_pos, col_pos]</code> properties allow you to slice the dataframe. <code>loc</code> uses the index and column names, while <code>iloc</code> uses ordinal positions starting at zero.</p>
 <p>Here are some examples, using <code>studentsn</code></p>
-<div id="7acd8461" class="cell" data-execution_count="22">
+<div id="9dae5d47" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Examples using loc</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"loc: Get the Chris' GPA: "</span>, students.loc[<span class="st">'Chris'</span>, <span class="st">'GPA'</span>])</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"loc: Get the Year of the last student (Frank): "</span>, students.loc[<span class="st">'Frank'</span>, <span class="st">'Year'</span>])</span>
@@ -804,7 +804,7 @@ iloc: Get the GPA of the student at row 2 (Chris):  3.4
 iloc: Get the Year of the last student (Frank):  Sr</code></pre>
 </div>
 </div>
-<div id="2429a3e7" class="cell" data-execution_count="23">
+<div id="01935339" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can also slice using loc and iloc</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"loc: last two rows:</span><span class="ch">\n</span><span class="st">"</span>, students.loc[<span class="st">'Ed'</span>:, <span class="st">'GPA'</span>:<span class="st">'Year'</span>])</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
@@ -825,7 +825,7 @@ Frank  2.5   Sr</code></pre>
 <section id="null-checks" class="level4">
 <h4 class="anchored" data-anchor-id="null-checks">Null Checks</h4>
 <p>use <code>isna()</code> to check for <code>np.nan</code>.</p>
-<div id="e03bcd4c" class="cell" data-execution_count="24">
+<div id="92de0874" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>students[students.GPA.isna()]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <div>
@@ -885,7 +885,7 @@ d   4  1.5  z</code></pre>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="0f15f7f0" class="cell" data-execution_count="25">
+<div id="7107dcd3" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -927,8 +927,8 @@ b   2  NaN</code></pre>
 <li><code>.columns</code> retrieve a list of columns in the dataframe</li>
 </ul>
 <p>To illustrate this, we’ll load a comma-separated-value (CSV) file <a href="customers.csv">customers.csv</a> that containing some customer data. We can load the file directly as a <code>DataFrame</code> using Panda’s <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html#pandas.read_csv">read_csv</a> function. Notice that we can pass a URL to the function. We don’t need to first download, Pandas will take care of that for us all under the hood!</p>
-<div id="45097504" class="cell" data-execution_count="26">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>customers <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv'</span>)</span>
+<div id="e3640796" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>customers <span class="op">=</span> pd.read_csv(<span class="st">'https://su-ist356-m003-fall-2025.github.io/course-home/04_data_wrangling/customers.csv'</span>)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(customers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      First        Last                     Email Gender  Last IP Address  \
@@ -1000,13 +1000,13 @@ b   2  NaN</code></pre>
 <h3 class="anchored" data-anchor-id="display-the-dataframe-in-streamlit">Display the dataframe in Streamlit</h3>
 <p>You can use the <code>st.dataframe()</code> function to display a <code>DataFrame</code> in Streamlit.</p>
 <p>Here is an example:</p>
-<div id="ac81a1af" class="cell" data-execution_count="27">
+<div id="2a985310" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">"Dataframe Example"</span>)</span>
 <span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>customers <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv'</span>)</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>customers <span class="op">=</span> pd.read_csv(<span class="st">'https://su-ist356-m003-fall-2025.github.io/course-home/04_data_wrangling/customers.csv'</span>)</span>
 <span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>st.dataframe(customers.head(<span class="dv">20</span>))</span>
 <span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>st.dataframe(customers.describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1022,7 +1022,7 @@ b   2  NaN</code></pre>
 </div>
 <div class="callout-body-container callout-body">
 <p>Similar to the previous example, load this file into a <code>customers</code> dataframe:</p>
-<p>https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv</p>
+<p>https://su-ist356-m003-fall-2025.github.io/course-home/04_data_wrangling/customers.csv</p>
 <p>Then create a radio widget to allow the user to select Head or Tail and a number input widget to enter a number of lines.</p>
 <p>Output the head or tail of the dataframe and only show the number of lines input.</p>
 <p><em>Hint</em>: Use Streamlit’s <a href="https://docs.streamlit.io/develop/api-reference/widgets/st.radio">radio</a> and <a href="https://docs.streamlit.io/develop/api-reference/widgets/st.number_input">number_input</a> functions.</p>
@@ -1038,13 +1038,13 @@ b   2  NaN</code></pre>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="a86a9de0" class="cell" data-execution_count="28">
+<div id="d42ca422" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">'My first dataframe'</span>)</span>
 <span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>customers <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv'</span>)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>customers <span class="op">=</span> pd.read_csv(<span class="st">'https://su-ist356-m003-fall-2025.github.io/course-home/04_data_wrangling/customers.csv'</span>)</span>
 <span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>radio <span class="op">=</span> st.radio(<span class="st">'Show:'</span>, options<span class="op">=</span>[ <span class="st">'Head'</span>, <span class="st">'Tail'</span>], index<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> st.number_input(<span class="st">'Rows:'</span>, min_value<span class="op">=</span><span class="dv">1</span>, max_value<span class="op">=</span><span class="bu">len</span>(customers), value<span class="op">=</span><span class="dv">5</span>)</span>
@@ -1066,7 +1066,7 @@ b   2  NaN</code></pre>
 <li>a <code>list</code> of column names to select columns.</li>
 <li>a <code>boolean index</code> to select matching rows.</li>
 </ul>
-<div id="20c63672" class="cell" data-execution_count="29">
+<div id="8e553444" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> { </span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Name'</span>:  [<span class="st">'Allen'</span>,<span class="st">'Bob'</span>,<span class="st">'Chris'</span>,<span class="st">'Dave'</span>,<span class="st">'Ed'</span>,<span class="st">'Frank'</span>,<span class="st">'Gus'</span>], </span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GPA'</span>: [<span class="fl">4.0</span>, np.nan, <span class="fl">3.4</span>, <span class="fl">2.8</span>, <span class="fl">2.5</span>, <span class="fl">3.8</span>, <span class="fl">3.0</span>], </span>
@@ -1139,7 +1139,7 @@ b   2  NaN</code></pre>
 <section id="selecting-columns" class="level3">
 <h3 class="anchored" data-anchor-id="selecting-columns">Selecting Columns</h3>
 <p>This example just gets the name and GPA columns</p>
-<div id="45a077c2" class="cell" data-execution_count="30">
+<div id="9988e914" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>columns_to_show <span class="op">=</span> [<span class="st">'Name'</span>, <span class="st">'GPA'</span>]</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>students[columns_to_show]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
@@ -1199,7 +1199,7 @@ b   2  NaN</code></pre>
 <section id="getting-the-freshmen-using-a-boolean-index" class="level4">
 <h4 class="anchored" data-anchor-id="getting-the-freshmen-using-a-boolean-index">Getting the freshmen using a boolean index</h4>
 <p>consider the following:</p>
-<div id="27d41629" class="cell" data-execution_count="31">
+<div id="7d0e790a" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>students[<span class="st">'Year'</span>] <span class="op">==</span> <span class="st">'Fr'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
 <pre><code>0    False
@@ -1214,7 +1214,7 @@ Name: Year, dtype: bool</code></pre>
 </div>
 <p>This it called a <code>boolean index</code>. The boolean expression is evaluted for each index in the <code>DataFrame</code>. It’s similar to the boolean “mask” array we used for extracting values from an array in the <a href="../04_data_wrangling/numpy_basics.html">NumPy</a> unit.</p>
 <p>When we apply the boolean index to the dataframe, only the rows where the index evaluates to <code>True</code> are returned.</p>
-<div id="5b36da75" class="cell" data-execution_count="32">
+<div id="829236ee" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>students[students[<span class="st">'Year'</span>] <span class="op">==</span> <span class="st">'Fr'</span>] </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <div>
@@ -1255,7 +1255,7 @@ Name: Year, dtype: bool</code></pre>
 </div>
 </div>
 <p>Likewise we can assign these variables for clarity</p>
-<div id="1939cc92" class="cell" data-execution_count="33">
+<div id="184059b8" class="cell" data-execution_count="33">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>only_freshmen_index <span class="op">=</span> students[<span class="st">'Year'</span>] <span class="op">==</span> <span class="st">'Fr'</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>only_freshmen <span class="op">=</span> students[only_freshmen_index]</span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>only_freshmen</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1308,7 +1308,7 @@ Name: Year, dtype: bool</code></pre>
 <li>not <code>~</code></li>
 </ul>
 <p>Note: <code>()</code> are required between each bitwise operator.</p>
-<div id="e4213da6" class="cell" data-execution_count="34">
+<div id="6c668f90" class="cell" data-execution_count="34">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># freshmen and seniors</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>only_freshmen_seniors <span class="op">=</span> (students[<span class="st">'Year'</span>] <span class="op">==</span> <span class="st">'Fr'</span>) <span class="op">|</span> (students[<span class="st">'Year'</span>] <span class="op">==</span> <span class="st">'Sr'</span>)</span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>students[only_freshmen_seniors]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1367,7 +1367,7 @@ Name: Year, dtype: bool</code></pre>
 <section id="putting-it-together" class="level3">
 <h3 class="anchored" data-anchor-id="putting-it-together">Putting it Together</h3>
 <p>Get the name and GPA of only the freshmen that have a GPA stored (i.e., for which the GPA is not a NaN):</p>
-<div id="47f02928" class="cell" data-execution_count="35">
+<div id="8441d2d2" class="cell" data-execution_count="35">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">'Name'</span>, <span class="st">'GPA'</span>]</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>fr_with_gpa <span class="op">=</span> (students[<span class="st">'Year'</span>] <span class="op">==</span> <span class="st">'Fr'</span>) <span class="op">&amp;</span> (students[<span class="st">'GPA'</span>].notna())</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>students[fr_with_gpa][cols]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1411,7 +1411,7 @@ Name: Year, dtype: bool</code></pre>
 </div>
 <div class="callout-body-container callout-body">
 <p>Similar to the previous example, load this file into a <code>customers</code> dataframe:</p>
-<p>https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv</p>
+<p>https://su-ist356-m003-fall-2025.github.io/course-home/04_data_wrangling/customers.csv</p>
 <p>Then:</p>
 <ol type="1">
 <li><p>Create a radio widget to allow the user to select “M” or “F” for gender,</p></li>
@@ -1431,12 +1431,12 @@ Name: Year, dtype: bool</code></pre>
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="9ec7c062" class="cell" data-execution_count="36">
+<div id="950a366d" class="cell" data-execution_count="36">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">'Customers'</span>)</span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>customers <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv'</span>)</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>customers <span class="op">=</span> pd.read_csv(<span class="st">'https://su-ist356-m003-fall-2025.github.io/course-home/04_data_wrangling/customers.csv'</span>)</span>
 <span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>radio <span class="op">=</span> st.radio(<span class="st">'Gender:'</span>, options<span class="op">=</span>[ <span class="st">'M'</span>, <span class="st">'F'</span>], index<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> st.multiselect(<span class="st">'Columns:'</span>, options<span class="op">=</span>customers.columns)</span>
 <span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>gender_index <span class="op">=</span> customers[<span class="st">'Gender'</span>] <span class="op">==</span> radio</span>
