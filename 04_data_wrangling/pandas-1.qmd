@@ -1,0 +1,441 @@
+---
+title: "2. Introduction to Pandas: Series and DataFrames"
+jupyter: python3
+---
+
+## What is Pandas?
+
+[Pandas](https://pandas.pydata.org) is a Python library for working with tabular data. Pandas is short for PANeled DAta.
+
+Pandas is like a programmable spreadheet. It is used by programmers to wrangle data (sort, filter, clean, enhance, etc).
+
+## Pandas Series and DataFrame
+
+The two fundamental compoents of Pandas are the `Series` and `DataFrame`
+
+- a `Series` is a list of values with labels. This creates a **column** of data
+- a `DataFrame` is a collection of series. This creates a **table** of data
+
+### Null / No Value
+
+The constant `np.nan` is used to represent "no value"
+
+```{python}
+import pandas as pd
+import numpy as np
+```
+
+## Series
+
+A `Series` is a named list of values.  
+
+The series has an index, too to reference each value. The default index is a zero based, similar to a python list.
+
+```{python}
+grades = pd.Series(data=[100,80,90,np.nan,100], name="Midterm Grades")
+grades
+```
+
+```{python}
+# The the value at index 2
+grades[2]
+```
+
+The index can be anyting . Here's the same grades with student names as the index.
+
+```{python}
+grades2 = pd.Series( data=[100,80,90,np.nan,100], 
+                    name="Midterm Grades",
+                    index=["Alice", "Bob", "Charlie", "David", "Eve"])
+grades2
+```
+
+```{python}
+# Get Charlie's grade
+grades2["Charlie"]
+```
+
+#### Series Vectorized Functions
+
+Like NumPy arrays, you can perform element-wise mathematical operations on Pandas series without needing for loops (i.e., [vectorization](https://en.wikipedia.org/wiki/Array_programming)). For example:
+
+
+```{python}
+# add 5 points to all the grades
+grades3 = grades2 + 5
+print(grades3)
+```
+
+```{python}
+# square the grades
+gradesq = grades2**2
+print(gradesq)
+```
+
+```{python}
+# add two series together
+grades4 = grades2 + grades3
+print(grades4)
+```
+
+Pandas series also have a number of vectorized methods that you can call on the series themselves, again like NumPy arrays. Some examples:
+
+```{python}
+print("Highest grade:", grades.max())
+print("Average grade:", grades.mean())
+print("lowest grade:", grades.min())
+print("Sum of grades:", grades.sum())
+print("Count of grades", grades.count())
+```
+
+#### Other Series Functions
+
+We can use the `unique()` method function to return only the non-duplicate values from the series. 
+
+The `value_counts()` method function adds up values, creating a new series where the index is the value and the value is the count.
+
+ For example consider the following series:
+
+```{python}
+votes = pd.Series(data=[ 'y','y','y','n','y',np.nan,'n','n','y'], name="Vote")
+print("deduplicate the votes:", votes.unique())
+print("counts by value:", votes.value_counts())
+```
+
+### Comparison to NumPy
+
+In many ways, you can think of a Pandas series as being like a NumPy array (in fact, series are built on top of NumPy arrays). It even has similar performance. For example:
+
+```{python}
+a = np.arange(1000000)
+aseries = pd.Series(a)
+```
+
+```{python}
+%timeit a.mean()
+```
+
+```{python}
+%timeit aseries.mean()
+```
+
+However, unlike NumPy arrays, **Pandas series can only be one dimensional**. Example:
+
+```{python}
+# 2D NumPy array? No problem!
+a = np.ones((1000, 1000))
+print(a.shape)
+```
+
+```{python}
+#| error: true
+# 2D Pandas series? Nope!
+aseries = pd.Series(a)
+```
+
+## DataFrame
+
+For 2D data, you use a Pandas **DataFrame**. A `DataFrame` is a table representation of data. It is the primary use case for pandas itself. A `DataFrame` is simply a collection of `Series` that share a common index. It's like a programmable spreadsheet: it has rows and columns which can be accessed and manipulated with Python.
+
+An example:
+
+```{python}
+names = pd.Series( data = ['Allen','Bob','Chris','Dave','Ed','Frank','Gus'])
+gpas = pd.Series( data = [4.0, np.nan, 3.4, 2.8, 2.5, 3.8, 3.0])
+years = pd.Series( data = ['So', 'Fr', 'Fr', 'Jr', 'Sr', 'Sr', 'Fr'])
+series_dict = { 'Name':  names, 'GPA': gpas, 'Year' : years }  # dict of Series, keys are the series names
+students = pd.DataFrame( series_dict )
+students
+```
+
+### Other Ways to create dataframes:
+
+```{python}
+# Lists of lists
+pd.DataFrame([['Tom', 7], ['Mike', 15], ['Tiffany', 3]])
+```
+
+```{python}
+# Dictionary
+pd.DataFrame({"Name": ['Tom', 'Mike', 'Tiffany'], "Number": [7, 15, 3]})
+```
+
+For more, see the [Pandas documentation on DataFrames](https://pandas.pydata.org/pandas-docs/stable/user_guide/dsintro.html#dataframe ).
+
+### DataFrames share the index
+
+The dataframe is stitched together from values macthing on their index. For example:
+
+```{python}
+gpas = pd.Series(data=[4.0, np.nan, 3.4, 2.8, 2.5 ], index=['Allen','Bob','Chris','Ed', 'Frank'])
+yrs = pd.Series(data=['So', 'Fr', 'Jr', 'Sr'], index=['Allen','Bob','Dave', 'Frank'])
+students = pd.DataFrame( {'GPA': gpas, 'Year': yrs})
+students
+```
+
+### Accessing elements with indexing
+
+You can access columns in the `DataFrame` using the names of the series, much in the same way you would a dictionary. For example:
+
+```{python}
+students['GPA'] # slicing by row label
+```
+
+Since the values in a `DataFrame` are `Series`, you can then access a particular value using the `Series` index. For example, since the `Series` data in `studentsn` were indexed by name, we can get Chris's grade by doing:
+
+```{python}
+students['GPA']['Chris']
+```
+
+Much like a `Series` is like a special NumPy array with fancy indexing (and other useful features), a `DataFrame` is like a special type of dictionary, with some extra features that make handling datasets much easier. In fact, as we'll see below, a `DataFrame` is more like a cross between a dictionary and a NumPy array that make it *excel* at data wrangling. (pun intended)
+
+#### Accessing elements with loc and iloc
+
+The `loc[index, col]` and `iloc[row_pos, col_pos]` properties allow you to slice the dataframe. `loc` uses the index and column names, while `iloc` uses ordinal positions starting at zero.
+
+Here are some examples, using `studentsn`
+
+```{python}
+# Examples using loc
+print("loc: Get the Chris' GPA: ", students.loc['Chris', 'GPA'])
+print("loc: Get the Year of the last student (Frank): ", students.loc['Frank', 'Year'])
+
+# Same examples using iloc
+print("iloc: Get the GPA of the student at row 2 (Chris): ", students.iloc[2, 0])
+print("iloc: Get the Year of the last student (Frank): ", students.iloc[-1, 1])
+```
+
+```{python}
+# You can also slice using loc and iloc
+print("loc: last two rows:\n", students.loc['Ed':, 'GPA':'Year'])
+print()
+print("iloc: last two rows:\n", students.iloc[-2:, 0:2])
+```
+
+#### Null Checks
+
+use `isna()` to check for `np.nan`. 
+
+```{python}
+students[students.GPA.isna()]
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 2.1
+
+Create this `DataFrame`:
+
+```{text}
+   s1   s2 s3
+a   1  2.2  q
+b   2  NaN  q
+c   3  3.0  z
+d   4  1.5  z
+```
+
+In other words, the frame should have 3 columns named `s1`, `s2`, and `s3`, and the rows should be indexed with the strings `a`, `b`, `c`, and `d`. Use `Series` to create it to make sure the index is correct. Print the full the `DataFrame` (so that you can get back something like the above), then print the the first 2 rows and columns using `loc` or `iloc`.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+import pandas as pd
+import numpy as np
+
+s1 = pd.Series(data = [1, 2, 3, 4], index=['a', 'b', 'c', 'd'], name='s1')
+s2 = pd.Series(data = [2.2, np.nan, 3.0, 1.5], index=['a', 'b', 'c', 'd'], name='s2')
+s3 = pd.Series(data = ['q', 'q', 'z', 'z'], index=['a', 'b', 'c', 'd'], name='s3')
+
+df = pd.DataFrame({'s1':s1,'s2':s2,'s3':s3})
+print(df)
+
+print(df.loc['a':'b', 's1':'s2'])
+```
+
+:::
+::::
+
+
+## Basic Dataframe operations
+
+- `info()` provide names of columns, counts of non-null values in each columns, and data types.
+- `describe()` for each numerical column provide some basic statistics (min, max, mean, and quartiles).
+- `head(n=5)` view the FIRST `n` rows in the dataframe (defaults to 5)
+- `tail(n=5)` view the LAST `n` rows in the dataframe (defaults to 5)
+- `sample(n=1)` view a random `n` rows from the dataframe (defautls to 1)
+- `.columns` retrieve a list of columns in the dataframe
+
+To illustrate this, we'll load a comma-separated-value (CSV) file [customers.csv](customers.csv) that containing some customer data. We can load the file directly as a `DataFrame` using Panda's [read_csv](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html#pandas.read_csv) function. Notice that we can pass a URL to the function. We don't need to first download, Pandas will take care of that for us all under the hood!
+
+```{python}
+customers = pd.read_csv('https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv')
+print(customers)
+```
+
+### Display the dataframe in Streamlit
+
+You can use the `st.dataframe()` function to display a `DataFrame` in Streamlit.  
+
+Here is an example:
+
+```{python}
+#| eval: false
+import streamlit as st
+import pandas as pd
+
+st.title("Dataframe Example")
+
+customers = pd.read_csv('https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv')
+
+st.dataframe(customers.head(20))
+st.dataframe(customers.describe())
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 2.2
+
+Similar to the previous example, load this file into a `customers` dataframe:
+
+https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv
+
+Then create a radio widget to allow the user to select Head or Tail and a number input widget to enter a number of lines.
+
+Output the head or tail of the dataframe and only show the number of lines input.
+
+*Hint*: Use Streamlit's [radio](https://docs.streamlit.io/develop/api-reference/widgets/st.radio) and [number_input](https://docs.streamlit.io/develop/api-reference/widgets/st.number_input) functions. 
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+import streamlit as st
+import pandas as pd
+
+st.title('My first dataframe')
+
+customers = pd.read_csv('https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv')
+
+radio = st.radio('Show:', options=[ 'Head', 'Tail'], index=0)
+rows = st.number_input('Rows:', min_value=1, max_value=len(customers), value=5)
+if radio == 'Head':
+    st.dataframe(customers.head(rows))
+else:
+    st.dataframe(customers.tail(rows))
+```
+:::
+::::
+
+
+### Selecting Rows and Columns
+
+We can pair down the output of a dataframe by using:
+
+- a `list` of column names to select columns.
+- a `boolean index` to select matching rows.
+
+```{python}
+data_dict = { 
+    'Name':  ['Allen','Bob','Chris','Dave','Ed','Frank','Gus'], 
+    'GPA': [4.0, np.nan, 3.4, 2.8, 2.5, 3.8, 3.0], 
+    'Year' : ['So', 'Fr', 'Fr', 'Jr', 'Sr', 'Sr', 'Fr'] } 
+students = pd.DataFrame( data_dict )
+students
+```
+
+### Selecting Columns
+
+This example just gets the name and GPA columns
+
+```{python}
+columns_to_show = ['Name', 'GPA']
+students[columns_to_show]
+```
+
+#### Getting the freshmen using a boolean index
+
+consider the following:
+
+```{python}
+students['Year'] == 'Fr'
+```
+
+This it called a `boolean index`. The boolean expression is evaluted for each index in the `DataFrame`. It's similar to the boolean "mask" array we used for extracting values from an array in the [NumPy](numpy_basics.qmd) unit.
+
+When we apply the boolean index to the dataframe, only the rows where the index evaluates to `True` are returned.
+
+```{python}
+students[students['Year'] == 'Fr'] 
+```
+
+Likewise we can assign these variables for clarity
+
+```{python}
+only_freshmen_index = students['Year'] == 'Fr'
+only_freshmen = students[only_freshmen_index]
+only_freshmen
+```
+
+#### And Or and Not with Boolean indexes
+
+What if we want freshmen or seniors? We cannot use `or` in this case, instead we must use the python bitwise or operator. This is because the series contains multiple values.
+
+**Bitwise Operators** 
+
+- and `&`
+- or `|`
+- not `~`
+
+Note: `()` are required between each bitwise operator.
+
+```{python}
+# freshmen and seniors
+only_freshmen_seniors = (students['Year'] == 'Fr') | (students['Year'] == 'Sr')
+students[only_freshmen_seniors]
+```
+
+### Putting it Together
+
+Get the name and GPA of only the freshmen that have a GPA stored (i.e., for which the GPA is not a NaN):
+
+```{python}
+cols = ['Name', 'GPA']
+fr_with_gpa = (students['Year'] == 'Fr') & (students['GPA'].notna())
+students[fr_with_gpa][cols]
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 2.3
+
+Similar to the previous example, load this file into a `customers` dataframe:
+
+https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv
+
+Then:
+
+1. Create a radio widget to allow the user to select "M" or "F" for gender,
+
+2. a multi-select widget to pick which columns to display (*Hint*: use Streamlit's [multiselect](https://docs.streamlit.io/develop/api-reference/widgets/st.multiselect) method),
+
+3. and filter the rows to match the gender and selected columns.
+
+Display the dataframe in the Streamlit app.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+import streamlit as st
+import pandas as pd
+
+st.title('Customers')
+customers = pd.read_csv('https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv')
+radio = st.radio('Gender:', options=[ 'M', 'F'], index=0)
+cols = st.multiselect('Columns:', options=customers.columns)
+gender_index = customers['Gender'] == radio
+st.dataframe(customers[gender_index][cols])
+```
+
+:::
+::::

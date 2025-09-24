@@ -8,6 +8,7 @@ In this unit we will learn about how to easily manage and manipulate data in Pyt
 ## Tutorials
 
 1. [Introduction to NumPy](numpy_basics.qmd)
+2. [Introduction to Pandas: Series and DataFrames](pandas-1.qmd)
 
 ## Lectures
 
