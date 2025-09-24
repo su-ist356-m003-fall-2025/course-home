@@ -703,7 +703,7 @@
     "href": "04_data_wrangling/index.html#lectures",
     "title": "4. Data Wrangling",
     "section": "Lectures",
-    "text": "Lectures\n\nMonday, 9/22/2025\nInstructions on how to use Git on the command line. Introduction to NumPy.",
+    "text": "Lectures\n\nMonday, 9/22/2025\nInstructions on how to use Git on the command line. Introduction to NumPy.\n\n\n\n\nWednesday, 9/24/2025\nIntroduction to Pandas: Series and DataFrames.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "4. Data Wrangling"
