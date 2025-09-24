@@ -268,7 +268,7 @@ print(df.loc['a':'b', 's1':'s2'])
 To illustrate this, we'll load a comma-separated-value (CSV) file [customers.csv](customers.csv) that containing some customer data. We can load the file directly as a `DataFrame` using Panda's [read_csv](https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html#pandas.read_csv) function. Notice that we can pass a URL to the function. We don't need to first download, Pandas will take care of that for us all under the hood!
 
 ```{python}
-customers = pd.read_csv('https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv')
+customers = pd.read_csv('https://su-ist356-m003-fall-2025.github.io/course-home/04_data_wrangling/customers.csv')
 print(customers)
 ```
 
@@ -285,7 +285,7 @@ import pandas as pd
 
 st.title("Dataframe Example")
 
-customers = pd.read_csv('https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv')
+customers = pd.read_csv('https://su-ist356-m003-fall-2025.github.io/course-home/04_data_wrangling/customers.csv')
 
 st.dataframe(customers.head(20))
 st.dataframe(customers.describe())
@@ -296,7 +296,7 @@ st.dataframe(customers.describe())
 
 Similar to the previous example, load this file into a `customers` dataframe:
 
-https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv
+https://su-ist356-m003-fall-2025.github.io/course-home/04_data_wrangling/customers.csv
 
 Then create a radio widget to allow the user to select Head or Tail and a number input widget to enter a number of lines.
 
@@ -314,7 +314,7 @@ import pandas as pd
 
 st.title('My first dataframe')
 
-customers = pd.read_csv('https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv')
+customers = pd.read_csv('https://su-ist356-m003-fall-2025.github.io/course-home/04_data_wrangling/customers.csv')
 
 radio = st.radio('Show:', options=[ 'Head', 'Tail'], index=0)
 rows = st.number_input('Rows:', min_value=1, max_value=len(customers), value=5)
@@ -409,7 +409,7 @@ students[fr_with_gpa][cols]
 
 Similar to the previous example, load this file into a `customers` dataframe:
 
-https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv
+https://su-ist356-m003-fall-2025.github.io/course-home/04_data_wrangling/customers.csv
 
 Then:
 
@@ -430,7 +430,7 @@ import streamlit as st
 import pandas as pd
 
 st.title('Customers')
-customers = pd.read_csv('https://raw.githubusercontent.com/su-ist356-m003-fall-2025/course-home/refs/heads/main/04_data_wrangling/customers.csv')
+customers = pd.read_csv('https://su-ist356-m003-fall-2025.github.io/course-home/04_data_wrangling/customers.csv')
 radio = st.radio('Gender:', options=[ 'M', 'F'], index=0)
 cols = st.multiselect('Columns:', options=customers.columns)
 gender_index = customers['Gender'] == radio
