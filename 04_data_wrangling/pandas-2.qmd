@@ -1,0 +1,429 @@
+---
+title: "3. Data I/O with Pandas"
+jupyter: python3
+---
+
+
+In this tutorial we'll learn about how to load and save files using Pandas, including how to handle different file formats (csv, json, Excel, etc.).
+
+
+## Pandas reads data in a variety of formats
+
+Examples:
+
+- Text: CSV / Delimited   
+ `pd.read_csv("file.csv", sep=",", header=0)`
+- Semi- Structured: JSON, HTML, XML   
+`pd.read_json("file.json", orient="records")`
+- Microsoft Excel   
+`pd.read_excel("file.xlsx", sheet_name="Sheet 1")`
+- Big Data formats (ORC, Parquet, HDF5)   
+`pd.read_parquet("file.parquet")`
+- SQL Databases
+
+For more details, see the [Pandas IO documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html).
+
+## Pandas can read from almost anywhere
+
+- Local files  
+`pd_read_csv("./folder/file.csv")`
+- Files over  the network using http / https   
+`pd.read_csv("https://website/folder/file.csv")`
+- File-like: binary / text streams  
+```{python}
+#| eval: false
+with open('file.csv', 'r') as file:
+    data = file.read()
+    df = pd.read_csv(pd.compat.StringIO(data))  # text stream
+```
+
+## Reading CSV / Delimited Text
+
+For reading CSV files (or text files with other delimiters, such as tab), we use the [read_csv()](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-read-csv-table) function.
+
+- This function is for processing text files one record per line with values separated by a delimiter  (typically a `,`, but can be any string).
+- Common named arguments:
+    - `sep=` the delimiter, default is a comma.
+    - `header=` Which row, amongst those not skipped is the header
+    - `names=` list of column names to use in the DataFrame
+    - `skiprows=` how many lines to skip before the data begins?
+
+Some examples of reading in the same data in different ways are below. In every case, the output is the same `DataFrame`:
+```{python}
+import pandas as pd
+# To view the following files, see:
+# https://github.com/mafudge/datasets/tree/master/delimited
+location = "https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/delimited"
+
+# Header is first row, Comma-delimited
+students = pd.read_csv(f'{location}/students-header.csv') 
+
+# No header in first row, Comma-delimited
+students = pd.read_csv(f'{location}/students-no-header.csv', header=None, names =['Name','Grade','Year'])
+
+# No header in first row, Pipe-delimited  "|"
+students = pd.read_csv(f'{location}/students-header.psv', sep="|")
+
+# Header not in first row, header in 6th row, Comma-delimited"
+students = pd.read_csv(f'{location}/students-header-blanks.csv', skiprows=5)
+
+# no header, data starts in 6th row, semicolon-delimited"
+students = pd.read_csv(f'{location}/students-no-header-blanks.ssv', skiprows=5, header=None, sep=";", names =['Name','Grade','Year'])
+
+students
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 3.1
+
+Read this file into a Pandas `DataFrame`:
+
+[https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/delimited/webtraffic.log](https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/delimited/webtraffic.log)
+
+- What is the delimiter?
+- Is there a header? Which row?
+- Do you need to skip lines?
+
+Display only data where the time taken > 500 (msec) and the sc-status is equal to 200.
+
+Bonus: display the data in a Streamlit app.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+import pandas as pd
+
+wt = pd.read_csv("https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/delimited/webtraffic.log", skiprows=3, header=0, sep="\s+")
+wt.info() # colunmn info (to console only)
+
+wt_filter = (wt['sc-status'] == 200) & ( wt['time-taken'] > 500)
+wt_slow_but_successful = wt[wt_filter]
+wt_slow_but_successful
+```
+
+To display in a Streamlit app, put the above in a script file (say, `webtraffic.py`) and add the following:
+```{python}
+#| eval: false
+import streamlit as st
+
+st.title("Webtraffic Data")
+st.dataframe(wt_slow_but_successful) # first 20 rows
+```
+Then in a terminal run:
+```{bash}
+python -m streamlit run webtraffic.py
+```
+:::
+::::
+
+
+## Reading JSON Text
+
+To load JSON files as a Pandas `DataFrame` we use the [read_json()](https://pandas.pydata.org/docs/reference/api/pandas.read_json.html) function. Examples: 
+
+- `pd.read_json("file.json", orient="columns")`
+
+- `pd.read_json("file.json", orient="records", lines=True)` <== Line-oriented json
+
+Orientations:
+- **split**: dict like `{index -> [index]; columns -> [columns]; data -> [values]}`
+
+- **records**:  list like `[{column -> value} …]`
+
+- **index**: dict like `{index -> {column -> value}}`
+
+- **columns**: dict like `{column -> {index -> value}}`
+
+- **values**: just the values array
+
+- **table**: dict adhering to the JSON Table Schema [https://specs.frictionlessdata.io/table-schema/#descriptor](https://specs.frictionlessdata.io/table-schema/#descriptor)
+
+For more on reading JSON files, see the Pandas [Reading JSON guide](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-json-reader).
+
+Some examples of reading in the same JSON data in different ways follows. In every case, the output is the same `DataFrame`:
+
+```{python}
+# https://github.com/mafudge/datasets/tree/master/json-formats to view the files
+location = "https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/json-formats"
+
+# Row-oriented JSON [ { "Name": "Alice", "Grade": 12, "Year": 2021 }, { "Name": "Bob", "Grade": 11, "Year": 2022 } ]
+students = pd.read_json(f'{location}/students-records.json', orient='records')
+
+# line-oriented JSON { "Name": "Alice", "Grade": 12, "Year": 2021 }\n { "Name": "Bob", "Grade": 11, "Year": 2022 }\n
+students = pd.read_json(f'{location}/students-lines.json', orient='records', lines=True)
+
+# column-oriented JSON { "Name": ["Alice", "Bob"], "Grade": [12, 11], "Year": [2021, 2022] }
+students = pd.read_json(f'{location}/students-columns.json', orient='columns')
+
+students
+```
+
+### Handling Nested JSON
+
+The `read_json()` method does not perform well on nested JSON structures. For example consider the following JSON file of customer orders:
+
+The file `orders.json`: 
+```{json}
+[
+    {
+        "Customer" : { "FirstName" : "Abby", "LastName" : "Kuss"}, 
+        "Items" : [
+            { "Name" : "T-Shirt", "Price" : 10.0, "Quantity" : 3},
+            { "Name" : "Jacket", "Price" : 20.0, "Quantity" : 1}
+        ]
+    },
+    {
+        "Customer" : { "FirstName" : "Bette", "LastName" : "Alott"}, 
+        "Items" : [
+            { "Name" : "Shoes", "Price" : 25.0, "Quantity" : 1}, 
+            { "Name" : "Jacket", "Price" : 20.0, "Quantity" : 1}
+        ]
+    },
+    {
+        "Customer" : { "FirstName" : "Chris", "LastName" : "Peanugget"}, 
+        "Items" : [
+            { "Name" : "T-Shirt", "Price" : 10.0, "Quantity" : 1}
+        ]
+    }
+]
+```
+
+When we read this with `read_json()` we get the three orders but only two columns --- one for the `"Customer"` key, and the other for the `"Items"` key:
+
+```{python}
+orders = pd.read_json("https://raw.githubusercontent.com/mafudge/datasets/master/json-samples/orders.json")
+orders
+```
+
+What we want is one row per item on the the order and the customer name to be in separate columns. The [json_normalize()](https://pandas.pydata.org/docs/reference/api/pandas.json_normalize.html) function can help here.
+
+::: {.callout-note}
+It is important to note that `json_normalize()` does not take a file as input, but rather de-serialized json (i.e., a dict or list of dicts).
+:::
+
+An example (note that we first need to load the file as JSON dict; for that, we'll use the `requests` module to download the data):
+
+```{python}
+# first down load the data
+import requests
+response = requests.get("https://raw.githubusercontent.com/mafudge/datasets/master/json-samples/orders.json")
+json_data = response.json()  #de-serialize
+print('Original JSON data:')
+print(json_data)
+# now load into a DataFrame
+orders = pd.json_normalize(json_data)
+print("\nLoaded DataFrame:")
+orders
+```
+
+Better but this only processed nested `dict` and not nested `list`. We still need to handle the list of `Items`. To accomplish this we :
+
+1. Set the `record_path` to be the nested list `'Items'`. This tells `json_normalize()` to use that JSON key as the row level. So now we will have 5 rows (one for each item) instead of 3. 
+2. Then we set the `meta` named argument to a `list` of each of the other values we wish to include, in this instance  last name and first name.
+
+*Note:* The `meta` syntax is a bit weird. It's a `list` of JSON paths (also represented as lists) to each item in the JSON. For example:
+
+    The meta Argument        ==> Matches This in the JSON           ==> And Displays As This Pandas Column
+    ["Customer","FirstName"] ==> { "Customer" : { "FirstName": ...} ==> Customer.Firstname
+
+```{python}
+orders = pd.json_normalize(json_data, record_path="Items", meta=[["Customer","FirstName"],["Customer","LastName"]])
+orders
+```
+
+Yes it seems complicated, because conceptually it is a bit complicated. Let's try another example, with some abstract values.
+
+In the following example we want to generate a normalized table with 3 rows and 4 columns.
+
+- The rows are based on the `"A"` record_path, which has two sub-sets, `A1` and `A2`. There are three sets of `A` data: (101, 102); (111, 112); and (201, 202).
+- The meta data are based on columns `"B"`, and `"C1"`
+
+```{python}
+json_data = [
+    {
+        "A": [
+            {"A1": 101, "A2": 102},
+            {"A1": 111, "A2": 112}
+        ],
+        "B": 103,
+        "C": {"C1": 104}
+    },
+    {
+        "A": [
+            {"A1": 201, "A2": 202}
+        ],
+        "B": 203,
+        "C": {"C1": 204}
+    }
+]
+
+df = pd.json_normalize(json_data, record_path="A", meta=["B", ["C", "C1"]])
+df
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 3.2
+
+Use the `json_normalize` function to tabularize this JSON data:
+
+[https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/json-samples/employees.json](https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/json-samples/employees.json)
+
+The final table should have these columns: `dept, age, firstname, lastname`.
+
+*Hint*: read the file using the `requests` module, like in the above example.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+import requests
+import pandas as pd
+
+response = requests.get("https://raw.githubusercontent.com/mafudge/datasets/master/json-samples/employees.json")
+employees = response.json()
+employees_df = pd.json_normalize(employees, record_path=["employees"], meta=["dept"])
+employees_df
+```
+:::
+::::
+
+
+## Reading Excel files
+
+Excel files can be read using the [read_excel()](https://pandas.pydata.org/docs/reference/api/pandas.read_excel.html) function. For example:
+`pd.read_excel('file.xlsx', sheet_name=None)`
+
+::: {.callout-note}
+In order to use the `read_excel` method, you need to additional install the optional Pandas dependency `openpyxl`. To do that using `pip`, run:
+```{bash}
+pip install openpyxl
+```
+:::
+
+This will read in all sheets as a `dict`, with the sheet names as the keys and the values as Pandas DataFrames representing the contents. An example using this with Streamlit:
+
+```{python}
+#| eval: false
+import streamlit as st
+import pandas as pd
+
+st.title("Excel Example - multiple sheets")
+
+contents = pd.read_excel("https://github.com/mafudge/datasets/raw/refs/heads/master/excel-examples/books_of_interest.xlsx", sheet_name=None)
+
+# names of sheets in the excel file its a dictionary
+sheets = list(contents.keys()) 
+
+# make tabs for each sheet
+tabs = st.tabs(sheets)
+
+#loop through each tab and write the contents of the sheet to the tab
+for i in range(len(tabs)):
+    df = contents[sheets[i]]
+    tabs[i].dataframe(df)
+```
+
+## Reading HTML Tables
+
+You can scrape an HTML table off a webpage using the [read_html()](https://pandas.pydata.org/docs/reference/api/pandas.read_html.html) function. This will return a list of all HTML tables on the page, with each table as a `DataFrame`.
+
+
+::: {.callout-note}
+In order to use the `read_html` method, you need to additional install the optional Pandas dependency `lxml`. To do that using `pip`, run:
+```{bash}
+pip install lxml 
+```
+:::
+
+For example:
+
+```{python}
+contents = pd.read_html("https://su-ist356-m003-fall-2025.github.io/course-home")
+for df in contents:
+    print(df)
+```
+
+An example of turning this into a Streamlit app:
+```{python}
+#| eval: false
+import streamlit as st
+import pandas as pd
+
+st.title("HTML Example - multiple tables")
+
+url = "https://su-ist356-m003-fall-2025.github.io/course-home"
+contents = pd.read_html(url)
+
+# There are 2 tables on this page, but we don't know this
+tables_count = len(contents)
+
+st.write(f"Found {tables_count} tables on the page")
+
+# make tabs for each HTML Table
+tab_names = [ f"HTML Table {i}" for i in range(tables_count)]
+tabs = st.tabs(tab_names)
+
+# for each tab, show its table
+for i in range(len(tabs)):
+    df = contents[i]
+    tabs[i].dataframe(df)
+```
+
+## Writing Dataframes
+
+- Once the data is in a `pd.DataFrame` is can be written out with one of the `to()` methods such as `to_csv()`, `to_json()`, `to_parquet()` etc.
+- This makes pandas a superior data conversion tool.
+- If you include a file, the `to()` method writes to the file, otherwise the binary contents are returned.
+- https://pandas.pydata.org/pandas-docs/stable/reference/io.html 
+
+An example of converting the above Excel spreadsheet to CSV:
+```{python}
+contents = pd.read_excel("https://github.com/mafudge/datasets/raw/refs/heads/master/excel-examples/books_of_interest.xlsx", sheet_name=None)
+for sheetname, df in contents.items():
+    # convert spaces to underscores for filenames
+    sheetname = sheetname.replace(' ', '_')
+    filename = f'books_of_interest-{sheetname}.csv'
+    df.to_csv(filename, header=True, index=False)
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 3.3
+
+Write a Streamlit app that will accept an Excel file via file uploader and then write out a record-oriented JSON file from the first tab in the excel file.
+
+The program should display the contents of the dataframe and provide a download button for the converted the csv file. 
+*Hints*:
+ - To provide the ability to upload a file, see: [st.file_uploader](https://docs.streamlit.io/develop/api-reference/widgets/st.file_uploader)
+ - To provide the ability to download a file, see: [st.download_button](https://docs.streamlit.io/develop/api-reference/widgets/st.download_button)
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+import requests
+import pandas as pd
+import streamlit as st
+
+st.title("Excel to JSON")
+
+uploaded_file = st.file_uploader("Upload an EXCEL file", type=["xlsx"])
+
+if uploaded_file:
+    df = pd.read_excel(uploaded_file.getvalue())
+    st.dataframe(df)
+    json_file = df.to_json(orient="records", index=False)
+    json_filename = uploaded_file.name.replace('.xlsx', '.json')
+    download = st.download_button(f"Download {json_filename}", data=json_file, file_name=json_filename)
+```
+:::
+::::
+
+
+## Challenge 3-2-3
+
+### Excel to JSON 
+
+
+

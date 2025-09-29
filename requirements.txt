@@ -2,3 +2,5 @@ jupyter
 numpy
 pytest
 pandas
+openpyxl
+lxml
