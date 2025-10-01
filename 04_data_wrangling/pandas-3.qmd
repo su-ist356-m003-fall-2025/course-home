@@ -1,0 +1,276 @@
+---
+title: "4. Joining Multiple Pandas Dataframes"
+jupyter: python3
+---
+
+
+In this unit we will discuss strategies for dealing with multiple dataframes and combing them into a single dataframe.
+
+
+## Concatenation
+
+Concatenation appends the rows of one or more dataframes together. This is a row-oriented operation so the resulting datafram will be longer. For example, if a 50-row dataframe is concatenated with a 40-row dataframe, you will have a 90-row dataframe.
+
+The [pd.concat()](https://pandas.pydata.org/docs/reference/api/pandas.concat.html) function is used to concatenate frames. It takes several arguments, but the most often-used ones are: `pd.concat(items: list[pd.DataFrame], ignore_index=False)`. The first argument is a list of Dataframes to concat. The `ignore_index` keyword argument governs what happens to the indices in the combined frame: we can choose to keep the current index in each dataframe `ignore_index=False` or create a new index `ignore_index=True`.
+
+An example:
+
+```{python}
+import pandas as pd
+campus_students = pd.read_csv("https://raw.githubusercontent.com/mafudge/datasets/master/delimited/campus-students.csv")
+campus_students
+```
+
+```{python}
+online_students = pd.read_csv("https://raw.githubusercontent.com/mafudge/datasets/master/delimited/online-students.csv")
+online_students
+```
+
+```{python}
+combined_students = pd.concat([campus_students, online_students])
+combined_students
+```
+
+### concat() - Ignoring the index
+
+As you can see from the code above the index from the original DataFrames was used. For example `Helen` and `Abby` both share the index `0`. This means that if you provide index 0, you'll get both of them, e.g.: 
+
+```{python}
+combined_students['Name'][0]
+```
+
+While this is acceptable, there are situations where a new index based on combined values is desirable. We will encounter this later when grouping or pivioting data.
+
+To make this happen include the `ignore_index=True` named argument. This will create a new index from the output DataFrame.
+
+```{python}
+students = pd.concat([campus_students, online_students], ignore_index=True)
+students
+```
+
+### Best practice - data lineage
+
+When combining datasets, its a really good idea to retain **data lineage**, or a record of where the data came from. This can be done by added a column to each dataframe before concatenating.
+
+In this example we create a student `"type"` column to track lineage.
+
+```{python}
+campus_students = pd.read_csv("https://raw.githubusercontent.com/mafudge/datasets/master/delimited/campus-students.csv")
+campus_students['type'] = 'campus'
+online_students = pd.read_csv("https://raw.githubusercontent.com/mafudge/datasets/master/delimited/online-students.csv")
+online_students['type'] = 'online'
+students = pd.concat([campus_students, online_students], ignore_index=True)
+students
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 4.1: classic use case for concatenation
+
+
+Consider the JSON file here: [https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/json-samples/employees-dict.json]("https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/json-samples/employees-dict.json")
+
+Let's take a look at the structure of this file in a dictionary format:
+
+```{python}
+import requests
+response = requests.get("https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/json-samples/employees-dict.json")
+employees = response.json()
+employees
+```
+
+The issue with the JSON data is that there are employees under keys by department `"accounting", "sales", "marketing"`:
+```{python}
+print("departments", employees.keys())
+```
+
+This is the classic use-case for `pd.concat()` as there is no practical way to use `pd.json_normalize()` to get all the employees under each department.
+
+Challenge: for each department:
+
+1. Create a dataframe for that department.
+
+2. Add lineage to the dataframe (i.e., add the department name).
+
+3. Add the dataframe to a list of departments.
+
+4. Use `pd.concat` on the list of departments to create one dataframe. Print the dataframe. The output should look like:
+
+```{text}
+    firstName lastName  age        dept
+    0      John      Doe   23  accounting
+    1      Mary    Smith   32  accounting
+    2     Sally    Green   27       sales
+    3       Jim   Galley   41       sales
+    4       Tom    Brown   28   marketing
+```
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+import pandas as pd
+import requests
+
+import requests
+response = requests.get("https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/json-samples/employees-dict.json")
+employees = response.json()
+
+departments = []
+for dept_name in employees.keys():
+    # convert the department dictionary into a DataFrame
+    dept_employees = pd.DataFrame(employees[dept_name])
+    # Note: this also would work:
+    # dept_employees = pd.json_normalize(employees,  record_path=dept_name)
+    # Add the department name to the columns (data lineage):
+    dept_employees['dept'] = dept_name
+    departments.append(dept_employees)
+
+combined = pd.concat(departments, ignore_index=True)
+combined
+```
+:::
+::::
+
+
+
+## De-duplication
+
+Sometimes after a `pd.concat()` you will have duplicate rows. 
+
+You can use `df.drop_duplicates()` to remove repeated rows of data.
+
+Without an argument, this will scan the entire row of data to determine if the row is the same.
+
+If your data has a natural key, you can specify that with the `subset=` named argument. This will improve performance. An example:
+
+```{python}
+o1 = pd.read_csv("https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/dedupe/orders1.csv")
+o2 = pd.read_csv("https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/dedupe/orders2.csv")
+orders = pd.concat([o1, o2], ignore_index=True)
+orders.sort_values('orderid')
+```
+
+Here, we use the entire row to check for duplicates:
+```{python}
+orders.drop_duplicates().sort_values("orderid")
+```
+
+Here, we just use the `orderid` to check for duplicates:
+```{python}
+orders.drop_duplicates(subset="orderid").sort_values("orderid")
+```
+That gives the same result as using the whole row because the `orderid` is one-to-one with the uniqueness of the row. It's faster doing this though, even on this small dataset (use `%timeit` to compare)!
+
+Notice if we had used a different subset which is not representative of the row, we lose data. For example:
+
+```{python}
+orders.drop_duplicates(subset="ordercreditcard").sort_values("orderid")
+```
+
+
+### Returning a dataframe of duplicates
+
+To get a dataframe of just the duplicated values you can use `df.duplicated()`. This returns a boolean series that you can use to extract the duplicated rows from the concatenated dataframe. Example:
+
+```{python}
+dupes = orders.duplicated(subset=['orderid'])
+orders[dupes]
+```
+
+## Merges 
+
+A *merge* combines two dataframes based on a common column.  The resulting dataframe is wider (has more columns) than the original dataframe. The function to do this is [pd.merge()](https://pandas.pydata.org/docs/reference/api/pandas.merge.html). It's most common arguments:
+
+`pd.merge(left: pd.DataFrame, right:pd.Dataframe, how:str, left_on:str, right_on:str)`
+
+-   `how` specifies the join operation:
+    - `"inner"` - returns ONLY rows when values of `left_on` match `right_on`
+
+    - `"left"` - returns ALL rows from `left` and  ONLY rows from `right` when values of `left_on` match `right_on`
+
+    - `"right"` - returns ALL rows  from `right` and ONLY rows from `left` when values of `left_on` match `right_on`
+    
+    - `"outer"` - returns ALL rows from `left` and `right` and rows when values of `left_on` match `right_on`
+
+
+To illustrate the differences between these, consider merging the following two dataframes, one representing a roster of basketball players, and another a list of teams:
+
+```{python}
+bbplayers = pd.read_csv("https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/delimited/bbplayers.csv")
+bbplayers
+```
+
+```{python}
+bbteams = pd.read_csv("https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/delimited/bbteams.csv")
+bbteams
+```
+
+**Inner join**: Only rows that match the `bbplayer.player_team_id` and `bbteam.team_id` and `bbteam` will be included. Note that in this case we lose Player 105 and team 3 because there are no matches: 
+```{python}
+combined = pd.merge(bbplayers, bbteams, left_on='player_team_id', right_on='team_id', how='inner')
+combined
+```
+
+**Left join**: All rows from the left (every player) and ONLY rows from team that match. Now we see Player 105 despite no team match: 
+```{python}
+combined = pd.merge(bbplayers, bbteams, left_on='player_team_id', right_on='team_id', how='left')
+combined
+```
+
+**Right join**: All rows from the right (every team) and ONLY rows from players that match. We now see Team 3 despite no player match:
+```{python}
+combined = pd.merge(bbplayers, bbteams, left_on='player_team_id', right_on='team_id', how='right')
+combined
+```
+
+**Outer join**: All rows from both tables are included. This is equivalent to doing an inner join + all non-matching rows from both tables. In this case, we see Team 3 *and* Player 105:
+```{python}
+combined = pd.merge(bbplayers, bbteams, left_on='player_team_id', right_on='team_id', how='outer')
+combined
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 4.2: who is not buying from MiniMart?
+
+Consider the following data from a grocery store: [https://github.com/mafudge/datasets/tree/master/minimart](https://github.com/mafudge/datasets/tree/master/minimart). In that directory you'll see `customers.csv`, which is a list of customers, and a separate CSV file of purchases made in the first four months of the year. 
+
+You have been hired to build a UI to display names of customers who did not buy from minimart in any given month. Write a Streamlit app that displays a dataframe of customers who did not buy anything in a given month. The app should have a drop down menu that allows the user to select the month to display.
+
+The URL for the location of raw data that you can use in your app is:
+
+`https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/minimart/`
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+import streamlit as st
+import pandas as pd
+
+base = "https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/minimart/"
+months = ['jan', 'feb', 'mar', 'apr']
+
+st.title("Who's not Buying from MiniMart?")
+month = st.selectbox('Select Month:', months)
+
+purchases = pd.read_csv(f"{base}/purchases-{month}.csv")
+customers = pd.read_csv(f"{base}/customers.csv")
+combined = pd.merge(customers, purchases, left_on='customer_id', right_on='customer_id', how='left')
+cols = ["customer_id", "firstname", "lastname"]
+did_not_buy = combined["order_id"].isnull()
+customers_who_did_not_buy = combined[did_not_buy][cols]
+st.header(f"These people did not buy anything in {month.capitalize()}.:")
+st.dataframe(customers_who_did_not_buy, hide_index=True)
+
+# You can add the following to double check the results:
+#st.divider()
+#st.write("debug")
+#st.dataframe(combined)
+# That will display the full combined frame for the selected month. The ones
+# without entries for the order id should be what's displayed in the table above.
+```
+:::
+::::
+
+
