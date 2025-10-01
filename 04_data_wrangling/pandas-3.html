@@ -1,0 +1,2910 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4. Joining Multiple Pandas Dataframes – IST 356 Fall 2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../syllabus.html" rel="next">
+<link href="../04_data_wrangling/pandas-2.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-636770ed70550effe8cc9e61b03b729c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<meta property="og:title" content="4. Joining Multiple Pandas Dataframes – IST 356 Fall 2025">
+<meta property="og:description" content="">
+<meta property="og:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
+<meta property="og:site_name" content="IST 356 Fall 2025">
+<meta property="og:image:height" content="105">
+<meta property="og:image:width" content="650">
+<meta name="twitter:title" content="4. Joining Multiple Pandas Dataframes – IST 356 Fall 2025">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
+<meta name="twitter:image-height" content="105">
+<meta name="twitter:image-width" content="650">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">IST 356 Fall 2025</span>
+    </a>
+  </div>
+          <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://ischool.syracuse.edu" target="_blank"> 
+<span class="menu-text"><img src="../images/ischool_logo_reverseX2.png" height="30"></span></a>
+  </li>  
+</ul>
+          <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../04_data_wrangling/index.html">4. Data Wrangling</a></li><li class="breadcrumb-item"><a href="../04_data_wrangling/pandas-3.html">4. Joining Multiple Pandas Dataframes</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../00_intro/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and computer setup</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../01_cli_conda/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Command line interface and Environments</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01_cli_conda/shell-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Command Line Interface and the Unix Shell</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01_cli_conda/conda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bash variables, environments, and <code>conda</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../02_python/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Python review</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02_python/python-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Input, output, variables, types, conditionals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02_python/python-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Iterations, lists, dictionaries, comprehensions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02_python/python-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Functions, documentation, strings, files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02_python/python-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Modules, import, pip, testing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../03_ui/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. UI</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../03_ui/ui-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Interaction in Jupyter using ipywidgets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../03_ui/ui-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Creating simple web apps with Streamlit</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../04_data_wrangling/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Data Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04_data_wrangling/numpy_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Introduction to NumPy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04_data_wrangling/pandas-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Introduction to Pandas: Series and DataFrames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04_data_wrangling/pandas-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Data I/O with Pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04_data_wrangling/pandas-3.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">4. Joining Multiple Pandas Dataframes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#concatenation" id="toc-concatenation" class="nav-link active" data-scroll-target="#concatenation">Concatenation</a>
+  <ul class="collapse">
+  <li><a href="#concat---ignoring-the-index" id="toc-concat---ignoring-the-index" class="nav-link" data-scroll-target="#concat---ignoring-the-index">concat() - Ignoring the index</a></li>
+  <li><a href="#best-practice---data-lineage" id="toc-best-practice---data-lineage" class="nav-link" data-scroll-target="#best-practice---data-lineage">Best practice - data lineage</a></li>
+  </ul></li>
+  <li><a href="#de-duplication" id="toc-de-duplication" class="nav-link" data-scroll-target="#de-duplication">De-duplication</a>
+  <ul class="collapse">
+  <li><a href="#returning-a-dataframe-of-duplicates" id="toc-returning-a-dataframe-of-duplicates" class="nav-link" data-scroll-target="#returning-a-dataframe-of-duplicates">Returning a dataframe of duplicates</a></li>
+  </ul></li>
+  <li><a href="#merges" id="toc-merges" class="nav-link" data-scroll-target="#merges">Merges</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../04_data_wrangling/index.html">4. Data Wrangling</a></li><li class="breadcrumb-item"><a href="../04_data_wrangling/pandas-3.html">4. Joining Multiple Pandas Dataframes</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">4. Joining Multiple Pandas Dataframes</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this unit we will discuss strategies for dealing with multiple dataframes and combing them into a single dataframe.</p>
+<section id="concatenation" class="level2">
+<h2 class="anchored" data-anchor-id="concatenation">Concatenation</h2>
+<p>Concatenation appends the rows of one or more dataframes together. This is a row-oriented operation so the resulting datafram will be longer. For example, if a 50-row dataframe is concatenated with a 40-row dataframe, you will have a 90-row dataframe.</p>
+<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html">pd.concat()</a> function is used to concatenate frames. It takes several arguments, but the most often-used ones are: <code>pd.concat(items: list[pd.DataFrame], ignore_index=False)</code>. The first argument is a list of Dataframes to concat. The <code>ignore_index</code> keyword argument governs what happens to the indices in the combined frame: we can choose to keep the current index in each dataframe <code>ignore_index=False</code> or create a new index <code>ignore_index=True</code>.</p>
+<p>An example:</p>
+<div id="439e63a6" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>campus_students <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/mafudge/datasets/master/delimited/campus-students.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>campus_students</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Name</th>
+<th data-quarto-table-cell-role="th">Grade</th>
+<th data-quarto-table-cell-role="th">Year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Helen</td>
+<td>NaN</td>
+<td>Sophomore</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Iris</td>
+<td>10.0</td>
+<td>Senior</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Jimmy</td>
+<td>8.0</td>
+<td>Freshman</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Karen</td>
+<td>NaN</td>
+<td>Freshman</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>Lynne</td>
+<td>10.0</td>
+<td>Sophomore</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>Mike</td>
+<td>10.0</td>
+<td>Sophomore</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>Nico</td>
+<td>NaN</td>
+<td>Junior</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>Pete</td>
+<td>8.0</td>
+<td>Freshman</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="d95daa7b" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>online_students <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/mafudge/datasets/master/delimited/online-students.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>online_students</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Name</th>
+<th data-quarto-table-cell-role="th">Grade</th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">Location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Abby</td>
+<td>7.0</td>
+<td>Freshman</td>
+<td>NY</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Bob</td>
+<td>9.0</td>
+<td>Sophomore</td>
+<td>CA</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Chris</td>
+<td>10.0</td>
+<td>Senior</td>
+<td>CA</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Dave</td>
+<td>8.0</td>
+<td>Freshman</td>
+<td>NY</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>Ellen</td>
+<td>7.0</td>
+<td>Sophomore</td>
+<td>TX</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>Fran</td>
+<td>10.0</td>
+<td>Senior</td>
+<td>FL</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>Greg</td>
+<td>8.0</td>
+<td>Freshman</td>
+<td>NY</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="af806a78" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>combined_students <span class="op">=</span> pd.concat([campus_students, online_students])</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>combined_students</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Name</th>
+<th data-quarto-table-cell-role="th">Grade</th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">Location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Helen</td>
+<td>NaN</td>
+<td>Sophomore</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Iris</td>
+<td>10.0</td>
+<td>Senior</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Jimmy</td>
+<td>8.0</td>
+<td>Freshman</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Karen</td>
+<td>NaN</td>
+<td>Freshman</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>Lynne</td>
+<td>10.0</td>
+<td>Sophomore</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>Mike</td>
+<td>10.0</td>
+<td>Sophomore</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>Nico</td>
+<td>NaN</td>
+<td>Junior</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>Pete</td>
+<td>8.0</td>
+<td>Freshman</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Abby</td>
+<td>7.0</td>
+<td>Freshman</td>
+<td>NY</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Bob</td>
+<td>9.0</td>
+<td>Sophomore</td>
+<td>CA</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Chris</td>
+<td>10.0</td>
+<td>Senior</td>
+<td>CA</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Dave</td>
+<td>8.0</td>
+<td>Freshman</td>
+<td>NY</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>Ellen</td>
+<td>7.0</td>
+<td>Sophomore</td>
+<td>TX</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>Fran</td>
+<td>10.0</td>
+<td>Senior</td>
+<td>FL</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>Greg</td>
+<td>8.0</td>
+<td>Freshman</td>
+<td>NY</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="concat---ignoring-the-index" class="level3">
+<h3 class="anchored" data-anchor-id="concat---ignoring-the-index">concat() - Ignoring the index</h3>
+<p>As you can see from the code above the index from the original DataFrames was used. For example <code>Helen</code> and <code>Abby</code> both share the index <code>0</code>. This means that if you provide index 0, you’ll get both of them, e.g.:</p>
+<div id="2b5c972c" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>combined_students[<span class="st">'Name'</span>][<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>0    Helen
+0     Abby
+Name: Name, dtype: object</code></pre>
+</div>
+</div>
+<p>While this is acceptable, there are situations where a new index based on combined values is desirable. We will encounter this later when grouping or pivioting data.</p>
+<p>To make this happen include the <code>ignore_index=True</code> named argument. This will create a new index from the output DataFrame.</p>
+<div id="7a0bd8dc" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>students <span class="op">=</span> pd.concat([campus_students, online_students], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>students</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Name</th>
+<th data-quarto-table-cell-role="th">Grade</th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">Location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Helen</td>
+<td>NaN</td>
+<td>Sophomore</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Iris</td>
+<td>10.0</td>
+<td>Senior</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Jimmy</td>
+<td>8.0</td>
+<td>Freshman</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Karen</td>
+<td>NaN</td>
+<td>Freshman</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>Lynne</td>
+<td>10.0</td>
+<td>Sophomore</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>Mike</td>
+<td>10.0</td>
+<td>Sophomore</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>Nico</td>
+<td>NaN</td>
+<td>Junior</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>Pete</td>
+<td>8.0</td>
+<td>Freshman</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>Abby</td>
+<td>7.0</td>
+<td>Freshman</td>
+<td>NY</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>Bob</td>
+<td>9.0</td>
+<td>Sophomore</td>
+<td>CA</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">10</th>
+<td>Chris</td>
+<td>10.0</td>
+<td>Senior</td>
+<td>CA</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">11</th>
+<td>Dave</td>
+<td>8.0</td>
+<td>Freshman</td>
+<td>NY</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">12</th>
+<td>Ellen</td>
+<td>7.0</td>
+<td>Sophomore</td>
+<td>TX</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">13</th>
+<td>Fran</td>
+<td>10.0</td>
+<td>Senior</td>
+<td>FL</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">14</th>
+<td>Greg</td>
+<td>8.0</td>
+<td>Freshman</td>
+<td>NY</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="best-practice---data-lineage" class="level3">
+<h3 class="anchored" data-anchor-id="best-practice---data-lineage">Best practice - data lineage</h3>
+<p>When combining datasets, its a really good idea to retain <strong>data lineage</strong>, or a record of where the data came from. This can be done by added a column to each dataframe before concatenating.</p>
+<p>In this example we create a student <code>"type"</code> column to track lineage.</p>
+<div id="89b6a35d" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>campus_students <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/mafudge/datasets/master/delimited/campus-students.csv"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>campus_students[<span class="st">'type'</span>] <span class="op">=</span> <span class="st">'campus'</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>online_students <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/mafudge/datasets/master/delimited/online-students.csv"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>online_students[<span class="st">'type'</span>] <span class="op">=</span> <span class="st">'online'</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>students <span class="op">=</span> pd.concat([campus_students, online_students], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>students</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Name</th>
+<th data-quarto-table-cell-role="th">Grade</th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">Location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Helen</td>
+<td>NaN</td>
+<td>Sophomore</td>
+<td>campus</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Iris</td>
+<td>10.0</td>
+<td>Senior</td>
+<td>campus</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Jimmy</td>
+<td>8.0</td>
+<td>Freshman</td>
+<td>campus</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Karen</td>
+<td>NaN</td>
+<td>Freshman</td>
+<td>campus</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>Lynne</td>
+<td>10.0</td>
+<td>Sophomore</td>
+<td>campus</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>Mike</td>
+<td>10.0</td>
+<td>Sophomore</td>
+<td>campus</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>Nico</td>
+<td>NaN</td>
+<td>Junior</td>
+<td>campus</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>Pete</td>
+<td>8.0</td>
+<td>Freshman</td>
+<td>campus</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>Abby</td>
+<td>7.0</td>
+<td>Freshman</td>
+<td>online</td>
+<td>NY</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>Bob</td>
+<td>9.0</td>
+<td>Sophomore</td>
+<td>online</td>
+<td>CA</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">10</th>
+<td>Chris</td>
+<td>10.0</td>
+<td>Senior</td>
+<td>online</td>
+<td>CA</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">11</th>
+<td>Dave</td>
+<td>8.0</td>
+<td>Freshman</td>
+<td>online</td>
+<td>NY</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">12</th>
+<td>Ellen</td>
+<td>7.0</td>
+<td>Sophomore</td>
+<td>online</td>
+<td>TX</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">13</th>
+<td>Fran</td>
+<td>10.0</td>
+<td>Senior</td>
+<td>online</td>
+<td>FL</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">14</th>
+<td>Greg</td>
+<td>8.0</td>
+<td>Freshman</td>
+<td>online</td>
+<td>NY</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Code Challenge 4.1: classic use case for concatenation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the JSON file here: <a href="&quot;https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/json-samples/employees-dict.json&quot;">https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/json-samples/employees-dict.json</a></p>
+<p>Let’s take a look at the structure of this file in a dictionary format:</p>
+<div id="8f6491e8" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(<span class="st">"https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/json-samples/employees-dict.json"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>employees <span class="op">=</span> response.json()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>employees</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>{'accounting': [{'firstName': 'John', 'lastName': 'Doe', 'age': 23},
+  {'firstName': 'Mary', 'lastName': 'Smith', 'age': 32}],
+ 'sales': [{'firstName': 'Sally', 'lastName': 'Green', 'age': 27},
+  {'firstName': 'Jim', 'lastName': 'Galley', 'age': 41}],
+ 'marketing': [{'firstName': 'Tom', 'lastName': 'Brown', 'age': 28}]}</code></pre>
+</div>
+</div>
+<p>The issue with the JSON data is that there are employees under keys by department <code>"accounting", "sales", "marketing"</code>:</p>
+<div id="140cf8dc" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"departments"</span>, employees.keys())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>departments dict_keys(['accounting', 'sales', 'marketing'])</code></pre>
+</div>
+</div>
+<p>This is the classic use-case for <code>pd.concat()</code> as there is no practical way to use <code>pd.json_normalize()</code> to get all the employees under each department.</p>
+<p>Challenge: for each department:</p>
+<ol type="1">
+<li><p>Create a dataframe for that department.</p></li>
+<li><p>Add lineage to the dataframe (i.e., add the department name).</p></li>
+<li><p>Add the dataframe to a list of departments.</p></li>
+<li><p>Use <code>pd.concat</code> on the list of departments to create one dataframe. Print the dataframe. The output should look like:</p></li>
+</ol>
+<pre class="{text}"><code>    firstName lastName  age        dept
+    0      John      Doe   23  accounting
+    1      Mary    Smith   32  accounting
+    2     Sally    Green   27       sales
+    3       Jim   Galley   41       sales
+    4       Tom    Brown   28   marketing</code></pre>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="0c93d594" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(<span class="st">"https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/json-samples/employees-dict.json"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>employees <span class="op">=</span> response.json()</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>departments <span class="op">=</span> []</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> dept_name <span class="kw">in</span> employees.keys():</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># convert the department dictionary into a DataFrame</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    dept_employees <span class="op">=</span> pd.DataFrame(employees[dept_name])</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Note: this also would work:</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># dept_employees = pd.json_normalize(employees,  record_path=dept_name)</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add the department name to the columns (data lineage):</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    dept_employees[<span class="st">'dept'</span>] <span class="op">=</span> dept_name</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    departments.append(dept_employees)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>combined <span class="op">=</span> pd.concat(departments, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>combined</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">firstName</th>
+<th data-quarto-table-cell-role="th">lastName</th>
+<th data-quarto-table-cell-role="th">age</th>
+<th data-quarto-table-cell-role="th">dept</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>John</td>
+<td>Doe</td>
+<td>23</td>
+<td>accounting</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>Mary</td>
+<td>Smith</td>
+<td>32</td>
+<td>accounting</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Sally</td>
+<td>Green</td>
+<td>27</td>
+<td>sales</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Jim</td>
+<td>Galley</td>
+<td>41</td>
+<td>sales</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>Tom</td>
+<td>Brown</td>
+<td>28</td>
+<td>marketing</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="de-duplication" class="level2">
+<h2 class="anchored" data-anchor-id="de-duplication">De-duplication</h2>
+<p>Sometimes after a <code>pd.concat()</code> you will have duplicate rows.</p>
+<p>You can use <code>df.drop_duplicates()</code> to remove repeated rows of data.</p>
+<p>Without an argument, this will scan the entire row of data to determine if the row is the same.</p>
+<p>If your data has a natural key, you can specify that with the <code>subset=</code> named argument. This will improve performance. An example:</p>
+<div id="139dcfeb" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>o1 <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/dedupe/orders1.csv"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>o2 <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/dedupe/orders2.csv"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>orders <span class="op">=</span> pd.concat([o1, o2], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>orders.sort_values(<span class="st">'orderid'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">orderid</th>
+<th data-quarto-table-cell-role="th">orderdate</th>
+<th data-quarto-table-cell-role="th">custname</th>
+<th data-quarto-table-cell-role="th">custemail</th>
+<th data-quarto-table-cell-role="th">custcountry</th>
+<th data-quarto-table-cell-role="th">orderstatus</th>
+<th data-quarto-table-cell-role="th">ordertotal</th>
+<th data-quarto-table-cell-role="th">ordercreditcard</th>
+<th data-quarto-table-cell-role="th">ordershipvia</th>
+<th data-quarto-table-cell-role="th">shippingtotal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>2</td>
+<td>2023-03-24</td>
+<td>Frayda Pepperd</td>
+<td>fpepperd0@sciencedaily.com</td>
+<td>Canada</td>
+<td>delivered</td>
+<td>228.39</td>
+<td>Discover</td>
+<td>RPS</td>
+<td>12.05</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">10</th>
+<td>2</td>
+<td>2023-03-24</td>
+<td>Frayda Pepperd</td>
+<td>fpepperd0@sciencedaily.com</td>
+<td>Canada</td>
+<td>delivered</td>
+<td>228.39</td>
+<td>Discover</td>
+<td>RPS</td>
+<td>12.05</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">11</th>
+<td>3</td>
+<td>2020-02-23</td>
+<td>Loy Siberry</td>
+<td>lsiberry1@so-net.ne.jp</td>
+<td>Canada</td>
+<td>delivered</td>
+<td>76.87</td>
+<td>Discover</td>
+<td>USPS</td>
+<td>6.27</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>4</td>
+<td>2022-04-28</td>
+<td>Carree Henworth</td>
+<td>NaN</td>
+<td>Canada</td>
+<td>pending</td>
+<td>152.30</td>
+<td>Discover</td>
+<td>USPS</td>
+<td>12.74</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">12</th>
+<td>4</td>
+<td>2022-04-28</td>
+<td>Carree Henworth</td>
+<td>NaN</td>
+<td>Canada</td>
+<td>pending</td>
+<td>152.30</td>
+<td>Discover</td>
+<td>USPS</td>
+<td>12.74</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2</th>
+<td>5</td>
+<td>2019-11-22</td>
+<td>Goldina Godsafe</td>
+<td>ggodsafe3@dailymail.co.uk</td>
+<td>United States</td>
+<td>shipped</td>
+<td>182.17</td>
+<td>Amex</td>
+<td>UPS</td>
+<td>5.44</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">13</th>
+<td>6</td>
+<td>2022-05-03</td>
+<td>Marris Chatten</td>
+<td>mchatten4@csmonitor.com</td>
+<td>Mexico</td>
+<td>pending</td>
+<td>208.28</td>
+<td>Discover</td>
+<td>RPS</td>
+<td>2.16</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>6</td>
+<td>2022-05-03</td>
+<td>Marris Chatten</td>
+<td>mchatten4@csmonitor.com</td>
+<td>Mexico</td>
+<td>pending</td>
+<td>208.28</td>
+<td>Discover</td>
+<td>RPS</td>
+<td>2.16</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">14</th>
+<td>7</td>
+<td>2022-12-19</td>
+<td>Logan Jacobsson</td>
+<td>ljacobsson5@wufoo.com</td>
+<td>United States</td>
+<td>delivered</td>
+<td>112.15</td>
+<td>Amex</td>
+<td>USPS</td>
+<td>11.52</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">4</th>
+<td>7</td>
+<td>2022-12-19</td>
+<td>Logan Jacobsson</td>
+<td>ljacobsson5@wufoo.com</td>
+<td>United States</td>
+<td>delivered</td>
+<td>112.15</td>
+<td>Amex</td>
+<td>USPS</td>
+<td>11.52</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">15</th>
+<td>8</td>
+<td>2019-06-05</td>
+<td>Lilli Feares</td>
+<td>lfeares6@shop-pro.jp</td>
+<td>Mexico</td>
+<td>pending</td>
+<td>237.90</td>
+<td>Discover</td>
+<td>FedEX</td>
+<td>4.48</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">16</th>
+<td>9</td>
+<td>2019-02-17</td>
+<td>Lowrance Sigsworth</td>
+<td>lsigsworth7@youtube.com</td>
+<td>United States</td>
+<td>delivered</td>
+<td>141.94</td>
+<td>Discover</td>
+<td>USPS</td>
+<td>7.31</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">17</th>
+<td>10</td>
+<td>2023-04-19</td>
+<td>Libbi Spadari</td>
+<td>lspadari8@dot.gov</td>
+<td>Mexico</td>
+<td>pending</td>
+<td>160.79</td>
+<td>Discover</td>
+<td>RPS</td>
+<td>16.52</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>10</td>
+<td>2023-04-19</td>
+<td>Libbi Spadari</td>
+<td>lspadari8@dot.gov</td>
+<td>Mexico</td>
+<td>pending</td>
+<td>160.79</td>
+<td>Discover</td>
+<td>RPS</td>
+<td>16.52</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>11</td>
+<td>2020-01-20</td>
+<td>Renato Hue</td>
+<td>rhue9@un.org</td>
+<td>Canada</td>
+<td>delivered</td>
+<td>120.52</td>
+<td>Visa</td>
+<td>USPS</td>
+<td>5.57</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>12</td>
+<td>2022-03-03</td>
+<td>Lucky Helstrip</td>
+<td>lhelstripa@tmall.com</td>
+<td>Mexico</td>
+<td>delivered</td>
+<td>202.07</td>
+<td>Amex</td>
+<td>UPS</td>
+<td>18.57</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">18</th>
+<td>12</td>
+<td>2022-03-03</td>
+<td>Lucky Helstrip</td>
+<td>lhelstripa@tmall.com</td>
+<td>Mexico</td>
+<td>delivered</td>
+<td>202.07</td>
+<td>Amex</td>
+<td>UPS</td>
+<td>18.57</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">8</th>
+<td>13</td>
+<td>2021-09-04</td>
+<td>Debi Myrie</td>
+<td>dmyrieb@unc.edu</td>
+<td>United States</td>
+<td>delivered</td>
+<td>131.62</td>
+<td>Amex</td>
+<td>UPS</td>
+<td>2.37</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">19</th>
+<td>13</td>
+<td>2021-09-04</td>
+<td>Debi Myrie</td>
+<td>dmyrieb@unc.edu</td>
+<td>United States</td>
+<td>delivered</td>
+<td>131.62</td>
+<td>Amex</td>
+<td>UPS</td>
+<td>2.37</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">20</th>
+<td>14</td>
+<td>2022-02-27</td>
+<td>Hyacinth Aveyard</td>
+<td>haveyardc@ucoz.com</td>
+<td>United States</td>
+<td>pending</td>
+<td>209.86</td>
+<td>Amex</td>
+<td>USPS</td>
+<td>8.69</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">9</th>
+<td>15</td>
+<td>2019-01-11</td>
+<td>Crin Blanket</td>
+<td>cblanketd@newsvine.com</td>
+<td>United States</td>
+<td>delivered</td>
+<td>85.46</td>
+<td>Visa</td>
+<td>UPS</td>
+<td>14.22</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Here, we use the entire row to check for duplicates:</p>
+<div id="4e3a97e4" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>orders.drop_duplicates().sort_values(<span class="st">"orderid"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">orderid</th>
+<th data-quarto-table-cell-role="th">orderdate</th>
+<th data-quarto-table-cell-role="th">custname</th>
+<th data-quarto-table-cell-role="th">custemail</th>
+<th data-quarto-table-cell-role="th">custcountry</th>
+<th data-quarto-table-cell-role="th">orderstatus</th>
+<th data-quarto-table-cell-role="th">ordertotal</th>
+<th data-quarto-table-cell-role="th">ordercreditcard</th>
+<th data-quarto-table-cell-role="th">ordershipvia</th>
+<th data-quarto-table-cell-role="th">shippingtotal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>2</td>
+<td>2023-03-24</td>
+<td>Frayda Pepperd</td>
+<td>fpepperd0@sciencedaily.com</td>
+<td>Canada</td>
+<td>delivered</td>
+<td>228.39</td>
+<td>Discover</td>
+<td>RPS</td>
+<td>12.05</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">11</th>
+<td>3</td>
+<td>2020-02-23</td>
+<td>Loy Siberry</td>
+<td>lsiberry1@so-net.ne.jp</td>
+<td>Canada</td>
+<td>delivered</td>
+<td>76.87</td>
+<td>Discover</td>
+<td>USPS</td>
+<td>6.27</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1</th>
+<td>4</td>
+<td>2022-04-28</td>
+<td>Carree Henworth</td>
+<td>NaN</td>
+<td>Canada</td>
+<td>pending</td>
+<td>152.30</td>
+<td>Discover</td>
+<td>USPS</td>
+<td>12.74</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2</th>
+<td>5</td>
+<td>2019-11-22</td>
+<td>Goldina Godsafe</td>
+<td>ggodsafe3@dailymail.co.uk</td>
+<td>United States</td>
+<td>shipped</td>
+<td>182.17</td>
+<td>Amex</td>
+<td>UPS</td>
+<td>5.44</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">3</th>
+<td>6</td>
+<td>2022-05-03</td>
+<td>Marris Chatten</td>
+<td>mchatten4@csmonitor.com</td>
+<td>Mexico</td>
+<td>pending</td>
+<td>208.28</td>
+<td>Discover</td>
+<td>RPS</td>
+<td>2.16</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">4</th>
+<td>7</td>
+<td>2022-12-19</td>
+<td>Logan Jacobsson</td>
+<td>ljacobsson5@wufoo.com</td>
+<td>United States</td>
+<td>delivered</td>
+<td>112.15</td>
+<td>Amex</td>
+<td>USPS</td>
+<td>11.52</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">15</th>
+<td>8</td>
+<td>2019-06-05</td>
+<td>Lilli Feares</td>
+<td>lfeares6@shop-pro.jp</td>
+<td>Mexico</td>
+<td>pending</td>
+<td>237.90</td>
+<td>Discover</td>
+<td>FedEX</td>
+<td>4.48</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">16</th>
+<td>9</td>
+<td>2019-02-17</td>
+<td>Lowrance Sigsworth</td>
+<td>lsigsworth7@youtube.com</td>
+<td>United States</td>
+<td>delivered</td>
+<td>141.94</td>
+<td>Discover</td>
+<td>USPS</td>
+<td>7.31</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">5</th>
+<td>10</td>
+<td>2023-04-19</td>
+<td>Libbi Spadari</td>
+<td>lspadari8@dot.gov</td>
+<td>Mexico</td>
+<td>pending</td>
+<td>160.79</td>
+<td>Discover</td>
+<td>RPS</td>
+<td>16.52</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">6</th>
+<td>11</td>
+<td>2020-01-20</td>
+<td>Renato Hue</td>
+<td>rhue9@un.org</td>
+<td>Canada</td>
+<td>delivered</td>
+<td>120.52</td>
+<td>Visa</td>
+<td>USPS</td>
+<td>5.57</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">7</th>
+<td>12</td>
+<td>2022-03-03</td>
+<td>Lucky Helstrip</td>
+<td>lhelstripa@tmall.com</td>
+<td>Mexico</td>
+<td>delivered</td>
+<td>202.07</td>
+<td>Amex</td>
+<td>UPS</td>
+<td>18.57</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">8</th>
+<td>13</td>
+<td>2021-09-04</td>
+<td>Debi Myrie</td>
+<td>dmyrieb@unc.edu</td>
+<td>United States</td>
+<td>delivered</td>
+<td>131.62</td>
+<td>Amex</td>
+<td>UPS</td>
+<td>2.37</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">20</th>
+<td>14</td>
+<td>2022-02-27</td>
+<td>Hyacinth Aveyard</td>
+<td>haveyardc@ucoz.com</td>
+<td>United States</td>
+<td>pending</td>
+<td>209.86</td>
+<td>Amex</td>
+<td>USPS</td>
+<td>8.69</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>15</td>
+<td>2019-01-11</td>
+<td>Crin Blanket</td>
+<td>cblanketd@newsvine.com</td>
+<td>United States</td>
+<td>delivered</td>
+<td>85.46</td>
+<td>Visa</td>
+<td>UPS</td>
+<td>14.22</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Here, we just use the <code>orderid</code> to check for duplicates:</p>
+<div id="a7b6f6f5" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>orders.drop_duplicates(subset<span class="op">=</span><span class="st">"orderid"</span>).sort_values(<span class="st">"orderid"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">orderid</th>
+<th data-quarto-table-cell-role="th">orderdate</th>
+<th data-quarto-table-cell-role="th">custname</th>
+<th data-quarto-table-cell-role="th">custemail</th>
+<th data-quarto-table-cell-role="th">custcountry</th>
+<th data-quarto-table-cell-role="th">orderstatus</th>
+<th data-quarto-table-cell-role="th">ordertotal</th>
+<th data-quarto-table-cell-role="th">ordercreditcard</th>
+<th data-quarto-table-cell-role="th">ordershipvia</th>
+<th data-quarto-table-cell-role="th">shippingtotal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>2</td>
+<td>2023-03-24</td>
+<td>Frayda Pepperd</td>
+<td>fpepperd0@sciencedaily.com</td>
+<td>Canada</td>
+<td>delivered</td>
+<td>228.39</td>
+<td>Discover</td>
+<td>RPS</td>
+<td>12.05</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">11</th>
+<td>3</td>
+<td>2020-02-23</td>
+<td>Loy Siberry</td>
+<td>lsiberry1@so-net.ne.jp</td>
+<td>Canada</td>
+<td>delivered</td>
+<td>76.87</td>
+<td>Discover</td>
+<td>USPS</td>
+<td>6.27</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1</th>
+<td>4</td>
+<td>2022-04-28</td>
+<td>Carree Henworth</td>
+<td>NaN</td>
+<td>Canada</td>
+<td>pending</td>
+<td>152.30</td>
+<td>Discover</td>
+<td>USPS</td>
+<td>12.74</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2</th>
+<td>5</td>
+<td>2019-11-22</td>
+<td>Goldina Godsafe</td>
+<td>ggodsafe3@dailymail.co.uk</td>
+<td>United States</td>
+<td>shipped</td>
+<td>182.17</td>
+<td>Amex</td>
+<td>UPS</td>
+<td>5.44</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">3</th>
+<td>6</td>
+<td>2022-05-03</td>
+<td>Marris Chatten</td>
+<td>mchatten4@csmonitor.com</td>
+<td>Mexico</td>
+<td>pending</td>
+<td>208.28</td>
+<td>Discover</td>
+<td>RPS</td>
+<td>2.16</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">4</th>
+<td>7</td>
+<td>2022-12-19</td>
+<td>Logan Jacobsson</td>
+<td>ljacobsson5@wufoo.com</td>
+<td>United States</td>
+<td>delivered</td>
+<td>112.15</td>
+<td>Amex</td>
+<td>USPS</td>
+<td>11.52</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">15</th>
+<td>8</td>
+<td>2019-06-05</td>
+<td>Lilli Feares</td>
+<td>lfeares6@shop-pro.jp</td>
+<td>Mexico</td>
+<td>pending</td>
+<td>237.90</td>
+<td>Discover</td>
+<td>FedEX</td>
+<td>4.48</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">16</th>
+<td>9</td>
+<td>2019-02-17</td>
+<td>Lowrance Sigsworth</td>
+<td>lsigsworth7@youtube.com</td>
+<td>United States</td>
+<td>delivered</td>
+<td>141.94</td>
+<td>Discover</td>
+<td>USPS</td>
+<td>7.31</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">5</th>
+<td>10</td>
+<td>2023-04-19</td>
+<td>Libbi Spadari</td>
+<td>lspadari8@dot.gov</td>
+<td>Mexico</td>
+<td>pending</td>
+<td>160.79</td>
+<td>Discover</td>
+<td>RPS</td>
+<td>16.52</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">6</th>
+<td>11</td>
+<td>2020-01-20</td>
+<td>Renato Hue</td>
+<td>rhue9@un.org</td>
+<td>Canada</td>
+<td>delivered</td>
+<td>120.52</td>
+<td>Visa</td>
+<td>USPS</td>
+<td>5.57</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">7</th>
+<td>12</td>
+<td>2022-03-03</td>
+<td>Lucky Helstrip</td>
+<td>lhelstripa@tmall.com</td>
+<td>Mexico</td>
+<td>delivered</td>
+<td>202.07</td>
+<td>Amex</td>
+<td>UPS</td>
+<td>18.57</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">8</th>
+<td>13</td>
+<td>2021-09-04</td>
+<td>Debi Myrie</td>
+<td>dmyrieb@unc.edu</td>
+<td>United States</td>
+<td>delivered</td>
+<td>131.62</td>
+<td>Amex</td>
+<td>UPS</td>
+<td>2.37</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">20</th>
+<td>14</td>
+<td>2022-02-27</td>
+<td>Hyacinth Aveyard</td>
+<td>haveyardc@ucoz.com</td>
+<td>United States</td>
+<td>pending</td>
+<td>209.86</td>
+<td>Amex</td>
+<td>USPS</td>
+<td>8.69</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>15</td>
+<td>2019-01-11</td>
+<td>Crin Blanket</td>
+<td>cblanketd@newsvine.com</td>
+<td>United States</td>
+<td>delivered</td>
+<td>85.46</td>
+<td>Visa</td>
+<td>UPS</td>
+<td>14.22</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>That gives the same result as using the whole row because the <code>orderid</code> is one-to-one with the uniqueness of the row. It’s faster doing this though, even on this small dataset (use <code>%timeit</code> to compare)!</p>
+<p>Notice if we had used a different subset which is not representative of the row, we lose data. For example:</p>
+<div id="ff40c33f" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>orders.drop_duplicates(subset<span class="op">=</span><span class="st">"ordercreditcard"</span>).sort_values(<span class="st">"orderid"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">orderid</th>
+<th data-quarto-table-cell-role="th">orderdate</th>
+<th data-quarto-table-cell-role="th">custname</th>
+<th data-quarto-table-cell-role="th">custemail</th>
+<th data-quarto-table-cell-role="th">custcountry</th>
+<th data-quarto-table-cell-role="th">orderstatus</th>
+<th data-quarto-table-cell-role="th">ordertotal</th>
+<th data-quarto-table-cell-role="th">ordercreditcard</th>
+<th data-quarto-table-cell-role="th">ordershipvia</th>
+<th data-quarto-table-cell-role="th">shippingtotal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>2</td>
+<td>2023-03-24</td>
+<td>Frayda Pepperd</td>
+<td>fpepperd0@sciencedaily.com</td>
+<td>Canada</td>
+<td>delivered</td>
+<td>228.39</td>
+<td>Discover</td>
+<td>RPS</td>
+<td>12.05</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2</th>
+<td>5</td>
+<td>2019-11-22</td>
+<td>Goldina Godsafe</td>
+<td>ggodsafe3@dailymail.co.uk</td>
+<td>United States</td>
+<td>shipped</td>
+<td>182.17</td>
+<td>Amex</td>
+<td>UPS</td>
+<td>5.44</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>11</td>
+<td>2020-01-20</td>
+<td>Renato Hue</td>
+<td>rhue9@un.org</td>
+<td>Canada</td>
+<td>delivered</td>
+<td>120.52</td>
+<td>Visa</td>
+<td>USPS</td>
+<td>5.57</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="returning-a-dataframe-of-duplicates" class="level3">
+<h3 class="anchored" data-anchor-id="returning-a-dataframe-of-duplicates">Returning a dataframe of duplicates</h3>
+<p>To get a dataframe of just the duplicated values you can use <code>df.duplicated()</code>. This returns a boolean series that you can use to extract the duplicated rows from the concatenated dataframe. Example:</p>
+<div id="14a1f375" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dupes <span class="op">=</span> orders.duplicated(subset<span class="op">=</span>[<span class="st">'orderid'</span>])</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>orders[dupes]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">orderid</th>
+<th data-quarto-table-cell-role="th">orderdate</th>
+<th data-quarto-table-cell-role="th">custname</th>
+<th data-quarto-table-cell-role="th">custemail</th>
+<th data-quarto-table-cell-role="th">custcountry</th>
+<th data-quarto-table-cell-role="th">orderstatus</th>
+<th data-quarto-table-cell-role="th">ordertotal</th>
+<th data-quarto-table-cell-role="th">ordercreditcard</th>
+<th data-quarto-table-cell-role="th">ordershipvia</th>
+<th data-quarto-table-cell-role="th">shippingtotal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">10</th>
+<td>2</td>
+<td>2023-03-24</td>
+<td>Frayda Pepperd</td>
+<td>fpepperd0@sciencedaily.com</td>
+<td>Canada</td>
+<td>delivered</td>
+<td>228.39</td>
+<td>Discover</td>
+<td>RPS</td>
+<td>12.05</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">12</th>
+<td>4</td>
+<td>2022-04-28</td>
+<td>Carree Henworth</td>
+<td>NaN</td>
+<td>Canada</td>
+<td>pending</td>
+<td>152.30</td>
+<td>Discover</td>
+<td>USPS</td>
+<td>12.74</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">13</th>
+<td>6</td>
+<td>2022-05-03</td>
+<td>Marris Chatten</td>
+<td>mchatten4@csmonitor.com</td>
+<td>Mexico</td>
+<td>pending</td>
+<td>208.28</td>
+<td>Discover</td>
+<td>RPS</td>
+<td>2.16</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">14</th>
+<td>7</td>
+<td>2022-12-19</td>
+<td>Logan Jacobsson</td>
+<td>ljacobsson5@wufoo.com</td>
+<td>United States</td>
+<td>delivered</td>
+<td>112.15</td>
+<td>Amex</td>
+<td>USPS</td>
+<td>11.52</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">17</th>
+<td>10</td>
+<td>2023-04-19</td>
+<td>Libbi Spadari</td>
+<td>lspadari8@dot.gov</td>
+<td>Mexico</td>
+<td>pending</td>
+<td>160.79</td>
+<td>Discover</td>
+<td>RPS</td>
+<td>16.52</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">18</th>
+<td>12</td>
+<td>2022-03-03</td>
+<td>Lucky Helstrip</td>
+<td>lhelstripa@tmall.com</td>
+<td>Mexico</td>
+<td>delivered</td>
+<td>202.07</td>
+<td>Amex</td>
+<td>UPS</td>
+<td>18.57</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">19</th>
+<td>13</td>
+<td>2021-09-04</td>
+<td>Debi Myrie</td>
+<td>dmyrieb@unc.edu</td>
+<td>United States</td>
+<td>delivered</td>
+<td>131.62</td>
+<td>Amex</td>
+<td>UPS</td>
+<td>2.37</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="merges" class="level2">
+<h2 class="anchored" data-anchor-id="merges">Merges</h2>
+<p>A <em>merge</em> combines two dataframes based on a common column. The resulting dataframe is wider (has more columns) than the original dataframe. The function to do this is <a href="https://pandas.pydata.org/docs/reference/api/pandas.merge.html">pd.merge()</a>. It’s most common arguments:</p>
+<p><code>pd.merge(left: pd.DataFrame, right:pd.Dataframe, how:str, left_on:str, right_on:str)</code></p>
+<ul>
+<li><code>how</code> specifies the join operation:
+<ul>
+<li><p><code>"inner"</code> - returns ONLY rows when values of <code>left_on</code> match <code>right_on</code></p></li>
+<li><p><code>"left"</code> - returns ALL rows from <code>left</code> and ONLY rows from <code>right</code> when values of <code>left_on</code> match <code>right_on</code></p></li>
+<li><p><code>"right"</code> - returns ALL rows from <code>right</code> and ONLY rows from <code>left</code> when values of <code>left_on</code> match <code>right_on</code></p></li>
+<li><p><code>"outer"</code> - returns ALL rows from <code>left</code> and <code>right</code> and rows when values of <code>left_on</code> match <code>right_on</code></p></li>
+</ul></li>
+</ul>
+<p>To illustrate the differences between these, consider merging the following two dataframes, one representing a roster of basketball players, and another a list of teams:</p>
+<div id="69171a63" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>bbplayers <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/delimited/bbplayers.csv"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>bbplayers</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">player_id</th>
+<th data-quarto-table-cell-role="th">player_name</th>
+<th data-quarto-table-cell-role="th">career_pts</th>
+<th data-quarto-table-cell-role="th">player_team_id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>101</td>
+<td>Jordan</td>
+<td>32292</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>102</td>
+<td>Pippen</td>
+<td>18940</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>103</td>
+<td>Bryant</td>
+<td>33643</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>104</td>
+<td>O'Neal</td>
+<td>28596</td>
+<td>2.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>105</td>
+<td>Fudge</td>
+<td>0</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="c2c0584d" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>bbteams <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/delimited/bbteams.csv"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>bbteams</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">team_id</th>
+<th data-quarto-table-cell-role="th">team_name</th>
+<th data-quarto-table-cell-role="th">team_location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>Bulls</td>
+<td>Chicago, IL</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>Lakers</td>
+<td>Los Angeles, CA</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3</td>
+<td>Tropics</td>
+<td>Flint, MI</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><strong>Inner join</strong>: Only rows that match the <code>bbplayer.player_team_id</code> and <code>bbteam.team_id</code> and <code>bbteam</code> will be included. Note that in this case we lose Player 105 and team 3 because there are no matches:</p>
+<div id="57043ca3" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>combined <span class="op">=</span> pd.merge(bbplayers, bbteams, left_on<span class="op">=</span><span class="st">'player_team_id'</span>, right_on<span class="op">=</span><span class="st">'team_id'</span>, how<span class="op">=</span><span class="st">'inner'</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>combined</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">player_id</th>
+<th data-quarto-table-cell-role="th">player_name</th>
+<th data-quarto-table-cell-role="th">career_pts</th>
+<th data-quarto-table-cell-role="th">player_team_id</th>
+<th data-quarto-table-cell-role="th">team_id</th>
+<th data-quarto-table-cell-role="th">team_name</th>
+<th data-quarto-table-cell-role="th">team_location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>101</td>
+<td>Jordan</td>
+<td>32292</td>
+<td>1.0</td>
+<td>1</td>
+<td>Bulls</td>
+<td>Chicago, IL</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>102</td>
+<td>Pippen</td>
+<td>18940</td>
+<td>1.0</td>
+<td>1</td>
+<td>Bulls</td>
+<td>Chicago, IL</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>103</td>
+<td>Bryant</td>
+<td>33643</td>
+<td>2.0</td>
+<td>2</td>
+<td>Lakers</td>
+<td>Los Angeles, CA</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>104</td>
+<td>O'Neal</td>
+<td>28596</td>
+<td>2.0</td>
+<td>2</td>
+<td>Lakers</td>
+<td>Los Angeles, CA</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><strong>Left join</strong>: All rows from the left (every player) and ONLY rows from team that match. Now we see Player 105 despite no team match:</p>
+<div id="fb0b28ea" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>combined <span class="op">=</span> pd.merge(bbplayers, bbteams, left_on<span class="op">=</span><span class="st">'player_team_id'</span>, right_on<span class="op">=</span><span class="st">'team_id'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>combined</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">player_id</th>
+<th data-quarto-table-cell-role="th">player_name</th>
+<th data-quarto-table-cell-role="th">career_pts</th>
+<th data-quarto-table-cell-role="th">player_team_id</th>
+<th data-quarto-table-cell-role="th">team_id</th>
+<th data-quarto-table-cell-role="th">team_name</th>
+<th data-quarto-table-cell-role="th">team_location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>101</td>
+<td>Jordan</td>
+<td>32292</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>Bulls</td>
+<td>Chicago, IL</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>102</td>
+<td>Pippen</td>
+<td>18940</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>Bulls</td>
+<td>Chicago, IL</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>103</td>
+<td>Bryant</td>
+<td>33643</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>Lakers</td>
+<td>Los Angeles, CA</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>104</td>
+<td>O'Neal</td>
+<td>28596</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>Lakers</td>
+<td>Los Angeles, CA</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>105</td>
+<td>Fudge</td>
+<td>0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><strong>Right join</strong>: All rows from the right (every team) and ONLY rows from players that match. We now see Team 3 despite no player match:</p>
+<div id="21f20a98" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>combined <span class="op">=</span> pd.merge(bbplayers, bbteams, left_on<span class="op">=</span><span class="st">'player_team_id'</span>, right_on<span class="op">=</span><span class="st">'team_id'</span>, how<span class="op">=</span><span class="st">'right'</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>combined</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">player_id</th>
+<th data-quarto-table-cell-role="th">player_name</th>
+<th data-quarto-table-cell-role="th">career_pts</th>
+<th data-quarto-table-cell-role="th">player_team_id</th>
+<th data-quarto-table-cell-role="th">team_id</th>
+<th data-quarto-table-cell-role="th">team_name</th>
+<th data-quarto-table-cell-role="th">team_location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>101.0</td>
+<td>Jordan</td>
+<td>32292.0</td>
+<td>1.0</td>
+<td>1</td>
+<td>Bulls</td>
+<td>Chicago, IL</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>102.0</td>
+<td>Pippen</td>
+<td>18940.0</td>
+<td>1.0</td>
+<td>1</td>
+<td>Bulls</td>
+<td>Chicago, IL</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>103.0</td>
+<td>Bryant</td>
+<td>33643.0</td>
+<td>2.0</td>
+<td>2</td>
+<td>Lakers</td>
+<td>Los Angeles, CA</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>104.0</td>
+<td>O'Neal</td>
+<td>28596.0</td>
+<td>2.0</td>
+<td>2</td>
+<td>Lakers</td>
+<td>Los Angeles, CA</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>3</td>
+<td>Tropics</td>
+<td>Flint, MI</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><strong>Outer join</strong>: All rows from both tables are included. This is equivalent to doing an inner join + all non-matching rows from both tables. In this case, we see Team 3 <em>and</em> Player 105:</p>
+<div id="548137d1" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>combined <span class="op">=</span> pd.merge(bbplayers, bbteams, left_on<span class="op">=</span><span class="st">'player_team_id'</span>, right_on<span class="op">=</span><span class="st">'team_id'</span>, how<span class="op">=</span><span class="st">'outer'</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>combined</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">player_id</th>
+<th data-quarto-table-cell-role="th">player_name</th>
+<th data-quarto-table-cell-role="th">career_pts</th>
+<th data-quarto-table-cell-role="th">player_team_id</th>
+<th data-quarto-table-cell-role="th">team_id</th>
+<th data-quarto-table-cell-role="th">team_name</th>
+<th data-quarto-table-cell-role="th">team_location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>101.0</td>
+<td>Jordan</td>
+<td>32292.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>Bulls</td>
+<td>Chicago, IL</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>102.0</td>
+<td>Pippen</td>
+<td>18940.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>Bulls</td>
+<td>Chicago, IL</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>103.0</td>
+<td>Bryant</td>
+<td>33643.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>Lakers</td>
+<td>Los Angeles, CA</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>104.0</td>
+<td>O'Neal</td>
+<td>28596.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>Lakers</td>
+<td>Los Angeles, CA</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>3.0</td>
+<td>Tropics</td>
+<td>Flint, MI</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>105.0</td>
+<td>Fudge</td>
+<td>0.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Code Challenge 4.2: who is not buying from MiniMart?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider the following data from a grocery store: <a href="https://github.com/mafudge/datasets/tree/master/minimart">https://github.com/mafudge/datasets/tree/master/minimart</a>. In that directory you’ll see <code>customers.csv</code>, which is a list of customers, and a separate CSV file of purchases made in the first four months of the year.</p>
+<p>You have been hired to build a UI to display names of customers who did not buy from minimart in any given month. Write a Streamlit app that displays a dataframe of customers who did not buy anything in a given month. The app should have a drop down menu that allows the user to select the month to display.</p>
+<p>The URL for the location of raw data that you can use in your app is:</p>
+<p><code>https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/minimart/</code></p>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="e8c4fa0a" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/minimart/"</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>months <span class="op">=</span> [<span class="st">'jan'</span>, <span class="st">'feb'</span>, <span class="st">'mar'</span>, <span class="st">'apr'</span>]</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">"Who's not Buying from MiniMart?"</span>)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>month <span class="op">=</span> st.selectbox(<span class="st">'Select Month:'</span>, months)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>purchases <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>base<span class="sc">}</span><span class="ss">/purchases-</span><span class="sc">{</span>month<span class="sc">}</span><span class="ss">.csv"</span>)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>customers <span class="op">=</span> pd.read_csv(<span class="ss">f"</span><span class="sc">{</span>base<span class="sc">}</span><span class="ss">/customers.csv"</span>)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>combined <span class="op">=</span> pd.merge(customers, purchases, left_on<span class="op">=</span><span class="st">'customer_id'</span>, right_on<span class="op">=</span><span class="st">'customer_id'</span>, how<span class="op">=</span><span class="st">'left'</span>)</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> [<span class="st">"customer_id"</span>, <span class="st">"firstname"</span>, <span class="st">"lastname"</span>]</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>did_not_buy <span class="op">=</span> combined[<span class="st">"order_id"</span>].isnull()</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>customers_who_did_not_buy <span class="op">=</span> combined[did_not_buy][cols]</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>st.header(<span class="ss">f"These people did not buy anything in </span><span class="sc">{</span>month<span class="sc">.</span>capitalize()<span class="sc">}</span><span class="ss">.:"</span>)</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>st.dataframe(customers_who_did_not_buy, hide_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co"># You can add the following to double check the results:</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="co">#st.divider()</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="co">#st.write("debug")</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="co">#st.dataframe(combined)</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="co"># That will display the full combined frame for the selected month. The ones</span></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="co"># without entries for the order id should be what's displayed in the table above.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("enter_gitHub_pages_URL_here");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../04_data_wrangling/pandas-2.html" class="pagination-link" aria-label="3. Data I/O with Pandas">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">3. Data I/O with Pandas</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../syllabus.html" class="pagination-link" aria-label="Syllabus">
+        <span class="nav-page-text">Syllabus</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Adapted from the <a href="https://opensource.syracuse.edu/">Syracuse University Open Source Program Office’s</a> <a href="https://github.com/SU-OSPO/workshop-template">workshop template</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
