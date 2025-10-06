@@ -1,5 +1,10 @@
 project:
   type: website
+  resources:
+    - assets/scratch-pandas-4.ipynb
+  render:
+    - "*.qmd"
+    - "!assets/*ipynb"
 
 website:
   title: "IST 356 Fall 2025"

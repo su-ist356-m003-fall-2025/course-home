@@ -1,0 +1,413 @@
+---
+title: "5. Basic data cleaning with Pandas"
+jupyter: python3
+resources:
+    - assets/scratch-pandas-4.ipynb
+---
+
+
+In this lesson we will start learning how to clean a dataframe data and loop over it. To follow along with the commands below, download the following scratch notebook to your `ist356` directory, then open it with VS Code:
+
+<a href="../assets/scratch-pandas-4.ipynb">Download scratch-pandas-4.ipynb</a>
+
+For this tutorial, we will be using some data representing a pretend restaurant's transactions. The file is:
+
+```{python}
+checks_data = 'https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/dining/check-data.csv'
+```
+
+(This link is provided in the scratch notebook.)
+
+Let's load the file with Pandas and sample a few of its rows to see what it contains:
+
+```{python}
+import pandas as pd
+
+checks = pd.read_csv(checks_data)
+checks.sample(10)
+```
+
+Let's use the `info` method to get some more information about the columns:
+```{python}
+checks.info()
+```
+
+There's something odd here! Note that the data type of some of the columns (e.g., `total amount of check`) are `object` instead of `floats`, as you might expect. As we'll see below, this is because of the `$` in the values; that will cause issues when we try to work with these columns. We'll learn how to "clean" these columns so that we can do useful things with them.
+
+## Apply
+
+The `apply` method allows us to execute a function over a [Series](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.apply.html) or the entire [DataFrame](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.apply.html).
+
+
+The general syntax:
+
+- `Series.apply(func)` <== call function `func` for every item in the Series.
+
+- `DataFrame.apply(func, axis=1)` <== call function `func` for every *row* in the DataFrame (`axis=1` => row).
+
+- `DataFrame.apply(func, axis=0)` <== call function `func` for every *column* in the DataFrame (`axis=0` => col).
+
+Note that the first argument `apply` is the function itself, not the function applied to some data. For example, suppose we define a function called `sq` that squares the input values:
+
+```{python}
+def sq(x):
+    return x**2
+```
+
+To apply this to one of the columns in our DataFrame (say, the `party size` column):
+
+```{python}
+checks['party size'].apply(sq)
+```
+
+### Why `apply`?
+
+In the above example, you might wonder why we don't just apply the function directly to the Series, rather than use `apply`. Afterall, in the [first pandas tutorial](pandas-1.qmd) we learned that `Series` are vectorized just like numpy arrays. In other words, why not just do:
+
+```{python}
+sq(checks['party size'])
+```
+
+In this case, you could just run the function on the series. Where `apply` is useful is when you have more complicated functions, in particular, ones that need to do different things depending on what the input data is. For example, suppose we define the following function to group parties into `small`, `medium`, and `large` depending on how many people are in the party:
+
+```{python}
+def classify_size(x):
+    if x < 4:
+        return 'small'
+    elif x < 8:
+        return 'medium'
+    else:
+        return 'large'
+```
+
+If we try to run this on the `party size` Series, we get an error:
+
+```{python}
+#| error: True
+classify_size(checks['party size'])
+```
+
+This is because `if` statements cannot be vectorized like this. In contrast, the `apply` method *does* allow us to apply the function to the series:
+
+```{python}
+checks['party size'].apply(classify_size)
+```
+
+This is because the `apply` method takes care to cycle over every element in the series and apply the function.
+
+### Cleaning data with `apply`
+
+The ability of `apply` to apply more complicated functions involving `if` statements makes it extremely useful for cleaning datasets. By "cleaning" we mean reformatting data and/or removing spurios values, so that we can use it without issue.
+
+For example, say we want to add `price per item` to our DataFrame, defined as:
+
+```{text}
+price per item = total amount of check / total items on check
+```
+
+The problem is `total amount of check` is an `object`, not a `float`. This means we cannot do math on it:
+
+```{python}
+#| error: True
+# This will raise a TypeError because of the dollar sign and commas!!!
+checks['price_per_item'] = checks['total amount of check'] / checks['total items on check']
+```
+
+How do we fix this? Let's write a function to convert string values like this: `$4,590.45` into floats like this: `4590.45`
+
+```{python}
+def clean_currency(value:str) -> float:
+    '''
+    This function will take a string value and remove the dollar sign and commas
+    and return a float value.
+    '''
+    return float(value.replace(',', '').replace('$', ''))
+
+
+# tests
+assert clean_currency('$1,000.00') == 1000.00
+assert clean_currency('$1,000') == 1000.00
+assert clean_currency('1,000') == 1000.00
+assert clean_currency('$1000') == 1000.00
+```
+
+With our function written we can use `apply()` to transform the series:
+
+```{python}
+checks['total_amount_of_check_cleaned'] = checks['total amount of check'].apply(clean_currency)
+checks['price_per_item'] = checks['total_amount_of_check_cleaned'] / checks['total items on check']
+checks.sample(10)
+```
+
+::: {.callout-note}
+Remember its a really good idea to **track lineage** when you are building a data pipeline. 
+
+**NEVER** replace columns, always create new ones.
+:::
+
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 5.1
+
+Let's take what we did so far, and create a dataset that would be better prepared for analysis / machine learning. We'll display it in a Streamlit app.
+
+1.  Create a script called `st-cleaned_checks.py`.
+1.  Add your `clean_currency` function to the script.
+1.  Load the checks dataset into a Pandas `DataFrame` and: 
+    -   Clean the `total amount of check` and `gratuity` columns.
+    -   Calculate the `price_per_item`  as total amount of check / total items on check.
+    -   Calcualte the `price_per_person` as total amont of check / party size.
+    -   Calcualte the `items_per_person` as total items on check / party size.
+    -   Calcualte the `tip_percentage` as the total amount of check / gratuity.
+1.  Display the cleaned DataFrame along with a description of its data (i.e., display the output of `describe`) in a Streamlit app.
+
+1.  Test that your app works by running it.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+1.  The `st-cleaned_checks.py` script:
+
+```{python}
+#| eval: False
+import streamlit as st
+import pandas as pd
+
+def clean_currency(value:str) -> float:
+    '''
+    This function will take a string value and remove the dollar sign and commas
+    and return a float value.
+    '''
+    return float(value.replace(',', '').replace('$', ''))
+
+st.title("Dining Check Data")
+
+# load
+checks = pd.read_csv('https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/dining/check-data.csv')
+
+# transformations
+checks['total_amount_of_check_cleaned'] = checks['total amount of check'].apply(clean_currency)
+checks['gratuity_cleaned'] = checks['gratuity'].apply(clean_currency)
+checks['price_per_item'] = checks['total_amount_of_check_cleaned'] / checks['total items on check']
+checks['price_per_person'] = checks['total_amount_of_check_cleaned'] / checks['party size']
+checks['items_per_person'] = checks['total items on check'] / checks['party size']
+checks['tip_percentage'] = checks['gratuity_cleaned'] / checks['total_amount_of_check_cleaned']
+
+st.dataframe(checks, width=1000)
+
+st.header("Summary:")
+st.dataframe(checks.describe())
+```
+
+2.  Test it by running the following in the terminal (make sure to activate your conda environment first):
+```{bash}
+python -m streamlit run st-cleaned_checks.py
+```
+:::
+::::
+
+
+## Using `lambdas` to apply functions to multiple columns 
+
+So far we've used `apply` with functions that take in a single Series. What do we do if we need a function to operate on multiple columns in a `DataFrame`? For that, we can use Python [lambda](https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions) functions.
+
+An example using our checks data:
+
+Marketing wants you to build some *key performance indicators* (KPIs) using the checks data. A KPI is a statistic that summarizes some larger data set, so the data can be more easily tracked over time. For example a letter grade such as an A- is a KPI summary of all your graded efforts to date.
+
+In this example, marketing wants you to build two KPIs:
+
+**KPI 1: Whales**
+
+Marketing has decided to group customers into the following categories:
+    - `big eaters`: Customers who are in the top 25% (i.e., above the 0.75 *quantile*) for items per person.
+    - `big spenders`: Customers who are in the top 25% for price per person. 
+    - `whale`:  Customers who are in the top 25% for both items per person *and* price per person. 
+
+**KPI 2: Tippers**
+
+Marketing has decided to further group customers into the following categories based on their tipping:
+    - `light`: Customers who are in the botton 25% (i.e., below the 0.25 quantile) by tip percentage.
+    - `heavy`: Customers who are in the top 25% (i.e., above the 0.75 quantile) by tip percentage.
+
+To calculate percentiles we will use the [quantile](https://pandas.pydata.org/docs/reference/api/pandas.Series.quantile.html) Series method in Pandas. This returns the value at which X% of the data is below the given percentile. 
+
+Before we can apply our KPI's we must write the functions!
+
+```{python}
+checks['gratuity_cleaned'] = checks['gratuity'].apply(clean_currency)
+checks['price_per_item'] = checks['total_amount_of_check_cleaned'] / checks['total items on check']
+checks['price_per_person'] = checks['total_amount_of_check_cleaned'] / checks['party size']
+checks['items_per_person'] = checks['total items on check'] / checks['party size']
+checks['tip_percentage'] = checks['gratuity_cleaned'] / checks['total_amount_of_check_cleaned']
+```
+
+To categorize whales:
+```{python}
+def detect_whale(
+        items_per_person:float, 
+        price_per_person:float, 
+        items_per_person_75th_pctile:float, 
+        price_per_person_75_pctile:float) -> str:
+    if items_per_person > items_per_person_75th_pctile and price_per_person > price_per_person_75_pctile:
+        return 'whale'
+    if items_per_person > items_per_person_75th_pctile:
+        return 'big eater'
+    if price_per_person > price_per_person_75_pctile:
+        return 'big spender'
+    return ''
+```
+
+Let's test our function using the `quantile` method:
+```{python}
+# tests
+ppp_75 = checks['price_per_person'].quantile(0.75)
+ipp_75 = checks['items_per_person'].quantile(0.75)
+print(ppp_75, ipp_75)
+assert detect_whale(5, 250, 3, 175) == 'whale'
+assert detect_whale(5, 100, 3, 175) == 'big eater'
+assert detect_whale(1, 250, 3, 175) == 'big spender'
+assert detect_whale(1, 100, 3, 175) == ''
+```
+
+Now we want to apply the `detect_whale` function to the `checks` DataFrame. But `detect_whale` requires two columns as input, the `items_per_person` and `price_per_person`. How do we do that?
+
+We can use a `lambda` function to quickly define a small function that will return the required columns when provided a row. In general, the syntax for a `lambda` function is `lambda ARGS: FUNC`. For example, `lambda a, b: a+b` will return the sum of the two arguments its given.
+
+In our case, we can use a `lambda` function to pull out the needed columns and give them to `apply`, like so:
+
+```{python}
+checks['whale'] = checks.apply(lambda row: detect_whale(row['items_per_person'], row['price_per_person'], ipp_75, ppp_75), axis=1)
+checks.sample(25)
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 5.2
+
+Let's build on the Streamlit app you made in Challenge 5.1, and add our KPIs to it.
+
+1.  Copy `st-cleaned_checks.py` to a new file called `st-checks_kpi.py`.
+
+1.  Add the `detect_whale` function defined above to `st-checks_kpi.py`.
+
+1.  Write a new function `detect_tipper(tip_pct, tip_pcy_75th_pctile, tip_pct_25_pctile)` that should return either "light" or "heavy" depending on whether the tip is below the 0.25 quantile or above the 0.75 quantile, respectively. If neither, the function should just return an empty string.
+
+1.  Apply the `detect_whale` and `detect_tipper` functions to the DataFrame, storing the results in new columns called `whale` and `tipper`, respectively.
+
+1.  As with before, diplay the modified DataFrame and the output of `describe` in a Streamlit app.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+1.  It's easiest to do the copy using the command line. In the terminal, run:
+
+```{bash}
+cp st-cleaned_checks.py st-checks_kpi.py
+```
+
+1.  Now modify `st-checks_kpi.py`. It should look like:
+
+```{python}
+#| eval: False
+import streamlit as st
+import pandas as pd
+
+def clean_currency(value:str) -> float:
+    '''
+    This function will take a string value and remove the dollar sign and commas
+    and return a float value.
+    '''
+    return float(value.replace(',', '').replace('$', ''))
+
+def detect_whale(
+        items_per_person:float, 
+        price_per_person:float, 
+        items_per_person_75th_pctile:float, 
+        price_per_person_75_pctile:float) -> str:
+    if items_per_person > items_per_person_75th_pctile and price_per_person > price_per_person_75_pctile:
+        return 'whale'
+    if items_per_person > items_per_person_75th_pctile:
+        return 'big eater'
+    if price_per_person > price_per_person_75_pctile:
+        return 'big spender'
+    
+    return ''
+
+
+def detect_tipper(tip_pct:float, tip_pct_75th_pctile:float, tip_pct_25th_pctile:float) -> str:
+    if tip_pct > tip_pct_75th_pctile:
+        return 'heavy tipper'
+    if tip_pct < tip_pct_25th_pctile:
+        return 'light tipper'
+    return ''
+
+st.title("Dining Check Data")
+
+# load
+checks = pd.read_csv('https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/dining/check-data.csv')
+
+# transformations
+checks['total_amount_of_check_cleaned'] = checks['total amount of check'].apply(clean_currency)
+checks['gratuity_cleaned'] = checks['gratuity'].apply(clean_currency)
+checks['price_per_item'] = checks['total_amount_of_check_cleaned'] / checks['total items on check']
+checks['price_per_person'] = checks['total_amount_of_check_cleaned'] / checks['party size']
+checks['items_per_person'] = checks['total items on check'] / checks['party size']
+checks['tip_percentage'] = checks['gratuity_cleaned'] / checks['total_amount_of_check_cleaned']
+
+## The new stuff adding KPIs:
+# get KPI boundaries
+ppp_75 = checks['price_per_person'].quantile(0.75)
+ipp_75 = checks['items_per_person'].quantile(0.75)
+tp_75 = checks['tip_percentage'].quantile(0.75)
+tp_25 = checks['tip_percentage'].quantile(0.25)
+
+# Calcualte KPI's
+checks['whale'] = checks.apply(lambda row: detect_whale(row['items_per_person'], row['price_per_person'], ipp_75, ppp_75), axis=1)
+checks['tipper'] = checks.apply(lambda row: detect_tipper(row['tip_percentage'], tp_75, tp_25), axis=1)
+
+# Now display
+st.dataframe(checks, width=1000)
+
+st.header("Summary:")
+st.dataframe(checks.describe())
+```
+
+:::
+::::
+ 
+
+## Looping over Dataframes
+
+If you must run a `for` loop over your DataFrames, there are two choices:
+
+- `df.iterrows()` dict-like iteration
+- `df.itertuples()` named-tuple like iteration (faster)
+
+
+Let's do an example where we display the check number, whale and tipper for "heavy tipper" checks.
+
+```{python}
+#| eval: false
+## Using the iterrows() method
+print("Total Amount of Whale Checks")
+for i,row in checks.iterrows():
+    if row['whale'] == 'whale':
+        print(i, row['check'], row['total_amount_of_check_cleaned'])
+```
+
+```{python}
+#| eval: false
+# Same example with the itertuples() method
+print("Total Amount of Whale Checks")
+for row in checks.itertuples():
+    if row.whale == 'whale':
+        print(row.check, row.total_amount_of_check_cleaned)
+```
+
+```{python}
+#| eval: false
+# Of course you don't need a loop to do this:
+checks[checks['whale'] == 'whale'][['check', 'total_amount_of_check_cleaned']]
+```
+
+
