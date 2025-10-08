@@ -1,7 +1,7 @@
 project:
   type: website
   resources:
-    - assets/scratch-pandas-4.ipynb
+    - assets/scratch-*.ipynb
   render:
     - "*.qmd"
     - "!assets/*ipynb"

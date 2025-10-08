@@ -12,6 +12,7 @@ In this unit we will learn about how to easily manage and manipulate data in Pyt
 3. [Data I/O with Pandas](pandas-2.qmd)
 4. [Joining Multiple Pandas Dataframes](pandas-3.qmd)
 5. [Basic data cleaning with Pandas](pandas-4.qmd)
+6. [Grouping data and creating pivot tables with Pandas](pandas-5.qmd)
 
 ## Lectures
 
