@@ -103,7 +103,7 @@
     "href": "syllabus.html#class-schedule",
     "title": "Syllabus",
     "section": "Class Schedule",
-    "text": "Class Schedule\nNote: schedule subject to change as we progress through the semester.\n\n\n\nWeek\nDates\nTopic\n\n\n\n\n1\n8/25, 8/29\nIntro; CLI and Conda\n\n\n2\n9/3\nPython review - 1\n\n\n3\n9/8, 9/10\nPython review - 2\n\n\n4\n9/15, 9/17\nUI\n\n\n5\n9/22, 9/24\nData wrangling - 1\n\n\n6\n9/29, 10/1\nData wrangling - 2\n\n\n7\n10/6, 10/8\nData wrangling - 3\n\n\n8\n10/15\nExam 1\n\n\n9\n10/20, 10/22\nWeb APIs - 1\n\n\n10\n10/27, 10/29\nWeb APIs - 2\n\n\n11\n11/3, 11/5\nWeb scraping - 1\n\n\n12\n11/10, 11/12\nWeb scraping - 2\n\n\n13\n11/17, 11/19\nData visualization - 1\n\n\n14\n12/1, 12/3\nData visualization - 2\n\n\n15\n12/8\nExam 2\n\n\n16\n12/15\nProject due",
+    "text": "Class Schedule\nNote: schedule subject to change as we progress through the semester.\n\n\n\nWeek\nDates\nTopic\n\n\n\n\n1\n8/25, 8/29\nIntro; CLI and Conda\n\n\n2\n9/3\nPython review - 1\n\n\n3\n9/8, 9/10\nPython review - 2\n\n\n4\n9/15, 9/17\nUI\n\n\n5\n9/22, 9/24\nData wrangling - 1\n\n\n6\n9/29, 10/1\nData wrangling - 2\n\n\n7\n10/6, 10/8\nData wrangling - 3\n\n\n8\n10/15\nData wrangling - 4\n\n\n9\n10/20, 10/22\nExam 1 (10/20); Web APIs - 1\n\n\n10\n10/27, 10/29\nWeb APIs - 2\n\n\n11\n11/3, 11/5\nWeb scraping - 1\n\n\n12\n11/10, 11/12\nWeb scraping - 2\n\n\n13\n11/17, 11/19\nData visualization - 1\n\n\n14\n12/1, 12/3\nData visualization - 2\n\n\n15\n12/8\nExam 2\n\n\n16\n12/15\nProject due",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "Syllabus"
@@ -315,7 +315,7 @@
     "href": "04_data_wrangling/index.html#lectures",
     "title": "4. Data Wrangling",
     "section": "Lectures",
-    "text": "Lectures\n\nMonday, 9/22/2025\nInstructions on how to use Git on the command line. Introduction to NumPy.\n\n\n\n\nWednesday, 9/24/2025\nIntroduction to Pandas: Series and DataFrames.\n\n\n\n\nMonday, 9/29/2025\nData I/O with Pandas\n\n\n\n\nWednesday, 10/1/2025\nJoining mulitple DataFrames",
+    "text": "Lectures\n\nMonday, 9/22/2025\nInstructions on how to use Git on the command line. Introduction to NumPy.\n\n\n\n\nWednesday, 9/24/2025\nIntroduction to Pandas: Series and DataFrames.\n\n\n\n\nMonday, 9/29/2025\nData I/O with Pandas\n\n\n\n\nWednesday, 10/1/2025\nJoining mulitple DataFrames\n\n\n\n\nMonday, 10/6/2025\nUsing apply to clean data in a Pandas DataFrame\n\n\n\n\nWednesday, 10/8/2025\nGrouping data, merging tables, and creating pivot tables",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "4. Data Wrangling"
@@ -1753,7 +1753,7 @@
     "href": "index.html#class-schedule",
     "title": "IST 356: Programming Techniques for Data Analytics",
     "section": "Class Schedule",
-    "text": "Class Schedule\nNote: schedule subject to change as we progress through the semester.\n\n\n\nWeek\nDates\nTopic\n\n\n\n\n1\n8/25, 8/29\nIntro; CLI and Conda\n\n\n2\n9/3\nPython review - 1\n\n\n3\n9/8, 9/10\nPython review - 2\n\n\n4\n9/15, 9/17\nUI\n\n\n5\n9/22, 9/24\nData wrangling - 1\n\n\n6\n9/29, 10/1\nData wrangling - 2\n\n\n7\n10/6, 10/8\nData wrangling - 3\n\n\n8\n10/15\nExam 1\n\n\n9\n10/20, 10/22\nWeb APIs - 1\n\n\n10\n10/27, 10/29\nWeb APIs - 2\n\n\n11\n11/3, 11/5\nWeb scraping - 1\n\n\n12\n11/10, 11/12\nWeb scraping - 2\n\n\n13\n11/17, 11/19\nData visualization - 1\n\n\n14\n12/1, 12/3\nData visualization - 2\n\n\n15\n12/8\nExam 2\n\n\n16\n12/15\nProject due"
+    "text": "Class Schedule\nNote: schedule subject to change as we progress through the semester.\n\n\n\nWeek\nDates\nTopic\n\n\n\n\n1\n8/25, 8/29\nIntro; CLI and Conda\n\n\n2\n9/3\nPython review - 1\n\n\n3\n9/8, 9/10\nPython review - 2\n\n\n4\n9/15, 9/17\nUI\n\n\n5\n9/22, 9/24\nData wrangling - 1\n\n\n6\n9/29, 10/1\nData wrangling - 2\n\n\n7\n10/6, 10/8\nData wrangling - 3\n\n\n8\n10/15\nData wrangling - 4\n\n\n9\n10/20, 10/22\nExam 1 (10/20); Web APIs - 1\n\n\n10\n10/27, 10/29\nWeb APIs - 2\n\n\n11\n11/3, 11/5\nWeb scraping - 1\n\n\n12\n11/10, 11/12\nWeb scraping - 2\n\n\n13\n11/17, 11/19\nData visualization - 1\n\n\n14\n12/1, 12/3\nData visualization - 2\n\n\n15\n12/8\nExam 2\n\n\n16\n12/15\nProject due"
   },
   {
     "objectID": "index.html#important-dates",
