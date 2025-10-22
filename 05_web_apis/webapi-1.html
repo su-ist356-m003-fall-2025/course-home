@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1. REST APIs – IST 356 Fall 2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../syllabus.html" rel="next">
+<link href="../05_web_apis/index.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-636770ed70550effe8cc9e61b03b729c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<meta property="og:title" content="1. REST APIs – IST 356 Fall 2025">
+<meta property="og:description" content="">
+<meta property="og:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
+<meta property="og:site_name" content="IST 356 Fall 2025">
+<meta property="og:image:height" content="105">
+<meta property="og:image:width" content="650">
+<meta name="twitter:title" content="1. REST APIs – IST 356 Fall 2025">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
+<meta name="twitter:image-height" content="105">
+<meta name="twitter:image-width" content="650">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">IST 356 Fall 2025</span>
+    </a>
+  </div>
+          <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://ischool.syracuse.edu" target="_blank"> 
+<span class="menu-text"><img src="../images/ischool_logo_reverseX2.png" height="30"></span></a>
+  </li>  
+</ul>
+          <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../05_web_apis/index.html">5. Web APIs</a></li><li class="breadcrumb-item"><a href="../05_web_apis/webapi-1.html">1. REST APIs</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../00_intro/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and computer setup</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../01_cli_conda/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Command line interface and Environments</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01_cli_conda/shell-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Command Line Interface and the Unix Shell</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01_cli_conda/conda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bash variables, environments, and <code>conda</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../02_python/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Python review</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02_python/python-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Input, output, variables, types, conditionals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02_python/python-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Iterations, lists, dictionaries, comprehensions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02_python/python-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Functions, documentation, strings, files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02_python/python-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Modules, import, pip, testing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../03_ui/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. UI</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../03_ui/ui-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Interaction in Jupyter using ipywidgets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../03_ui/ui-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Creating simple web apps with Streamlit</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../04_data_wrangling/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Data Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04_data_wrangling/numpy_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Introduction to NumPy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04_data_wrangling/pandas-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Introduction to Pandas: Series and DataFrames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04_data_wrangling/pandas-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Data I/O with Pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04_data_wrangling/pandas-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Joining Multiple Pandas Dataframes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04_data_wrangling/pandas-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Basic data cleaning with Pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04_data_wrangling/pandas-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Grouping data and creating pivot tables with Pandas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../05_web_apis/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Web APIs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../05_web_apis/webapi-1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">1. REST APIs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-a-web-api-rest-api" id="toc-what-is-a-web-api-rest-api" class="nav-link active" data-scroll-target="#what-is-a-web-api-rest-api">What is a Web API / REST API?</a></li>
+  <li><a href="#http-without-a-rest-api-example" id="toc-http-without-a-rest-api-example" class="nav-link" data-scroll-target="#http-without-a-rest-api-example">HTTP without a rest API Example</a></li>
+  <li><a href="#http-rest-api-example" id="toc-http-rest-api-example" class="nav-link" data-scroll-target="#http-rest-api-example">HTTP REST API Example</a></li>
+  <li><a href="#parsing-the-json-response" id="toc-parsing-the-json-response" class="nav-link" data-scroll-target="#parsing-the-json-response">Parsing the JSON response</a></li>
+  <li><a href="#response-codes-for-handling-errors" id="toc-response-codes-for-handling-errors" class="nav-link" data-scroll-target="#response-codes-for-handling-errors">Response Codes for Handling Errors</a></li>
+  <li><a href="#algorithm-for-calling-any-rest-api-in-python" id="toc-algorithm-for-calling-any-rest-api-in-python" class="nav-link" data-scroll-target="#algorithm-for-calling-any-rest-api-in-python">Algorithm for calling any REST API in Python</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#query-string" id="toc-query-string" class="nav-link" data-scroll-target="#query-string">Query String</a></li>
+  <li><a href="#the-syracuse-university-iot-portal" id="toc-the-syracuse-university-iot-portal" class="nav-link" data-scroll-target="#the-syracuse-university-iot-portal">The Syracuse University Iot Portal</a>
+  <ul class="collapse">
+  <li><a href="#swagger-and-curl" id="toc-swagger-and-curl" class="nav-link" data-scroll-target="#swagger-and-curl">Swagger and Curl</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  </ul></li>
+  <li><a href="#http-headers" id="toc-http-headers" class="nav-link" data-scroll-target="#http-headers">HTTP Headers</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../05_web_apis/index.html">5. Web APIs</a></li><li class="breadcrumb-item"><a href="../05_web_apis/webapi-1.html">1. REST APIs</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">1. REST APIs</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="what-is-a-web-api-rest-api" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-a-web-api-rest-api">What is a Web API / REST API?</h2>
+<p>A <a href="https://en.wikipedia.org/wiki/REST">REST API</a> (REpresentational State Transfer API) is a set of functions that can be accessed over the internet. The functions are organized in a way that they can be accessed using the common protocol of the Web, HTTP (Hypertext-Transport Protocol).</p>
+<p>By design, REST APIs are <strong>stateless</strong>, meaning:</p>
+<ul>
+<li>calls can be made independently of one another,</li>
+<li>each call contains all of the data needed to complete itself successfully, and</li>
+<li>no one call depends on the next.</li>
+</ul>
+<p>REST APIs are designed around resources, which consists of a <a href="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</a> (usually a <a href="https://en.wikipedia.org/wiki/URL">URL</a>), and an HTTP request method.</p>
+<p>The methods are:</p>
+<ul>
+<li>GET: retrieve a resource</li>
+<li>POST: create a new resource</li>
+<li>PUT: update a resource</li>
+<li>DELETE: remove a resource</li>
+<li>PATCH: update a resource with partial data</li>
+</ul>
+</section>
+<section id="http-without-a-rest-api-example" class="level2">
+<h2 class="anchored" data-anchor-id="http-without-a-rest-api-example">HTTP without a rest API Example</h2>
+<p>Let’s start with an example of invoking a simple HTTP request without using a REST API.</p>
+<p>Let’s retrieve the content of the <a href="https://su-ist356-m003-fall-2025.github.io/course-home/">course website</a> programmatically.</p>
+<p>Notice the response is HTML content. This is a markup language used to create web pages and is intended for humans.</p>
+<div id="0a75910e" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>uri <span class="op">=</span> <span class="st">"https://su-ist356-m003-fall-2025.github.io/course-home/"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(uri)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: we're just printing the first 1000 characters here to avoid</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># overwhelming output</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.text[:<span class="dv">1000</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt;&lt;head&gt;
+
+&lt;meta charset="utf-8"&gt;
+&lt;meta name="generator" content="quarto-1.8.25"&gt;
+
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"&gt;
+
+
+&lt;title&gt;IST 356: Programming Techniques for Data Analytics – IST 356 Fall 2025&lt;/title&gt;
+&lt;style&gt;
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+&lt;/style&gt;
+
+
+&lt;script src="site_libs/quarto-nav/quarto-nav.js"&gt;&lt;/script&gt;
+&lt;script src="site_libs/clipboard/clipboard.min.js"&gt;&lt;/script&gt;
+&lt;script src="site_libs/quarto-search/autocomplete.umd.js"&gt;&lt;/script&gt;
+</code></pre>
+</div>
+</div>
+</section>
+<section id="http-rest-api-example" class="level2">
+<h2 class="anchored" data-anchor-id="http-rest-api-example">HTTP REST API Example</h2>
+<p>This example will use the funny names API to demonstrate how to retrieve data from a REST API. Note that the code is exactly the same as the previous example, but the URL is different.</p>
+<div id="c505c6f5" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>uri <span class="op">=</span> <span class="st">"https://cent.ischool-iot.net/api/funnyname/random"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(uri)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[{"first": "Ivana", "last": "Sandwich"}]
+</code></pre>
+</div>
+</div>
+</section>
+<section id="parsing-the-json-response" class="level2">
+<h2 class="anchored" data-anchor-id="parsing-the-json-response">Parsing the JSON response</h2>
+<p>You can see from the example above, the response is in JSON format. Recall that JSON is a lightweight data-interchange format that is easy for humans to read and write and easy for machines to parse and generate.</p>
+<p>Since REST API’s are for machines, it makes sense to use the JSON format. We can deserialize the JSON response into a Python dictionary or list using the <code>json()</code> method on requests.</p>
+<div id="e886a4c6" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>uri <span class="op">=</span> <span class="st">"https://cent.ischool-iot.net/api/funnyname/random"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(uri)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>funny_person <span class="op">=</span> response.json()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(funny_person) <span class="co"># list of dict</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(funny_person[<span class="dv">0</span>][<span class="st">'first'</span>], funny_person[<span class="dv">0</span>][<span class="st">'last'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[{'first': 'Rip', 'last': 'Yerpanz'}]
+Rip Yerpanz</code></pre>
+</div>
+</div>
+</section>
+<section id="response-codes-for-handling-errors" class="level2">
+<h2 class="anchored" data-anchor-id="response-codes-for-handling-errors">Response Codes for Handling Errors</h2>
+<p>When the server returns a response to a request, included in the response is the HTTP status code, which tells the client whether or not the request worked. Unlike a regular API / function call such as <code>print()</code> this is necessary because there is a lot that can go wrong when you call a function over the open internet. Status codes are 3 digit numbers and the first number indicates the type of response:</p>
+<ul>
+<li>1xx - codes are informational. These are seldom used in web APIs.</li>
+<li>2xx - codes which begin with a 2 indicate success. The most common code is 200 - OK.</li>
+<li>3xx - codes which begin with a 3 indicate redirection - the response is not comming from the request URL you requested. For -example a 304 - Not modified means your response is coming from the browser’s cache (content already downloaded).</li>
+<li>4xx - codes which begin with a 4 indicate a client error. The most common code here is 404 - Not Found. Any 4xx errors mean the requestor did something wrong. (In this case, that’s you!)</li>
+<li>5xx - codes which begin with a 5 indicate a server error. The most common code here is 500 - Internal server error, which indicates the server could not process the request. When this happens it could be the web API’s problem or the way you made the request.</li>
+</ul>
+<p>We handle errors using the <code>raise_for_status()</code> method on the response object. This method will raise an exception if the response is any status code other than 2xx. It’s good to raise an exception here because it will stop the program from continuing and potentially causing more problems.</p>
+<div id="2f34b119" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This intentionally fails with 404 - not found</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>uri <span class="op">=</span> <span class="st">"https://cent.ischool-iot.net/api/funnynamez/random"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(uri)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>response.raise_for_status()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># none of this code is relevant if the status is not 2xx</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>funny_person <span class="op">=</span> response.json()</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(funny_person) <span class="co"># list of dict</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(funny_person[<span class="dv">0</span>][<span class="st">'first'</span>], funny_person[<span class="dv">0</span>][<span class="st">'last'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">HTTPError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 4</span>
+<span class="ansi-green-fg">      2</span> uri = <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">https://cent.ischool-iot.net/api/funnynamez/random</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">      3</span> response = requests.get(uri)
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span> <span class="ansi-yellow-bg">response</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">raise_for_status</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg">      5</span> <span style="font-style:italic;color:rgb(95,135,135)"># none of this code is relevant if the status is not 2xx</span>
+<span class="ansi-green-fg">      6</span> funny_person = response.json()
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">/opt/hostedtoolcache/Python/3.13.7/x64/lib/python3.13/site-packages/requests/models.py:1026</span>, in <span class="ansi-cyan-fg">Response.raise_for_status</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-fg">   1021</span>     http_error_msg = (
+<span class="ansi-green-fg">   1022</span>         <span class="ansi-yellow-fg">f</span><span class="ansi-yellow-fg">"</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">self</span>.status_code<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> Server Error: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>reason<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg"> for url: </span><span style="font-weight:bold;color:rgb(175,95,135)">{</span><span style="color:rgb(0,135,0)">self</span>.url<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span class="ansi-yellow-fg">"</span>
+<span class="ansi-green-fg">   1023</span>     )
+<span class="ansi-green-fg">   1025</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> http_error_msg:
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">1026</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> HTTPError(http_error_msg, response=<span style="color:rgb(0,135,0)">self</span>)
+
+<span class="ansi-red-fg">HTTPError</span>: 404 Client Error: NOT FOUND for url: https://cent.ischool-iot.net/api/funnynamez/random</pre>
+</div>
+</div>
+</div>
+</section>
+<section id="algorithm-for-calling-any-rest-api-in-python" class="level2">
+<h2 class="anchored" data-anchor-id="algorithm-for-calling-any-rest-api-in-python">Algorithm for calling any REST API in Python</h2>
+<ol type="1">
+<li>Prepare the request URI
+<ol type="1">
+<li>headers</li>
+<li>query parameters</li>
+<li>body</li>
+</ol></li>
+<li>Make the request with URI and appropriate method</li>
+<li>Check the response status code with rise_for_status()</li>
+<li>Deserialize the response into a Python object</li>
+</ol>
+<p>The process is always the same, only the way the requrest is prepares and your handling of the response content will change.</p>
+</section>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<p>First example gets the user streetm and the second example gets the post title.</p>
+<p>Uses the JSONPlaceholder API, which is a mock API (Fake data)</p>
+<p>Example 1: - get user: https://jsonplaceholder.typicode.com/users/1 - street: <code>user['address']['street']</code></p>
+<div id="0a157a98" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ex1_uri <span class="op">=</span> <span class="st">"https://jsonplaceholder.typicode.com/users/1"</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(ex1_uri)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>response.raise_for_status()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>user <span class="op">=</span> response.json()</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"STREET:"</span>, user[<span class="st">'address'</span>][<span class="st">'street'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>STREET: Kulas Light</code></pre>
+</div>
+</div>
+<p>Example 2: - get post: https://jsonplaceholder.typicode.com/posts/1<br>
+- title: <code>post['title']</code></p>
+<div id="658220d4" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ex2_uri <span class="op">=</span> <span class="st">"https://jsonplaceholder.typicode.com/posts/1"</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(ex2_uri)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>response.raise_for_status()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>post <span class="op">=</span> response.json()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"TITLE:"</span>, post[<span class="st">'title'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>TITLE: sunt aut facere repellat provident occaecati excepturi optio reprehenderit</code></pre>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Code Challenge 1.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Write some Python that will:</p>
+<ol type="1">
+<li><p>Read from the URL https://jsonplaceholder.typicode.com/users/</p></li>
+<li><p>Display the returned data in a Pandas DataFrame.</p></li>
+</ol>
+<p><em>Hints</em>:</p>
+<ul>
+<li>Use the <code>requests</code> library to get the data.</li>
+<li>Use Panda’s <code>json_normalize()</code> to convert the nested json data into a dataframe. Refer back to the <a href="../04_data_wrangling/pandas-2.html">second Pandas tutorial</a> if you forget how to use that.</li>
+</ul>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="ff6566e6" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>uri <span class="op">=</span> <span class="st">"https://jsonplaceholder.typicode.com/users/"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(uri)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>response.raise_for_status()</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> response.json()</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.json_normalize(data)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">username</th>
+<th data-quarto-table-cell-role="th">email</th>
+<th data-quarto-table-cell-role="th">phone</th>
+<th data-quarto-table-cell-role="th">website</th>
+<th data-quarto-table-cell-role="th">address.street</th>
+<th data-quarto-table-cell-role="th">address.suite</th>
+<th data-quarto-table-cell-role="th">address.city</th>
+<th data-quarto-table-cell-role="th">address.zipcode</th>
+<th data-quarto-table-cell-role="th">address.geo.lat</th>
+<th data-quarto-table-cell-role="th">address.geo.lng</th>
+<th data-quarto-table-cell-role="th">company.name</th>
+<th data-quarto-table-cell-role="th">company.catchPhrase</th>
+<th data-quarto-table-cell-role="th">company.bs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>Leanne Graham</td>
+<td>Bret</td>
+<td>Sincere@april.biz</td>
+<td>1-770-736-8031 x56442</td>
+<td>hildegard.org</td>
+<td>Kulas Light</td>
+<td>Apt. 556</td>
+<td>Gwenborough</td>
+<td>92998-3874</td>
+<td>-37.3159</td>
+<td>81.1496</td>
+<td>Romaguera-Crona</td>
+<td>Multi-layered client-server neural-net</td>
+<td>harness real-time e-markets</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>Ervin Howell</td>
+<td>Antonette</td>
+<td>Shanna@melissa.tv</td>
+<td>010-692-6593 x09125</td>
+<td>anastasia.net</td>
+<td>Victor Plains</td>
+<td>Suite 879</td>
+<td>Wisokyburgh</td>
+<td>90566-7771</td>
+<td>-43.9509</td>
+<td>-34.4618</td>
+<td>Deckow-Crist</td>
+<td>Proactive didactic contingency</td>
+<td>synergize scalable supply-chains</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3</td>
+<td>Clementine Bauch</td>
+<td>Samantha</td>
+<td>Nathan@yesenia.net</td>
+<td>1-463-123-4447</td>
+<td>ramiro.info</td>
+<td>Douglas Extension</td>
+<td>Suite 847</td>
+<td>McKenziehaven</td>
+<td>59590-4157</td>
+<td>-68.6102</td>
+<td>-47.0653</td>
+<td>Romaguera-Jacobson</td>
+<td>Face to face bifurcated interface</td>
+<td>e-enable strategic applications</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>4</td>
+<td>Patricia Lebsack</td>
+<td>Karianne</td>
+<td>Julianne.OConner@kory.org</td>
+<td>493-170-9623 x156</td>
+<td>kale.biz</td>
+<td>Hoeger Mall</td>
+<td>Apt. 692</td>
+<td>South Elvis</td>
+<td>53919-4257</td>
+<td>29.4572</td>
+<td>-164.2990</td>
+<td>Robel-Corkery</td>
+<td>Multi-tiered zero tolerance productivity</td>
+<td>transition cutting-edge web services</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>5</td>
+<td>Chelsey Dietrich</td>
+<td>Kamren</td>
+<td>Lucio_Hettinger@annie.ca</td>
+<td>(254)954-1289</td>
+<td>demarco.info</td>
+<td>Skiles Walks</td>
+<td>Suite 351</td>
+<td>Roscoeview</td>
+<td>33263</td>
+<td>-31.8129</td>
+<td>62.5342</td>
+<td>Keebler LLC</td>
+<td>User-centric fault-tolerant solution</td>
+<td>revolutionize end-to-end systems</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>6</td>
+<td>Mrs. Dennis Schulist</td>
+<td>Leopoldo_Corkery</td>
+<td>Karley_Dach@jasper.info</td>
+<td>1-477-935-8478 x6430</td>
+<td>ola.org</td>
+<td>Norberto Crossing</td>
+<td>Apt. 950</td>
+<td>South Christy</td>
+<td>23505-1337</td>
+<td>-71.4197</td>
+<td>71.7478</td>
+<td>Considine-Lockman</td>
+<td>Synchronised bottom-line interface</td>
+<td>e-enable innovative applications</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>7</td>
+<td>Kurtis Weissnat</td>
+<td>Elwyn.Skiles</td>
+<td>Telly.Hoeger@billy.biz</td>
+<td>210.067.6132</td>
+<td>elvis.io</td>
+<td>Rex Trail</td>
+<td>Suite 280</td>
+<td>Howemouth</td>
+<td>58804-1099</td>
+<td>24.8918</td>
+<td>21.8984</td>
+<td>Johns Group</td>
+<td>Configurable multimedia task-force</td>
+<td>generate enterprise e-tailers</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>8</td>
+<td>Nicholas Runolfsdottir V</td>
+<td>Maxime_Nienow</td>
+<td>Sherwood@rosamond.me</td>
+<td>586.493.6943 x140</td>
+<td>jacynthe.com</td>
+<td>Ellsworth Summit</td>
+<td>Suite 729</td>
+<td>Aliyaview</td>
+<td>45169</td>
+<td>-14.3990</td>
+<td>-120.7677</td>
+<td>Abernathy Group</td>
+<td>Implemented secondary concept</td>
+<td>e-enable extensible e-tailers</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>9</td>
+<td>Glenna Reichert</td>
+<td>Delphine</td>
+<td>Chaim_McDermott@dana.io</td>
+<td>(775)976-6794 x41206</td>
+<td>conrad.com</td>
+<td>Dayna Park</td>
+<td>Suite 449</td>
+<td>Bartholomebury</td>
+<td>76495-3109</td>
+<td>24.6463</td>
+<td>-168.8889</td>
+<td>Yost and Sons</td>
+<td>Switchable contextually-based project</td>
+<td>aggregate real-time technologies</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>10</td>
+<td>Clementina DuBuque</td>
+<td>Moriah.Stanton</td>
+<td>Rey.Padberg@karina.biz</td>
+<td>024-648-3804</td>
+<td>ambrose.net</td>
+<td>Kattie Turnpike</td>
+<td>Suite 198</td>
+<td>Lebsackbury</td>
+<td>31428-2261</td>
+<td>-38.2386</td>
+<td>57.2232</td>
+<td>Hoeger LLC</td>
+<td>Centralized empowering task-force</td>
+<td>target end-to-end models</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="query-string" class="level2">
+<h2 class="anchored" data-anchor-id="query-string">Query String</h2>
+<p>The Query String is a part of the URL that is used to pass data to the server <strong>on the URL</strong>. It is appended to the end of the URL and begins with a question mark “?”. The query string is made up of a series of key-value pairs separated by an ampersand (&amp;).</p>
+<p>Examples:</p>
+<p><code>/sample?x=bar</code> =&gt; <code>{'x': 'bar'}</code> <code>/sample?name=John&amp;age=30</code> =&gt; <code>{'name': 'John', 'age': 'go'}</code> <code>/sample?name=John&amp;age=30&amp;count=4</code> =&gt; <code>{'name': 'John', 'age': '30', count: '4'}</code></p>
+<p>In Python <code>requests</code> library, you can pass the query string as a dictionary under the <code>params</code> named argument.</p>
+<p>To illustrate, here’s an example where we use the <a href="https://arxiv.org">arXiv</a>’s REST API to retrieve information about the paper <a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a>. In the first example, we put the query information directly into the URL:</p>
+<div id="3ab8ac9b" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"http://export.arxiv.org/api/query?id_list=1706.03762"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>response.raise_for_status()</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.text[:<span class="dv">1000</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;feed xmlns="http://www.w3.org/2005/Atom"&gt;
+  &lt;link href="http://arxiv.org/api/query?search_query%3D%26id_list%3D1706.03762%26start%3D0%26max_results%3D10" rel="self" type="application/atom+xml"/&gt;
+  &lt;title type="html"&gt;ArXiv Query: search_query=&amp;amp;id_list=1706.03762&amp;amp;start=0&amp;amp;max_results=10&lt;/title&gt;
+  &lt;id&gt;http://arxiv.org/api/zUwBFJ+vAUSpXAR7QFveSY/bZos&lt;/id&gt;
+  &lt;updated&gt;2025-10-22T00:00:00-04:00&lt;/updated&gt;
+  &lt;opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/"&gt;1&lt;/opensearch:totalResults&gt;
+  &lt;opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/"&gt;0&lt;/opensearch:startIndex&gt;
+  &lt;opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/"&gt;10&lt;/opensearch:itemsPerPage&gt;
+  &lt;entry&gt;
+    &lt;id&gt;http://arxiv.org/abs/1706.03762v7&lt;/id&gt;
+    &lt;updated&gt;2023-08-02T00:41:18Z&lt;/updated&gt;
+    &lt;published&gt;2017-06-12T17:57:34Z&lt;/published&gt;
+    &lt;title&gt;Attention Is All You Need&lt;/title&gt;
+    &lt;summary&gt;  The domin</code></pre>
+</div>
+</div>
+<p><em>Note:</em> The arXiv API returns <a href="https://en.wikipedia.org/wiki/XML">XML</a> rather than JSON. XML is just another format for transmitting data.</p>
+<p>Here’s the same query, but this time passing the query string as a dictionary to the params argument:</p>
+<div id="e455e3ee" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"http://export.arxiv.org/api/query"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url, params<span class="op">=</span>{<span class="st">'id_list'</span>: <span class="st">'1706.03762'</span>})</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>response.raise_for_status()</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.text[:<span class="dv">1000</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;feed xmlns="http://www.w3.org/2005/Atom"&gt;
+  &lt;link href="http://arxiv.org/api/query?search_query%3D%26id_list%3D1706.03762%26start%3D0%26max_results%3D10" rel="self" type="application/atom+xml"/&gt;
+  &lt;title type="html"&gt;ArXiv Query: search_query=&amp;amp;id_list=1706.03762&amp;amp;start=0&amp;amp;max_results=10&lt;/title&gt;
+  &lt;id&gt;http://arxiv.org/api/zUwBFJ+vAUSpXAR7QFveSY/bZos&lt;/id&gt;
+  &lt;updated&gt;2025-10-22T00:00:00-04:00&lt;/updated&gt;
+  &lt;opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/"&gt;1&lt;/opensearch:totalResults&gt;
+  &lt;opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/"&gt;0&lt;/opensearch:startIndex&gt;
+  &lt;opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/"&gt;10&lt;/opensearch:itemsPerPage&gt;
+  &lt;entry&gt;
+    &lt;id&gt;http://arxiv.org/abs/1706.03762v7&lt;/id&gt;
+    &lt;updated&gt;2023-08-02T00:41:18Z&lt;/updated&gt;
+    &lt;published&gt;2017-06-12T17:57:34Z&lt;/published&gt;
+    &lt;title&gt;Attention Is All You Need&lt;/title&gt;
+    &lt;summary&gt;  The domin</code></pre>
+</div>
+</div>
+</section>
+<section id="the-syracuse-university-iot-portal" class="level2">
+<h2 class="anchored" data-anchor-id="the-syracuse-university-iot-portal">The Syracuse University Iot Portal</h2>
+<p>The Syracuse University <a href="https://www.syracuse.edu/research/distinctive-research-excellence/emerging-technologies/">Center for Emerging Network Technologies</a> (CENT) created an Internet of Things (IoT) portal. The portal makes REST APIs available to IoT devices which commonly do not have the computing powert to perform these tasks, and to students so they don’t have to pay for a cloud service to use REST APIs in their projects.</p>
+<p><a href="https://cent.ischool-iot.net/">https://cent.ischool-iot.net/</a></p>
+<p>To view it, sign in with your SU NetID and password.</p>
+<section id="swagger-and-curl" class="level3">
+<h3 class="anchored" data-anchor-id="swagger-and-curl">Swagger and Curl</h3>
+<p>The portal has a Swagger interface which allows you to test the API’s in the browser. Swagger is a tool that helps you design, build, document, and consume REST APIs.</p>
+<p>The swagger interface shows how the API is called with a <code>curl</code> command, which allows you to make the same request from the command line.</p>
+<p>Copilot should be able to translate the curl command into Python requests code for you.</p>
+</section>
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
+<p>Let’s use swagger to call the funny names API for 10 random names, then translate the curl command into Python code.</p>
+<div id="ec8e6cc5" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Translate the following code to use requests</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X 'GET' \</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   'https://cent.ischool-iot.net/api/funnyname/random?n=10' \</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   -H 'accept: application/json'</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>uri <span class="op">=</span> <span class="st">"https://cent.ischool-iot.net/api/funnyname/random"</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {<span class="st">'n'</span>: <span class="dv">10</span>}</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(uri, params<span class="op">=</span>params)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>response.raise_for_status()</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>funny_people <span class="op">=</span> response.json()</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> person <span class="kw">in</span> funny_people:</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(person[<span class="st">'first'</span>], person[<span class="st">'last'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dom Inator
+Allan Wrench
+Mattie Fur
+Craven Chocolate
+Victor Rhee
+Terry Cloth
+Victor Edance
+Heath Barr
+Roland Totowne
+Ray Tracing</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="http-headers" class="level2">
+<h2 class="anchored" data-anchor-id="http-headers">HTTP Headers</h2>
+<p>HTTP headers are the key / value pairs that are sent in the request or response. They are used to pass additional information about the request or response. Unlike the query string, they are not part of the URL and are not visible to the user.</p>
+<p>In the IoT portal, the headers are used to pass the API Key which verifies who you are.</p>
+<p>Example:</p>
+<p>Use the random API to get 10 intergers between 1 and 100.</p>
+<div id="ba34b6e3" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>apikey <span class="op">=</span> <span class="st">"GETYOUROWNKEYFROMIOTPORTAL"</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>uri <span class="op">=</span> <span class="st">"https://cent.ischool-iot.net/api/random/int?"</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> { <span class="st">'count'</span>: <span class="dv">10</span>, <span class="st">'m"in'</span>: <span class="dv">1</span>, <span class="st">'max'</span>: <span class="dv">100</span> }</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>headers <span class="op">=</span> { <span class="st">"X-API-KEY"</span>: apikey} <span class="co"># goes in the header</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>response.raise_for_status()</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.url)     <span class="co"># see the full URL no API key there</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> response.json()</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(numbers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>https://cent.ischool-iot.net/api/funnyname/random?n=10
+[{'first': 'Dom', 'last': 'Inator'}, {'first': 'Allan', 'last': 'Wrench'}, {'first': 'Mattie', 'last': 'Fur'}, {'first': 'Craven', 'last': 'Chocolate'}, {'first': 'Victor', 'last': 'Rhee'}, {'first': 'Terry', 'last': 'Cloth'}, {'first': 'Victor', 'last': 'Edance'}, {'first': 'Heath', 'last': 'Barr'}, {'first': 'Roland', 'last': 'Totowne'}, {'first': 'Ray', 'last': 'Tracing'}]</code></pre>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Code Challenge 1.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Figure out how to call these in the IoT portal: - Google geocode API to take a location and get a latitute and longitude - Weather API to get the weather for a latitude and longitude</p>
+<p>Write a Streamlit app to input a location (e.g., “Syracuse University”) and return the current weather conditions. Use the <code>st.metric</code> to display the temperature and humidity with units. e.g.&nbsp;56°F and 80% humidity.</p>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="87e76438" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">"Streamlit Weather"</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>location <span class="op">=</span> st.text_input(<span class="st">"Enter a location"</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> location:</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    apikey <span class="op">=</span> <span class="st">""</span> <span class="co"># replace with your API key copied from the CENT IoT portal</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    headers <span class="op">=</span> { <span class="st">"X-Api-Key"</span>: apikey }</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    geourl <span class="op">=</span> <span class="st">"https://cent.ischool-iot.net/api/google/geocode"</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> { <span class="st">"location"</span>: location }</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> requests.get(geourl, params<span class="op">=</span>params, headers<span class="op">=</span>headers)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    response.raise_for_status()</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    geodata <span class="op">=</span> response.json()</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    lat, lon <span class="op">=</span> geodata[<span class="st">'results'</span>][<span class="dv">0</span>][<span class="st">'geometry'</span>][<span class="st">'location'</span>][<span class="st">"lat"</span>], geodata[<span class="st">'results'</span>][<span class="dv">0</span>][<span class="st">'geometry'</span>][<span class="st">'location'</span>][<span class="st">"lng"</span>]</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    weatherurl <span class="op">=</span> <span class="st">"https://cent.ischool-iot.net/api/weather/current"</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> { <span class="st">"lat"</span>: lat, <span class="st">"lon"</span>: lon, <span class="st">"units"</span>: <span class="st">"imperial"</span> }</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> requests.get(weatherurl, params<span class="op">=</span>params, headers<span class="op">=</span>headers)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    response.raise_for_status()</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    weatherdata <span class="op">=</span> response.json()</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    coltemp, colhumid <span class="op">=</span> st.columns(<span class="dv">2</span>)</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    coltemp.metric(<span class="st">"Temperature"</span>, <span class="ss">f"</span><span class="sc">{</span>weatherdata[<span class="st">'current'</span>][<span class="st">'temperature_2m'</span>]<span class="sc">}{</span>weatherdata[<span class="st">'current_units'</span>][<span class="st">'temperature_2m'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    colhumid.metric(<span class="st">"Humidity"</span>, <span class="ss">f"</span><span class="sc">{</span>weatherdata[<span class="st">'current'</span>][<span class="st">'relative_humidity_2m'</span>]<span class="sc">}{</span>weatherdata[<span class="st">'current_units'</span>][<span class="st">'relative_humidity_2m'</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("enter_gitHub_pages_URL_here");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../05_web_apis/index.html" class="pagination-link" aria-label="5. Web APIs">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">5. Web APIs</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../syllabus.html" class="pagination-link" aria-label="Syllabus">
+        <span class="nav-page-text">Syllabus</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Adapted from the <a href="https://opensource.syracuse.edu/">Syracuse University Open Source Program Office’s</a> <a href="https://github.com/SU-OSPO/workshop-template">workshop template</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

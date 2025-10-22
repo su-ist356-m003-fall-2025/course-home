@@ -121,6 +121,138 @@
     ]
   },
   {
+    "objectID": "05_web_apis/webapi-1.html",
+    "href": "05_web_apis/webapi-1.html",
+    "title": "1. REST APIs",
+    "section": "",
+    "text": "A REST API (REpresentational State Transfer API) is a set of functions that can be accessed over the internet. The functions are organized in a way that they can be accessed using the common protocol of the Web, HTTP (Hypertext-Transport Protocol).\nBy design, REST APIs are stateless, meaning:\n\ncalls can be made independently of one another,\neach call contains all of the data needed to complete itself successfully, and\nno one call depends on the next.\n\nREST APIs are designed around resources, which consists of a URI (usually a URL), and an HTTP request method.\nThe methods are:\n\nGET: retrieve a resource\nPOST: create a new resource\nPUT: update a resource\nDELETE: remove a resource\nPATCH: update a resource with partial data",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "5. Web APIs",
+      "1. REST APIs"
+    ]
+  },
+  {
+    "objectID": "05_web_apis/webapi-1.html#what-is-a-web-api-rest-api",
+    "href": "05_web_apis/webapi-1.html#what-is-a-web-api-rest-api",
+    "title": "1. REST APIs",
+    "section": "",
+    "text": "A REST API (REpresentational State Transfer API) is a set of functions that can be accessed over the internet. The functions are organized in a way that they can be accessed using the common protocol of the Web, HTTP (Hypertext-Transport Protocol).\nBy design, REST APIs are stateless, meaning:\n\ncalls can be made independently of one another,\neach call contains all of the data needed to complete itself successfully, and\nno one call depends on the next.\n\nREST APIs are designed around resources, which consists of a URI (usually a URL), and an HTTP request method.\nThe methods are:\n\nGET: retrieve a resource\nPOST: create a new resource\nPUT: update a resource\nDELETE: remove a resource\nPATCH: update a resource with partial data",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "5. Web APIs",
+      "1. REST APIs"
+    ]
+  },
+  {
+    "objectID": "05_web_apis/webapi-1.html#http-without-a-rest-api-example",
+    "href": "05_web_apis/webapi-1.html#http-without-a-rest-api-example",
+    "title": "1. REST APIs",
+    "section": "HTTP without a rest API Example",
+    "text": "HTTP without a rest API Example\nLet’s start with an example of invoking a simple HTTP request without using a REST API.\nLet’s retrieve the content of the course website programmatically.\nNotice the response is HTML content. This is a markup language used to create web pages and is intended for humans.\n\nimport requests\nuri = \"https://su-ist356-m003-fall-2025.github.io/course-home/\"\nresponse = requests.get(uri)\n# Note: we're just printing the first 1000 characters here to avoid\n# overwhelming output\nprint(response.text[:1000])\n\n&lt;!DOCTYPE html&gt;\n&lt;html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\" xml:lang=\"en\"&gt;&lt;head&gt;\n\n&lt;meta charset=\"utf-8\"&gt;\n&lt;meta name=\"generator\" content=\"quarto-1.8.25\"&gt;\n\n&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=yes\"&gt;\n\n\n&lt;title&gt;IST 356: Programming Techniques for Data Analytics – IST 356 Fall 2025&lt;/title&gt;\n&lt;style&gt;\ncode{white-space: pre-wrap;}\nspan.smallcaps{font-variant: small-caps;}\ndiv.columns{display: flex; gap: min(4vw, 1.5em);}\ndiv.column{flex: auto; overflow-x: auto;}\ndiv.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}\nul.task-list{list-style: none;}\nul.task-list li input[type=\"checkbox\"] {\n  width: 0.8em;\n  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ \n  vertical-align: middle;\n}\n&lt;/style&gt;\n\n\n&lt;script src=\"site_libs/quarto-nav/quarto-nav.js\"&gt;&lt;/script&gt;\n&lt;script src=\"site_libs/clipboard/clipboard.min.js\"&gt;&lt;/script&gt;\n&lt;script src=\"site_libs/quarto-search/autocomplete.umd.js\"&gt;&lt;/script&gt;",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "5. Web APIs",
+      "1. REST APIs"
+    ]
+  },
+  {
+    "objectID": "05_web_apis/webapi-1.html#http-rest-api-example",
+    "href": "05_web_apis/webapi-1.html#http-rest-api-example",
+    "title": "1. REST APIs",
+    "section": "HTTP REST API Example",
+    "text": "HTTP REST API Example\nThis example will use the funny names API to demonstrate how to retrieve data from a REST API. Note that the code is exactly the same as the previous example, but the URL is different.\n\nuri = \"https://cent.ischool-iot.net/api/funnyname/random\"\nresponse = requests.get(uri)\nprint(response.text)\n\n[{\"first\": \"Ivana\", \"last\": \"Sandwich\"}]",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "5. Web APIs",
+      "1. REST APIs"
+    ]
+  },
+  {
+    "objectID": "05_web_apis/webapi-1.html#parsing-the-json-response",
+    "href": "05_web_apis/webapi-1.html#parsing-the-json-response",
+    "title": "1. REST APIs",
+    "section": "Parsing the JSON response",
+    "text": "Parsing the JSON response\nYou can see from the example above, the response is in JSON format. Recall that JSON is a lightweight data-interchange format that is easy for humans to read and write and easy for machines to parse and generate.\nSince REST API’s are for machines, it makes sense to use the JSON format. We can deserialize the JSON response into a Python dictionary or list using the json() method on requests.\n\nuri = \"https://cent.ischool-iot.net/api/funnyname/random\"\nresponse = requests.get(uri)\nfunny_person = response.json()\nprint(funny_person) # list of dict\nprint(funny_person[0]['first'], funny_person[0]['last'])\n\n[{'first': 'Rip', 'last': 'Yerpanz'}]\nRip Yerpanz",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "5. Web APIs",
+      "1. REST APIs"
+    ]
+  },
+  {
+    "objectID": "05_web_apis/webapi-1.html#response-codes-for-handling-errors",
+    "href": "05_web_apis/webapi-1.html#response-codes-for-handling-errors",
+    "title": "1. REST APIs",
+    "section": "Response Codes for Handling Errors",
+    "text": "Response Codes for Handling Errors\nWhen the server returns a response to a request, included in the response is the HTTP status code, which tells the client whether or not the request worked. Unlike a regular API / function call such as print() this is necessary because there is a lot that can go wrong when you call a function over the open internet. Status codes are 3 digit numbers and the first number indicates the type of response:\n\n1xx - codes are informational. These are seldom used in web APIs.\n2xx - codes which begin with a 2 indicate success. The most common code is 200 - OK.\n3xx - codes which begin with a 3 indicate redirection - the response is not comming from the request URL you requested. For -example a 304 - Not modified means your response is coming from the browser’s cache (content already downloaded).\n4xx - codes which begin with a 4 indicate a client error. The most common code here is 404 - Not Found. Any 4xx errors mean the requestor did something wrong. (In this case, that’s you!)\n5xx - codes which begin with a 5 indicate a server error. The most common code here is 500 - Internal server error, which indicates the server could not process the request. When this happens it could be the web API’s problem or the way you made the request.\n\nWe handle errors using the raise_for_status() method on the response object. This method will raise an exception if the response is any status code other than 2xx. It’s good to raise an exception here because it will stop the program from continuing and potentially causing more problems.\n\n# This intentionally fails with 404 - not found\nuri = \"https://cent.ischool-iot.net/api/funnynamez/random\"\nresponse = requests.get(uri)\nresponse.raise_for_status()\n# none of this code is relevant if the status is not 2xx\nfunny_person = response.json()\nprint(funny_person) # list of dict\nprint(funny_person[0]['first'], funny_person[0]['last'])\n\n\n---------------------------------------------------------------------------\nHTTPError                                 Traceback (most recent call last)\nCell In[4], line 4\n      2 uri = \"https://cent.ischool-iot.net/api/funnynamez/random\"\n      3 response = requests.get(uri)\n----&gt; 4 response.raise_for_status()\n      5 # none of this code is relevant if the status is not 2xx\n      6 funny_person = response.json()\n\nFile /opt/hostedtoolcache/Python/3.13.7/x64/lib/python3.13/site-packages/requests/models.py:1026, in Response.raise_for_status(self)\n   1021     http_error_msg = (\n   1022         f\"{self.status_code} Server Error: {reason} for url: {self.url}\"\n   1023     )\n   1025 if http_error_msg:\n-&gt; 1026     raise HTTPError(http_error_msg, response=self)\n\nHTTPError: 404 Client Error: NOT FOUND for url: https://cent.ischool-iot.net/api/funnynamez/random",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "5. Web APIs",
+      "1. REST APIs"
+    ]
+  },
+  {
+    "objectID": "05_web_apis/webapi-1.html#algorithm-for-calling-any-rest-api-in-python",
+    "href": "05_web_apis/webapi-1.html#algorithm-for-calling-any-rest-api-in-python",
+    "title": "1. REST APIs",
+    "section": "Algorithm for calling any REST API in Python",
+    "text": "Algorithm for calling any REST API in Python\n\nPrepare the request URI\n\nheaders\nquery parameters\nbody\n\nMake the request with URI and appropriate method\nCheck the response status code with rise_for_status()\nDeserialize the response into a Python object\n\nThe process is always the same, only the way the requrest is prepares and your handling of the response content will change.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "5. Web APIs",
+      "1. REST APIs"
+    ]
+  },
+  {
+    "objectID": "05_web_apis/webapi-1.html#examples",
+    "href": "05_web_apis/webapi-1.html#examples",
+    "title": "1. REST APIs",
+    "section": "Examples",
+    "text": "Examples\nFirst example gets the user streetm and the second example gets the post title.\nUses the JSONPlaceholder API, which is a mock API (Fake data)\nExample 1: - get user: https://jsonplaceholder.typicode.com/users/1 - street: user['address']['street']\n\nex1_uri = \"https://jsonplaceholder.typicode.com/users/1\"\nresponse = requests.get(ex1_uri)\nresponse.raise_for_status()\nuser = response.json()\nprint(\"STREET:\", user['address']['street'])\n\nSTREET: Kulas Light\n\n\nExample 2: - get post: https://jsonplaceholder.typicode.com/posts/1\n- title: post['title']\n\nex2_uri = \"https://jsonplaceholder.typicode.com/posts/1\"\nresponse = requests.get(ex2_uri)\nresponse.raise_for_status()\npost = response.json()\nprint(\"TITLE:\", post['title'])\n\nTITLE: sunt aut facere repellat provident occaecati excepturi optio reprehenderit\n\n\n\n\n\n\n\n\nCautionCode Challenge 1.1\n\n\n\nWrite some Python that will:\n\nRead from the URL https://jsonplaceholder.typicode.com/users/\nDisplay the returned data in a Pandas DataFrame.\n\nHints:\n\nUse the requests library to get the data.\nUse Panda’s json_normalize() to convert the nested json data into a dataframe. Refer back to the second Pandas tutorial if you forget how to use that.\n\n\n\n\n\n\n\nCautionSolution\n\n\n\n\n\n\nimport requests\nimport pandas as pd\n\nuri = \"https://jsonplaceholder.typicode.com/users/\"\nresponse = requests.get(uri)\nresponse.raise_for_status()\ndata = response.json()\ndf = pd.json_normalize(data)\ndf\n\n\n\n\n\n\n\n\nid\nname\nusername\nemail\nphone\nwebsite\naddress.street\naddress.suite\naddress.city\naddress.zipcode\naddress.geo.lat\naddress.geo.lng\ncompany.name\ncompany.catchPhrase\ncompany.bs\n\n\n\n\n0\n1\nLeanne Graham\nBret\nSincere@april.biz\n1-770-736-8031 x56442\nhildegard.org\nKulas Light\nApt. 556\nGwenborough\n92998-3874\n-37.3159\n81.1496\nRomaguera-Crona\nMulti-layered client-server neural-net\nharness real-time e-markets\n\n\n1\n2\nErvin Howell\nAntonette\nShanna@melissa.tv\n010-692-6593 x09125\nanastasia.net\nVictor Plains\nSuite 879\nWisokyburgh\n90566-7771\n-43.9509\n-34.4618\nDeckow-Crist\nProactive didactic contingency\nsynergize scalable supply-chains\n\n\n2\n3\nClementine Bauch\nSamantha\nNathan@yesenia.net\n1-463-123-4447\nramiro.info\nDouglas Extension\nSuite 847\nMcKenziehaven\n59590-4157\n-68.6102\n-47.0653\nRomaguera-Jacobson\nFace to face bifurcated interface\ne-enable strategic applications\n\n\n3\n4\nPatricia Lebsack\nKarianne\nJulianne.OConner@kory.org\n493-170-9623 x156\nkale.biz\nHoeger Mall\nApt. 692\nSouth Elvis\n53919-4257\n29.4572\n-164.2990\nRobel-Corkery\nMulti-tiered zero tolerance productivity\ntransition cutting-edge web services\n\n\n4\n5\nChelsey Dietrich\nKamren\nLucio_Hettinger@annie.ca\n(254)954-1289\ndemarco.info\nSkiles Walks\nSuite 351\nRoscoeview\n33263\n-31.8129\n62.5342\nKeebler LLC\nUser-centric fault-tolerant solution\nrevolutionize end-to-end systems\n\n\n5\n6\nMrs. Dennis Schulist\nLeopoldo_Corkery\nKarley_Dach@jasper.info\n1-477-935-8478 x6430\nola.org\nNorberto Crossing\nApt. 950\nSouth Christy\n23505-1337\n-71.4197\n71.7478\nConsidine-Lockman\nSynchronised bottom-line interface\ne-enable innovative applications\n\n\n6\n7\nKurtis Weissnat\nElwyn.Skiles\nTelly.Hoeger@billy.biz\n210.067.6132\nelvis.io\nRex Trail\nSuite 280\nHowemouth\n58804-1099\n24.8918\n21.8984\nJohns Group\nConfigurable multimedia task-force\ngenerate enterprise e-tailers\n\n\n7\n8\nNicholas Runolfsdottir V\nMaxime_Nienow\nSherwood@rosamond.me\n586.493.6943 x140\njacynthe.com\nEllsworth Summit\nSuite 729\nAliyaview\n45169\n-14.3990\n-120.7677\nAbernathy Group\nImplemented secondary concept\ne-enable extensible e-tailers\n\n\n8\n9\nGlenna Reichert\nDelphine\nChaim_McDermott@dana.io\n(775)976-6794 x41206\nconrad.com\nDayna Park\nSuite 449\nBartholomebury\n76495-3109\n24.6463\n-168.8889\nYost and Sons\nSwitchable contextually-based project\naggregate real-time technologies\n\n\n9\n10\nClementina DuBuque\nMoriah.Stanton\nRey.Padberg@karina.biz\n024-648-3804\nambrose.net\nKattie Turnpike\nSuite 198\nLebsackbury\n31428-2261\n-38.2386\n57.2232\nHoeger LLC\nCentralized empowering task-force\ntarget end-to-end models",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "5. Web APIs",
+      "1. REST APIs"
+    ]
+  },
+  {
+    "objectID": "05_web_apis/webapi-1.html#query-string",
+    "href": "05_web_apis/webapi-1.html#query-string",
+    "title": "1. REST APIs",
+    "section": "Query String",
+    "text": "Query String\nThe Query String is a part of the URL that is used to pass data to the server on the URL. It is appended to the end of the URL and begins with a question mark “?”. The query string is made up of a series of key-value pairs separated by an ampersand (&).\nExamples:\n/sample?x=bar =&gt; {'x': 'bar'} /sample?name=John&age=30 =&gt; {'name': 'John', 'age': 'go'} /sample?name=John&age=30&count=4 =&gt; {'name': 'John', 'age': '30', count: '4'}\nIn Python requests library, you can pass the query string as a dictionary under the params named argument.\nTo illustrate, here’s an example where we use the arXiv’s REST API to retrieve information about the paper Attention Is All You Need. In the first example, we put the query information directly into the URL:\n\nurl = \"http://export.arxiv.org/api/query?id_list=1706.03762\"\nresponse = requests.get(url)\nresponse.raise_for_status()\nprint(response.text[:1000])\n\n&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;\n&lt;feed xmlns=\"http://www.w3.org/2005/Atom\"&gt;\n  &lt;link href=\"http://arxiv.org/api/query?search_query%3D%26id_list%3D1706.03762%26start%3D0%26max_results%3D10\" rel=\"self\" type=\"application/atom+xml\"/&gt;\n  &lt;title type=\"html\"&gt;ArXiv Query: search_query=&amp;id_list=1706.03762&amp;start=0&amp;max_results=10&lt;/title&gt;\n  &lt;id&gt;http://arxiv.org/api/zUwBFJ+vAUSpXAR7QFveSY/bZos&lt;/id&gt;\n  &lt;updated&gt;2025-10-22T00:00:00-04:00&lt;/updated&gt;\n  &lt;opensearch:totalResults xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\"&gt;1&lt;/opensearch:totalResults&gt;\n  &lt;opensearch:startIndex xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\"&gt;0&lt;/opensearch:startIndex&gt;\n  &lt;opensearch:itemsPerPage xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\"&gt;10&lt;/opensearch:itemsPerPage&gt;\n  &lt;entry&gt;\n    &lt;id&gt;http://arxiv.org/abs/1706.03762v7&lt;/id&gt;\n    &lt;updated&gt;2023-08-02T00:41:18Z&lt;/updated&gt;\n    &lt;published&gt;2017-06-12T17:57:34Z&lt;/published&gt;\n    &lt;title&gt;Attention Is All You Need&lt;/title&gt;\n    &lt;summary&gt;  The domin\n\n\nNote: The arXiv API returns XML rather than JSON. XML is just another format for transmitting data.\nHere’s the same query, but this time passing the query string as a dictionary to the params argument:\n\nurl = \"http://export.arxiv.org/api/query\"\nresponse = requests.get(url, params={'id_list': '1706.03762'})\nresponse.raise_for_status()\nprint(response.text[:1000])\n\n&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;\n&lt;feed xmlns=\"http://www.w3.org/2005/Atom\"&gt;\n  &lt;link href=\"http://arxiv.org/api/query?search_query%3D%26id_list%3D1706.03762%26start%3D0%26max_results%3D10\" rel=\"self\" type=\"application/atom+xml\"/&gt;\n  &lt;title type=\"html\"&gt;ArXiv Query: search_query=&amp;id_list=1706.03762&amp;start=0&amp;max_results=10&lt;/title&gt;\n  &lt;id&gt;http://arxiv.org/api/zUwBFJ+vAUSpXAR7QFveSY/bZos&lt;/id&gt;\n  &lt;updated&gt;2025-10-22T00:00:00-04:00&lt;/updated&gt;\n  &lt;opensearch:totalResults xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\"&gt;1&lt;/opensearch:totalResults&gt;\n  &lt;opensearch:startIndex xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\"&gt;0&lt;/opensearch:startIndex&gt;\n  &lt;opensearch:itemsPerPage xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\"&gt;10&lt;/opensearch:itemsPerPage&gt;\n  &lt;entry&gt;\n    &lt;id&gt;http://arxiv.org/abs/1706.03762v7&lt;/id&gt;\n    &lt;updated&gt;2023-08-02T00:41:18Z&lt;/updated&gt;\n    &lt;published&gt;2017-06-12T17:57:34Z&lt;/published&gt;\n    &lt;title&gt;Attention Is All You Need&lt;/title&gt;\n    &lt;summary&gt;  The domin",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "5. Web APIs",
+      "1. REST APIs"
+    ]
+  },
+  {
+    "objectID": "05_web_apis/webapi-1.html#the-syracuse-university-iot-portal",
+    "href": "05_web_apis/webapi-1.html#the-syracuse-university-iot-portal",
+    "title": "1. REST APIs",
+    "section": "The Syracuse University Iot Portal",
+    "text": "The Syracuse University Iot Portal\nThe Syracuse University Center for Emerging Network Technologies (CENT) created an Internet of Things (IoT) portal. The portal makes REST APIs available to IoT devices which commonly do not have the computing powert to perform these tasks, and to students so they don’t have to pay for a cloud service to use REST APIs in their projects.\nhttps://cent.ischool-iot.net/\nTo view it, sign in with your SU NetID and password.\n\nSwagger and Curl\nThe portal has a Swagger interface which allows you to test the API’s in the browser. Swagger is a tool that helps you design, build, document, and consume REST APIs.\nThe swagger interface shows how the API is called with a curl command, which allows you to make the same request from the command line.\nCopilot should be able to translate the curl command into Python requests code for you.\n\n\nExample\nLet’s use swagger to call the funny names API for 10 random names, then translate the curl command into Python code.\n\n# Translate the following code to use requests\n# curl -X 'GET' \\\n#   'https://cent.ischool-iot.net/api/funnyname/random?n=10' \\\n#   -H 'accept: application/json'\n\nuri = \"https://cent.ischool-iot.net/api/funnyname/random\"\nparams = {'n': 10}\nresponse = requests.get(uri, params=params)\nresponse.raise_for_status()\nfunny_people = response.json()\nfor person in funny_people:\n    print(person['first'], person['last'])\n\nDom Inator\nAllan Wrench\nMattie Fur\nCraven Chocolate\nVictor Rhee\nTerry Cloth\nVictor Edance\nHeath Barr\nRoland Totowne\nRay Tracing",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "5. Web APIs",
+      "1. REST APIs"
+    ]
+  },
+  {
+    "objectID": "05_web_apis/webapi-1.html#http-headers",
+    "href": "05_web_apis/webapi-1.html#http-headers",
+    "title": "1. REST APIs",
+    "section": "HTTP Headers",
+    "text": "HTTP Headers\nHTTP headers are the key / value pairs that are sent in the request or response. They are used to pass additional information about the request or response. Unlike the query string, they are not part of the URL and are not visible to the user.\nIn the IoT portal, the headers are used to pass the API Key which verifies who you are.\nExample:\nUse the random API to get 10 intergers between 1 and 100.\n\nimport requests \napikey = \"GETYOUROWNKEYFROMIOTPORTAL\"\nuri = \"https://cent.ischool-iot.net/api/random/int?\"\nparams = { 'count': 10, 'm\"in': 1, 'max': 100 }\nheaders = { \"X-API-KEY\": apikey} # goes in the header\nresponse.raise_for_status()\nprint(response.url)     # see the full URL no API key there\nnumbers = response.json()\nprint(numbers)\n\nhttps://cent.ischool-iot.net/api/funnyname/random?n=10\n[{'first': 'Dom', 'last': 'Inator'}, {'first': 'Allan', 'last': 'Wrench'}, {'first': 'Mattie', 'last': 'Fur'}, {'first': 'Craven', 'last': 'Chocolate'}, {'first': 'Victor', 'last': 'Rhee'}, {'first': 'Terry', 'last': 'Cloth'}, {'first': 'Victor', 'last': 'Edance'}, {'first': 'Heath', 'last': 'Barr'}, {'first': 'Roland', 'last': 'Totowne'}, {'first': 'Ray', 'last': 'Tracing'}]\n\n\n\n\n\n\n\n\nCautionCode Challenge 1.2\n\n\n\nFigure out how to call these in the IoT portal: - Google geocode API to take a location and get a latitute and longitude - Weather API to get the weather for a latitude and longitude\nWrite a Streamlit app to input a location (e.g., “Syracuse University”) and return the current weather conditions. Use the st.metric to display the temperature and humidity with units. e.g. 56°F and 80% humidity.\n\n\n\n\n\n\nCautionSolution\n\n\n\n\n\n\nimport requests\nimport streamlit as st\n\nst.title(\"Streamlit Weather\")\nlocation = st.text_input(\"Enter a location\")\nif location:\n    apikey = \"\" # replace with your API key copied from the CENT IoT portal\n    headers = { \"X-Api-Key\": apikey }\n    geourl = \"https://cent.ischool-iot.net/api/google/geocode\"\n    params = { \"location\": location }\n    response = requests.get(geourl, params=params, headers=headers)\n    response.raise_for_status()\n    geodata = response.json()\n    \n    lat, lon = geodata['results'][0]['geometry']['location'][\"lat\"], geodata['results'][0]['geometry']['location'][\"lng\"]\n    weatherurl = \"https://cent.ischool-iot.net/api/weather/current\"\n    params = { \"lat\": lat, \"lon\": lon, \"units\": \"imperial\" }\n    response = requests.get(weatherurl, params=params, headers=headers)\n    response.raise_for_status()\n    weatherdata = response.json()\n    coltemp, colhumid = st.columns(2)\n    coltemp.metric(\"Temperature\", f\"{weatherdata['current']['temperature_2m']}{weatherdata['current_units']['temperature_2m']}\")\n    colhumid.metric(\"Humidity\", f\"{weatherdata['current']['relative_humidity_2m']}{weatherdata['current_units']['relative_humidity_2m']}\")",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "5. Web APIs",
+      "1. REST APIs"
+    ]
+  },
+  {
     "objectID": "04_data_wrangling/pandas-5.html",
     "href": "04_data_wrangling/pandas-5.html",
     "title": "6. Grouping data and creating pivot tables with Pandas",
@@ -1732,6 +1864,39 @@
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "4. Data Wrangling",
       "5. Basic data cleaning with Pandas"
+    ]
+  },
+  {
+    "objectID": "05_web_apis/index.html",
+    "href": "05_web_apis/index.html",
+    "title": "5. Web APIs",
+    "section": "",
+    "text": "1. REST APIs",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "5. Web APIs"
+    ]
+  },
+  {
+    "objectID": "05_web_apis/index.html#tutorials",
+    "href": "05_web_apis/index.html#tutorials",
+    "title": "5. Web APIs",
+    "section": "",
+    "text": "1. REST APIs",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "5. Web APIs"
+    ]
+  },
+  {
+    "objectID": "05_web_apis/index.html#lectures",
+    "href": "05_web_apis/index.html#lectures",
+    "title": "5. Web APIs",
+    "section": "Lectures",
+    "text": "Lectures",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "5. Web APIs"
     ]
   },
   {
