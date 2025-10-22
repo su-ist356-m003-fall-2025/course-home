@@ -276,7 +276,6 @@ import streamlit as st
 st.title("Streamlit Weather")
 location = st.text_input("Enter a location")
 if location:
-    # COPY YOUR API Key FROM th
     apikey = "" # replace with your API key copied from the CENT IoT portal
     headers = { "X-Api-Key": apikey }
     geourl = "https://cent.ischool-iot.net/api/google/geocode"
@@ -297,22 +296,3 @@ if location:
 ```
 :::
 ::::
-
-
-## Syracuse Data Portal API Explorer
-
-A large amount of data is available to you to use in your programs once you know how to use REST APIs. We've seen a few in this tutorial. Another example is the [City of Syrcause's Data Portal](https://data.syr.gov). You can download data from the sity by replacing the "explore" in their URL with "api". For example using this data:
-
-https://data.syr.gov/datasets/4fd187e47c59492cabf55344beb8d538_0/explore 
-
-```{python}
-import requests
-import json
-
-url = "https://data.syr.gov/datasets/4fd187e47c59492cabf55344beb8d538_0/api"
-response = requests.get(url)
-response.raise_for_status()
-data = response.json()
-df = pd.json_normalize(data['features'])
-df[df['attributes.Vacant']=='Commercial']
-```
