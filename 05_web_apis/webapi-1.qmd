@@ -1,0 +1,318 @@
+---
+title: "1. REST APIs"
+jupyter: python3
+---
+
+## What is a Web API / REST API?
+
+A [REST API](https://en.wikipedia.org/wiki/REST) (REpresentational State Transfer API) is a set of functions that can be accessed over the internet. The functions are organized in a way that they can be accessed using the common protocol of the Web, HTTP (Hypertext-Transport Protocol). 
+
+By design, REST APIs are **stateless**, meaning:
+
+- calls can be made independently of one another, 
+- each call contains all of the data needed to complete itself successfully, and
+- no one call depends on the next.
+
+REST APIs are designed around resources, which consists of a [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier) (usually a [URL](https://en.wikipedia.org/wiki/URL)), and an HTTP request method.
+
+The methods are:
+
+- GET: retrieve a resource
+- POST: create a new resource
+- PUT: update a resource
+- DELETE: remove a resource
+- PATCH: update a resource with partial data
+
+## HTTP without a rest API Example
+
+Let's start with an example of invoking a simple HTTP request without using a REST API.
+
+Let's retrieve the content of the [course website](https://su-ist356-m003-fall-2025.github.io/course-home/) programmatically.
+
+Notice the response is HTML content. This is a markup language used to create web pages and is intended for humans.
+
+```{python}
+import requests
+uri = "https://su-ist356-m003-fall-2025.github.io/course-home/"
+response = requests.get(uri)
+# Note: we're just printing the first 1000 characters here to avoid
+# overwhelming output
+print(response.text[:1000])
+
+```
+
+## HTTP REST API Example
+
+This example will use the funny names API to demonstrate how to retrieve data from a REST API. Note that the code is exactly the same as the previous example, but the URL is different.
+
+
+```{python}
+uri = "https://cent.ischool-iot.net/api/funnyname/random"
+response = requests.get(uri)
+print(response.text)
+```
+
+## Parsing the JSON response
+
+You can see from the example above, the response is in JSON format. Recall that JSON is a lightweight data-interchange format that is easy for humans to read and write and easy for machines to parse and generate.
+
+Since REST API's are for machines, it makes sense to use the JSON format. We can deserialize the JSON response into a Python dictionary or list using the `json()` method on requests. 
+
+```{python}
+uri = "https://cent.ischool-iot.net/api/funnyname/random"
+response = requests.get(uri)
+funny_person = response.json()
+print(funny_person) # list of dict
+print(funny_person[0]['first'], funny_person[0]['last'])
+```
+
+## Response Codes for Handling Errors
+
+When the server returns a response to a request, included in the response is the HTTP status code, which tells the client whether or not the request worked. Unlike a regular API / function call such as `print()` this is necessary because there is a lot that can go wrong when you call a function over the open internet. Status codes are 3 digit numbers and the first number indicates the type of response:
+
+- 1xx - codes are informational. These are seldom used in web APIs.
+- 2xx - codes which begin with a 2 indicate success. The most common code is 200 - OK.
+- 3xx - codes which begin with a 3 indicate redirection - the response is not comming from the request URL you requested. For -example a 304 - Not modified means your response is coming from the browser's cache (content already downloaded).
+- 4xx - codes which begin with a 4 indicate a client error. The most common code here is 404 - Not Found. Any 4xx errors mean the requestor did something wrong. (In this case, that's you!)
+- 5xx - codes which begin with a 5 indicate a server error. The most common code here is 500 - Internal server error, which indicates the server could not process the request. When this happens it could be the web API's problem or the way you made the request.
+
+
+We handle errors using the `raise_for_status()` method on the response object. This method will raise an exception if the response is any status code other than 2xx. It's good to raise an exception here because it will stop the program from continuing and potentially causing more problems.
+
+```{python}
+#| error: True
+# This intentionally fails with 404 - not found
+uri = "https://cent.ischool-iot.net/api/funnynamez/random"
+response = requests.get(uri)
+response.raise_for_status()
+# none of this code is relevant if the status is not 2xx
+funny_person = response.json()
+print(funny_person) # list of dict
+print(funny_person[0]['first'], funny_person[0]['last'])
+```
+
+## Algorithm for calling any REST API in Python
+
+1. Prepare the request URI
+    1. headers
+    2. query parameters
+    3. body
+2. Make the request with URI and appropriate method
+3. Check the response status code with rise_for_status()
+4. Deserialize the response into a Python object 
+
+The process is always the same, only the way the requrest is prepares and your handling of the response content will change.
+
+## Examples
+
+First example gets the user streetm and the second example gets the post title.
+
+Uses the JSONPlaceholder API, which is a mock API (Fake data)
+
+Example 1:
+- get user: https://jsonplaceholder.typicode.com/users/1
+- street: `user['address']['street']`  
+
+```{python}
+ex1_uri = "https://jsonplaceholder.typicode.com/users/1"
+response = requests.get(ex1_uri)
+response.raise_for_status()
+user = response.json()
+print("STREET:", user['address']['street'])
+```
+
+Example 2:
+- get post: https://jsonplaceholder.typicode.com/posts/1  
+- title: `post['title']`  
+
+```{python}
+ex2_uri = "https://jsonplaceholder.typicode.com/posts/1"
+response = requests.get(ex2_uri)
+response.raise_for_status()
+post = response.json()
+print("TITLE:", post['title'])
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 1.1
+
+Write some Python that will:
+
+1. Read from the URL https://jsonplaceholder.typicode.com/users/
+
+1. Display the returned data in a Pandas DataFrame.
+
+*Hints*:
+
+- Use the `requests` library to get the data.
+- Use Panda's `json_normalize()` to convert the nested json data into a dataframe. Refer back to the [second Pandas tutorial](../04_data_wrangling/pandas-2.qmd) if you forget how to use that.
+
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+import requests
+import pandas as pd
+
+uri = "https://jsonplaceholder.typicode.com/users/"
+response = requests.get(uri)
+response.raise_for_status()
+data = response.json()
+df = pd.json_normalize(data)
+df
+```
+:::
+::::
+
+
+## Query String
+
+The Query String is a part of the URL that is used to pass data to the server **on the URL**. It is appended to the end of the URL and begins with a question mark "?". The query string is made up of a series of key-value pairs separated by an ampersand (&).
+
+Examples:
+
+`/sample?x=bar` => `{'x': 'bar'}`
+`/sample?name=John&age=30` => `{'name': 'John', 'age': 'go'}`
+`/sample?name=John&age=30&count=4` => `{'name': 'John', 'age': '30', count: '4'}`
+
+In Python `requests` library, you can pass the query string as a dictionary under the `params` named argument. 
+
+To illustrate, here's an example where we use the [arXiv](https://arxiv.org)'s REST API to retrieve information about the paper [Attention Is All You Need](https://arxiv.org/abs/1706.03762). In the first example, we put the query information directly into the URL:
+
+```{python}
+url = "http://export.arxiv.org/api/query?id_list=1706.03762"
+response = requests.get(url)
+response.raise_for_status()
+print(response.text[:1000])
+```
+*Note:* The arXiv API returns [XML](https://en.wikipedia.org/wiki/XML) rather than JSON. XML is just another format for transmitting data.
+
+Here's the same query, but this time passing the query string as a dictionary to the params argument:
+
+```{python}
+url = "http://export.arxiv.org/api/query"
+response = requests.get(url, params={'id_list': '1706.03762'})
+response.raise_for_status()
+print(response.text[:1000])
+```
+
+## The Syracuse University Iot Portal
+
+The Syracuse University [Center for Emerging Network Technologies](https://www.syracuse.edu/research/distinctive-research-excellence/emerging-technologies/) (CENT) created an Internet of Things (IoT) portal. The portal makes REST APIs available to IoT devices which commonly do not have the computing powert to perform these tasks, and to students so they don't have to pay for a cloud service to use REST APIs in their projects.
+
+[https://cent.ischool-iot.net/](https://cent.ischool-iot.net/) 
+
+To view it, sign in with your SU NetID and password.
+
+
+### Swagger and Curl
+
+The portal has a Swagger interface which allows you to test the API's in the browser. Swagger is a tool that helps you design, build, document, and consume REST APIs.
+
+The swagger interface shows how the API is called with a `curl` command, which allows you to make the same request from the command line.
+
+Copilot should be able to translate the curl command into Python requests code for you.
+
+### Example 
+
+Let's use swagger to call the funny names API for 10 random names, then translate the curl command into Python code.
+
+```{python}
+# Translate the following code to use requests
+# curl -X 'GET' \
+#   'https://cent.ischool-iot.net/api/funnyname/random?n=10' \
+#   -H 'accept: application/json'
+
+uri = "https://cent.ischool-iot.net/api/funnyname/random"
+params = {'n': 10}
+response = requests.get(uri, params=params)
+response.raise_for_status()
+funny_people = response.json()
+for person in funny_people:
+    print(person['first'], person['last'])
+```
+
+
+## HTTP Headers
+
+HTTP headers are the key / value pairs that are sent in the request or response. They are used to pass additional information about the request or response. Unlike the query string, they are not part of the URL and are not visible to the user.
+
+In the IoT portal, the headers are used to pass the API Key which verifies who you are.
+
+Example:
+
+Use the random API to get 10 intergers between 1 and 100.
+
+```{python}
+import requests 
+apikey = "GETYOUROWNKEYFROMIOTPORTAL"
+uri = "https://cent.ischool-iot.net/api/random/int?"
+params = { 'count': 10, 'm"in': 1, 'max': 100 }
+headers = { "X-API-KEY": apikey} # goes in the header
+response.raise_for_status()
+print(response.url)     # see the full URL no API key there
+numbers = response.json()
+print(numbers)
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 1.2
+
+Figure out how to call these in the IoT portal:
+- Google geocode API to take a location and get a latitute and longitude
+- Weather API to get the weather for a latitude and longitude
+
+Write a Streamlit app to input a location (e.g., "Syracuse University") and return the current weather conditions. Use the `st.metric` to display the temperature and humidity with units. e.g. 56°F and 80% humidity.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+import requests
+import streamlit as st
+
+st.title("Streamlit Weather")
+location = st.text_input("Enter a location")
+if location:
+    # COPY YOUR API Key FROM th
+    apikey = "" # replace with your API key copied from the CENT IoT portal
+    headers = { "X-Api-Key": apikey }
+    geourl = "https://cent.ischool-iot.net/api/google/geocode"
+    params = { "location": location }
+    response = requests.get(geourl, params=params, headers=headers)
+    response.raise_for_status()
+    geodata = response.json()
+    
+    lat, lon = geodata['results'][0]['geometry']['location']["lat"], geodata['results'][0]['geometry']['location']["lng"]
+    weatherurl = "https://cent.ischool-iot.net/api/weather/current"
+    params = { "lat": lat, "lon": lon, "units": "imperial" }
+    response = requests.get(weatherurl, params=params, headers=headers)
+    response.raise_for_status()
+    weatherdata = response.json()
+    coltemp, colhumid = st.columns(2)
+    coltemp.metric("Temperature", f"{weatherdata['current']['temperature_2m']}{weatherdata['current_units']['temperature_2m']}")
+    colhumid.metric("Humidity", f"{weatherdata['current']['relative_humidity_2m']}{weatherdata['current_units']['relative_humidity_2m']}")
+```
+:::
+::::
+
+
+## Syracuse Data Portal API Explorer
+
+A large amount of data is available to you to use in your programs once you know how to use REST APIs. We've seen a few in this tutorial. Another example is the [City of Syrcause's Data Portal](https://data.syr.gov). You can download data from the sity by replacing the "explore" in their URL with "api". For example using this data:
+
+https://data.syr.gov/datasets/4fd187e47c59492cabf55344beb8d538_0/explore 
+
+```{python}
+import requests
+import json
+
+url = "https://data.syr.gov/datasets/4fd187e47c59492cabf55344beb8d538_0/api"
+response = requests.get(url)
+response.raise_for_status()
+data = response.json()
+df = pd.json_normalize(data['features'])
+df[df['attributes.Vacant']=='Commercial']
+```
