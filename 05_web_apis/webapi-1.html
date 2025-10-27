@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../syllabus.html" rel="next">
+<link href="../05_web_apis/webapi-2.html" rel="next">
 <link href="../05_web_apis/index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -317,6 +317,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">1. REST APIs</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../05_web_apis/webapi-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Posting with REST API and caching results</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -340,13 +346,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#http-rest-api-example" id="toc-http-rest-api-example" class="nav-link" data-scroll-target="#http-rest-api-example">HTTP REST API Example</a></li>
   <li><a href="#parsing-the-json-response" id="toc-parsing-the-json-response" class="nav-link" data-scroll-target="#parsing-the-json-response">Parsing the JSON response</a></li>
   <li><a href="#response-codes-for-handling-errors" id="toc-response-codes-for-handling-errors" class="nav-link" data-scroll-target="#response-codes-for-handling-errors">Response Codes for Handling Errors</a></li>
-  <li><a href="#algorithm-for-calling-any-rest-api-in-python" id="toc-algorithm-for-calling-any-rest-api-in-python" class="nav-link" data-scroll-target="#algorithm-for-calling-any-rest-api-in-python">Algorithm for calling any REST API in Python</a></li>
+  <li><a href="#algorithm-for-calling-any-rest-api-in-python" id="toc-algorithm-for-calling-any-rest-api-in-python" class="nav-link" data-scroll-target="#algorithm-for-calling-any-rest-api-in-python">Algorithm for calling any REST API in Python</a>
+  <ul class="collapse">
   <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  </ul></li>
   <li><a href="#query-string" id="toc-query-string" class="nav-link" data-scroll-target="#query-string">Query String</a></li>
   <li><a href="#the-syracuse-university-iot-portal" id="toc-the-syracuse-university-iot-portal" class="nav-link" data-scroll-target="#the-syracuse-university-iot-portal">The Syracuse University Iot Portal</a>
   <ul class="collapse">
   <li><a href="#swagger-and-curl" id="toc-swagger-and-curl" class="nav-link" data-scroll-target="#swagger-and-curl">Swagger and Curl</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
   </ul></li>
   <li><a href="#http-headers" id="toc-http-headers" class="nav-link" data-scroll-target="#http-headers">HTTP Headers</a></li>
   </ul>
@@ -398,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Let’s start with an example of invoking a simple HTTP request without using a REST API.</p>
 <p>Let’s retrieve the content of the <a href="https://su-ist356-m003-fall-2025.github.io/course-home/">course website</a> programmatically.</p>
 <p>Notice the response is HTML content. This is a markup language used to create web pages and is intended for humans.</p>
-<div id="0a75910e" class="cell" data-execution_count="1">
+<div id="201dfb52" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>uri <span class="op">=</span> <span class="st">"https://su-ist356-m003-fall-2025.github.io/course-home/"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(uri)</span>
@@ -441,12 +448,12 @@ ul.task-list li input[type="checkbox"] {
 <section id="http-rest-api-example" class="level2">
 <h2 class="anchored" data-anchor-id="http-rest-api-example">HTTP REST API Example</h2>
 <p>This example will use the funny names API to demonstrate how to retrieve data from a REST API. Note that the code is exactly the same as the previous example, but the URL is different.</p>
-<div id="c505c6f5" class="cell" data-execution_count="2">
+<div id="aae09736" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>uri <span class="op">=</span> <span class="st">"https://cent.ischool-iot.net/api/funnyname/random"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(uri)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[{"first": "Ivana", "last": "Sandwich"}]
+<pre><code>[{"first": "Rip", "last": "Itupp"}]
 </code></pre>
 </div>
 </div>
@@ -455,15 +462,15 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="parsing-the-json-response">Parsing the JSON response</h2>
 <p>You can see from the example above, the response is in JSON format. Recall that JSON is a lightweight data-interchange format that is easy for humans to read and write and easy for machines to parse and generate.</p>
 <p>Since REST API’s are for machines, it makes sense to use the JSON format. We can deserialize the JSON response into a Python dictionary or list using the <code>json()</code> method on requests.</p>
-<div id="e886a4c6" class="cell" data-execution_count="3">
+<div id="4b253d38" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>uri <span class="op">=</span> <span class="st">"https://cent.ischool-iot.net/api/funnyname/random"</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(uri)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>funny_person <span class="op">=</span> response.json()</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(funny_person) <span class="co"># list of dict</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(funny_person[<span class="dv">0</span>][<span class="st">'first'</span>], funny_person[<span class="dv">0</span>][<span class="st">'last'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[{'first': 'Rip', 'last': 'Yerpanz'}]
-Rip Yerpanz</code></pre>
+<pre><code>[{'first': 'Kenny', 'last': 'Doit'}]
+Kenny Doit</code></pre>
 </div>
 </div>
 </section>
@@ -478,7 +485,7 @@ Rip Yerpanz</code></pre>
 <li>5xx - codes which begin with a 5 indicate a server error. The most common code here is 500 - Internal server error, which indicates the server could not process the request. When this happens it could be the web API’s problem or the way you made the request.</li>
 </ul>
 <p>We handle errors using the <code>raise_for_status()</code> method on the response object. This method will raise an exception if the response is any status code other than 2xx. It’s good to raise an exception here because it will stop the program from continuing and potentially causing more problems.</p>
-<div id="2f34b119" class="cell" data-execution_count="4">
+<div id="ae1258db" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This intentionally fails with 404 - not found</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>uri <span class="op">=</span> <span class="st">"https://cent.ischool-iot.net/api/funnynamez/random"</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(uri)</span>
@@ -524,13 +531,12 @@ Rip Yerpanz</code></pre>
 <li>Deserialize the response into a Python object</li>
 </ol>
 <p>The process is always the same, only the way the requrest is prepares and your handling of the response content will change.</p>
-</section>
-<section id="examples" class="level2">
-<h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<p>First example gets the user streetm and the second example gets the post title.</p>
-<p>Uses the JSONPlaceholder API, which is a mock API (Fake data)</p>
-<p>Example 1: - get user: https://jsonplaceholder.typicode.com/users/1 - street: <code>user['address']['street']</code></p>
-<div id="0a157a98" class="cell" data-execution_count="5">
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<p>In these examples we use the JSONPlaceholder API, which is a mock API for fake data. It’s mostly meant to test out API calls.</p>
+<p><strong>Example 1:</strong></p>
+<p>In this example, we get a single user’s street address.</p>
+<div id="3405fce8" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ex1_uri <span class="op">=</span> <span class="st">"https://jsonplaceholder.typicode.com/users/1"</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(ex1_uri)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>response.raise_for_status()</span>
@@ -540,9 +546,9 @@ Rip Yerpanz</code></pre>
 <pre><code>STREET: Kulas Light</code></pre>
 </div>
 </div>
-<p>Example 2: - get post: https://jsonplaceholder.typicode.com/posts/1<br>
-- title: <code>post['title']</code></p>
-<div id="658220d4" class="cell" data-execution_count="6">
+<p><strong>Example 2:</strong></p>
+<p>Here, we get a (random) title for a fake blog post.</p>
+<div id="4b9e39c7" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ex2_uri <span class="op">=</span> <span class="st">"https://jsonplaceholder.typicode.com/posts/1"</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(ex2_uri)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>response.raise_for_status()</span>
@@ -584,7 +590,7 @@ Rip Yerpanz</code></pre>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="ff6566e6" class="cell" data-execution_count="7">
+<div id="5e634659" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -812,14 +818,19 @@ Rip Yerpanz</code></pre>
 </div>
 </div>
 </section>
+</section>
 <section id="query-string" class="level2">
 <h2 class="anchored" data-anchor-id="query-string">Query String</h2>
 <p>The Query String is a part of the URL that is used to pass data to the server <strong>on the URL</strong>. It is appended to the end of the URL and begins with a question mark “?”. The query string is made up of a series of key-value pairs separated by an ampersand (&amp;).</p>
 <p>Examples:</p>
-<p><code>/sample?x=bar</code> =&gt; <code>{'x': 'bar'}</code> <code>/sample?name=John&amp;age=30</code> =&gt; <code>{'name': 'John', 'age': 'go'}</code> <code>/sample?name=John&amp;age=30&amp;count=4</code> =&gt; <code>{'name': 'John', 'age': '30', count: '4'}</code></p>
-<p>In Python <code>requests</code> library, you can pass the query string as a dictionary under the <code>params</code> named argument.</p>
+<ul>
+<li><code>/sample?x=bar</code> =&gt; <code>{'x': 'bar'}</code></li>
+<li><code>/sample?name=John&amp;age=30</code> =&gt; <code>{'name': 'John', 'age': 'go'}</code></li>
+<li><code>/sample?name=John&amp;age=30&amp;count=4</code> =&gt; <code>{'name': 'John', 'age': '30', count: '4'}</code></li>
+</ul>
+<p>In the Python <code>requests</code> library, you can pass the query string as a dictionary under the <code>params</code> named argument.</p>
 <p>To illustrate, here’s an example where we use the <a href="https://arxiv.org">arXiv</a>’s REST API to retrieve information about the paper <a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a>. In the first example, we put the query information directly into the URL:</p>
-<div id="3ab8ac9b" class="cell" data-execution_count="8">
+<div id="48eb8559" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"http://export.arxiv.org/api/query?id_list=1706.03762"</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>response.raise_for_status()</span>
@@ -830,7 +841,7 @@ Rip Yerpanz</code></pre>
   &lt;link href="http://arxiv.org/api/query?search_query%3D%26id_list%3D1706.03762%26start%3D0%26max_results%3D10" rel="self" type="application/atom+xml"/&gt;
   &lt;title type="html"&gt;ArXiv Query: search_query=&amp;amp;id_list=1706.03762&amp;amp;start=0&amp;amp;max_results=10&lt;/title&gt;
   &lt;id&gt;http://arxiv.org/api/zUwBFJ+vAUSpXAR7QFveSY/bZos&lt;/id&gt;
-  &lt;updated&gt;2025-10-22T00:00:00-04:00&lt;/updated&gt;
+  &lt;updated&gt;2025-10-27T00:00:00-04:00&lt;/updated&gt;
   &lt;opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/"&gt;1&lt;/opensearch:totalResults&gt;
   &lt;opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/"&gt;0&lt;/opensearch:startIndex&gt;
   &lt;opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/"&gt;10&lt;/opensearch:itemsPerPage&gt;
@@ -844,7 +855,7 @@ Rip Yerpanz</code></pre>
 </div>
 <p><em>Note:</em> The arXiv API returns <a href="https://en.wikipedia.org/wiki/XML">XML</a> rather than JSON. XML is just another format for transmitting data.</p>
 <p>Here’s the same query, but this time passing the query string as a dictionary to the params argument:</p>
-<div id="e455e3ee" class="cell" data-execution_count="9">
+<div id="05e1bc0b" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"http://export.arxiv.org/api/query"</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url, params<span class="op">=</span>{<span class="st">'id_list'</span>: <span class="st">'1706.03762'</span>})</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>response.raise_for_status()</span>
@@ -855,7 +866,7 @@ Rip Yerpanz</code></pre>
   &lt;link href="http://arxiv.org/api/query?search_query%3D%26id_list%3D1706.03762%26start%3D0%26max_results%3D10" rel="self" type="application/atom+xml"/&gt;
   &lt;title type="html"&gt;ArXiv Query: search_query=&amp;amp;id_list=1706.03762&amp;amp;start=0&amp;amp;max_results=10&lt;/title&gt;
   &lt;id&gt;http://arxiv.org/api/zUwBFJ+vAUSpXAR7QFveSY/bZos&lt;/id&gt;
-  &lt;updated&gt;2025-10-22T00:00:00-04:00&lt;/updated&gt;
+  &lt;updated&gt;2025-10-27T00:00:00-04:00&lt;/updated&gt;
   &lt;opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/"&gt;1&lt;/opensearch:totalResults&gt;
   &lt;opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/"&gt;0&lt;/opensearch:startIndex&gt;
   &lt;opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/"&gt;10&lt;/opensearch:itemsPerPage&gt;
@@ -870,19 +881,25 @@ Rip Yerpanz</code></pre>
 </section>
 <section id="the-syracuse-university-iot-portal" class="level2">
 <h2 class="anchored" data-anchor-id="the-syracuse-university-iot-portal">The Syracuse University Iot Portal</h2>
-<p>The Syracuse University <a href="https://www.syracuse.edu/research/distinctive-research-excellence/emerging-technologies/">Center for Emerging Network Technologies</a> (CENT) created an Internet of Things (IoT) portal. The portal makes REST APIs available to IoT devices which commonly do not have the computing powert to perform these tasks, and to students so they don’t have to pay for a cloud service to use REST APIs in their projects.</p>
+<p>The Syracuse University Center for Emerging Network Technologies (CENT) created an Internet of Things (IoT) portal. The portal makes REST APIs available to IoT devices which commonly do not have the computing powert to perform these tasks, and to students so they don’t have to pay for a cloud service to use REST APIs in their projects.</p>
+<p>To use it, go to:</p>
 <p><a href="https://cent.ischool-iot.net/">https://cent.ischool-iot.net/</a></p>
-<p>To view it, sign in with your SU NetID and password.</p>
+<p>Then sign in with your SU NetID and password. When you sign in, you will see a box with “Your API Key”. This key is unique to you. You can use this to do API requests, as illustrated below.</p>
 <section id="swagger-and-curl" class="level3">
 <h3 class="anchored" data-anchor-id="swagger-and-curl">Swagger and Curl</h3>
-<p>The portal has a Swagger interface which allows you to test the API’s in the browser. Swagger is a tool that helps you design, build, document, and consume REST APIs.</p>
-<p>The swagger interface shows how the API is called with a <code>curl</code> command, which allows you to make the same request from the command line.</p>
-<p>Copilot should be able to translate the curl command into Python requests code for you.</p>
-</section>
-<section id="example" class="level3">
-<h3 class="anchored" data-anchor-id="example">Example</h3>
+<p>The portal has a Swagger interface at:</p>
+<p><a href="https://cent.ischool-iot.net/doc">https://cent.ischool-iot.net/doc</a></p>
+<p>This allows you to test the API’s in the browser. Swagger is a tool that helps you design, build, document, and consume REST APIs. The swagger interface shows how the API is called with a <code>curl</code> command, which allows you to make the same request from the command line.</p>
+<p>To use it, you’ll need to authorize your API key:</p>
+<ol type="1">
+<li><p>Copy your API key from <a href="https://cent.ischool-iot.net/">cent.ischool-iot.net</a></p></li>
+<li><p>Now on the <a href="https://cent.ischool-iot.net/doc">Swagger page</a> click the “Authorize” button in the upper right. You will be prompted for your API key. Paste the API key you copied.</p></li>
+<li><p>You should now be able to use any of the APIs listed on the page. To try it, click one of the drop downs, then Execute. For example, click the “google” drop down, then the one for <code>/api/google/geocode</code>. This API provides latitude and longitude for a given location. Hit the big Execute button. Type in a location in the “location” box (e.g., “Syracuse University”) then hit the Execute button (now smaller). In the Response body, you should see a JSON string that gives information about the location, including the latitude and longitude.</p></li>
+</ol>
+<section id="example" class="level4">
+<h4 class="anchored" data-anchor-id="example">Example</h4>
 <p>Let’s use swagger to call the funny names API for 10 random names, then translate the curl command into Python code.</p>
-<div id="ec8e6cc5" class="cell" data-execution_count="10">
+<div id="03b0a6ef" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Translate the following code to use requests</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># curl -X 'GET' \</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   'https://cent.ischool-iot.net/api/funnyname/random?n=10' \</span></span>
@@ -896,18 +913,19 @@ Rip Yerpanz</code></pre>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> person <span class="kw">in</span> funny_people:</span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(person[<span class="st">'first'</span>], person[<span class="st">'last'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Dom Inator
-Allan Wrench
-Mattie Fur
-Craven Chocolate
-Victor Rhee
-Terry Cloth
-Victor Edance
-Heath Barr
-Roland Totowne
-Ray Tracing</code></pre>
+<pre><code>Yolanda Smyland
+Ginger Snaps
+Sal Ladd
+Sally Mander
+Loren Dabucket
+Ivana Sandwich
+Cam Payne
+Joy Touda-World
+Oliver Thingz
+Oren Jouglad</code></pre>
 </div>
 </div>
+</section>
 </section>
 </section>
 <section id="http-headers" class="level2">
@@ -916,8 +934,8 @@ Ray Tracing</code></pre>
 <p>In the IoT portal, the headers are used to pass the API Key which verifies who you are.</p>
 <p>Example:</p>
 <p>Use the random API to get 10 intergers between 1 and 100.</p>
-<div id="ba34b6e3" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests </span>
+<div id="77cc942d" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: replace apikey with your API from the IoT portal</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>apikey <span class="op">=</span> <span class="st">"GETYOUROWNKEYFROMIOTPORTAL"</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>uri <span class="op">=</span> <span class="st">"https://cent.ischool-iot.net/api/random/int?"</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> { <span class="st">'count'</span>: <span class="dv">10</span>, <span class="st">'m"in'</span>: <span class="dv">1</span>, <span class="st">'max'</span>: <span class="dv">100</span> }</span>
@@ -926,10 +944,6 @@ Ray Tracing</code></pre>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.url)     <span class="co"># see the full URL no API key there</span></span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> response.json()</span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(numbers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>https://cent.ischool-iot.net/api/funnyname/random?n=10
-[{'first': 'Dom', 'last': 'Inator'}, {'first': 'Allan', 'last': 'Wrench'}, {'first': 'Mattie', 'last': 'Fur'}, {'first': 'Craven', 'last': 'Chocolate'}, {'first': 'Victor', 'last': 'Rhee'}, {'first': 'Terry', 'last': 'Cloth'}, {'first': 'Victor', 'last': 'Edance'}, {'first': 'Heath', 'last': 'Barr'}, {'first': 'Roland', 'last': 'Totowne'}, {'first': 'Ray', 'last': 'Tracing'}]</code></pre>
-</div>
 </div>
 <div class="callout callout-style-simple callout-caution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -941,7 +955,11 @@ Ray Tracing</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Figure out how to call these in the IoT portal: - Google geocode API to take a location and get a latitute and longitude - Weather API to get the weather for a latitude and longitude</p>
+<p>Figure out how to call these in the IoT portal:</p>
+<ul>
+<li>Google geocode API to take a location and get a latitute and longitude</li>
+<li>Weather API to get the weather for a latitude and longitude</li>
+</ul>
 <p>Write a Streamlit app to input a location (e.g., “Syracuse University”) and return the current weather conditions. Use the <code>st.metric</code> to display the temperature and humidity with units. e.g.&nbsp;56°F and 80% humidity.</p>
 <div class="callout callout-style-simple callout-caution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
@@ -955,30 +973,35 @@ Ray Tracing</code></pre>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="87e76438" class="cell" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">"Streamlit Weather"</span>)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>location <span class="op">=</span> st.text_input(<span class="st">"Enter a location"</span>)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> location:</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    apikey <span class="op">=</span> <span class="st">""</span> <span class="co"># replace with your API key copied from the CENT IoT portal</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    headers <span class="op">=</span> { <span class="st">"X-Api-Key"</span>: apikey }</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    geourl <span class="op">=</span> <span class="st">"https://cent.ischool-iot.net/api/google/geocode"</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> { <span class="st">"location"</span>: location }</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> requests.get(geourl, params<span class="op">=</span>params, headers<span class="op">=</span>headers)</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    response.raise_for_status()</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    geodata <span class="op">=</span> response.json()</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    lat, lon <span class="op">=</span> geodata[<span class="st">'results'</span>][<span class="dv">0</span>][<span class="st">'geometry'</span>][<span class="st">'location'</span>][<span class="st">"lat"</span>], geodata[<span class="st">'results'</span>][<span class="dv">0</span>][<span class="st">'geometry'</span>][<span class="st">'location'</span>][<span class="st">"lng"</span>]</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    weatherurl <span class="op">=</span> <span class="st">"https://cent.ischool-iot.net/api/weather/current"</span></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> { <span class="st">"lat"</span>: lat, <span class="st">"lon"</span>: lon, <span class="st">"units"</span>: <span class="st">"imperial"</span> }</span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> requests.get(weatherurl, params<span class="op">=</span>params, headers<span class="op">=</span>headers)</span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    response.raise_for_status()</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    weatherdata <span class="op">=</span> response.json()</span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    coltemp, colhumid <span class="op">=</span> st.columns(<span class="dv">2</span>)</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    coltemp.metric(<span class="st">"Temperature"</span>, <span class="ss">f"</span><span class="sc">{</span>weatherdata[<span class="st">'current'</span>][<span class="st">'temperature_2m'</span>]<span class="sc">}{</span>weatherdata[<span class="st">'current_units'</span>][<span class="st">'temperature_2m'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    colhumid.metric(<span class="st">"Humidity"</span>, <span class="ss">f"</span><span class="sc">{</span>weatherdata[<span class="st">'current'</span>][<span class="st">'relative_humidity_2m'</span>]<span class="sc">}{</span>weatherdata[<span class="st">'current_units'</span>][<span class="st">'relative_humidity_2m'</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="f3cf5cfa" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">"Streamlit Weather"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>location <span class="op">=</span> st.text_input(<span class="st">"Enter a location"</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> location:</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    apikey <span class="op">=</span> <span class="st">""</span> <span class="co"># replace with your API key copied from the CENT IoT portal</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    headers <span class="op">=</span> { <span class="st">"X-Api-Key"</span>: apikey }</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    geourl <span class="op">=</span> <span class="st">"https://cent.ischool-iot.net/api/google/geocode"</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> { <span class="st">"location"</span>: location }</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> requests.get(geourl, params<span class="op">=</span>params, headers<span class="op">=</span>headers)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    response.raise_for_status()</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    geodata <span class="op">=</span> response.json()</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    lat <span class="op">=</span> geodata[<span class="st">'results'</span>][<span class="dv">0</span>][<span class="st">'geometry'</span>][<span class="st">'location'</span>][<span class="st">"lat"</span>]</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    lon <span class="op">=</span> geodata[<span class="st">'results'</span>][<span class="dv">0</span>][<span class="st">'geometry'</span>][<span class="st">'location'</span>][<span class="st">"lng"</span>]</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    weatherurl <span class="op">=</span> <span class="st">"https://cent.ischool-iot.net/api/weather/current"</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> { <span class="st">"lat"</span>: lat, <span class="st">"lon"</span>: lon, <span class="st">"units"</span>: <span class="st">"imperial"</span> }</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> requests.get(weatherurl, params<span class="op">=</span>params, headers<span class="op">=</span>headers)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    response.raise_for_status()</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    weatherdata <span class="op">=</span> response.json()</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    temp <span class="op">=</span> weatherdata[<span class="st">'current'</span>][<span class="st">'temperature_2m'</span>]</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>    tunits <span class="op">=</span> weatherdata[<span class="st">'current_units'</span>][<span class="st">'temperature_2m'</span>]</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    humidity <span class="op">=</span> weatherdata[<span class="st">'current'</span>][<span class="st">'relative_humidity_2m'</span>]</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    hunits <span class="op">=</span> weatherdata[<span class="st">'current_units'</span>][<span class="st">'relative_humidity_2m'</span>]</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    coltemp, colhumid <span class="op">=</span> st.columns(<span class="dv">2</span>)</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    coltemp.metric(<span class="st">"Temperature"</span>, <span class="ss">f"</span><span class="sc">{</span>temp<span class="sc">}{</span>tunits<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    colhumid.metric(<span class="st">"Humidity"</span>, <span class="ss">f"</span><span class="sc">{</span>humidity<span class="sc">}{</span>hunits<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1397,8 +1420,8 @@ Ray Tracing</code></pre>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../syllabus.html" class="pagination-link" aria-label="Syllabus">
-        <span class="nav-page-text">Syllabus</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../05_web_apis/webapi-2.html" class="pagination-link" aria-label="2. Posting with REST API and caching results">
+        <span class="nav-page-text">2. Posting with REST API and caching results</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

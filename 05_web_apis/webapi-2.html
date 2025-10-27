@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction and computer setup – IST 356 Fall 2025</title>
+<title>2. Posting with REST API and caching results – IST 356 Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../01_cli_conda/index.html" rel="next">
+<link href="../syllabus.html" rel="next">
+<link href="../05_web_apis/webapi-1.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -105,14 +106,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="Introduction and computer setup – IST 356 Fall 2025">
-<meta property="og:description" content="IST 356 - M003, Syracuse University, Fall 2025">
+<meta property="og:title" content="2. Posting with REST API and caching results – IST 356 Fall 2025">
+<meta property="og:description" content="">
 <meta property="og:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
 <meta property="og:site_name" content="IST 356 Fall 2025">
 <meta property="og:image:height" content="105">
 <meta property="og:image:width" content="650">
-<meta name="twitter:title" content="Introduction and computer setup – IST 356 Fall 2025">
-<meta name="twitter:description" content="IST 356 - M003, Syracuse University, Fall 2025">
+<meta name="twitter:title" content="2. Posting with REST API and caching results – IST 356 Fall 2025">
+<meta name="twitter:description" content="">
 <meta name="twitter:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
 <meta name="twitter:image-height" content="105">
 <meta name="twitter:image-width" content="650">
@@ -148,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../00_intro/index.html">Introduction and computer setup</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../05_web_apis/index.html">5. Web APIs</a></li><li class="breadcrumb-item"><a href="../05_web_apis/webapi-2.html">2. Posting with REST API and caching results</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -166,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../00_intro/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../00_intro/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction and computer setup</span></a>
   </div>
 </li>
@@ -302,11 +303,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../05_web_apis/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">5. Web APIs</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../05_web_apis/webapi-1.html" class="sidebar-item-text sidebar-link">
@@ -315,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../05_web_apis/webapi-2.html" class="sidebar-item-text sidebar-link">
+  <a href="../05_web_apis/webapi-2.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">2. Posting with REST API and caching results</span></a>
   </div>
 </li>
@@ -337,22 +338,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setting-up-your-computer-and-yourself" id="toc-setting-up-your-computer-and-yourself" class="nav-link active" data-scroll-target="#setting-up-your-computer-and-yourself">Setting up Your Computer and Yourself!</a>
+  <li><a href="#http-methods-beyond-get" id="toc-http-methods-beyond-get" class="nav-link active" data-scroll-target="#http-methods-beyond-get">HTTP Methods beyond GET</a></li>
+  <li><a href="#example-of-a-post-request" id="toc-example-of-a-post-request" class="nav-link" data-scroll-target="#example-of-a-post-request">Example of a POST request</a></li>
+  <li><a href="#caching-strategies" id="toc-caching-strategies" class="nav-link" data-scroll-target="#caching-strategies">Caching Strategies</a>
   <ul class="collapse">
-  <li><a href="#step-1-software-installs" id="toc-step-1-software-installs" class="nav-link" data-scroll-target="#step-1-software-installs">Step 1: Software Installs</a></li>
-  <li><a href="#setup-2-github-account" id="toc-setup-2-github-account" class="nav-link" data-scroll-target="#setup-2-github-account">Setup 2: Github Account</a>
-  <ul class="collapse">
-  <li><a href="#if-you-have-a-github-account" id="toc-if-you-have-a-github-account" class="nav-link" data-scroll-target="#if-you-have-a-github-account">IF YOU HAVE A GITHUB ACCOUNT:</a></li>
-  <li><a href="#if-you-do-not-have-a-github-account" id="toc-if-you-do-not-have-a-github-account" class="nav-link" data-scroll-target="#if-you-do-not-have-a-github-account">IF YOU DO NOT HAVE A GITHUB ACCOUNT:</a></li>
-  <li><a href="#backpack-access" id="toc-backpack-access" class="nav-link" data-scroll-target="#backpack-access">Backpack Access</a></li>
-  </ul></li>
-  <li><a href="#step-3-configure-vs-code" id="toc-step-3-configure-vs-code" class="nav-link" data-scroll-target="#step-3-configure-vs-code">Step 3: Configure VS Code</a></li>
-  <li><a href="#step-4-install-miniconda" id="toc-step-4-install-miniconda" class="nav-link" data-scroll-target="#step-4-install-miniconda">Step 4: Install Miniconda</a>
-  <ul class="collapse">
-  <li><a href="#maclinuxwindows-subsystem-for-linux-wsl" id="toc-maclinuxwindows-subsystem-for-linux-wsl" class="nav-link" data-scroll-target="#maclinuxwindows-subsystem-for-linux-wsl">Mac/Linux/Windows Subsystem for Linux (WSL)</a></li>
-  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows">Windows</a></li>
-  </ul></li>
-  <li><a href="#step-5-create-a-conda-environment-and-test-it-in-vs-code" id="toc-step-5-create-a-conda-environment-and-test-it-in-vs-code" class="nav-link" data-scroll-target="#step-5-create-a-conda-environment-and-test-it-in-vs-code">Step 5: Create a conda environment and test it in VS Code</a></li>
+  <li><a href="#using-requests-cache" id="toc-using-requests-cache" class="nav-link" data-scroll-target="#using-requests-cache">Using <code>requests-cache</code></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -360,10 +350,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../05_web_apis/index.html">5. Web APIs</a></li><li class="breadcrumb-item"><a href="../05_web_apis/webapi-2.html">2. Posting with REST API and caching results</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Introduction and computer setup</h1>
-<p class="subtitle lead">IST 356 - M003, Syracuse University, Fall 2025</p>
+<h1 class="title">2. Posting with REST API and caching results</h1>
 </div>
 
 
@@ -380,222 +369,266 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="setting-up-your-computer-and-yourself" class="level1">
-<h1>Setting up Your Computer and Yourself!</h1>
-<p>In IST356 we teach you programming for data analytics using the tools and techiques used by those in the industry. As such, you will learn how to setup and configure development environments, use git and github and learn to systematically test your code.</p>
-<p>This is unlike IST256 where the emphasis is on the programming basics and the motivations behind learning computational thinking.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th>IST356</th>
-<th>IST256</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Programming Environment</td>
-<td>Install vscode + git + python on your computer</td>
-<td>Web-hosted jupyterhub</td>
-</tr>
-<tr class="even">
-<td>Assignment Submissions</td>
-<td>Student learn and use git / github</td>
-<td>Built-in assignment submission</td>
-</tr>
-<tr class="odd">
-<td>Coursework, slides, examples</td>
-<td>You clone / diff the prof repo</td>
-<td>Autodiff and merge at login</td>
-</tr>
-</tbody>
-</table>
-<p>In this course you’ll do it the real way, nothing is hidden / abstracted away for you.</p>
-<section id="step-1-software-installs" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-software-installs">Step 1: Software Installs</h2>
-<p>Here’s what you’ll need to install on your computer. Please read this entire section prior to installing. :-)</p>
-<ol type="1">
-<li><p><strong>Visual Studio Code</strong>: https://code.visualstudio.com/Download<br>
-This is a free editor with testing and debugging capabilities. As you install you can accept all defaults, except the last one: DO NOT launch the application when complete! If you do, simply close it.</p></li>
-<li><p><strong>Git Source Code Manager</strong>: https://git-scm.com/download/<br>
-As you set it up, you will be asked several questions, for which the default selection is fine. EXCEPTION: choose Visual Studio Code as the default editor.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Mac users</strong>: you’ll see multiple options for downloading Git Source Code Manager. I recommend using the Xcode version. Clicking on that link will redirect you to the Apple store; from there you will download and install Xcode.</p>
-</div>
-</div></li>
-<li><p><a href="https://www.anaconda.com/docs/getting-started/miniconda/install#quickstart-install-instructions">Miniconda</a> <strong>Do not install this yet!</strong> You will install this using the terminal in VSCode after VSCode and Git are installed and setup; see instructions below.</p></li>
-</ol>
-</section>
-<section id="setup-2-github-account" class="level2">
-<h2 class="anchored" data-anchor-id="setup-2-github-account">Setup 2: Github Account</h2>
-<p>Being an SU student comes with some perks. One of them is a Github for Education account and accompanying “packpack” of goodies. To use this benefit, your github account must be associated with your <strong><span class="citation" data-cites="syr.edu">@syr.edu</span></strong> email.</p>
-<section id="if-you-have-a-github-account" class="level3">
-<h3 class="anchored" data-anchor-id="if-you-have-a-github-account">IF YOU HAVE A GITHUB ACCOUNT:</h3>
-<p>Associate your current account with SU, by adding your email:</p>
-<ol type="1">
-<li>Go to to https://github.com and click Sign In</li>
-<li>Once you have logged in, go to: https://github.com/settings/emails<br>
-</li>
-<li>Add and verify your SU email address.</li>
-</ol>
-</section>
-<section id="if-you-do-not-have-a-github-account" class="level3">
-<h3 class="anchored" data-anchor-id="if-you-do-not-have-a-github-account">IF YOU DO NOT HAVE A GITHUB ACCOUNT:</h3>
-<p>You’ll need to create an account:</p>
-<ol type="1">
-<li>Go to to https://github.com and click Sign In</li>
-<li>Follow the on-screen instructions to sign up for an account.</li>
-<li>Make sure to use your <strong><span class="citation" data-cites="syr.edu">@syr.edu</span></strong> email for the account.</li>
-<li>Add your personal email when you’re at it so you don’t lose Github access after you graduate!</li>
-</ol>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Once you have a GitHub account, please email your GitHub username to me at cdcapano@syr.edu.</p>
-</div>
-</div>
-</section>
-<section id="backpack-access" class="level3">
-<h3 class="anchored" data-anchor-id="backpack-access">Backpack Access</h3>
-<ol type="1">
-<li>Go to the Github Backpack site: https://education.github.com/pack<br>
-and click <strong>Sign Up For Student Developer Pack</strong></li>
-<li>Once your account is verified, you will have backpack access.</li>
-<li>You’ll know its active when you check your billing plan: https://github.com/settings/billing/summary<br>
-you should see a credit here.</li>
-<li>Once you have backpack access, you can enable Github Copilot AI. https://github.com/settings/copilot</li>
-</ol>
-</section>
-</section>
-<section id="step-3-configure-vs-code" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-configure-vs-code">Step 3: Configure VS Code</h2>
-<p>The last step is to configure VS Code for Python debugging. Provided everything else is in order, this should be straightforward.</p>
-<ol type="1">
-<li>Open Visual studio code. You will be asked to configure it.
-<ol type="1">
-<li>Set up GitHub Copilot. To do so, you’ll need to sign into GitHub by clicking “Continue with GitHub”. After you do, you may be dropped into a “Welcome” tab in VS Code. If so, click the “Walkthrough: Setup VS Code” tab to continue set up.</li>
-<li>Pick a theme: Light, Dark, etc…</li>
-<li>Add the following Extensions: Python, Jupyter.</li>
-<li><strong>Windows users only</strong>: we’ll occasionally be using <code>bash</code> in the terminal mode of VSCode. Mac and Linux users have <code>bash</code> natively installed in the operating system. Windows users will have gotten a copy of bash when they downloaded and installed Git SCM. However, you need to tell VSCode to use <code>bash</code> in the Terminal rather than Windows PowerShell. To do that:
-<ol type="a">
-<li>Click “Unlock productivity with the Command Palette” in the Walthrough tab, then “Open Command Palette”. Alternatively, if you don’t see that option, open the Command Palette by typing CTRL + SHIFT + P. (Mac users type COMMAND + SHIFT + P).</li>
-<li>Type “Select Default Profile” then hit ENTER.</li>
-<li>Select “Git Bash” from the drop-down options.</li>
-<li>Check that it worked by opening a new terminal: in the file menu, click “Terminal” -&gt; “New Terminal”. You should see “bash” in the upper right of the terminal screen.</li>
-</ol></li>
-<li>Close the welcome Tab but keep VS Code open.</li>
-</ol></li>
-</ol>
-</section>
-<section id="step-4-install-miniconda" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-install-miniconda">Step 4: Install Miniconda</h2>
-<section id="maclinuxwindows-subsystem-for-linux-wsl" class="level3">
-<h3 class="anchored" data-anchor-id="maclinuxwindows-subsystem-for-linux-wsl">Mac/Linux/Windows Subsystem for Linux (WSL)</h3>
-<ol type="1">
-<li><p>Open a terminal in VS Code by clicking “Terminal” -&gt; “New Terminal”.</p></li>
-<li><p>In the terminal window, type:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Then hit ENTER.</p></li>
-<li><p>Follow the instructions <a href="https://www.anaconda.com/docs/getting-started/miniconda/install#quickstart-install-instructions">Quickstart install instructions</a> on the Miniconda website. For WSL, select “Linux”.</p></li>
-</ol>
-</section>
-<section id="windows" class="level3">
-<h3 class="anchored" data-anchor-id="windows">Windows</h3>
-<ol type="1">
-<li><p>Download the <a href="https://www.anaconda.com/download/success">Miniconda installer for Windows</a>. <strong>Click the Downlad button under “Miniconda Installers”, <em>not</em> the one under “Distribution Installers”.</strong></p></li>
-<li><p>Run the installer by double-clicking on the downloaded file and follow the steps below.</p>
+<section id="http-methods-beyond-get" class="level2">
+<h2 class="anchored" data-anchor-id="http-methods-beyond-get">HTTP Methods beyond GET</h2>
+<p>So far we have only seen GET requests. But there are other HTTP methods that are used to perform different operations such as:</p>
 <ul>
-<li><p>Click “Run”.</p></li>
-<li><p>Click on “Next”.</p></li>
-<li><p>Click on “I agree”.</p></li>
-<li><p>Select “Just me” and click on “Next”.</p></li>
-<li><p>Click “Next” to install to the default destination folder.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
+<li>POST: Create a new resource</li>
+<li>PUT: Update an existing resource</li>
+<li>DELETE: Delete a resource</li>
+</ul>
+<p>From the perspective of <code>requests</code> these behave the same as a GET. The only subtle difference is that you can pass a <code>data</code> parameter when there are large payloads which cannot fit on the URL.</p>
+</section>
+<section id="example-of-a-post-request" class="level2">
+<h2 class="anchored" data-anchor-id="example-of-a-post-request">Example of a POST request</h2>
+<p>Let’s do an example with the Azure sentiment API from the IoT Portal. This REST API requires the text to analyze, and will return the sentiment or “mood” of the text. Since there can be a substantial amount of text, the API requires the POST method, and the data to be sent in the body of the request.</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you had tried to install miniconda previously, you may get an error that says “Directory … is not empty, please choose a different location.” <strong>Do not choose a different location.</strong> Instead, click “OK”, then rename the previous miniconda3 directory. You can do that by going to VS Code, opening a new terminal window (click “Terminal” -&gt; “New Terminal”), and entering the following (hit ENTER after each line):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> miniconda3 miniconda3-old</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Then go back to the Miniconda installer and click “Next”.</p>
+<p>Recall that to run the commands below, you will need to get your API key from https://cent.ischool-iot.net. Log in, then copy the API key given there. In the code blocks below, replace the <code>YOURAPIKEYHERE</code> with what you copied.</p>
 </div>
-</div></li>
-<li><p>Check the option for “Add Anaconda to my PATH environment variable” and check the option for “Register Anaconda as my default Python 3.x”.</p>
-<ul>
-<li>Note that even though the installation is for Miniconda, the installer uses the word Anaconda in these options.</li>
-<li>You will also see a message in red text that selecting “Add Anaconda to my PATH environment variable” is not recommended; continue with this selection to make using conda easier in Git Bash. If you have questions or concerns, please contact your instructor.</li>
-</ul></li>
-<li><p>Click on “Install”.</p></li>
-<li><p>When the install is complete, Click on “Next”.</p></li>
-<li><p>Click on “Finish”.</p></li>
-</ul></li>
-<li><p>Open a new terminal window in VS Code by clicking “Terminal” -&gt; “New Terminal”.</p></li>
-<li><p>Type the following command to initialize conda:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> init bash</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Open a new terminal window in VS Code by either hitting the “+” key next to “bash” in the upper left of the terminal window, or by cliking “Terminal” -&gt; “New Terminal”. If conda installed successfullly, you should see <code>(base)</code> appear next to or above your command prompt.</p></li>
-</ol>
+</div>
+<p>First, try it out in the <a href="https://cent.ischool-iot.net/doc">IoT portal</a> by clicking on the <code>/api/azure/sentiment</code> drop-down menu, then clicking “Execute”. For the text, enter: “I love IST356. It is the best course I’ve ever taken.”</p>
+<p>Now let’s convert the <code>curl</code> command the portal gave to Python <code>requests</code> code.</p>
+<div id="921e15bc" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">curl -X 'POST' </span><span class="op">\</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  'https://cent.ischool-iot.net/api/azure/sentiment' </span><span class="op">\</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">  -H 'accept: application/json' </span><span class="op">\</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">  -H 'X-API-KEY: APIKEY' </span><span class="op">\</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">  -H 'Content-Type: application/x-www-form-urlencoded' </span><span class="op">\</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">  -d 'text=I%20love%20IST356.%20It%20is%20the%20best%20course%20I'</span><span class="ch">\'</span><span class="co">'ve%20ever%20taken.'</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>apikey <span class="op">=</span> <span class="st">'YOURAPIKEYHERE'</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://cent.ischool-iot.net/api/azure/sentiment'</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>headers <span class="op">=</span> {</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'accept'</span>: <span class="st">'application/json'</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'X-API-KEY'</span>: apikey,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Content-Type'</span>: <span class="st">'application/x-www-form-urlencoded'</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>: <span class="st">"I love IST356. It is the best course I've ever taken."</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.post(url, headers<span class="op">=</span>headers, data<span class="op">=</span>data)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>response.raise_for_status()</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> response.json()</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>sentiment <span class="op">=</span> results[<span class="st">'results'</span>][<span class="st">'documents'</span>][<span class="dv">0</span>][<span class="st">'sentiment'</span>]</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sentiment)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Code Challenge 2.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For this challenge, use Azure entity recognition API to extract entities from the following text.</p>
+<p><code>The Philadelphia Eagles are a better team than the New York Giants this year. The Giants have lost 6 games and are at the bottom of the NFC East, while the Eagles are at the top of the division.</code></p>
+<p>Using the API output, print each extracted entity and its type.</p>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="5a4376b6" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>apikey <span class="op">=</span> <span class="st">'YOURAPIKEYHERE'</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://cent.ischool-iot.net/api/azure/entityrecognition"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>headers <span class="op">=</span> {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"accept"</span>: <span class="st">"application/json"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"X-API-KEY"</span>: apikey,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Content-Type"</span>: <span class="st">"application/x-www-form-urlencoded"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text"</span>: <span class="st">"The Philadelphia Eagles are a better team than the New York Giants this year. The Giants have lost 6 games and are at the bottom of the NFC East, while the Eagles are at the top of the division."</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.post(url, headers<span class="op">=</span>headers, data<span class="op">=</span>data)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>response.raise_for_status()</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> response.json()</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> data[<span class="st">'results'</span>][<span class="st">'documents'</span>][<span class="dv">0</span>][<span class="st">'entities'</span>]:</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(d[<span class="st">'text'</span>], d[<span class="st">'category'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-</section>
-<section id="step-5-create-a-conda-environment-and-test-it-in-vs-code" class="level2">
-<h2 class="anchored" data-anchor-id="step-5-create-a-conda-environment-and-test-it-in-vs-code">Step 5: Create a conda environment and test it in VS Code</h2>
+<section id="caching-strategies" class="level2">
+<h2 class="anchored" data-anchor-id="caching-strategies">Caching Strategies</h2>
+<p>When you are making a lot of requests to an API, it is a good idea to cache the results. We don’t want to make the same request over and over again if we don’t have to as this can effect our rate limits and thus our pricing.</p>
+<p>Caching can be done in a number of ways. The simplest method is a Python dictionary where the key is the request and the value is the response.</p>
+<p>The caching strategy looks like this:</p>
 <ol type="1">
-<li><p>In the bash terminal window in VS Code (make sure it says <code>(base)</code> to the left of or above the prompt), type:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> ist356 <span class="at">-c</span> conda-forge <span class="at">-y</span> python=3.11 ipykernel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Then hit ENTER.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
+<li><p>Check if the request is in the cache</p></li>
+<li><p>If it is, we have a CACHE hit: return the response from the cache.</p></li>
+<li><p>If it is not, call the API to get the response. Add it to the cache for the future.</p></li>
+</ol>
+<p>You can do caching yourself by using Python dictionaries. However, if you want to cache results across sessions then you will need to save the dictionary to disk so it can be loaded in the future. You can use the Python <code>pickle</code> library to do that.</p>
+<p>Here’s an example with the Google Geocoding API on the IoT Portal:</p>
+<div id="6677a75b" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>pickle_file <span class="op">=</span> <span class="st">'geocode_cache.pkl'</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> os.path.exists(pickle_file):</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(pickle_file, <span class="st">'rb'</span>) <span class="im">as</span> fp:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        cache <span class="op">=</span> pickle.load(fp)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    cache <span class="op">=</span> {}</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>location <span class="op">=</span> <span class="st">'Syracuse, NY'</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>cache_key <span class="op">=</span> location.lower()</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        geo <span class="op">=</span> cache[cache_key]</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Used cache'</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyError</span>:</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Making request'</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        url <span class="op">=</span> <span class="st">'https://cent.ischool-iot.net/api/google/geocode'</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        headers <span class="op">=</span> { <span class="st">'X-API-KEY'</span>: apikey }</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        params <span class="op">=</span> {<span class="st">'location'</span>: location}</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> requests.get(url, params<span class="op">=</span>params, headers<span class="op">=</span>headers)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        response.raise_for_status()</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        geo <span class="op">=</span> response.json()</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        <span class="co"># cache</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        cache[cache_key] <span class="op">=</span> geo</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(geo[<span class="st">'results'</span>][<span class="dv">0</span>][<span class="st">'geometry'</span>][<span class="st">'location'</span>])</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co"># save cache to disk for future use</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(pickle_file, <span class="st">'wb'</span>) <span class="im">as</span> fp:</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    pickle.dump(cache, fp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The first time you run that, you will see the request is only made the first time through the loop. If you run that code again, even the first time will come from the cache, since it will read it from disk.</p>
+<section id="using-requests-cache" class="level3">
+<h3 class="anchored" data-anchor-id="using-requests-cache">Using <code>requests-cache</code></h3>
+<p>The <a href="https://requests-cache.readthedocs.io/en/stable/index.html">requests-cache</a> Python package makes caching easy for you. It takes care of caching things to disk for you and loading them. It also lets you do things like set expiration times on cache entries, so you don’t end up using stagnant data.</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The first time you run conda, you may bet an error about Terms of Service not being accepted for certain channels. Accept the TOS for those channels by running the commands listed. For example, if one of the channels is <code>https://repo.anaconda.com/pkgs/main</code>, copy and paste the command into the terminal:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> tos accept <span class="at">--override-channels</span> <span class="at">--channel</span> https://repo.anaconda.com/pkgs/main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Followed by hitting ENTER (to execute a command in the terminal, you hit ENTER after typing/pasting it in). You’ll need to do this for each of the channels listed.</p>
-<p>Once you have accepted the TOS for all the channels, run the <code>conda create</code> command above again.</p>
-</div>
-</div></li>
-<li><p>Check to ensure your environment works:</p>
+<p><code>requests-cache</code> is not in the Python standard library, so you’ll need to install it. As always, you can do that by:</p>
 <ol type="1">
-<li><p>Click File -&gt; “New File…”</p></li>
-<li><p>In the drop down menu, select “Jupyter Notebook”.</p></li>
-<li><p>Click “Select Kernel” on the right then type “ist356”.</p></li>
-<li><p>In the first cell, type:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"hello world!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Hit the run button on the left or type SHIFT + ENTER to execute the code. You should get back “hello world!”.</p></li>
-<li><p>Close the ipynb file (you may optionally save it; if you do, be sure to call it something other then “Untitled.ipynb”, maybe “hello.ipynb” instead).</p></li>
-</ol></li>
+<li><p>In a terminal, activate your <code>ist356</code> conda environment.</p></li>
+<li><p>Run <code>pip install requests-cache</code>.</p></li>
 </ol>
+</div>
+</div>
+<p>Here’s the above example again, but using <code>requests-cache</code>:</p>
+<div id="0a4d7c68" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests_cache</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>location <span class="op">=</span> <span class="st">'Syracuse, NY'</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># start up a cached session. We need to explicitly set the allowable_methods</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># for it to cache posts</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>rs <span class="op">=</span> requests_cache.CachedSession(cache_name<span class="op">=</span><span class="st">'geocode'</span>, allowable_methods<span class="op">=</span>(<span class="st">'GET'</span>, <span class="st">'POST'</span>, <span class="st">'HEAD'</span>)) </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># If you want to clear the cache:</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#rs.cache.clear()</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="st">'https://cent.ischool-iot.net/api/google/geocode'</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    headers <span class="op">=</span> { <span class="st">'X-API-KEY'</span>: apikey }</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    params <span class="op">=</span> {<span class="st">'location'</span>: location}</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> rs.get(url, params<span class="op">=</span>params, headers<span class="op">=</span>headers)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    response.raise_for_status()</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> response.from_cache:</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Used cache'</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Made request'</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    geo <span class="op">=</span> response.json()</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(geo[<span class="st">'results'</span>][<span class="dv">0</span>][<span class="st">'geometry'</span>][<span class="st">'location'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>That’s it! If you rerun the code above, you’ll find that it will use the cache the first time through. To clear the cache, uncomment the <code>rs.cache.clear()</code> line.</p>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Code Challenge 2.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Send requests to the Azure sentiment API for each one of the sentences below. Use the <code>requests_cache</code> module to cache responses. For each of the following sentences, output the sentence, the sentiment, and if the results came from the API or the cache.</p>
+<div id="f7d8cc2f" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>texts <span class="op">=</span> [</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I love the Syracuse Orange."</span>, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I hate the Duke Blue Devils."</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I love the Syracuse Orange."</span>, </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I don't like the Duke Blue Devils."</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="0217946e" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests_cache</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>texts <span class="op">=</span> [</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I love the Syracuse Orange."</span>, </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I hate the Duke Blue Devils."</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I love the Syracuse Orange."</span>, </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"I don't like the Duke Blue Devils."</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>rs <span class="op">=</span> requests_cache.CachedSession(cache_name<span class="op">=</span><span class="st">'sentiment'</span>, allowable_methods<span class="op">=</span>(<span class="st">'GET'</span>, <span class="st">'POST'</span>, <span class="st">'HEAD'</span>)) </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>headers <span class="op">=</span> { <span class="st">'x-api-key'</span>: apikey }</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://cent.ischool-iot.net/api/azure/sentiment"</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> text <span class="kw">in</span> texts:</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> {<span class="st">'text'</span>: text}</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> rs.post(url, headers<span class="op">=</span>headers, data<span class="op">=</span>data)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    response.raise_for_status()</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> response.from_cache:</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        from_cache <span class="op">=</span> <span class="st">"CACHED"</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        from_cache <span class="op">=</span> <span class="st">"NOT CACHED"</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    results <span class="op">=</span> response.json()</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    sentiment <span class="op">=</span> results[<span class="st">'results'</span>][<span class="st">'documents'</span>][<span class="dv">0</span>][<span class="st">'sentiment'</span>]</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(text, sentiment, from_cache)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 </section>
@@ -1004,10 +1037,13 @@ Warning
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../05_web_apis/webapi-1.html" class="pagination-link" aria-label="1. REST APIs">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1. REST APIs</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../01_cli_conda/index.html" class="pagination-link" aria-label="1. Command line interface and Environments">
-        <span class="nav-page-text">1. Command line interface and Environments</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../syllabus.html" class="pagination-link" aria-label="Syllabus">
+        <span class="nav-page-text">Syllabus</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
