@@ -1,0 +1,243 @@
+---
+title: '2. Posting with REST API and caching results'
+jupyter: python3
+---
+
+
+## HTTP Methods beyond GET
+
+So far we have only seen GET requests. But there are other HTTP methods that are used to perform different operations  such as:
+
+- POST: Create a new resource
+- PUT: Update an existing resource
+- DELETE: Delete a resource
+
+From the perspective of `requests` these behave the same as a GET. The only subtle difference is that you can pass a `data` parameter when there are large payloads which cannot fit on the URL.
+
+## Example of a POST request
+
+Let's do an example with the Azure sentiment API from the IoT Portal. This REST API requires the text to analyze, and will return the sentiment or "mood" of the text.  Since there can be a substantial amount of text, the API requires the POST method, and the data to be sent in the body of the request.
+
+::: {.callout-note}
+Recall that to run the commands below, you will need to get your API key from https://cent.ischool-iot.net. Log in, then copy the API key given there. In the code blocks below, replace the `YOURAPIKEYHERE` with what you copied.
+:::
+
+First, try it out in the [IoT portal](https://cent.ischool-iot.net/doc) by clicking on the `/api/azure/sentiment` drop-down menu, then clicking "Execute". For the text, enter: "I love IST356. It is the best course I've ever taken."
+
+Now let's convert the `curl` command the portal gave to Python `requests` code. 
+
+```{python}
+#| eval: false
+import requests
+
+'''
+curl -X 'POST' \
+  'https://cent.ischool-iot.net/api/azure/sentiment' \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: APIKEY' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'text=I%20love%20IST356.%20It%20is%20the%20best%20course%20I'\''ve%20ever%20taken.'
+'''
+
+apikey = 'YOURAPIKEYHERE'
+url = 'https://cent.ischool-iot.net/api/azure/sentiment'
+headers = {
+    'accept': 'application/json',
+    'X-API-KEY': apikey,
+    'Content-Type': 'application/x-www-form-urlencoded'
+}
+data = {
+    "text": "I love IST356. It is the best course I've ever taken."
+}
+response = requests.post(url, headers=headers, data=data)
+response.raise_for_status()
+results = response.json()
+sentiment = results['results']['documents'][0]['sentiment']
+print(sentiment)
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 2.1
+
+For this challenge, use Azure entity recognition API to extract entities from the following text.
+
+`The Philadelphia Eagles are a better team than the New York Giants this year. The Giants have lost 6 games and are at the bottom of the NFC East, while the Eagles are at the top of the division.`
+
+Using the API output, print each extracted entity and its type.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+import requests
+
+apikey = 'YOURAPIKEYHERE'
+url = "https://cent.ischool-iot.net/api/azure/entityrecognition"
+headers = {
+    "accept": "application/json",
+    "X-API-KEY": apikey,
+    "Content-Type": "application/x-www-form-urlencoded",
+}
+data = {
+    "text": "The Philadelphia Eagles are a better team than the New York Giants this year. The Giants have lost 6 games and are at the bottom of the NFC East, while the Eagles are at the top of the division."
+}
+response = requests.post(url, headers=headers, data=data)
+response.raise_for_status()
+data = response.json()
+for d in data['results']['documents'][0]['entities']:
+    print(d['text'], d['category'])
+```
+
+:::
+::::
+
+
+## Caching Strategies
+
+When you are making a lot of requests to an API, it is a good idea to cache the results. We don't want to make the same request over and over again if we don't have to as this can effect our rate limits and thus our pricing.
+
+Caching can be done in a number of ways. The simplest method is a Python dictionary where the key is the request and the value is the response. 
+
+The caching strategy looks like this:
+
+1. Check if the request is in the cache
+
+2. If it is, we have a CACHE hit: return the response from the cache.
+
+3. If it is not, call the API to get the response. Add it to the cache for the future.
+
+
+You can do caching yourself by using Python dictionaries. However, if you want to cache results across sessions then you will need to save the dictionary to disk so it can be loaded in the future. You can use the Python `pickle` library to do that.
+
+Here's an example with the Google Geocoding API on the IoT Portal:
+
+```{python}
+#| eval: false
+import os
+import pickle
+
+pickle_file = 'geocode_cache.pkl'
+if os.path.exists(pickle_file):
+    with open(pickle_file, 'rb') as fp:
+        cache = pickle.load(fp)
+else:
+    cache = {}
+
+location = 'Syracuse, NY'
+cache_key = location.lower()
+
+for i in range(3):
+    try:
+        geo = cache[cache_key]
+        print('Used cache')
+    except KeyError:
+        print('Making request')
+        url = 'https://cent.ischool-iot.net/api/google/geocode'
+        headers = { 'X-API-KEY': apikey }
+        params = {'location': location}
+        response = requests.get(url, params=params, headers=headers)
+        response.raise_for_status()
+        geo = response.json()
+        # cache
+        cache[cache_key] = geo
+    print(geo['results'][0]['geometry']['location'])
+
+# save cache to disk for future use
+with open(pickle_file, 'wb') as fp:
+    pickle.dump(cache, fp)
+```
+
+The first time you run that, you will see the request is only made the first time through the loop. If you run that code again, even the first time will come from the cache, since it will read it from disk.
+
+### Using `requests-cache`
+
+The [requests-cache](https://requests-cache.readthedocs.io/en/stable/index.html) Python package makes caching easy for you. It takes care of caching things to disk for you and loading them. It also lets you do things like set expiration times on cache entries, so you don't end up using stagnant data.
+
+
+::: {.callout-note}
+`requests-cache` is not in the Python standard library, so you'll need to install it. As always, you can do that by:
+
+1. In a terminal, activate your `ist356` conda environment.
+
+2. Run `pip install requests-cache`.
+:::
+
+Here's the above example again, but using `requests-cache`:
+
+```{python}
+#| eval: false
+
+import requests_cache
+
+location = 'Syracuse, NY'
+
+# start up a cached session. We need to explicitly set the allowable_methods
+# for it to cache posts
+rs = requests_cache.CachedSession(cache_name='geocode', allowable_methods=('GET', 'POST', 'HEAD')) 
+# If you want to clear the cache:
+#rs.cache.clear()
+
+for i in range(3):
+    url = 'https://cent.ischool-iot.net/api/google/geocode'
+    headers = { 'X-API-KEY': apikey }
+    params = {'location': location}
+    response = rs.get(url, params=params, headers=headers)
+    response.raise_for_status()
+    if response.from_cache:
+        print('Used cache')
+    else:
+        print('Made request')
+    geo = response.json()
+    print(geo['results'][0]['geometry']['location'])
+```
+
+That's it! If you rerun the code above, you'll find that it will use the cache the first time through. To clear the cache, uncomment the `rs.cache.clear()` line.
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 2.2
+
+Send requests to the Azure sentiment API for each one of the sentences below. Use the `requests_cache` module to cache responses. For each of the following sentences, output the sentence, the sentiment, and if the results came from the API or the cache.
+
+```{python}
+#| eval: false
+texts = [
+    "I love the Syracuse Orange.", 
+    "I hate the Duke Blue Devils.",
+    "I love the Syracuse Orange.", 
+    "I don't like the Duke Blue Devils."
+]
+```
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+import requests_cache
+
+texts = [
+    "I love the Syracuse Orange.", 
+    "I hate the Duke Blue Devils.",
+    "I love the Syracuse Orange.", 
+    "I don't like the Duke Blue Devils."
+]
+
+rs = requests_cache.CachedSession(cache_name='sentiment', allowable_methods=('GET', 'POST', 'HEAD')) 
+headers = { 'x-api-key': apikey }
+url = "https://cent.ischool-iot.net/api/azure/sentiment"
+for text in texts:
+    data = {'text': text}
+    response = rs.post(url, headers=headers, data=data)
+    response.raise_for_status()
+    if response.from_cache:
+        from_cache = "CACHED"
+    else:
+        from_cache = "NOT CACHED"
+    results = response.json()
+    sentiment = results['results']['documents'][0]['sentiment']
+    print(text, sentiment, from_cache)
+```
+
+:::
+::::

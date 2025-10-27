@@ -5,6 +5,7 @@ order: 5
 
 ## Tutorials
 
-[1. REST APIs](webapi-1.qmd)
+1. [REST APIs](webapi-1.qmd)
+2. [Posting with REST API and caching results](webapi-2.qmd)
 
 ## Lectures
