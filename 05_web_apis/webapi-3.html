@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1. Interaction in Jupyter using ipywidgets – IST 356 Fall 2025</title>
+<title>3. Creating your own APIs with FastAPI – IST 356 Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../03_ui/ui-2.html" rel="next">
-<link href="../03_ui/index.html" rel="prev">
+<link href="../syllabus.html" rel="next">
+<link href="../05_web_apis/webapi-2.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -106,13 +106,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="1. Interaction in Jupyter using ipywidgets – IST 356 Fall 2025">
+<meta property="og:title" content="3. Creating your own APIs with FastAPI – IST 356 Fall 2025">
 <meta property="og:description" content="">
 <meta property="og:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
 <meta property="og:site_name" content="IST 356 Fall 2025">
 <meta property="og:image:height" content="105">
 <meta property="og:image:width" content="650">
-<meta name="twitter:title" content="1. Interaction in Jupyter using ipywidgets – IST 356 Fall 2025">
+<meta name="twitter:title" content="3. Creating your own APIs with FastAPI – IST 356 Fall 2025">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
 <meta name="twitter:image-height" content="105">
@@ -149,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../03_ui/index.html">3. UI</a></li><li class="breadcrumb-item"><a href="../03_ui/ui-1.html">1. Interaction in Jupyter using ipywidgets</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../05_web_apis/index.html">5. Web APIs</a></li><li class="breadcrumb-item"><a href="../05_web_apis/webapi-3.html">3. Creating your own APIs with FastAPI</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -233,14 +233,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../03_ui/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3. UI</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../03_ui/ui-1.html" class="sidebar-item-text sidebar-link active">
+  <a href="../03_ui/ui-1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1. Interaction in Jupyter using ipywidgets</span></a>
   </div>
 </li>
@@ -303,11 +303,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../05_web_apis/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">5. Web APIs</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../05_web_apis/webapi-1.html" class="sidebar-item-text sidebar-link">
@@ -322,7 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../05_web_apis/webapi-3.html" class="sidebar-item-text sidebar-link">
+  <a href="../05_web_apis/webapi-3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">3. Creating your own APIs with FastAPI</span></a>
   </div>
 </li>
@@ -344,16 +344,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#notebook-widgets-ipywidgets" id="toc-notebook-widgets-ipywidgets" class="nav-link active" data-scroll-target="#notebook-widgets-ipywidgets">Notebook widgets: ipywidgets</a></li>
+  <li><a href="#api-vs-module" id="toc-api-vs-module" class="nav-link active" data-scroll-target="#api-vs-module">API vs Module</a></li>
+  <li><a href="#fast-api" id="toc-fast-api" class="nav-link" data-scroll-target="#fast-api">Fast API</a></li>
+  <li><a href="#fast-api-features" id="toc-fast-api-features" class="nav-link" data-scroll-target="#fast-api-features">Fast API Features</a>
+  <ul class="collapse">
+  <li><a href="#query-string-path-and-header-parameters" id="toc-query-string-path-and-header-parameters" class="nav-link" data-scroll-target="#query-string-path-and-header-parameters">Query String Path, and Header Parameters</a></li>
+  <li><a href="#handling-errors" id="toc-handling-errors" class="nav-link" data-scroll-target="#handling-errors">Handling Errors</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../03_ui/index.html">3. UI</a></li><li class="breadcrumb-item"><a href="../03_ui/ui-1.html">1. Interaction in Jupyter using ipywidgets</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../05_web_apis/index.html">5. Web APIs</a></li><li class="breadcrumb-item"><a href="../05_web_apis/webapi-3.html">3. Creating your own APIs with FastAPI</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">1. Interaction in Jupyter using ipywidgets</h1>
+<h1 class="title">3. Creating your own APIs with FastAPI</h1>
 </div>
 
 
@@ -370,57 +376,121 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To do this tutorial you will need <code>ipywidgets</code> installed in your conda environment. To do that:</p>
+<p>In order to do this tutorial, you will need to install fastapi. To do that, open a terminal, activate your <code>ist356</code> conda environment, then run:</p>
+<pre class="{bash}"><code>pip install "fastapi[standard]"</code></pre>
+<p><strong>Make sure you put <code>fastapi[standard]</code> in quotes, as shown here.</strong></p>
+</div>
+</div>
+<section id="api-vs-module" class="level2">
+<h2 class="anchored" data-anchor-id="api-vs-module">API vs Module</h2>
+<p>You might be asking why host an API versus just writing a module? After all they have similar functionality of sharing and interacting with code and data.</p>
+<p>There are some key differences between an API and a module:</p>
 <ol type="1">
-<li><p>Open a terminal (from in VS Code, click “Terminal” -&gt; “New Terminal”).</p></li>
-<li><p>Activate your <code>ist356</code> conda environment by running:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate ist356</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Install <code>ipywidgets</code> by either running:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install ipywidgets</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>or:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge <span class="at">-y</span> ipywidgets</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li>You can hide the implementation details of your code with an API. Unlike a module, people only see the interface, not way to code was implemented.</li>
+<li>An API can be accessed over the internet, while a module is typically used locally.</li>
+<li>API’s work across different programming languages, while modules are either restricted to the language they were written in (in our case, Python), or need to be wrapped with an intermediate (e.g., Cython for C-&gt;Python).</li>
+<li>Since an API is run remotely, it can be run on large high performance computing clusters, whereas modules are typically limited to whatever machine your are running on. This is particularly important for LLMs, which need large, power intensive GPU resources to work.</li>
 </ol>
-</div>
-</div>
-<section id="notebook-widgets-ipywidgets" class="level2">
-<h2 class="anchored" data-anchor-id="notebook-widgets-ipywidgets">Notebook widgets: ipywidgets</h2>
-<p>The jupyter notebook widgets create better UI interactions in notebooks. This is called the ipywidgets library. There is a lot to this library but we will keep our interactions simple.</p>
-<p>To replace <code>input()</code> statements we use the <code>interact_manual</code> decorator function. Like a hat decorates your head, decorator function adds code to another function.</p>
-<p><code>interact_manual</code> decorator does the following:</p>
+</section>
+<section id="fast-api" class="level2">
+<h2 class="anchored" data-anchor-id="fast-api">Fast API</h2>
+<p><a href="https://fastapi.tiangolo.com/">https://fastapi.tiangolo.com/</a></p>
 <ul>
-<li>generates a <em>textbox</em> for any string input</li>
-<li>generates a <em>slider</em> for any int/float input</li>
-<li>generates a <em>dropdown</em> for any list input</li>
-<li>generates a <em>button</em> titled “Run interact”</li>
+<li>Fast API is an easy-to-learn Python framework for building APIs.</li>
+<li>It has a lot of features that make it a great choice for building APIs.</li>
+<li>We will focus on a few simple functions so that you can understand how it works.</li>
 </ul>
-<p>When the <strong>button is clicked</strong> the code inside the decorated function is executed and the widget values are used as input. Use <code>display()</code> instead of <code>print()</code> for output.</p>
-<div id="e761efd1" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Necessary imports to make this work</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact_manual</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="fast-api-features" class="level1">
+<h1>Fast API Features</h1>
+<ul>
+<li>Live edit similar to Streamlit. You can edit your code and see the changes in real time.</li>
+<li>Highly opinionated. It has a lot of features that are built in but you must do it the “FastAPI way.”</li>
+<li>Easy to understand the code.</li>
+<li>Auto-generates API documentation Swagger UI.</li>
+</ul>
+<p>Here’s a simple example that provides a GET API that returns a “Hello World” message formatted as JSON:</p>
+<div id="0d86ea3f" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi <span class="im">import</span> FastAPI</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> FastAPI()  <span class="co"># Create a FastAPI instance</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">"/"</span>)    <span class="co"># Define a route</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> root():      <span class="co"># Define a function that will be called when the route is requested</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"message"</span>: <span class="st">"Hello World"</span>} <span class="co"># Serializes to JSON automatically</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="0c447a72" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example:</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>vals <span class="op">=</span> [ <span class="st">'red'</span>, <span class="st">'white'</span>, <span class="st">'blue'</span>] <span class="co"># this is a list type, it will generate a dropdown widget</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">min</span>, <span class="bu">max</span>, step <span class="op">=</span> <span class="dv">0</span>, <span class="dv">20</span>, <span class="fl">0.5</span>      <span class="co"># this is the range of the slider, and the steps</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"testing"</span>                 <span class="co"># this is a string type, it will generate a textbox</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">@interact_manual</span>(color<span class="op">=</span>vals, grade<span class="op">=</span>(<span class="bu">min</span>,<span class="bu">max</span>,step), name<span class="op">=</span>text) <span class="co"># DECORATOR function with values</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> on_click(color, grade, name):                             <span class="co"># DECORATED function. This code </span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    display(color)                                            <span class="co"># runs when the button is clicked </span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    display(grade)                                            <span class="co"># (thus the name on_click)</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    display(name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To use this, save this to a file (let’s call it <code>helloapi.py</code>. Then, from the command line, run:</p>
+<pre class="{bash}"><code>python -m fastapi dev helloapi.py</code></pre>
+<p>When you run it, you will it say, <code>Server started at ...</code>, followed by a URL in the form of an IP address. Copy that URL. You can then interact with your API with the following (you can run this in a Jupyter notebook):</p>
+<div id="b76ca1e7" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'REPLACE_WITH_COPIED_URL'</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>response.raise_for_status()</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.json())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>FastAPI also provides automatically generated documentation. You can view that by opening the URL provided <code>/docs</code> in your browser. For instance, if the URL was <code>http://127.0.0.1:8000</code> then you would open <code>http://127.0.0.1:8000/docs</code> in your browser. Does the format look familiar? It’s the same as the IoT portal! (Now you know how that was built.)</p>
+<section id="query-string-path-and-header-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="query-string-path-and-header-parameters">Query String Path, and Header Parameters</h2>
+<p>Fast API makes it easy to add parameters to your API.</p>
+<ul>
+<li>Python type hints are used to define the type of the parameter (int, str, etc.). <em>If not type hints are provided, FastAPI will assume the input is string. This can lead to unintended consequences!</em></li>
+<li>The <code>Query()</code> function is used to define a query parameter</li>
+<li>The <code>Header()</code> function is used to define a header parameter</li>
+<li>Path parameters are defined by including the parameter in the URL path</li>
+</ul>
+<p>Here’s an example:</p>
+<div id="921c4d27" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi <span class="im">import</span> FastAPI, Header, Query</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> FastAPI()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">"/calculator/</span><span class="sc">{operator}</span><span class="st">"</span>)  <span class="co"># &lt;== path parameter</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_item(operator: <span class="bu">str</span>, </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>              a: <span class="bu">int</span> <span class="op">=</span> Query(),     <span class="co"># &lt;== query parameter</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>              b: <span class="bu">int</span> <span class="op">=</span> Query(),     <span class="co"># &lt;== query parameter</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>              h: <span class="bu">str</span> <span class="op">=</span> Header()):   <span class="co"># &lt;== header parameter</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> operator <span class="op">==</span> <span class="st">"add"</span>:</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> a <span class="op">+</span> b</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> operator <span class="op">==</span> <span class="st">"sub"</span>:</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> a <span class="op">-</span> b</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> operator <span class="op">==</span> <span class="st">"mul"</span>:</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> a <span class="op">*</span> b</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> operator <span class="op">==</span> <span class="st">"div"</span>:</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> a <span class="op">/</span> b</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"operator"</span>: operator,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"a"</span>: a,</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"b"</span>: b,</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">"result"</span>: result,</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"h"</span>: h</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Save that to a file called <code>paramsapi.py</code>, then start the server by opening a terminal and running:</p>
+<pre class="{bash}"><code>python -m fastapi dev paramsapi.py</code></pre>
+<p>Again, copy the URL. Now in your Jupyter notebook, run the following (replacing the base URL with what you copied):</p>
+<div id="27c42563" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>baseurl <span class="op">=</span> <span class="st">'REPLACE_WITH_COPIED_URL'</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>operator <span class="op">=</span> <span class="st">'add'</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> baseurl <span class="op">+</span> <span class="st">'calculator/'</span> <span class="op">+</span> operator</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {<span class="st">'a'</span>: <span class="dv">1</span>, <span class="st">'b'</span>: <span class="dv">2</span>}</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>headers <span class="op">=</span> {<span class="st">'h'</span>: <span class="st">'A header'</span>}</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url, params<span class="op">=</span>params, headers<span class="op">=</span>headers)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>response.raise_for_status()</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.json())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This will test the <code>add</code> method. To try the other methods, change what <code>operator</code> is set to. Notice that in doing so, we’re changing the URL.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -431,8 +501,59 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>For more complex interactions we will use the streamlit library</p>
+<p>To see the signficance of type hints in defining API functions, try removing the type hint from your <code>paramsapi.py</code> then run the <code>requests.get</code> function in your Jupyter notebook again (note that you don’t have to restart the server: FastAPI will detect the change to the code as soon as you save the changes, and automatically restart the server). In other words, try changing:</p>
+<div id="21e99932" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_item(operator: <span class="bu">str</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>              a: <span class="bu">int</span> <span class="op">=</span> Query(),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>              b: <span class="bu">int</span> <span class="op">=</span> Query(),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>              h: <span class="bu">str</span> <span class="op">=</span> Header()):</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>to</p>
+<div id="7101f70e" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_item(operator,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>              a <span class="op">=</span> Query(),</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>              b <span class="op">=</span> Query(),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>              h <span class="op">=</span> Header()):</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>save the changes, then re-run the <code>requests.get</code> for the <code>add</code> function in your notebook. Note the type of the returned <code>a</code>, <code>b</code>, and what the <code>result</code> is now: you should see that the returned <code>a</code>, <code>b</code> are strings (even though you passed in ints) and the result is now the string <code>"12"</code> rather than the integer 3. This is because FastAPI has assumed all the inputs are strings when you don’t provide type hints, so the function does <code>"1" + "2" = "12"</code> (why <code>"12"</code>?) instead of <code>1 + 2 = 3</code>. Now add back the type hints to fix your code.</p>
+</div>
+</div>
+</section>
+<section id="handling-errors" class="level2">
+<h2 class="anchored" data-anchor-id="handling-errors">Handling Errors</h2>
+<p>Remember status codes are a way to communicate the status of a request to the client. Here is list of the standard codes and what they mean:</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">https://developer.mozilla.org/en-US/docs/Web/HTTP/Status</a></p>
+<p>Error codes are a design contract which means you SHOULD use them as they are EXPECTED, but they are not REQURED.</p>
+<p>FastAPI makes it easy to handle errors. You can use the <code>HTTPException</code> (which you need to import from <code>fastapi</code>) to raise an error with a specific status code and message.</p>
+<p>To illustrate, here’s our operator API from above, with a check added to make sure the provided operator is recognized:</p>
+<div id="68a27d6c" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi <span class="im">import</span> FastAPI, Header, Query, HTTPException</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> FastAPI()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">"/calculator/</span><span class="sc">{operator}</span><span class="st">"</span>)  <span class="co"># &lt;== path parameter</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> read_item(operator: <span class="bu">str</span>, </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>              a: <span class="bu">int</span> <span class="op">=</span> Query(),     <span class="co"># &lt;== query parameter</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>              b: <span class="bu">int</span> <span class="op">=</span> Query(),     <span class="co"># &lt;== query parameter</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>              h: <span class="bu">str</span> <span class="op">=</span> Header()):   <span class="co"># &lt;== header parameter</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> operator <span class="op">==</span> <span class="st">"add"</span>:</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> a <span class="op">+</span> b</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> operator <span class="op">==</span> <span class="st">"sub"</span>:</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> a <span class="op">-</span> b</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> operator <span class="op">==</span> <span class="st">"mul"</span>:</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> a <span class="op">*</span> b</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> operator <span class="op">==</span> <span class="st">"div"</span>:</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> a <span class="op">/</span> b</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> HTTPException(status_code<span class="op">=</span><span class="dv">404</span>, </span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>            detail<span class="op">=</span><span class="st">"Operator not found. should be: add, sub, mul, div"</span>)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">"operator"</span>: operator,</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"a"</span>: a,</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">"b"</span>: b,</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"result"</span>: result,</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"h"</span>: h</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-simple callout-caution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -440,26 +561,18 @@ Note
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>Code Challenge 1.1
+<span class="screen-reader-only">Caution</span>Code Challenge 3.1
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Create a simple widget interaction that will display student status for their GPA. The widget should take as inputs:</p>
-<ul>
-<li>the student’s name;</li>
-<li>their major: one of “IMT”, “IST”, or “ADA”;</li>
-<li>a gpa between 0.0 and 4.0.</li>
-</ul>
-<p>The widget should process:</p>
-<ul>
-<li>when gpa &lt; 1.8 then status is “probation”</li>
-<li>when gpa &gt; 3.4 then status is “deans list”</li>
-<li>else status is “no list”.</li>
-</ul>
-<p>The widget should then display the following statement:</p>
-<div id="77adb99d" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">"NAME in MAJOR with GPA is on STATUS"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<p>Design and build an API to search for flights (depart/arrive) by Airport Code.</p>
+<p>Use this dataset to get the source of your flights:</p>
+<p>https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/flights/sample-flights.csv</p>
+<p>Here’s some examples of the the API endpoint you need to build:</p>
+<pre class="{text}"><code>/api/flights/search?type=dep&amp;code=OKA
+/api/flights/search?type=arr&amp;code=KEY</code></pre>
+<p>Have your code raise an HTTP Error with status code 400 if the requested type is not <code>dep</code> (for departures) or <code>arr</code> (for arrivals).</p>
+<p>Test your API using the Swagger UI.</p>
 <div class="callout callout-style-simple callout-caution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -472,20 +585,27 @@ Note
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="30dc16ef" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact_manual</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">@interact_manual</span>(name<span class="op">=</span><span class="st">""</span>, major<span class="op">=</span>[<span class="st">"IMT"</span>, <span class="st">"IST"</span>, <span class="st">"ADA"</span>], gpa<span class="op">=</span>(<span class="fl">0.0</span>,<span class="fl">4.0</span>,<span class="fl">0.05</span>))</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> onclick(name,major,gpa):</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gpa <span class="op">&lt;</span> <span class="fl">1.8</span>:</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"probation"</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> gpa <span class="op">&gt;</span> <span class="fl">3.4</span>:</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"deans list"</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"no list"</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    display(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss"> in </span><span class="sc">{</span>major<span class="sc">}</span><span class="ss"> with gpa of </span><span class="sc">{</span>gpa<span class="sc">}</span><span class="ss"> is on </span><span class="sc">{</span>status<span class="sc">}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="d8258478" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastapi <span class="im">import</span> FastAPI, Body, HTTPException</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/flights/sample-flights.csv"</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> FastAPI()</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="at">@app.get</span>(<span class="st">"/api/flights/search"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> search_flights(<span class="bu">type</span>: <span class="bu">str</span>, code: <span class="bu">str</span>):</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">'''</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">    Search for flights by origin and destination</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">    '''</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">type</span> <span class="op">==</span> <span class="st">"dep"</span>:</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        flights <span class="op">=</span> df[df[<span class="st">"departure_airport_code"</span>] <span class="op">==</span> code]</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="bu">type</span> <span class="op">==</span> <span class="st">"arr"</span>:</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        flights <span class="op">=</span> df[df[<span class="st">"arrival_airport_code"</span>] <span class="op">==</span> code]</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> HTTPException(status_code<span class="op">=</span><span class="dv">400</span>, detail<span class="op">=</span><span class="st">"Invalid type. Must be 'dep' or 'arr'"</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> flights.to_dict(orient<span class="op">=</span><span class="st">"records"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -494,6 +614,7 @@ Note
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -899,13 +1020,13 @@ Note
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../03_ui/index.html" class="pagination-link" aria-label="3. UI">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">3. UI</span>
+      <a href="../05_web_apis/webapi-2.html" class="pagination-link" aria-label="2. Posting with REST API and caching results">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">2. Posting with REST API and caching results</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../03_ui/ui-2.html" class="pagination-link" aria-label="2. Creating simple web apps with Streamlit">
-        <span class="nav-page-text">2. Creating simple web apps with Streamlit</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../syllabus.html" class="pagination-link" aria-label="Syllabus">
+        <span class="nav-page-text">Syllabus</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
