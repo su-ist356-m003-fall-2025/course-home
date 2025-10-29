@@ -7,5 +7,6 @@ order: 5
 
 1. [REST APIs](webapi-1.qmd)
 2. [Posting with REST API and caching results](webapi-2.qmd)
+3. [Creating your own APIs with FastAPI](webapi-3.qmd)
 
 ## Lectures

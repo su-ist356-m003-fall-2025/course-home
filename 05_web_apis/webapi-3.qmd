@@ -1,0 +1,251 @@
+---
+title: '3. Creating your own APIs with FastAPI'
+jupyter: python3
+---
+
+::: {.callout-important}
+In order to do this tutorial, you will need to install fastapi. To do that, open a terminal, activate your `ist356` conda environment, then run:
+```{bash}
+pip install "fastapi[standard]"
+```
+**Make sure you put `fastapi[standard]` in quotes, as shown here.** 
+:::
+
+
+## API vs Module 
+
+You might be asking why host an API versus just writing a module? After all they have similar functionality of sharing and interacting with code and data.
+
+There are some key differences between an API and a module:
+
+1. You can hide the implementation details of your code with an API. Unlike a module, people only see the interface, not way to code was implemented.
+2. An API can be accessed over the internet, while a module is typically used locally.
+3. API's work across different programming languages, while modules are either restricted to the language they were written in (in our case, Python), or need to be wrapped with an intermediate (e.g., Cython for C->Python).
+4. Since an API is run remotely, it can be run on large high performance computing clusters, whereas modules are typically limited to whatever machine your are running on. This is particularly important for LLMs, which need large, power intensive GPU resources to work.
+
+## Fast API
+
+[https://fastapi.tiangolo.com/](https://fastapi.tiangolo.com/)
+
+- Fast API is an easy-to-learn Python framework for building APIs. 
+- It has a lot of features that make it a great choice for building APIs.
+- We will focus on a few simple functions so that you can understand how it works.
+
+
+# Fast API Features
+
+- Live edit similar to Streamlit. You can edit your code and see the changes in real time.
+- Highly opinionated. It has a lot of features that are built in but you must do it the "FastAPI way."
+- Easy to understand the code. 
+- Auto-generates API documentation Swagger UI.
+
+Here's a simple example that provides a GET API that returns a "Hello World" message formatted as JSON:
+```{python}
+#| eval: false
+from fastapi import FastAPI
+
+app = FastAPI()  # Create a FastAPI instance
+
+@app.get("/")    # Define a route
+def root():      # Define a function that will be called when the route is requested
+    return {"message": "Hello World"} # Serializes to JSON automatically
+```
+To use this, save this to a file (let's call it `helloapi.py`. Then, from the command line, run:
+
+```{bash}
+python -m fastapi dev helloapi.py
+```
+
+When you run it, you will it say, `Server started at ...`, followed by a URL in the form of an IP address. Copy that URL. You can then interact with your API with the following (you can run this in a Jupyter notebook):
+
+
+```{python}
+#| eval: false
+import requests
+
+url = 'REPLACE_WITH_COPIED_URL'
+response = requests.get(url)
+response.raise_for_status()
+print(response.json())
+```
+
+FastAPI also provides automatically generated documentation. You can view that by opening the URL provided `/docs` in your browser. For instance, if the URL was `http://127.0.0.1:8000` then you would open `http://127.0.0.1:8000/docs` in your browser. Does the format look familiar? It's the same as the IoT portal! (Now you know how that was built.)
+
+
+## Query String Path, and Header Parameters
+
+Fast API makes it easy to add parameters to your API. 
+
+- Python type hints are used to define the type of the parameter (int, str, etc.). *If not type hints are provided, FastAPI will assume the input is string. This can lead to unintended consequences!*
+- The `Query()` function is used to define a query parameter
+- The `Header()` function is used to define a header parameter
+- Path parameters are defined by including the parameter in the URL path
+
+Here's an example:
+
+```{python}
+#| eval: false
+from fastapi import FastAPI, Header, Query
+
+app = FastAPI()
+
+@app.get("/calculator/{operator}")  # <== path parameter
+def read_item(operator: str, 
+              a: int = Query(),     # <== query parameter
+              b: int = Query(),     # <== query parameter
+              h: str = Header()):   # <== header parameter
+    if operator == "add":
+        result = a + b
+    elif operator == "sub":
+        result = a - b
+    elif operator == "mul":
+        result = a * b
+    elif operator == "div":
+        result = a / b
+    return {
+        "operator": operator,
+        "a": a,
+        "b": b,
+        "result": result,
+        "h": h
+    }
+```
+
+Save that to a file called `paramsapi.py`, then start the server by opening a terminal and running:
+```{bash}
+python -m fastapi dev paramsapi.py
+```
+
+Again, copy the URL. Now in your Jupyter notebook, run the following (replacing the base URL with what you copied):
+
+```{python}
+#| eval: false
+baseurl = 'REPLACE_WITH_COPIED_URL'
+operator = 'add'
+url = baseurl + 'calculator/' + operator
+params = {'a': 1, 'b': 2}
+headers = {'h': 'A header'}
+response = requests.get(url, params=params, headers=headers)
+response.raise_for_status()
+print(response.json())
+```
+
+This will test the `add` method. To try the other methods, change what `operator` is set to. Notice that in doing so, we're changing the URL.
+
+
+::: {.callout-note}
+To see the signficance of type hints in defining API functions, try removing the type hint from your `paramsapi.py` then run the `requests.get` function in your Jupyter notebook again (note that you don't have to restart the server: FastAPI will detect the change to the code as soon as you save the changes, and automatically restart the server). In other words, try changing:
+
+```{python}
+#| eval: false
+def read_item(operator: str,
+              a: int = Query(),
+              b: int = Query(),
+              h: str = Header()):
+```
+
+to
+
+```{python}
+#| eval: false
+def read_item(operator,
+              a = Query(),
+              b = Query(),
+              h = Header()):
+```
+
+save the changes, then re-run the `requests.get` for the `add` function in your notebook. Note the type of the returned `a`, `b`, and what the `result` is now: you should see that the returned `a`, `b` are strings (even though you passed in ints) and the result is now the string `"12"` rather than the integer 3. This is because FastAPI has assumed all the inputs are strings when you don't provide type hints, so the function does `"1" + "2" = "12"` (why `"12"`?) instead of `1 + 2 = 3`. Now add back the type hints to fix your code.
+:::
+
+## Handling Errors
+
+Remember status codes are a way to communicate the status of a request to the client. Here is  list of the standard codes and what they mean:
+
+[https://developer.mozilla.org/en-US/docs/Web/HTTP/Status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+
+Error codes are a design contract which means you SHOULD use them as they are EXPECTED, but they are not REQURED.
+
+FastAPI makes it easy to handle errors. You can use the `HTTPException` (which you need to import from `fastapi`) to raise an error with a specific status code and message.
+
+To illustrate, here's our operator API from above, with a check added to make sure the provided operator is recognized:
+
+```{python}
+#| eval: false
+from fastapi import FastAPI, Header, Query, HTTPException
+
+app = FastAPI()
+
+@app.get("/calculator/{operator}")  # <== path parameter
+def read_item(operator: str, 
+              a: int = Query(),     # <== query parameter
+              b: int = Query(),     # <== query parameter
+              h: str = Header()):   # <== header parameter
+    if operator == "add":
+        result = a + b
+    elif operator == "sub":
+        result = a - b
+    elif operator == "mul":
+        result = a * b
+    elif operator == "div":
+        result = a / b
+    else:
+        raise HTTPException(status_code=404, 
+            detail="Operator not found. should be: add, sub, mul, div")
+    return {
+        "operator": operator,
+        "a": a,
+        "b": b,
+        "result": result,
+        "h": h
+    }
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 3.1
+
+Design and build an API to search for  flights (depart/arrive) by Airport Code. 
+
+Use this dataset to get the source of your flights:
+
+https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/flights/sample-flights.csv
+
+Here's some examples of the the API endpoint you need to build:
+
+```{text}
+/api/flights/search?type=dep&code=OKA
+/api/flights/search?type=arr&code=KEY
+```
+
+Have your code raise an HTTP Error with status code 400 if the requested type is not `dep` (for departures) or `arr` (for arrivals).
+
+Test your API using the Swagger UI.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+from fastapi import FastAPI, Body, HTTPException
+import pandas as pd
+
+
+df = pd.read_csv("https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/flights/sample-flights.csv")
+app = FastAPI()
+
+
+@app.get("/api/flights/search")
+def search_flights(type: str, code: str):
+    '''
+    Search for flights by origin and destination
+    '''
+    if type == "dep":
+        flights = df[df["departure_airport_code"] == code]
+    elif type == "arr":
+        flights = df[df["arrival_airport_code"] == code]
+    else:
+        raise HTTPException(status_code=400, detail="Invalid type. Must be 'dep' or 'arr'")
+    return flights.to_dict(orient="records")
+```
+
+:::
+::::
