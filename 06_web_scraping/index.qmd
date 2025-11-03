@@ -1,0 +1,10 @@
+---
+title: "6. Web Scraping"
+order: 6
+---
+
+## Tutorials
+
+1. [Introduction to Web Scraping](scraping-1.qmd)
+
+## Lectures

@@ -1,0 +1,363 @@
+---
+title: '1. Introduction to Web Scraping'
+jupyter: python3
+---
+
+## The Anatomy of a Webpage: HTML, CSS and JavaScript
+
+- HTML (HyperText Markup Language) is the standard markup language for documents designed to be displayed in a web browser. It can be assisted by technologies such as Cascading Style Sheets (CSS) and scripting languages such as JavaScript.
+- CSS (Cascading Style Sheets) is a style sheet language used for describing the presentation of a document written in HTML or XML (including XML dialects such as SVG, MathML or XHTML).
+- JavaScript is a programming language that conforms to the ECMAScript specification. JavaScript is high-level, often just-in-time compiled, and multi-paradigm. It has curly-bracket syntax, dynamic typing, prototype-based object-orientation, and first-class functions.
+
+## Inspecting and Selecting
+
+You don't need to be an HTML/CSS expert to scrape a webpage. 
+
+You just need to know how to inspect the webpage and select the elements you want to scrape.
+
+As an illustration:
+
+1. Open Google Chrome
+2. Go to this site: https://www.imdb.com/chart/top/
+3. Right click on the title of the first movie.
+4. Click on "Inspect".
+5. Observe the `class=` attribute.
+5. Now right-click on the title of another movie.
+6. Click on "Inspect".
+7. Observe the `class=` attribute.
+
+Are the class attirbutes the same? (Ans: yes!) Then we should be able to scrape the titles easily!
+
+## Playwright
+
+To programatically interact with websites (i.e., to web scrape) we will use [Playwright](https://playwright.dev/).
+
+Playwright is a Node library to automate the Chromium, WebKit and Firefox browsers with a single API. It enables cross-browser web automation that is ever-green, capable, reliable and fast.
+
+You can do everything a human can do in a web browser, just programmatically!
+
+::: {.callout-note}
+# Installing Playwright
+
+You can install playwright using `pip`:
+
+1. Open a Terminal.
+2. Activate your `ist356` conda environment.
+3. Run `pip install playwright`
+:::
+
+
+### Installing the Chromium browser
+
+To render and interact with web sites programattically playwright needs an open source browser. For that we will use [Chromium](https://en.wikipedia.org/wiki/Chromium_(web_browser)). Chromium is an open-source browser that was developed by Google. Chrome (which is closed source) and many other popular browsers (such as Microsoft Edge) are based on Chromium.
+
+We can install Chromium using playwright. Open a new terminal, activate your `ist356` environment, then run:
+
+```{bash}
+python -m playwright  install chromium --with-deps
+```
+
+This will install the chromium browser and all the dependencies needed to run it with playwright.
+
+### Making sure everything is working
+
+To make sure its working, let's take a screenshot with playwright from the command line. In the terminal run:
+
+```{bash}
+python -m playwright screenshot https://www.google.com google.png
+```
+
+This should create a file called `google.png` in your current directory. Open it; you should see a screenshot of Google's home page!
+
+## Playwright Boilerplate Code
+
+The following code will open a browser, navigate to a page and get the contents of the page.
+
+```{python}
+#| eval: false
+# pw-boilerplate.py
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://www.imdb.com/chart/top/")
+    content = page.content()
+    print(content)
+
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
+```
+
+To run this, save it to a file on your computer (call it `pw-boilerplate.py`), then in your terminal run:
+
+```{bash}
+python pw-boilerplate.py
+```
+
+You should briefly see a web page open then close. In your terminal, you'll see a bunch of text get written out. That is the content of the website (what you see when you use the Inspect tool in your browser). The content is what we'll be reading programatically.
+
+## Selectors
+
+To scrape, you need to learn about selectors:
+
+| Example | Tag | Selector |
+| --- | --- | --- |
+| Class Selection | `<div class="something">...</div>` | `"div.something"` |
+| Id Selection | `<table id="tid">...</table>` | `"table#tid"` |
+| Tag Heirarchy Selection | `<h1><span>...</span></h1>` | `"h1 > span"` |
+| Multiple Tag Selection | `<h1>...</h1><h2>...</h2>` | `"h1, h2"` |
+| Next Selector | `<h1></h1><h2>...</h2>` | `"~ *"` |
+
+[https://www.w3schools.com/css/css_selectors.asp](https://www.w3schools.com/css/css_selectors.asp)
+
+
+## Getting the Select Element's tag name:
+
+There's going to be times when you need to access the selected tag's name.
+
+This is useful when building out the page structure. 
+
+We need to fall back to JavaScript to accomplish this. `evaluate()` executes a JavaScript function in the context of the selected element.
+
+```{python}
+#| eval: false
+selected = page.query_selector("h1")
+tag = selected.evaluate("el => el.tagName")
+text = selected.inner_text()
+
+print(tag, text)
+```
+
+## Example: Selecting the title 
+
+This example will select the "title" from the IMBD Page (the `<h1>` tag):
+
+```{python}
+#| eval: false
+# pw-scrape_h1.py
+
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://www.imdb.com/chart/top/")
+
+    # Let's scrape the heading off the page!
+    heading = page.query_selector("h1")
+
+    # the tag name of the element
+    tag = heading.evaluate("el => el.tagName")
+    print(tag)
+
+    # the contents of the element
+    print(heading.inner_text())
+    
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
+```
+
+Again, to run this, save it to a file on your computer (call it `pw-scrape_h1.py`), then in your terminal run:
+
+```{bash}
+python pw-scrape_h1.py
+```
+
+You should see Chromium briefly open at the website then close. In your terminal you should see the title of the page.
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 1.1
+
+Scrape the title off the course webiste:  https://su-ist356-m003-fall-2025.github.io/course-home/
+
+*Hint:* Open your browser at the course website and inspect the title. You should see that is in a class element set to "title". This means you need to use the class selector to get the title.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://su-ist356-m003-fall-2025.github.io/course-home/")
+
+    # Let's scrape the heading off the page!
+    heading = page.query_selector("h1.title")
+    print(heading.inner_text())
+    
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
+
+```
+
+:::
+::::
+
+
+## Scraping Multiple Elements
+
+To scrape multiple elements, you can use the `query_selector_all` method.
+
+Every matching element will be returned in a list.
+
+This example gets all the movie titles from the IMDB page.
+
+```{python}
+#| eval: false
+# pw-selectall_example.py
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://www.imdb.com/chart/top/")
+    
+    # select the title by selector
+    elements_on_page = page.query_selector_all("h3.ipc-title__text")
+
+    # loop through the elements and print the title
+    for element in elements_on_page:
+        title = element.inner_text()
+        print(title)
+
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
+```
+
+Run that:
+
+```{bash}
+python pw-selectall_example.py
+```
+
+You should see the list of all the movies listed on the website in your terminal. However, there's also some extra stuff we don't want. This illustrates one of the challenges of web scraping: customizing your script to get exactly what you want. 
+
+## Challenges of scraping
+
+1. Nothing is easy: Selecting exactly what you need from the page can be a challenge.
+2. Nothing stays the same: When a website changes its layout, your scraper will break.
+3. Nothing is consistent: Very little reuse from one page to the next.
+
+## Getting only what we want
+
+To get only the titles, we need to be more specific in our selector. Here's a modified version of the code above:
+
+```{python}
+#| eval: false
+# pw-selectall_example2.py
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://www.imdb.com/chart/top/")
+
+    # outer element that contains the list of 250 top movies
+    top_250_list = page.query_selector("ul.ipc-metadata-list")
+
+    # same selector from there
+    elements_on_page = top_250_list.query_selector_all("h3.ipc-title__text")
+    for element in elements_on_page:
+        title = element.inner_text()
+        print(title)
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
+```
+
+Running the above, you should now get just the movie titles in your terminal.
+
+## Using playwright in a Jupyter notebook
+
+In all the examples above we've run playwright in a Python script. If you tried running the same python in a Jupyter notebook cell, you'll get an Error, `Error: It looks like you are using Playwright Sync API inside the asyncio loop. Please use the Async API instead.`. This has to do with differences between asynchronous and synchronous, and how Jupyter works. Synchronous vs asynchronous programming is a subject unto itself (if you're interested, [this page](https://hamon.in/blog/conquering-timeouts-and-race-conditions-synchronous-vs-asynchronous-methods-in-playwright/) has a pretty good explainer), but long story short, to run playwright commands in a Jupyter notebook, you need to use their `async` API. You also need to prepend calls with the `await` command. For example, to load the IMDB top 250 page in a Jupyter notebook:
+
+```{python}
+#| eval: false
+from playwright.async_api import async_playwright
+
+pw = await async_playwright().start()
+browser = await pw.chromium.launch(headless = False)
+page = await browser.new_page()
+
+await page.goto("https://www.imdb.com/chart/top/")
+```
+
+You can now inspect various elements in your notebook with this. For example, to get the top 250 list from the page:
+```{python}
+#| eval: false
+top_250_list = await page.query_selector("ul.ipc-metadata-list")
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 1.2
+
+Create an outline!
+
+Scrape the Sections H2 and H3 from this page:  https://ist256.com/fall2023/syllabus/
+
+Print the titles, and detect the tag name so that you indent the H3 tags under the H2 tags.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://ist256.com/fall2023/syllabus/")
+
+    # Let's scrape the heading off the page!
+    headings = page.query_selector_all("h2, h3")
+    for heading in headings:
+        tag = heading.evaluate('el => el.tagName').lower()
+        text = heading.inner_text()
+        if tag == "h2":
+            print(text)
+        else:
+            print(f"\t{text}")    
+
+    context.close()
+    browser.close()
+```
+
+:::
+::::

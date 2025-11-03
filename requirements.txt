@@ -4,3 +4,4 @@ pytest
 pandas
 openpyxl
 lxml
+playwright
