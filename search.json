@@ -121,6 +121,150 @@
     ]
   },
   {
+    "objectID": "06_web_scraping/scraping-1.html",
+    "href": "06_web_scraping/scraping-1.html",
+    "title": "1. Introduction to Web Scraping",
+    "section": "",
+    "text": "HTML (HyperText Markup Language) is the standard markup language for documents designed to be displayed in a web browser. It can be assisted by technologies such as Cascading Style Sheets (CSS) and scripting languages such as JavaScript.\nCSS (Cascading Style Sheets) is a style sheet language used for describing the presentation of a document written in HTML or XML (including XML dialects such as SVG, MathML or XHTML).\nJavaScript is a programming language that conforms to the ECMAScript specification. JavaScript is high-level, often just-in-time compiled, and multi-paradigm. It has curly-bracket syntax, dynamic typing, prototype-based object-orientation, and first-class functions.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "6. Web Scraping",
+      "1. Introduction to Web Scraping"
+    ]
+  },
+  {
+    "objectID": "06_web_scraping/scraping-1.html#the-anatomy-of-a-webpage-html-css-and-javascript",
+    "href": "06_web_scraping/scraping-1.html#the-anatomy-of-a-webpage-html-css-and-javascript",
+    "title": "1. Introduction to Web Scraping",
+    "section": "",
+    "text": "HTML (HyperText Markup Language) is the standard markup language for documents designed to be displayed in a web browser. It can be assisted by technologies such as Cascading Style Sheets (CSS) and scripting languages such as JavaScript.\nCSS (Cascading Style Sheets) is a style sheet language used for describing the presentation of a document written in HTML or XML (including XML dialects such as SVG, MathML or XHTML).\nJavaScript is a programming language that conforms to the ECMAScript specification. JavaScript is high-level, often just-in-time compiled, and multi-paradigm. It has curly-bracket syntax, dynamic typing, prototype-based object-orientation, and first-class functions.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "6. Web Scraping",
+      "1. Introduction to Web Scraping"
+    ]
+  },
+  {
+    "objectID": "06_web_scraping/scraping-1.html#inspecting-and-selecting",
+    "href": "06_web_scraping/scraping-1.html#inspecting-and-selecting",
+    "title": "1. Introduction to Web Scraping",
+    "section": "Inspecting and Selecting",
+    "text": "Inspecting and Selecting\nYou don’t need to be an HTML/CSS expert to scrape a webpage.\nYou just need to know how to inspect the webpage and select the elements you want to scrape.\nAs an illustration:\n\nOpen Google Chrome\nGo to this site: https://www.imdb.com/chart/top/\nRight click on the title of the first movie.\nClick on “Inspect”.\nObserve the class= attribute.\nNow right-click on the title of another movie.\nClick on “Inspect”.\nObserve the class= attribute.\n\nAre the class attirbutes the same? (Ans: yes!) Then we should be able to scrape the titles easily!",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "6. Web Scraping",
+      "1. Introduction to Web Scraping"
+    ]
+  },
+  {
+    "objectID": "06_web_scraping/scraping-1.html#playwright",
+    "href": "06_web_scraping/scraping-1.html#playwright",
+    "title": "1. Introduction to Web Scraping",
+    "section": "Playwright",
+    "text": "Playwright\nTo programatically interact with websites (i.e., to web scrape) we will use Playwright.\nPlaywright is a Node library to automate the Chromium, WebKit and Firefox browsers with a single API. It enables cross-browser web automation that is ever-green, capable, reliable and fast.\nYou can do everything a human can do in a web browser, just programmatically!\n\n\n\n\n\n\nNoteInstalling Playwright\n\n\n\nYou can install playwright using pip:\n\nOpen a Terminal.\nActivate your ist356 conda environment.\nRun pip install playwright\n\n\n\n\nInstalling the Chromium browser\nTo render and interact with web sites programattically playwright needs an open source browser. For that we will use Chromium. Chromium is an open-source browser that was developed by Google. Chrome (which is closed source) and many other popular browsers (such as Microsoft Edge) are based on Chromium.\nWe can install Chromium using playwright. Open a new terminal, activate your ist356 environment, then run:\npython -m playwright  install chromium --with-deps\nThis will install the chromium browser and all the dependencies needed to run it with playwright.\n\n\nMaking sure everything is working\nTo make sure its working, let’s take a screenshot with playwright from the command line. In the terminal run:\npython -m playwright screenshot https://www.google.com google.png\nThis should create a file called google.png in your current directory. Open it; you should see a screenshot of Google’s home page!",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "6. Web Scraping",
+      "1. Introduction to Web Scraping"
+    ]
+  },
+  {
+    "objectID": "06_web_scraping/scraping-1.html#playwright-boilerplate-code",
+    "href": "06_web_scraping/scraping-1.html#playwright-boilerplate-code",
+    "title": "1. Introduction to Web Scraping",
+    "section": "Playwright Boilerplate Code",
+    "text": "Playwright Boilerplate Code\nThe following code will open a browser, navigate to a page and get the contents of the page.\n\n# pw-boilerplate.py\nfrom playwright.sync_api import Playwright, sync_playwright, expect\n\n\ndef run(playwright: Playwright) -&gt; None:\n    browser = playwright.chromium.launch(headless=False)\n    context = browser.new_context()\n    page = context.new_page()\n    page.goto(\"https://www.imdb.com/chart/top/\")\n    content = page.content()\n    print(content)\n\n    context.close()\n    browser.close()\n\n\nwith sync_playwright() as playwright:\n    run(playwright)\n\nTo run this, save it to a file on your computer (call it pw-boilerplate.py), then in your terminal run:\npython pw-boilerplate.py\nYou should briefly see a web page open then close. In your terminal, you’ll see a bunch of text get written out. That is the content of the website (what you see when you use the Inspect tool in your browser). The content is what we’ll be reading programatically.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "6. Web Scraping",
+      "1. Introduction to Web Scraping"
+    ]
+  },
+  {
+    "objectID": "06_web_scraping/scraping-1.html#selectors",
+    "href": "06_web_scraping/scraping-1.html#selectors",
+    "title": "1. Introduction to Web Scraping",
+    "section": "Selectors",
+    "text": "Selectors\nTo scrape, you need to learn about selectors:\n\n\n\n\n\n\n\n\nExample\nTag\nSelector\n\n\n\n\nClass Selection\n&lt;div class=\"something\"&gt;...&lt;/div&gt;\n\"div.something\"\n\n\nId Selection\n&lt;table id=\"tid\"&gt;...&lt;/table&gt;\n\"table#tid\"\n\n\nTag Heirarchy Selection\n&lt;h1&gt;&lt;span&gt;...&lt;/span&gt;&lt;/h1&gt;\n\"h1 &gt; span\"\n\n\nMultiple Tag Selection\n&lt;h1&gt;...&lt;/h1&gt;&lt;h2&gt;...&lt;/h2&gt;\n\"h1, h2\"\n\n\nNext Selector\n&lt;h1&gt;&lt;/h1&gt;&lt;h2&gt;...&lt;/h2&gt;\n\"~ *\"\n\n\n\nhttps://www.w3schools.com/css/css_selectors.asp",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "6. Web Scraping",
+      "1. Introduction to Web Scraping"
+    ]
+  },
+  {
+    "objectID": "06_web_scraping/scraping-1.html#getting-the-select-elements-tag-name",
+    "href": "06_web_scraping/scraping-1.html#getting-the-select-elements-tag-name",
+    "title": "1. Introduction to Web Scraping",
+    "section": "Getting the Select Element’s tag name:",
+    "text": "Getting the Select Element’s tag name:\nThere’s going to be times when you need to access the selected tag’s name.\nThis is useful when building out the page structure.\nWe need to fall back to JavaScript to accomplish this. evaluate() executes a JavaScript function in the context of the selected element.\n\nselected = page.query_selector(\"h1\")\ntag = selected.evaluate(\"el =&gt; el.tagName\")\ntext = selected.inner_text()\n\nprint(tag, text)",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "6. Web Scraping",
+      "1. Introduction to Web Scraping"
+    ]
+  },
+  {
+    "objectID": "06_web_scraping/scraping-1.html#example-selecting-the-title",
+    "href": "06_web_scraping/scraping-1.html#example-selecting-the-title",
+    "title": "1. Introduction to Web Scraping",
+    "section": "Example: Selecting the title",
+    "text": "Example: Selecting the title\nThis example will select the “title” from the IMBD Page (the &lt;h1&gt; tag):\n\n# pw-scrape_h1.py\n\nfrom playwright.sync_api import Playwright, sync_playwright, expect\n\n\ndef run(playwright: Playwright) -&gt; None:\n    browser = playwright.chromium.launch(headless=False)\n    context = browser.new_context()\n    page = context.new_page()\n    page.goto(\"https://www.imdb.com/chart/top/\")\n\n    # Let's scrape the heading off the page!\n    heading = page.query_selector(\"h1\")\n\n    # the tag name of the element\n    tag = heading.evaluate(\"el =&gt; el.tagName\")\n    print(tag)\n\n    # the contents of the element\n    print(heading.inner_text())\n    \n    context.close()\n    browser.close()\n\n\nwith sync_playwright() as playwright:\n    run(playwright)\n\nAgain, to run this, save it to a file on your computer (call it pw-scrape_h1.py), then in your terminal run:\npython pw-scrape_h1.py\nYou should see Chromium briefly open at the website then close. In your terminal you should see the title of the page.\n\n\n\n\n\n\nCautionCode Challenge 1.1\n\n\n\nScrape the title off the course webiste: https://su-ist356-m003-fall-2025.github.io/course-home/\nHint: Open your browser at the course website and inspect the title. You should see that is in a class element set to “title”. This means you need to use the class selector to get the title.\n\n\n\n\n\n\nCautionSolution\n\n\n\n\n\n\nfrom playwright.sync_api import Playwright, sync_playwright, expect\n\n\ndef run(playwright: Playwright) -&gt; None:\n    browser = playwright.chromium.launch(headless=False)\n    context = browser.new_context()\n    page = context.new_page()\n    page.goto(\"https://su-ist356-m003-fall-2025.github.io/course-home/\")\n\n    # Let's scrape the heading off the page!\n    heading = page.query_selector(\"h1.title\")\n    print(heading.inner_text())\n    \n    context.close()\n    browser.close()\n\n\nwith sync_playwright() as playwright:\n    run(playwright)",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "6. Web Scraping",
+      "1. Introduction to Web Scraping"
+    ]
+  },
+  {
+    "objectID": "06_web_scraping/scraping-1.html#scraping-multiple-elements",
+    "href": "06_web_scraping/scraping-1.html#scraping-multiple-elements",
+    "title": "1. Introduction to Web Scraping",
+    "section": "Scraping Multiple Elements",
+    "text": "Scraping Multiple Elements\nTo scrape multiple elements, you can use the query_selector_all method.\nEvery matching element will be returned in a list.\nThis example gets all the movie titles from the IMDB page.\n\n# pw-selectall_example.py\nfrom playwright.sync_api import Playwright, sync_playwright, expect\n\n\ndef run(playwright: Playwright) -&gt; None:\n    browser = playwright.chromium.launch(headless=False)\n    context = browser.new_context()\n    page = context.new_page()\n    page.goto(\"https://www.imdb.com/chart/top/\")\n    \n    # select the title by selector\n    elements_on_page = page.query_selector_all(\"h3.ipc-title__text\")\n\n    # loop through the elements and print the title\n    for element in elements_on_page:\n        title = element.inner_text()\n        print(title)\n\n    context.close()\n    browser.close()\n\n\nwith sync_playwright() as playwright:\n    run(playwright)\n\nRun that:\npython pw-selectall_example.py\nYou should see the list of all the movies listed on the website in your terminal. However, there’s also some extra stuff we don’t want. This illustrates one of the challenges of web scraping: customizing your script to get exactly what you want.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "6. Web Scraping",
+      "1. Introduction to Web Scraping"
+    ]
+  },
+  {
+    "objectID": "06_web_scraping/scraping-1.html#challenges-of-scraping",
+    "href": "06_web_scraping/scraping-1.html#challenges-of-scraping",
+    "title": "1. Introduction to Web Scraping",
+    "section": "Challenges of scraping",
+    "text": "Challenges of scraping\n\nNothing is easy: Selecting exactly what you need from the page can be a challenge.\nNothing stays the same: When a website changes its layout, your scraper will break.\nNothing is consistent: Very little reuse from one page to the next.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "6. Web Scraping",
+      "1. Introduction to Web Scraping"
+    ]
+  },
+  {
+    "objectID": "06_web_scraping/scraping-1.html#getting-only-what-we-want",
+    "href": "06_web_scraping/scraping-1.html#getting-only-what-we-want",
+    "title": "1. Introduction to Web Scraping",
+    "section": "Getting only what we want",
+    "text": "Getting only what we want\nTo get only the titles, we need to be more specific in our selector. Here’s a modified version of the code above:\n\n# pw-selectall_example2.py\nfrom playwright.sync_api import Playwright, sync_playwright, expect\n\n\ndef run(playwright: Playwright) -&gt; None:\n    browser = playwright.chromium.launch(headless=False)\n    context = browser.new_context()\n    page = context.new_page()\n    page.goto(\"https://www.imdb.com/chart/top/\")\n\n    # outer element that contains the list of 250 top movies\n    top_250_list = page.query_selector(\"ul.ipc-metadata-list\")\n\n    # same selector from there\n    elements_on_page = top_250_list.query_selector_all(\"h3.ipc-title__text\")\n    for element in elements_on_page:\n        title = element.inner_text()\n        print(title)\n\n    # ---------------------\n    context.close()\n    browser.close()\n\n\nwith sync_playwright() as playwright:\n    run(playwright)\n\nRunning the above, you should now get just the movie titles in your terminal.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "6. Web Scraping",
+      "1. Introduction to Web Scraping"
+    ]
+  },
+  {
+    "objectID": "06_web_scraping/scraping-1.html#using-playwright-in-a-jupyter-notebook",
+    "href": "06_web_scraping/scraping-1.html#using-playwright-in-a-jupyter-notebook",
+    "title": "1. Introduction to Web Scraping",
+    "section": "Using playwright in a Jupyter notebook",
+    "text": "Using playwright in a Jupyter notebook\nIn all the examples above we’ve run playwright in a Python script. If you tried running the same python in a Jupyter notebook cell, you’ll get an Error, Error: It looks like you are using Playwright Sync API inside the asyncio loop. Please use the Async API instead.. This has to do with differences between asynchronous and synchronous, and how Jupyter works. Synchronous vs asynchronous programming is a subject unto itself (if you’re interested, this page has a pretty good explainer), but long story short, to run playwright commands in a Jupyter notebook, you need to use their async API. You also need to prepend calls with the await command. For example, to load the IMDB top 250 page in a Jupyter notebook:\n\nfrom playwright.async_api import async_playwright\n\npw = await async_playwright().start()\nbrowser = await pw.chromium.launch(headless = False)\npage = await browser.new_page()\n\nawait page.goto(\"https://www.imdb.com/chart/top/\")\n\nYou can now inspect various elements in your notebook with this. For example, to get the top 250 list from the page:\n\ntop_250_list = await page.query_selector(\"ul.ipc-metadata-list\")\n\n\n\n\n\n\n\nCautionCode Challenge 1.2\n\n\n\nCreate an outline!\nScrape the Sections H2 and H3 from this page: https://ist256.com/fall2023/syllabus/\nPrint the titles, and detect the tag name so that you indent the H3 tags under the H2 tags.\n\n\n\n\n\n\nCautionSolution\n\n\n\n\n\n\nfrom playwright.sync_api import Playwright, sync_playwright, expect\n\ndef run(playwright: Playwright) -&gt; None:\n    browser = playwright.chromium.launch(headless=False)\n    context = browser.new_context()\n    page = context.new_page()\n    page.goto(\"https://ist256.com/fall2023/syllabus/\")\n\n    # Let's scrape the heading off the page!\n    headings = page.query_selector_all(\"h2, h3\")\n    for heading in headings:\n        tag = heading.evaluate('el =&gt; el.tagName').lower()\n        text = heading.inner_text()\n        if tag == \"h2\":\n            print(text)\n        else:\n            print(f\"\\t{text}\")    \n\n    context.close()\n    browser.close()",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "6. Web Scraping",
+      "1. Introduction to Web Scraping"
+    ]
+  },
+  {
     "objectID": "05_web_apis/webapi-3.html",
     "href": "05_web_apis/webapi-3.html",
     "title": "3. Creating your own APIs with FastAPI",
@@ -1993,6 +2137,39 @@
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "5. Web APIs",
       "2. Posting with REST API and caching results"
+    ]
+  },
+  {
+    "objectID": "06_web_scraping/index.html",
+    "href": "06_web_scraping/index.html",
+    "title": "6. Web Scraping",
+    "section": "",
+    "text": "Introduction to Web Scraping",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "6. Web Scraping"
+    ]
+  },
+  {
+    "objectID": "06_web_scraping/index.html#tutorials",
+    "href": "06_web_scraping/index.html#tutorials",
+    "title": "6. Web Scraping",
+    "section": "",
+    "text": "Introduction to Web Scraping",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "6. Web Scraping"
+    ]
+  },
+  {
+    "objectID": "06_web_scraping/index.html#lectures",
+    "href": "06_web_scraping/index.html#lectures",
+    "title": "6. Web Scraping",
+    "section": "Lectures",
+    "text": "Lectures",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "6. Web Scraping"
     ]
   },
   {
