@@ -1,0 +1,263 @@
+---
+title: '2. More Scraping + actionability'
+jupyter: python3
+---
+
+Using locators to find elements on the page is a fundamental part of web scraping. In this notebook, we'll learn how to use Playwright to find elements on the page using different types of locators.
+
+
+::: {.callout-note}
+In this tutorial we will be diving more into the use of CSS selectors to scrape elements from a website. Our focus here is on how to do this with Playwright in Python. Getting good at web-scraping involves more in-depth use of CSS selectors than what we cover here. A good tutorial on the various CSS selectors and how to use query them when web-scraping can be found here:
+
+[ScrapingBee: Using CSS Selectors for Web Scraping](https://www.scrapingbee.com/blog/using-css-selectors-for-web-scraping/)
+:::
+
+## Scraping HTML tables
+
+We saw previously that it's easy to scrape HTML tables into a pandas dataframe using [pd.read_html](https://pandas.pydata.org/docs/reference/api/pandas.read_html.html).
+
+Previously, we provided `read_html` a URL. However, you can also give the `read_url` a page as read by Playwright. Here's an example:
+
+```{python}
+#| eval: false
+# pw-pdtable.py
+
+from io import StringIO
+from playwright.sync_api import Playwright, sync_playwright
+import pandas as pd
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://su-ist356-m003-fall-2025.github.io/course-home/syllabus.html")
+
+    # ---------------------
+    # use pandas read_html to parse the HTML
+    # get a list of all tables on the page
+    dfs = pd.read_html(StringIO(page.content()))
+
+    # print the first table
+    print(dfs[0])
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
+```
+
+## Scraping the next adjcent element
+
+Sometimes you need to use one selector to **find** the element, but what we want is to scrape the **next** element right after the page.
+
+To find the next adjacent sibling element, you use: `.query_selector('~ *')`.
+
+Here's an example of using this to select the first element in the Course Info section of the course syllabus (use the Inspect tool in your web browser to understand what's going on here):
+
+```{python}
+#| eval: false
+# pw-scrape_next_example.py
+from playwright.sync_api import Playwright, sync_playwright
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://su-ist356-m003-fall-2025.github.io/course-home/syllabus.html")
+    
+    # ---------------------
+    # Let's get course info from the syllabus
+    info_details = page.query_selector("section#course-info > h2.anchored")
+    # Note: we could have alternatively selected the entire course
+    # section, then pulled out the h2 element, like this:
+    #course_info = page.query_selector("section#course-info")
+    #info_details = course_info.query_selector("h2.anchored")
+    # But the first way is more direct, as we only need the h2 element.
+    print(info_details.inner_text())
+    next_element = info_details.query_selector('~ *')
+    print(next_element.inner_text())
+
+
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
+```
+
+Using the next selector is useful if the information you're trying to scrape doesn't have a unique identifier, but something preceeding it (like a section header) does. It's also useful if you're not sure if, or don't want to assume that, the website has a particular CSS selector for the information you want to retrieve.
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 2.1
+
+Scrape all the course info from the course syllabus:
+
+https://su-ist356-m003-fall-2025.github.io/course-home/syllabus.html
+
+Don't assume any CSS identifier for the course info, just step through the section until you have retrieve it all.
+
+*Hint:* Running `query_selector('~ *')` on the last child element in a parent element (like a section) will return None.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+from playwright.sync_api import Playwright, sync_playwright
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://su-ist356-m003-fall-2025.github.io/course-home/syllabus.html")
+    
+    # ---------------------
+    # Let's get course info from the syllabus
+    info_details = page.query_selector("section#course-info > h2.anchored")
+    print(info_details.inner_text())
+    next_element = info_details.query_selector('~ *')
+    # The following while loop will continue until next_element is None. That
+    # will happen once we've retrieved all available info from the section.
+    while next_element:
+        print(next_element.inner_text())
+        next_element = next_element.query_selector('~ *')
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
+```
+
+:::
+::::
+
+
+## Downloading an Image
+
+You can use playwright to download an image by getting the `src` attribute. 
+
+Here's an example in which we download the Syracuse University logo from the university's website:
+
+*Note: the downloaded file is an SVG file.*
+
+```{python}
+#| eval: false
+# pw-image_example.py
+
+from playwright.sync_api import Playwright, sync_playwright
+import requests
+
+def download_image(url): 
+    filename = url.split("/")[-1]
+    response = requests.get(url) 
+    with open(filename, 'wb') as file: 
+        file.write(response.content)
+    return filename
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    site = "https://www.syracuse.edu/"
+    page.goto(site)
+    # ---------------------
+    image = page.query_selector("a.site-header-logo-link > img")
+    image_source = image.get_attribute("src")
+    print(f"Downloading: {image_source}")
+    filename = download_image(image_source)
+    print(f"Saved to: {filename}")
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
+```
+
+## Playwright Codegen 
+
+Playwright has a codegen feature that can help you generate code to interact with a webpage. 
+
+```{bash}
+python -m playwright codegen 
+```
+
+For example, using code gen, we can generate the code needed to search for IST 356 in the course catalog:
+```{python}
+#| eval: false
+# pw-codegen_example.py
+import re
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://coursecatalog.syracuse.edu/course-search/")
+    page.get_by_role("textbox", name="Keyword").fill("IST 356")
+    page.get_by_role("button", name="SEARCH").click()
+    page.get_by_role("link", name="IST 356 Programming").click()
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 2.2
+
+Use the playwright codegen to extract the SU football schedule from https://cuse.com 
+
+Input the year, output the schedule.
+
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+
+from playwright.sync_api import Playwright, sync_playwright, expect
+import pandas as pd
+from time import sleep
+import sys
+
+def run(playwright: Playwright, year) -> str:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto(f"https://cuse.com/sports/football/schedule/{year}")
+    page.wait_for_load_state("load")
+    sleep(1)
+    page.get_by_role("tab", name="Table View not selected").click()
+    sleep(1)
+    dfs = pd.read_html(page.content())
+    
+    
+    # ---------------------
+    context.close()
+    browser.close()
+    return dfs[0].to_html()
+
+
+with sync_playwright() as playwright:
+    
+    html_table = run(playwright, year = 2023)
+    print (html_table)
+```
+
+:::
+::::
