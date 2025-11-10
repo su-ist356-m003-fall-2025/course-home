@@ -145,6 +145,7 @@ yields:
 The `add_argument` method takes several other keyword arguments aside from `nargs`. One of the most useful is `help`. The help keyword allows you to write a message about what an argument does in the program and how to use it. The user can see the help message by running your script with the argument `-h` or `--help`. In either case, the script will just print the help message then quit. For example, if we add a help to our `echo.py` program:
 
 ```{python}
+#| eval: false
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -173,6 +174,7 @@ options:
 We can also add a description for the overall program by providing the `description` keyword argument to `ArgumentParser`. For example:
 
 ```{python}
+#| eval: false
 import argparse
 
 parser = argparse.ArgumentParser(description="Prints to screen whatever is provided.")
@@ -209,6 +211,7 @@ Note that running the script with `-h` or `--help` always works, even if we don'
 By default, arguments are assumed to be strings. You can check that yourself: add `print(type(args.echo))` to your `echo.py` script. What if we want to input another datatype, like a float? You can do that by providing the `type` keyword to `add_argument`. For example, say we want our `echo` argument to be a float:
 
 ```{python}
+#| eval: false
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -302,6 +305,7 @@ python math.py 2 3 --operator multiply
 In the previous example our operator argument should only take four pre-defined possibilities. We can specify those using the `choices` keyword argument. Providing that both provides a more helpful help message, and also negates needing to check that the argument is one of the knowns, since argparse will check for you before the script is even executed. Applying to our `math.py` script:
 
 ```{python}
+#| eval: false
 import argparse
 
 parser = argparse.ArgumentParser(description="Prints the sum of two numbers.")
@@ -327,6 +331,7 @@ print(res)
 We can specify short aliases for optional arguments by providing both in the `add_argument`. For example:
 
 ```{python}
+#| eval: false
 import argparse
 
 parser = argparse.ArgumentParser(description="Prints the sum of two numbers.")
