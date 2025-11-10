@@ -254,8 +254,7 @@ def run(playwright: Playwright, year) -> str:
 
 
 with sync_playwright() as playwright:
-    
-    html_table = run(playwright, year = 2023)
+    html_table = run(playwright, year=2023)
     print (html_table)
 ```
 
