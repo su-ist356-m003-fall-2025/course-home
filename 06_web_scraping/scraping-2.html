@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../syllabus.html" rel="next">
+<link href="../06_web_scraping/scraping-3.html" rel="next">
 <link href="../06_web_scraping/scraping-1.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -349,6 +349,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">2. More Scraping + actionability</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../06_web_scraping/scraping-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Writing executable scripts with Argparse</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -415,7 +421,7 @@ Note
 <h2 class="anchored" data-anchor-id="scraping-html-tables">Scraping HTML tables</h2>
 <p>We saw previously that it’s easy to scrape HTML tables into a pandas dataframe using <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_html.html">pd.read_html</a>.</p>
 <p>Previously, we provided <code>read_html</code> a URL. However, you can also give the <code>read_url</code> a page as read by Playwright. Here’s an example:</p>
-<div id="29d5f077" class="cell" data-execution_count="1">
+<div id="51fc12f5" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pw-pdtable.py</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> StringIO</span>
@@ -449,7 +455,7 @@ Note
 <p>Sometimes you need to use one selector to <strong>find</strong> the element, but what we want is to scrape the <strong>next</strong> element right after the page.</p>
 <p>To find the next adjacent sibling element, you use: <code>.query_selector('~ *')</code>.</p>
 <p>Here’s an example of using this to select the first element in the Course Info section of the course syllabus (use the Inspect tool in your web browser to understand what’s going on here):</p>
-<div id="bcf33b0e" class="cell" data-execution_count="2">
+<div id="fc9ba800" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pw-scrape_next_example.py</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Playwright, sync_playwright</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -508,7 +514,7 @@ Note
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="34d4e9fe" class="cell" data-execution_count="3">
+<div id="268ce67a" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Playwright, sync_playwright</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -547,7 +553,7 @@ Note
 <p>You can use playwright to download an image by getting the <code>src</code> attribute.</p>
 <p>Here’s an example in which we download the Syracuse University logo from the university’s website:</p>
 <p><em>Note: the downloaded file is an SVG file.</em></p>
-<div id="971d4bd9" class="cell" data-execution_count="4">
+<div id="e611ffdf" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pw-image_example.py</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Playwright, sync_playwright</span>
@@ -586,7 +592,7 @@ Note
 <p>Playwright has a codegen feature that can help you generate code to interact with a webpage.</p>
 <pre class="{bash}"><code>python -m playwright codegen </code></pre>
 <p>For example, using code gen, we can generate the code needed to search for IST 356 in the course catalog:</p>
-<div id="d215cc71" class="cell" data-execution_count="5">
+<div id="0b02c55c" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pw-codegen_example.py</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Playwright, sync_playwright, expect</span>
@@ -632,7 +638,7 @@ Note
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="0cb35555" class="cell" data-execution_count="6">
+<div id="3f648dbc" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Playwright, sync_playwright, expect</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
@@ -657,9 +663,8 @@ Note
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> sync_playwright() <span class="im">as</span> playwright:</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    html_table <span class="op">=</span> run(playwright, year <span class="op">=</span> <span class="dv">2023</span>)</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span> (html_table)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    html_table <span class="op">=</span> run(playwright, year<span class="op">=</span><span class="dv">2023</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span> (html_table)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1078,8 +1083,8 @@ Note
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../syllabus.html" class="pagination-link" aria-label="Syllabus">
-        <span class="nav-page-text">Syllabus</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../06_web_scraping/scraping-3.html" class="pagination-link" aria-label="3. Writing executable scripts with Argparse">
+        <span class="nav-page-text">3. Writing executable scripts with Argparse</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
