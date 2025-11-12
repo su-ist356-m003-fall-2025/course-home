@@ -216,46 +216,203 @@ with sync_playwright() as playwright:
     run(playwright)
 ```
 
+Once we have the code necessary to load the page, we can then use the Inspect tool in the open Chromium page to get whatever elements we want. For instance, inspecting the course description shows that it is in `<div class="section__content">` which is a sub-element of `<div class="section section--description">`. We can therefore retrieve the description with:
+
+```{python}
+#| eval: false
+# pw-ist356description.py
+from playwright.sync_api import Playwright, sync_playwright
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://coursecatalog.syracuse.edu/course-search/")
+    page.get_by_role("textbox", name="Keyword").click()
+    page.get_by_role("textbox", name="Keyword").fill("IST 356")
+    page.get_by_role("button", name="SEARCH").click()
+    page.get_by_role("link", name="IST 356 Programming").click()
+    # ---------------------
+    descriptor = page.query_selector("div.section.section--description > div.section__content")
+    course_description = descriptor.inner_text()
+    print("Course Description:")
+    print(course_description)
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
+```
+
+## Pausing for elements to load
+
+If you run the above code, you may find that it fails with:
+
+```{text}
+    course_description = descriptor.inner_text()
+                         ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'inner_text'
+```
+
+The reason for this is due to a mismatch in how long it takes Python to execute the lines locally versus how long it takes the website to serve up the requested content. In this case, the line `page.get_by_role("link", name="IST 356 Programming").click()` completes as soon as the click command is executed by Playwright. Python then goes on to execute the next line (the query selector). However, the time it takes for the webpage to update given the request -- i.e., for the course description to appear -- may take longer. The result is that when the `page.query_selector` line is run the course description has not actually appeared yet in the website, and so the query selector returns `None`.
+
+This is a common problem when working with interactive websites like this. There are a couple ways to deal with this.
+
+### Using sleep to pause execution
+
+The easiest (but kludgy) solution is to simply force your code to pause for a preset amount of time before trying to select anything off the site. You can do that with the [sleep](https://docs.python.org/3/library/time.html#time.sleep) command, which you need to import from the `time` module. Applying to our above example:
+
+```{python}
+#| eval: false
+# pw-ist356description.py
+from playwright.sync_api import Playwright, sync_playwright
+from time import sleep
+
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://coursecatalog.syracuse.edu/course-search/")
+    page.get_by_role("textbox", name="Keyword").click()
+    page.get_by_role("textbox", name="Keyword").fill("IST 356")
+    page.get_by_role("button", name="SEARCH").click()
+    page.get_by_role("link", name="IST 356 Programming").click()
+    # ---------------------
+    # pause for a second to let the page fully load
+    sleep(1)
+    descriptor = page.query_selector("div.section.section--description > div.section__content")
+    course_description = descriptor.inner_text()
+    print("Course Description:")
+    print(course_description)
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
+```
+
+The `sleep(1)` line will cause the code to pause for 1 second. That (hopefully) is enough time for the website to finish loading, so that the subsequent lines will complete.
+
+::: {.callout-note}
+As discussed below, using `sleep` to try to wait for an element to load is not a great solution. However, `sleep` is useful for debugging. As you've probably noticed, when your run a script, the browser that's loaded will disappear as soon as the code block is done executing. That can be very quick; too quick for you to see what it did. By sticking a `sleep` in your code for some longer period of time (say 60 seconds) you can get the browser to persist for awhile so you can see what was loaded, and inspect the page. This can help you debug any issues. Just remember to remove the `sleep` when you're done debugging!
+:::
+
+
+### Better: Waiting for the selector to appear
+
+Using `sleep` works, but is not a great solution. First, you don't know how long it will take to load the element you need. This can be random, depending on your internet connection and the server's load at any given time. The time you hardcode may not always be long enough, or may be too long, in which case your program is wasting time.
+
+A better solution is to use Playwright's [wait_for_selector](https://playwright.dev/python/docs/api/class-page#page-wait-for-selector) method to wait for the desired element to appear. Here's how we can use that in our code above:
+
+```{python}
+#| eval: false
+# pw-ist356description.py
+from playwright.sync_api import Playwright, sync_playwright
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://coursecatalog.syracuse.edu/course-search/")
+    page.get_by_role("textbox", name="Keyword").click()
+    page.get_by_role("textbox", name="Keyword").fill("IST 356")
+    page.get_by_role("button", name="SEARCH").click()
+    page.get_by_role("link", name="IST 356 Programming").click()
+    # ---------------------
+    element = "div.section.section--description > div.section__content"
+    # note: the timeout is in milliseconds
+    page.wait_for_selector(element, timeout=10000)
+    descriptor = page.query_selector(selector)
+    course_description = descriptor.inner_text()
+    print("Course Description:")
+    print(course_description)
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
+```
+
+The `page.wait_for_selector(element, timeout=10000)` will cause the code to wait until the desired element appears on the page before continuing to the next line. This can be dangerous: if the element simply doesn't exist (say, you have a bug, or the website changed), your code could hang there. For this reason, it's good to provide a timeout. This will cause the code to raise an error if it takes longer for the element to appear than the specified timeout. Note that the timeout is in milliseconds; by specifying `timeout=10000` we've set the timeout to be 10 seconds.
+
+### Best: Using a locator
+
+If you click on the documentation page for [wait_for_selector](https://playwright.dev/python/docs/api/class-page#page-wait-for-selector) you'll see that using `wait_for_selector` is discouraged. (There is a discussion on Stackoverflow [here](https://stackoverflow.com/questions/76093014/when-is-playwrights-waitforselector-necessary) about why.)
+
+The best solution is instead to use [locators](https://playwright.dev/python/docs/locators). Locators are a more advanced way to location elements on a page. The code created by `codegen` made heavy use of them: all of those `page.get_by_role` lines are locators. You can do the same thing for the description. In fact, you can get `codegen` to give you the appropriate line of code by simply clicking on the "Description" header. Doing so in `codegen`, you'll see the line `page.get_by_role("heading", name="Description").click()` appear in the Playwright inspector.
+
+Locators have auto wait built into them, so you don't need to add any additional lines to get your code to wait for it. Our code therefore looks like:
+
+```{python}
+#| eval: false
+# pw-ist356description.py
+from playwright.sync_api import Playwright, sync_playwright
+
+def run(playwright: Playwright) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://coursecatalog.syracuse.edu/course-search/")
+    page.get_by_role("textbox", name="Keyword").fill("IST 356")
+    page.get_by_role("button", name="SEARCH").click()
+    page.get_by_role("link", name="IST 356 Programming").click()
+    page.get_by_role("heading", name="Description").click()
+    # ---------------------
+    element = "div.section.section--description > div.section__content"
+    descriptor = page.query_selector(element)
+    course_description = descriptor.inner_text()
+    print("Course Description:")
+    print(course_description)
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
+```
+
 :::: {.callout-caution appearance="simple" icon="false"}
 ### Code Challenge 2.2
 
-Use the playwright codegen to extract the SU football schedule from https://cuse.com 
-
-Input the year, output the schedule.
-
+Use the playwright codegen to extract the SU football schedule for 2023 from https://cuse.com. Output the table as a CSV.
 
 ::: {.callout-caution collapse="true" appearance="simple" icon="false"}
 #### Solution
 
 ```{python}
 #| eval: false
-
+# get_su_football_schedule.py
+from io import StringIO
 from playwright.sync_api import Playwright, sync_playwright, expect
 import pandas as pd
-from time import sleep
-import sys
 
 def run(playwright: Playwright, year) -> str:
     browser = playwright.chromium.launch(headless=False)
     context = browser.new_context()
     page = context.new_page()
     page.goto(f"https://cuse.com/sports/football/schedule/{year}")
-    page.wait_for_load_state("load")
-    sleep(1)
     page.get_by_role("tab", name="Table View not selected").click()
-    sleep(1)
-    dfs = pd.read_html(page.content())
-    
-    
-    # ---------------------
+    # clicking on the date column ensures that the table is loaded before we try to parse it
+    page.locator("[data-test-id=\"s-table__root\"]").get_by_text("Date").click()
+    # According to the Pandas docs, we now need to wrap content in StringIO
+    # before passing to read_html
+    dfs = pd.read_html(StringIO(page.content()))
     context.close()
     browser.close()
-    return dfs[0].to_html()
+    return dfs[0]
 
 
 with sync_playwright() as playwright:
-    html_table = run(playwright, year=2023)
-    print (html_table)
+    df = run(playwright, year=2023)
+    print(df.to_csv())
 ```
 
 :::

@@ -1,0 +1,146 @@
+---
+title: '4. Playwright + Argparse + Streamlit to create useful apps'
+jupyter: python3
+---
+
+## Playwright + Argparse
+
+We can create useful web scraping apps using `argparse` with `playwright`. 
+
+### Example: an app to get the SU football schedule by year
+
+Recall Challenge 2.2 from the [second scraping tutorial](scraping-2.qmd). You were instructed to write a script that would get the SU football schedule for 2023. There, we hardcoded the year. However, we can create a much more useful script by using argparse to accept a year as input from the command line, like so:
+
+```{python}
+#| eval: false
+# get_su_football_schedule.py
+from io import StringIO
+from playwright.sync_api import Playwright, sync_playwright, expect
+import pandas as pd
+import argparse
+
+parser = argparse.ArgumentParser(description="Retrieve the SU football schedule for the requested year.")
+parser.add_argument("year", type=int, help="The year to retrieve.")
+parser.add_argument('-o', '--output', help="Write the output CSV to the given file. If none provided, will write to screen.")
+args = parser.parse_args()
+
+def run(playwright: Playwright, year) -> str:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto(f"https://cuse.com/sports/football/schedule/{year}")
+    page.get_by_role("tab", name="Table View not selected").click()
+    # clicking on the date column ensures that the table is loaded before we try to parse it
+    page.locator("[data-test-id=\"s-table__root\"]").get_by_text("Date").click()
+    # According to the Pandas docs, we now need to wrap content in StringIO
+    # before passing to read_html
+    dfs = pd.read_html(StringIO(page.content()))
+    context.close()
+    browser.close()
+    return dfs[0]
+
+
+with sync_playwright() as playwright:
+    df = run(playwright, year=args.year)
+    if args.output is None:
+        print(df.to_csv())
+    else:
+        df.to_csv(args.output)
+```
+
+
+
+## Playwright + Streamlit
+
+Due to the multi-threaded nature of Streamlit, and playwright, there are some compatability on windows platforms. 
+
+[https://discuss.streamlit.io/t/using-playwright-with-streamlit/28380](https://discuss.streamlit.io/t/using-playwright-with-streamlit/28380)
+
+
+Therefore, it is best to write the Playwright portion of the code as a stand-alone script, then call it from within the Streamlit app using `subprocess.run`.
+
+Here's an example in which we wrap the SU football script above and turn it into a Streamlit app:
+
+```{python}
+#| eval: false
+# st-get_su_football_schedule.py 
+import sys
+from subprocess import run
+import streamlit as st
+import pandas as pd
+from io import StringIO
+
+
+def run_python_script(script_path : str, *args) -> str:
+    process = run([sys.executable, script_path]+list(args), text=True, capture_output=True)
+    output_text = process.stdout.strip()
+    return output_text
+
+
+st.title("Playwright with Streamlit")
+st.caption("The strategy is to call the playwright code as a python script.")
+
+year = st.number_input("Enter a year", min_value=2010, max_value=2025, value=2025)
+if year:
+    with st.spinner("Scraping..."):
+        csv_content = run_python_script("get_su_football_schedule.py", str(year))
+        # Note: we need to wrap CSV string content into a StringIO buffer
+        # in order for read_csv to understand it.
+        df = pd.read_csv(StringIO(csv_content))
+        st.dataframe(df)
+```
+
+Saving this to `st-get_su_football_schedule.py`, you can run it with:
+```{bash}
+python -m streamlit run st-get_su_football_schedule.py 
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 4.1
+
+Write a script that will search the SU course catalog
+
+https://coursecatalog.syracuse.edu/course-search/
+
+for a given course name and prints out its description. The course name should be provided on the command line.
+
+*Hint*: refer to the [scraping-2](scraping-2.qmd) tutorial to get started. Note that you
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+```{python}
+#| eval: false
+from playwright.sync_api import Playwright, sync_playwright
+import argparse
+
+parser = argparse.ArgumentParser(description="Gets course information.")
+parser.add_argument("course", help="The course to retreive.")
+args = parser.parse_args()
+
+def run(playwright: Playwright, course: str) -> None:
+    browser = playwright.chromium.launch(headless=False)
+    context = browser.new_context()
+    page = context.new_page()
+    page.goto("https://coursecatalog.syracuse.edu/course-search/")
+    page.get_by_role("textbox", name="Keyword").fill(course)
+    page.get_by_role("button", name="SEARCH").click()
+    page.get_by_text("Found 1 course").click()
+    page.locator("div").filter(has_text=course).nth(3).click()
+    page.get_by_role("heading", name="Description").click()
+    # ---------------------
+    element = "div.section.section--description > div.section__content"
+    descriptor = page.query_selector(element)
+    course_description = descriptor.inner_text()
+    print("Course Description:")
+    print(course_description)
+    # ---------------------
+    context.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright, args.course)
+```
+
+:::
+::::

@@ -263,7 +263,7 @@ To add an optional argument, you simply add `--` to the start of the argument na
 
 ```{python}
 #| eval: false
-# math.py
+# calculator.py
 
 import argparse
 
@@ -289,20 +289,20 @@ print(res)
 Running:
 
 ```{bash}
-python math.py 2 3
+python calculator.py 2 3
 5.0
 ```
 
 whereas:
 
 ```{bash}
-python math.py 2 3 --operator multiply
+python calculator.py 2 3 --operator multiply
 6.0
 ```
 
 ### Specifying choices
 
-In the previous example our operator argument should only take four pre-defined possibilities. We can specify those using the `choices` keyword argument. Providing that both provides a more helpful help message, and also negates needing to check that the argument is one of the knowns, since argparse will check for you before the script is even executed. Applying to our `math.py` script:
+In the previous example our operator argument should only take four pre-defined possibilities. We can specify those using the `choices` keyword argument. Providing that both provides a more helpful help message, and also negates needing to check that the argument is one of the knowns, since argparse will check for you before the script is even executed. Applying to our `calculator.py` script:
 
 ```{python}
 #| eval: false
@@ -355,21 +355,21 @@ print(res)
 We can now run our script by specifying either `-o` or `--operator` for the operator. For example:
 
 ```{bash}
-python math.py 2 3 -o multiply
+python calculator.py 2 3 -o multiply
 6.0
 ```
 
 :::: {.callout-caution appearance="simple" icon="false"}
 ### Code Challenge 3.2
 
-Add the ability to `math.py` to optionally write the result out to a file. 
+Add the ability to `calculator.py` to optionally write the result out to a file. 
 
 ::: {.callout-caution collapse="true" appearance="simple" icon="false"}
 #### Solution
 
 ```{python}
 #| eval: false
-# math.py
+# calculator.py
 
 import argparse
 
