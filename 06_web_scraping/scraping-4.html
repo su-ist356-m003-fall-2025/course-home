@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1. Interaction in Jupyter using ipywidgets – IST 356 Fall 2025</title>
+<title>4. Playwright + Argparse + Streamlit to create useful apps – IST 356 Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../03_ui/ui-2.html" rel="next">
-<link href="../03_ui/index.html" rel="prev">
+<link href="../syllabus.html" rel="next">
+<link href="../06_web_scraping/scraping-3.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -106,13 +106,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="1. Interaction in Jupyter using ipywidgets – IST 356 Fall 2025">
+<meta property="og:title" content="4. Playwright + Argparse + Streamlit to create useful apps – IST 356 Fall 2025">
 <meta property="og:description" content="">
 <meta property="og:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
 <meta property="og:site_name" content="IST 356 Fall 2025">
 <meta property="og:image:height" content="105">
 <meta property="og:image:width" content="650">
-<meta name="twitter:title" content="1. Interaction in Jupyter using ipywidgets – IST 356 Fall 2025">
+<meta name="twitter:title" content="4. Playwright + Argparse + Streamlit to create useful apps – IST 356 Fall 2025">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
 <meta name="twitter:image-height" content="105">
@@ -147,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../03_ui/index.html">3. UI</a></li><li class="breadcrumb-item"><a href="../03_ui/ui-1.html">1. Interaction in Jupyter using ipywidgets</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../06_web_scraping/index.html">6. Web Scraping</a></li><li class="breadcrumb-item"><a href="../06_web_scraping/scraping-4.html">4. Playwright + Argparse + Streamlit to create useful apps</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -227,14 +227,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../03_ui/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3. UI</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../03_ui/ui-1.html" class="sidebar-item-text sidebar-link active">
+  <a href="../03_ui/ui-1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1. Interaction in Jupyter using ipywidgets</span></a>
   </div>
 </li>
@@ -326,11 +326,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../06_web_scraping/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">6. Web Scraping</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../06_web_scraping/scraping-1.html" class="sidebar-item-text sidebar-link">
@@ -351,7 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../06_web_scraping/scraping-4.html" class="sidebar-item-text sidebar-link">
+  <a href="../06_web_scraping/scraping-4.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">4. Playwright + Argparse + Streamlit to create useful apps</span></a>
   </div>
 </li>
@@ -373,16 +373,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#notebook-widgets-ipywidgets" id="toc-notebook-widgets-ipywidgets" class="nav-link active" data-scroll-target="#notebook-widgets-ipywidgets">Notebook widgets: ipywidgets</a></li>
+  <li><a href="#playwright-argparse" id="toc-playwright-argparse" class="nav-link active" data-scroll-target="#playwright-argparse">Playwright + Argparse</a>
+  <ul class="collapse">
+  <li><a href="#example-an-app-to-get-the-su-football-schedule-by-year" id="toc-example-an-app-to-get-the-su-football-schedule-by-year" class="nav-link" data-scroll-target="#example-an-app-to-get-the-su-football-schedule-by-year">Example: an app to get the SU football schedule by year</a></li>
+  </ul></li>
+  <li><a href="#playwright-streamlit" id="toc-playwright-streamlit" class="nav-link" data-scroll-target="#playwright-streamlit">Playwright + Streamlit</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../03_ui/index.html">3. UI</a></li><li class="breadcrumb-item"><a href="../03_ui/ui-1.html">1. Interaction in Jupyter using ipywidgets</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../06_web_scraping/index.html">6. Web Scraping</a></li><li class="breadcrumb-item"><a href="../06_web_scraping/scraping-4.html">4. Playwright + Argparse + Streamlit to create useful apps</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">1. Interaction in Jupyter using ipywidgets</h1>
+<h1 class="title">4. Playwright + Argparse + Streamlit to create useful apps</h1>
 </div>
 
 
@@ -399,98 +403,100 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="playwright-argparse" class="level2">
+<h2 class="anchored" data-anchor-id="playwright-argparse">Playwright + Argparse</h2>
+<p>We can create useful web scraping apps using <code>argparse</code> with <code>playwright</code>.</p>
+<section id="example-an-app-to-get-the-su-football-schedule-by-year" class="level3">
+<h3 class="anchored" data-anchor-id="example-an-app-to-get-the-su-football-schedule-by-year">Example: an app to get the SU football schedule by year</h3>
+<p>Recall Challenge 2.2 from the <a href="../06_web_scraping/scraping-2.html">second scraping tutorial</a>. You were instructed to write a script that would get the SU football schedule for 2023. There, we hardcoded the year. However, we can create a much more useful script by using argparse to accept a year as input from the command line, like so:</p>
+<div id="8ea37696" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get_su_football_schedule.py</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> StringIO</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Playwright, sync_playwright, expect</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>parser <span class="op">=</span> argparse.ArgumentParser(description<span class="op">=</span><span class="st">"Retrieve the SU football schedule for the requested year."</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>parser.add_argument(<span class="st">"year"</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, <span class="bu">help</span><span class="op">=</span><span class="st">"The year to retrieve."</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>parser.add_argument(<span class="st">'-o'</span>, <span class="st">'--output'</span>, <span class="bu">help</span><span class="op">=</span><span class="st">"Write the output CSV to the given file. If none provided, will write to screen."</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>args <span class="op">=</span> parser.parse_args()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run(playwright: Playwright, year) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    browser <span class="op">=</span> playwright.chromium.launch(headless<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    context <span class="op">=</span> browser.new_context()</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    page <span class="op">=</span> context.new_page()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    page.goto(<span class="ss">f"https://cuse.com/sports/football/schedule/</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"tab"</span>, name<span class="op">=</span><span class="st">"Table View not selected"</span>).click()</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># clicking on the date column ensures that the table is loaded before we try to parse it</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    page.locator(<span class="st">"[data-test-id=</span><span class="ch">\"</span><span class="st">s-table__root</span><span class="ch">\"</span><span class="st">]"</span>).get_by_text(<span class="st">"Date"</span>).click()</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># According to the Pandas docs, we now need to wrap content in StringIO</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># before passing to read_html</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    dfs <span class="op">=</span> pd.read_html(StringIO(page.content()))</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    context.close()</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    browser.close()</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dfs[<span class="dv">0</span>]</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> sync_playwright() <span class="im">as</span> playwright:</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> run(playwright, year<span class="op">=</span>args.year)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> args.output <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(df.to_csv())</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        df.to_csv(args.output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+</section>
+</section>
+<section id="playwright-streamlit" class="level2">
+<h2 class="anchored" data-anchor-id="playwright-streamlit">Playwright + Streamlit</h2>
+<p>Due to the multi-threaded nature of Streamlit, and playwright, there are some compatability on windows platforms.</p>
+<p><a href="https://discuss.streamlit.io/t/using-playwright-with-streamlit/28380">https://discuss.streamlit.io/t/using-playwright-with-streamlit/28380</a></p>
+<p>Therefore, it is best to write the Playwright portion of the code as a stand-alone script, then call it from within the Streamlit app using <code>subprocess.run</code>.</p>
+<p>Here’s an example in which we wrap the SU football script above and turn it into a Streamlit app:</p>
+<div id="c6eb23ae" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># st-get_su_football_schedule.py </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> subprocess <span class="im">import</span> run</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> StringIO</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_python_script(script_path : <span class="bu">str</span>, <span class="op">*</span>args) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    process <span class="op">=</span> run([sys.executable, script_path]<span class="op">+</span><span class="bu">list</span>(args), text<span class="op">=</span><span class="va">True</span>, capture_output<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    output_text <span class="op">=</span> process.stdout.strip()</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> output_text</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">"Playwright with Streamlit"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>st.caption(<span class="st">"The strategy is to call the playwright code as a python script."</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>year <span class="op">=</span> st.number_input(<span class="st">"Enter a year"</span>, min_value<span class="op">=</span><span class="dv">2010</span>, max_value<span class="op">=</span><span class="dv">2025</span>, value<span class="op">=</span><span class="dv">2025</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> year:</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> st.spinner(<span class="st">"Scraping..."</span>):</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        csv_content <span class="op">=</span> run_python_script(<span class="st">"get_su_football_schedule.py"</span>, <span class="bu">str</span>(year))</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Note: we need to wrap CSV string content into a StringIO buffer</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># in order for read_csv to understand it.</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        df <span class="op">=</span> pd.read_csv(StringIO(csv_content))</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        st.dataframe(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p>To do this tutorial you will need <code>ipywidgets</code> installed in your conda environment. To do that:</p>
-<ol type="1">
-<li><p>Open a terminal (from in VS Code, click “Terminal” -&gt; “New Terminal”).</p></li>
-<li><p>Activate your <code>ist356</code> conda environment by running:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate ist356</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Install <code>ipywidgets</code> by either running:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install ipywidgets</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>or:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge <span class="at">-y</span> ipywidgets</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-</ol>
-</div>
-</div>
-<section id="notebook-widgets-ipywidgets" class="level2">
-<h2 class="anchored" data-anchor-id="notebook-widgets-ipywidgets">Notebook widgets: ipywidgets</h2>
-<p>The jupyter notebook widgets create better UI interactions in notebooks. This is called the ipywidgets library. There is a lot to this library but we will keep our interactions simple.</p>
-<p>To replace <code>input()</code> statements we use the <code>interact_manual</code> decorator function. Like a hat decorates your head, decorator function adds code to another function.</p>
-<p><code>interact_manual</code> decorator does the following:</p>
-<ul>
-<li>generates a <em>textbox</em> for any string input</li>
-<li>generates a <em>slider</em> for any int/float input</li>
-<li>generates a <em>dropdown</em> for any list input</li>
-<li>generates a <em>button</em> titled “Run interact”</li>
-</ul>
-<p>When the <strong>button is clicked</strong> the code inside the decorated function is executed and the widget values are used as input. Use <code>display()</code> instead of <code>print()</code> for output.</p>
-<div id="e761efd1" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Necessary imports to make this work</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact_manual</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="0c447a72" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example:</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>vals <span class="op">=</span> [ <span class="st">'red'</span>, <span class="st">'white'</span>, <span class="st">'blue'</span>] <span class="co"># this is a list type, it will generate a dropdown widget</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">min</span>, <span class="bu">max</span>, step <span class="op">=</span> <span class="dv">0</span>, <span class="dv">20</span>, <span class="fl">0.5</span>      <span class="co"># this is the range of the slider, and the steps</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"testing"</span>                 <span class="co"># this is a string type, it will generate a textbox</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">@interact_manual</span>(color<span class="op">=</span>vals, grade<span class="op">=</span>(<span class="bu">min</span>,<span class="bu">max</span>,step), name<span class="op">=</span>text) <span class="co"># DECORATOR function with values</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> on_click(color, grade, name):                             <span class="co"># DECORATED function. This code </span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    display(color)                                            <span class="co"># runs when the button is clicked </span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    display(grade)                                            <span class="co"># (thus the name on_click)</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    display(name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For more complex interactions we will use the streamlit library</p>
-</div>
-</div>
+<p>Saving this to <code>st-get_su_football_schedule.py</code>, you can run it with:</p>
+<pre class="{bash}"><code>python -m streamlit run st-get_su_football_schedule.py </code></pre>
 <div class="callout callout-style-simple callout-caution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>Code Challenge 1.1
+<span class="screen-reader-only">Caution</span>Code Challenge 4.1
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Create a simple widget interaction that will display student status for their GPA. The widget should take as inputs:</p>
-<ul>
-<li>the student’s name;</li>
-<li>their major: one of “IMT”, “IST”, or “ADA”;</li>
-<li>a gpa between 0.0 and 4.0.</li>
-</ul>
-<p>The widget should process:</p>
-<ul>
-<li>when gpa &lt; 1.8 then status is “probation”</li>
-<li>when gpa &gt; 3.4 then status is “deans list”</li>
-<li>else status is “no list”.</li>
-</ul>
-<p>The widget should then display the following statement:</p>
-<div id="77adb99d" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">"NAME in MAJOR with GPA is on STATUS"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<p>Write a script that will search the SU course catalog</p>
+<p>https://coursecatalog.syracuse.edu/course-search/</p>
+<p>for a given course name and prints out its description. The course name should be provided on the command line.</p>
+<p><em>Hint</em>: refer to the <a href="../06_web_scraping/scraping-2.html">scraping-2</a> tutorial to get started. Note that you</p>
 <div class="callout callout-style-simple callout-caution no-icon callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -499,22 +505,39 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="30dc16ef" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact_manual</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">@interact_manual</span>(name<span class="op">=</span><span class="st">""</span>, major<span class="op">=</span>[<span class="st">"IMT"</span>, <span class="st">"IST"</span>, <span class="st">"ADA"</span>], gpa<span class="op">=</span>(<span class="fl">0.0</span>,<span class="fl">4.0</span>,<span class="fl">0.05</span>))</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> onclick(name,major,gpa):</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> gpa <span class="op">&lt;</span> <span class="fl">1.8</span>:</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"probation"</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> gpa <span class="op">&gt;</span> <span class="fl">3.4</span>:</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"deans list"</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"no list"</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    display(<span class="ss">f"</span><span class="sc">{</span>name<span class="sc">}</span><span class="ss"> in </span><span class="sc">{</span>major<span class="sc">}</span><span class="ss"> with gpa of </span><span class="sc">{</span>gpa<span class="sc">}</span><span class="ss"> is on </span><span class="sc">{</span>status<span class="sc">}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="3e23f69a" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Playwright, sync_playwright</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>parser <span class="op">=</span> argparse.ArgumentParser(description<span class="op">=</span><span class="st">"Gets course information."</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>parser.add_argument(<span class="st">"course"</span>, <span class="bu">help</span><span class="op">=</span><span class="st">"The course to retreive."</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>args <span class="op">=</span> parser.parse_args()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run(playwright: Playwright, course: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    browser <span class="op">=</span> playwright.chromium.launch(headless<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    context <span class="op">=</span> browser.new_context()</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    page <span class="op">=</span> context.new_page()</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    page.goto(<span class="st">"https://coursecatalog.syracuse.edu/course-search/"</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"textbox"</span>, name<span class="op">=</span><span class="st">"Keyword"</span>).fill(course)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"button"</span>, name<span class="op">=</span><span class="st">"SEARCH"</span>).click()</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    page.get_by_text(<span class="st">"Found 1 course"</span>).click()</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    page.locator(<span class="st">"div"</span>).<span class="bu">filter</span>(has_text<span class="op">=</span>course).nth(<span class="dv">3</span>).click()</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"heading"</span>, name<span class="op">=</span><span class="st">"Description"</span>).click()</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    element <span class="op">=</span> <span class="st">"div.section.section--description &gt; div.section__content"</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    descriptor <span class="op">=</span> page.query_selector(element)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    course_description <span class="op">=</span> descriptor.inner_text()</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Course Description:"</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(course_description)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    context.close()</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    browser.close()</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> sync_playwright() <span class="im">as</span> playwright:</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    run(playwright, args.course)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -928,13 +951,13 @@ Note
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../03_ui/index.html" class="pagination-link" aria-label="3. UI">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">3. UI</span>
+      <a href="../06_web_scraping/scraping-3.html" class="pagination-link" aria-label="3. Writing executable scripts with Argparse">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">3. Writing executable scripts with Argparse</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../03_ui/ui-2.html" class="pagination-link" aria-label="2. Creating simple web apps with Streamlit">
-        <span class="nav-page-text">2. Creating simple web apps with Streamlit</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../syllabus.html" class="pagination-link" aria-label="Syllabus">
+        <span class="nav-page-text">Syllabus</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

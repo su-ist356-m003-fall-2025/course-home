@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-636770ed70550effe8cc9e61b03b729c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -127,8 +127,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">IST 356 Fall 2025</span>
     </a>
@@ -159,10 +157,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -355,6 +349,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">3. Writing executable scripts with Argparse</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../06_web_scraping/scraping-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Playwright + Argparse + Streamlit to create useful apps</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -377,6 +377,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#scraping-the-next-adjcent-element" id="toc-scraping-the-next-adjcent-element" class="nav-link" data-scroll-target="#scraping-the-next-adjcent-element">Scraping the next adjcent element</a></li>
   <li><a href="#downloading-an-image" id="toc-downloading-an-image" class="nav-link" data-scroll-target="#downloading-an-image">Downloading an Image</a></li>
   <li><a href="#playwright-codegen" id="toc-playwright-codegen" class="nav-link" data-scroll-target="#playwright-codegen">Playwright Codegen</a></li>
+  <li><a href="#pausing-for-elements-to-load" id="toc-pausing-for-elements-to-load" class="nav-link" data-scroll-target="#pausing-for-elements-to-load">Pausing for elements to load</a>
+  <ul class="collapse">
+  <li><a href="#using-sleep-to-pause-execution" id="toc-using-sleep-to-pause-execution" class="nav-link" data-scroll-target="#using-sleep-to-pause-execution">Using sleep to pause execution</a></li>
+  <li><a href="#better-waiting-for-the-selector-to-appear" id="toc-better-waiting-for-the-selector-to-appear" class="nav-link" data-scroll-target="#better-waiting-for-the-selector-to-appear">Better: Waiting for the selector to appear</a></li>
+  <li><a href="#best-using-a-locator" id="toc-best-using-a-locator" class="nav-link" data-scroll-target="#best-using-a-locator">Best: Using a locator</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -421,7 +427,7 @@ Note
 <h2 class="anchored" data-anchor-id="scraping-html-tables">Scraping HTML tables</h2>
 <p>We saw previously that it’s easy to scrape HTML tables into a pandas dataframe using <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_html.html">pd.read_html</a>.</p>
 <p>Previously, we provided <code>read_html</code> a URL. However, you can also give the <code>read_url</code> a page as read by Playwright. Here’s an example:</p>
-<div id="51fc12f5" class="cell" data-execution_count="1">
+<div id="0316b76a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pw-pdtable.py</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> StringIO</span>
@@ -455,7 +461,7 @@ Note
 <p>Sometimes you need to use one selector to <strong>find</strong> the element, but what we want is to scrape the <strong>next</strong> element right after the page.</p>
 <p>To find the next adjacent sibling element, you use: <code>.query_selector('~ *')</code>.</p>
 <p>Here’s an example of using this to select the first element in the Course Info section of the course syllabus (use the Inspect tool in your web browser to understand what’s going on here):</p>
-<div id="fc9ba800" class="cell" data-execution_count="2">
+<div id="9665a7af" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pw-scrape_next_example.py</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Playwright, sync_playwright</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -514,7 +520,7 @@ Note
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="268ce67a" class="cell" data-execution_count="3">
+<div id="38aec6e4" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Playwright, sync_playwright</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -553,7 +559,7 @@ Note
 <p>You can use playwright to download an image by getting the <code>src</code> attribute.</p>
 <p>Here’s an example in which we download the Syracuse University logo from the university’s website:</p>
 <p><em>Note: the downloaded file is an SVG file.</em></p>
-<div id="e611ffdf" class="cell" data-execution_count="4">
+<div id="cadfa7c6" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pw-image_example.py</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Playwright, sync_playwright</span>
@@ -592,7 +598,7 @@ Note
 <p>Playwright has a codegen feature that can help you generate code to interact with a webpage.</p>
 <pre class="{bash}"><code>python -m playwright codegen </code></pre>
 <p>For example, using code gen, we can generate the code needed to search for IST 356 in the course catalog:</p>
-<div id="0b02c55c" class="cell" data-execution_count="5">
+<div id="f607a4e4" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pw-codegen_example.py</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Playwright, sync_playwright, expect</span>
@@ -614,6 +620,157 @@ Note
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> sync_playwright() <span class="im">as</span> playwright:</span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    run(playwright)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>Once we have the code necessary to load the page, we can then use the Inspect tool in the open Chromium page to get whatever elements we want. For instance, inspecting the course description shows that it is in <code>&lt;div class="section__content"&gt;</code> which is a sub-element of <code>&lt;div class="section section--description"&gt;</code>. We can therefore retrieve the description with:</p>
+<div id="3dc2ed28" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pw-ist356description.py</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Playwright, sync_playwright</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run(playwright: Playwright) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    browser <span class="op">=</span> playwright.chromium.launch(headless<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    context <span class="op">=</span> browser.new_context()</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    page <span class="op">=</span> context.new_page()</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    page.goto(<span class="st">"https://coursecatalog.syracuse.edu/course-search/"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"textbox"</span>, name<span class="op">=</span><span class="st">"Keyword"</span>).click()</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"textbox"</span>, name<span class="op">=</span><span class="st">"Keyword"</span>).fill(<span class="st">"IST 356"</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"button"</span>, name<span class="op">=</span><span class="st">"SEARCH"</span>).click()</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"link"</span>, name<span class="op">=</span><span class="st">"IST 356 Programming"</span>).click()</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    descriptor <span class="op">=</span> page.query_selector(<span class="st">"div.section.section--description &gt; div.section__content"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    course_description <span class="op">=</span> descriptor.inner_text()</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Course Description:"</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(course_description)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    context.close()</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    browser.close()</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> sync_playwright() <span class="im">as</span> playwright:</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    run(playwright)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="pausing-for-elements-to-load" class="level2">
+<h2 class="anchored" data-anchor-id="pausing-for-elements-to-load">Pausing for elements to load</h2>
+<p>If you run the above code, you may find that it fails with:</p>
+<pre class="{text}"><code>    course_description = descriptor.inner_text()
+                         ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'inner_text'</code></pre>
+<p>The reason for this is due to a mismatch in how long it takes Python to execute the lines locally versus how long it takes the website to serve up the requested content. In this case, the line <code>page.get_by_role("link", name="IST 356 Programming").click()</code> completes as soon as the click command is executed by Playwright. Python then goes on to execute the next line (the query selector). However, the time it takes for the webpage to update given the request – i.e., for the course description to appear – may take longer. The result is that when the <code>page.query_selector</code> line is run the course description has not actually appeared yet in the website, and so the query selector returns <code>None</code>.</p>
+<p>This is a common problem when working with interactive websites like this. There are a couple ways to deal with this.</p>
+<section id="using-sleep-to-pause-execution" class="level3">
+<h3 class="anchored" data-anchor-id="using-sleep-to-pause-execution">Using sleep to pause execution</h3>
+<p>The easiest (but kludgy) solution is to simply force your code to pause for a preset amount of time before trying to select anything off the site. You can do that with the <a href="https://docs.python.org/3/library/time.html#time.sleep">sleep</a> command, which you need to import from the <code>time</code> module. Applying to our above example:</p>
+<div id="5514214d" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pw-ist356description.py</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Playwright, sync_playwright</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run(playwright: Playwright) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    browser <span class="op">=</span> playwright.chromium.launch(headless<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    context <span class="op">=</span> browser.new_context()</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    page <span class="op">=</span> context.new_page()</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    page.goto(<span class="st">"https://coursecatalog.syracuse.edu/course-search/"</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"textbox"</span>, name<span class="op">=</span><span class="st">"Keyword"</span>).click()</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"textbox"</span>, name<span class="op">=</span><span class="st">"Keyword"</span>).fill(<span class="st">"IST 356"</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"button"</span>, name<span class="op">=</span><span class="st">"SEARCH"</span>).click()</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"link"</span>, name<span class="op">=</span><span class="st">"IST 356 Programming"</span>).click()</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># pause for a second to let the page fully load</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    sleep(<span class="dv">1</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    descriptor <span class="op">=</span> page.query_selector(<span class="st">"div.section.section--description &gt; div.section__content"</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    course_description <span class="op">=</span> descriptor.inner_text()</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Course Description:"</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(course_description)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    context.close()</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    browser.close()</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> sync_playwright() <span class="im">as</span> playwright:</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    run(playwright)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The <code>sleep(1)</code> line will cause the code to pause for 1 second. That (hopefully) is enough time for the website to finish loading, so that the subsequent lines will complete.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As discussed below, using <code>sleep</code> to try to wait for an element to load is not a great solution. However, <code>sleep</code> is useful for debugging. As you’ve probably noticed, when your run a script, the browser that’s loaded will disappear as soon as the code block is done executing. That can be very quick; too quick for you to see what it did. By sticking a <code>sleep</code> in your code for some longer period of time (say 60 seconds) you can get the browser to persist for awhile so you can see what was loaded, and inspect the page. This can help you debug any issues. Just remember to remove the <code>sleep</code> when you’re done debugging!</p>
+</div>
+</div>
+</section>
+<section id="better-waiting-for-the-selector-to-appear" class="level3">
+<h3 class="anchored" data-anchor-id="better-waiting-for-the-selector-to-appear">Better: Waiting for the selector to appear</h3>
+<p>Using <code>sleep</code> works, but is not a great solution. First, you don’t know how long it will take to load the element you need. This can be random, depending on your internet connection and the server’s load at any given time. The time you hardcode may not always be long enough, or may be too long, in which case your program is wasting time.</p>
+<p>A better solution is to use Playwright’s <a href="https://playwright.dev/python/docs/api/class-page#page-wait-for-selector">wait_for_selector</a> method to wait for the desired element to appear. Here’s how we can use that in our code above:</p>
+<div id="5e45dfda" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pw-ist356description.py</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Playwright, sync_playwright</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run(playwright: Playwright) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    browser <span class="op">=</span> playwright.chromium.launch(headless<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    context <span class="op">=</span> browser.new_context()</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    page <span class="op">=</span> context.new_page()</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    page.goto(<span class="st">"https://coursecatalog.syracuse.edu/course-search/"</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"textbox"</span>, name<span class="op">=</span><span class="st">"Keyword"</span>).click()</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"textbox"</span>, name<span class="op">=</span><span class="st">"Keyword"</span>).fill(<span class="st">"IST 356"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"button"</span>, name<span class="op">=</span><span class="st">"SEARCH"</span>).click()</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"link"</span>, name<span class="op">=</span><span class="st">"IST 356 Programming"</span>).click()</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    element <span class="op">=</span> <span class="st">"div.section.section--description &gt; div.section__content"</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># note: the timeout is in milliseconds</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    page.wait_for_selector(element, timeout<span class="op">=</span><span class="dv">10000</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    descriptor <span class="op">=</span> page.query_selector(selector)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    course_description <span class="op">=</span> descriptor.inner_text()</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Course Description:"</span>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(course_description)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    context.close()</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    browser.close()</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> sync_playwright() <span class="im">as</span> playwright:</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    run(playwright)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The <code>page.wait_for_selector(element, timeout=10000)</code> will cause the code to wait until the desired element appears on the page before continuing to the next line. This can be dangerous: if the element simply doesn’t exist (say, you have a bug, or the website changed), your code could hang there. For this reason, it’s good to provide a timeout. This will cause the code to raise an error if it takes longer for the element to appear than the specified timeout. Note that the timeout is in milliseconds; by specifying <code>timeout=10000</code> we’ve set the timeout to be 10 seconds.</p>
+</section>
+<section id="best-using-a-locator" class="level3">
+<h3 class="anchored" data-anchor-id="best-using-a-locator">Best: Using a locator</h3>
+<p>If you click on the documentation page for <a href="https://playwright.dev/python/docs/api/class-page#page-wait-for-selector">wait_for_selector</a> you’ll see that using <code>wait_for_selector</code> is discouraged. (There is a discussion on Stackoverflow <a href="https://stackoverflow.com/questions/76093014/when-is-playwrights-waitforselector-necessary">here</a> about why.)</p>
+<p>The best solution is instead to use <a href="https://playwright.dev/python/docs/locators">locators</a>. Locators are a more advanced way to location elements on a page. The code created by <code>codegen</code> made heavy use of them: all of those <code>page.get_by_role</code> lines are locators. You can do the same thing for the description. In fact, you can get <code>codegen</code> to give you the appropriate line of code by simply clicking on the “Description” header. Doing so in <code>codegen</code>, you’ll see the line <code>page.get_by_role("heading", name="Description").click()</code> appear in the Playwright inspector.</p>
+<p>Locators have auto wait built into them, so you don’t need to add any additional lines to get your code to wait for it. Our code therefore looks like:</p>
+<div id="9ac257db" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pw-ist356description.py</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Playwright, sync_playwright</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run(playwright: Playwright) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    browser <span class="op">=</span> playwright.chromium.launch(headless<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    context <span class="op">=</span> browser.new_context()</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    page <span class="op">=</span> context.new_page()</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    page.goto(<span class="st">"https://coursecatalog.syracuse.edu/course-search/"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"textbox"</span>, name<span class="op">=</span><span class="st">"Keyword"</span>).fill(<span class="st">"IST 356"</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"button"</span>, name<span class="op">=</span><span class="st">"SEARCH"</span>).click()</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"link"</span>, name<span class="op">=</span><span class="st">"IST 356 Programming"</span>).click()</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"heading"</span>, name<span class="op">=</span><span class="st">"Description"</span>).click()</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    element <span class="op">=</span> <span class="st">"div.section.section--description &gt; div.section__content"</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    descriptor <span class="op">=</span> page.query_selector(element)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    course_description <span class="op">=</span> descriptor.inner_text()</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Course Description:"</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(course_description)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    context.close()</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    browser.close()</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> sync_playwright() <span class="im">as</span> playwright:</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    run(playwright)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <div class="callout callout-style-simple callout-caution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -624,10 +781,9 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Use the playwright codegen to extract the SU football schedule from https://cuse.com</p>
-<p>Input the year, output the schedule.</p>
+<p>Use the playwright codegen to extract the SU football schedule for 2023 from https://cuse.com. Output the table as a CSV.</p>
 <div class="callout callout-style-simple callout-caution no-icon callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -636,35 +792,33 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="3f648dbc" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Playwright, sync_playwright, expect</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run(playwright: Playwright, year) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    browser <span class="op">=</span> playwright.chromium.launch(headless<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    context <span class="op">=</span> browser.new_context()</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    page <span class="op">=</span> context.new_page()</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    page.goto(<span class="ss">f"https://cuse.com/sports/football/schedule/</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    page.wait_for_load_state(<span class="st">"load"</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    sleep(<span class="dv">1</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"tab"</span>, name<span class="op">=</span><span class="st">"Table View not selected"</span>).click()</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    sleep(<span class="dv">1</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    dfs <span class="op">=</span> pd.read_html(page.content())</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ---------------------</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    context.close()</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    browser.close()</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dfs[<span class="dv">0</span>].to_html()</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> sync_playwright() <span class="im">as</span> playwright:</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    html_table <span class="op">=</span> run(playwright, year<span class="op">=</span><span class="dv">2023</span>)</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span> (html_table)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="7848088a" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get_su_football_schedule.py</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> StringIO</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> playwright.sync_api <span class="im">import</span> Playwright, sync_playwright, expect</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run(playwright: Playwright, year) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    browser <span class="op">=</span> playwright.chromium.launch(headless<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    context <span class="op">=</span> browser.new_context()</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    page <span class="op">=</span> context.new_page()</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    page.goto(<span class="ss">f"https://cuse.com/sports/football/schedule/</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    page.get_by_role(<span class="st">"tab"</span>, name<span class="op">=</span><span class="st">"Table View not selected"</span>).click()</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># clicking on the date column ensures that the table is loaded before we try to parse it</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    page.locator(<span class="st">"[data-test-id=</span><span class="ch">\"</span><span class="st">s-table__root</span><span class="ch">\"</span><span class="st">]"</span>).get_by_text(<span class="st">"Date"</span>).click()</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># According to the Pandas docs, we now need to wrap content in StringIO</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># before passing to read_html</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    dfs <span class="op">=</span> pd.read_html(StringIO(page.content()))</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    context.close()</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    browser.close()</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dfs[<span class="dv">0</span>]</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> sync_playwright() <span class="im">as</span> playwright:</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> run(playwright, year<span class="op">=</span><span class="dv">2023</span>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df.to_csv())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -673,6 +827,7 @@ Note
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

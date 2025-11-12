@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../syllabus.html" rel="next">
+<link href="../06_web_scraping/scraping-4.html" rel="next">
 <link href="../06_web_scraping/scraping-2.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -73,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-636770ed70550effe8cc9e61b03b729c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -127,8 +127,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">IST 356 Fall 2025</span>
     </a>
@@ -159,10 +157,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -355,6 +349,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">3. Writing executable scripts with Argparse</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../06_web_scraping/scraping-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Playwright + Argparse + Streamlit to create useful apps</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -427,7 +427,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="positional-arguments" class="level2">
 <h2 class="anchored" data-anchor-id="positional-arguments">Positional arguments</h2>
 <p>Here’s a simple example, which we’ll call <code>echo.py</code>:</p>
-<div id="cf4c0138" class="cell" data-execution_count="1">
+<div id="80fede37" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># echo.py</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -448,7 +448,7 @@ echo.py: error: unrecognized arguments: world</code></pre>
 <pre class="{bash}"><code>python echo.py "hello world"</code></pre>
 <p>works; you’ll get back <code>hello world</code>.</p>
 <p>Alternatively, we could add a <em>second</em> positional argument to our program, call it echo2:</p>
-<div id="89149879" class="cell" data-execution_count="2">
+<div id="2c9b655f" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># echo2.py</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -466,7 +466,7 @@ echo.py: error: unrecognized arguments: world</code></pre>
 <section id="multiple-args" class="level2">
 <h2 class="anchored" data-anchor-id="multiple-args">Multiple args</h2>
 <p>If we expect to always pass multiple inputs for a single argument, we can add the <code>nargs</code> keyword argument to <code>parse_arg</code> to tell it how many inputs to expect. For example, if we want our <code>echo.py</code> to take in two inputs, but don’t want to create separate arguments for each, we can do:</p>
-<div id="74cfd96a" class="cell" data-execution_count="3">
+<div id="9da706b4" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># echo.py</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -481,7 +481,7 @@ echo.py: error: unrecognized arguments: world</code></pre>
 <p>it works, we get:</p>
 <pre class="{text}"><code>['hello', 'world']</code></pre>
 <p>Notice that now <code>args.echo</code> is a list, with the elements in the list corresponding what was given on the command line. This program will still expect two and only two inputs (try it!). If we instead pass <code>nargs='*'</code> to <code>add_argument</code>, the argument can take <em>zero or more</em> arguments, with no limit. For example:</p>
-<div id="c5035a7e" class="cell" data-execution_count="4">
+<div id="83d5cd51" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># echo.py</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -499,7 +499,7 @@ echo.py: error: unrecognized arguments: world</code></pre>
 <section id="providing-help-messages" class="level2">
 <h2 class="anchored" data-anchor-id="providing-help-messages">Providing help messages</h2>
 <p>The <code>add_argument</code> method takes several other keyword arguments aside from <code>nargs</code>. One of the most useful is <code>help</code>. The help keyword allows you to write a message about what an argument does in the program and how to use it. The user can see the help message by running your script with the argument <code>-h</code> or <code>--help</code>. In either case, the script will just print the help message then quit. For example, if we add a help to our <code>echo.py</code> program:</p>
-<div id="612b3d66" class="cell" data-execution_count="5">
+<div id="3e5fa419" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>parser <span class="op">=</span> argparse.ArgumentParser()</span>
@@ -519,7 +519,7 @@ positional arguments:
 options:
   -h, --help  show this help message and exit</code></pre>
 <p>We can also add a description for the overall program by providing the <code>description</code> keyword argument to <code>ArgumentParser</code>. For example:</p>
-<div id="8b80e1cd" class="cell" data-execution_count="6">
+<div id="7a484944" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>parser <span class="op">=</span> argparse.ArgumentParser(description<span class="op">=</span><span class="st">"Prints to screen whatever is provided."</span>)</span>
@@ -545,7 +545,7 @@ options:
 <section id="specifying-types" class="level2">
 <h2 class="anchored" data-anchor-id="specifying-types">Specifying types</h2>
 <p>By default, arguments are assumed to be strings. You can check that yourself: add <code>print(type(args.echo))</code> to your <code>echo.py</code> script. What if we want to input another datatype, like a float? You can do that by providing the <code>type</code> keyword to <code>add_argument</code>. For example, say we want our <code>echo</code> argument to be a float:</p>
-<div id="995f8a06" class="cell" data-execution_count="7">
+<div id="c8498830" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>parser <span class="op">=</span> argparse.ArgumentParser()</span>
@@ -581,7 +581,7 @@ options:
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="041cc6f6" class="cell" data-execution_count="8">
+<div id="c05e3646" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add.py</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
@@ -603,8 +603,8 @@ options:
 <h2 class="anchored" data-anchor-id="optional-arguments">Optional arguments</h2>
 <p>In addition to positional arguments, <code>argparse</code> allows you to define <em>optional</em> arguments. These are arguments that start with either a <code>-</code> or a <code>--</code>. We’ve already seen one example of an optional argument, the in-built <code>-h/--help</code>.</p>
 <p>To add an optional argument, you simply add <code>--</code> to the start of the argument name. For example, building on the previous challenge problem, here’s a simple math script in which the user can optionally specify what operator to do:</p>
-<div id="f52d2e1c" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># math.py</span></span>
+<div id="b6318658" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculator.py</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -627,15 +627,15 @@ options:
 <span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Running:</p>
-<pre class="{bash}"><code>python math.py 2 3
+<pre class="{bash}"><code>python calculator.py 2 3
 5.0</code></pre>
 <p>whereas:</p>
-<pre class="{bash}"><code>python math.py 2 3 --operator multiply
+<pre class="{bash}"><code>python calculator.py 2 3 --operator multiply
 6.0</code></pre>
 <section id="specifying-choices" class="level3">
 <h3 class="anchored" data-anchor-id="specifying-choices">Specifying choices</h3>
-<p>In the previous example our operator argument should only take four pre-defined possibilities. We can specify those using the <code>choices</code> keyword argument. Providing that both provides a more helpful help message, and also negates needing to check that the argument is one of the knowns, since argparse will check for you before the script is even executed. Applying to our <code>math.py</code> script:</p>
-<div id="f676cca4" class="cell" data-execution_count="10">
+<p>In the previous example our operator argument should only take four pre-defined possibilities. We can specify those using the <code>choices</code> keyword argument. Providing that both provides a more helpful help message, and also negates needing to check that the argument is one of the knowns, since argparse will check for you before the script is even executed. Applying to our <code>calculator.py</code> script:</p>
+<div id="f79bddb1" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>parser <span class="op">=</span> argparse.ArgumentParser(description<span class="op">=</span><span class="st">"Prints the sum of two numbers."</span>)</span>
@@ -659,7 +659,7 @@ options:
 <section id="short-options" class="level3">
 <h3 class="anchored" data-anchor-id="short-options">Short options</h3>
 <p>We can specify short aliases for optional arguments by providing both in the <code>add_argument</code>. For example:</p>
-<div id="2039b953" class="cell" data-execution_count="11">
+<div id="5eb7c18b" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>parser <span class="op">=</span> argparse.ArgumentParser(description<span class="op">=</span><span class="st">"Prints the sum of two numbers."</span>)</span>
@@ -680,7 +680,7 @@ options:
 <span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can now run our script by specifying either <code>-o</code> or <code>--operator</code> for the operator. For example:</p>
-<pre class="{bash}"><code>python math.py 2 3 -o multiply
+<pre class="{bash}"><code>python calculator.py 2 3 -o multiply
 6.0</code></pre>
 <div class="callout callout-style-simple callout-caution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -692,7 +692,7 @@ options:
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Add the ability to <code>math.py</code> to optionally write the result out to a file.</p>
+<p>Add the ability to <code>calculator.py</code> to optionally write the result out to a file.</p>
 <div class="callout callout-style-simple callout-caution no-icon callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -705,8 +705,8 @@ options:
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="50b3d6c4" class="cell" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># math.py</span></span>
+<div id="c36ec092" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculator.py</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1150,8 +1150,8 @@ options:
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../syllabus.html" class="pagination-link" aria-label="Syllabus">
-        <span class="nav-page-text">Syllabus</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../06_web_scraping/scraping-4.html" class="pagination-link" aria-label="4. Playwright + Argparse + Streamlit to create useful apps">
+        <span class="nav-page-text">4. Playwright + Argparse + Streamlit to create useful apps</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
