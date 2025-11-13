@@ -255,7 +255,7 @@
     "href": "06_web_scraping/index.html#lectures",
     "title": "6. Web Scraping",
     "section": "Lectures",
-    "text": "Lectures",
+    "text": "Lectures\n\nMonday 11/3/25\nIntroduction to web scraping\n\n\n\n\nWednesday 11/5/25\nMore scraping + actionability\n\n\n\n\nMonday 11/10/25\nWriting executable scripts with Argparse\n\n\n\n\nWednesday 11/12/25\nPlaywright + Argparse + Streamlit to create useful apps",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "6. Web Scraping"
@@ -336,7 +336,29 @@
     "href": "05_web_apis/index.html#lectures",
     "title": "5. Web APIs",
     "section": "Lectures",
-    "text": "Lectures",
+    "text": "Lectures\n\nWednesday 10/22/25\nREST APIs",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "5. Web APIs"
+    ]
+  },
+  {
+    "objectID": "05_web_apis/index.html#monday-102725",
+    "href": "05_web_apis/index.html#monday-102725",
+    "title": "5. Web APIs",
+    "section": "Monday 10/27/25",
+    "text": "Monday 10/27/25\nPosting with REST API and caching results",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "5. Web APIs"
+    ]
+  },
+  {
+    "objectID": "05_web_apis/index.html#wednesday-102925",
+    "href": "05_web_apis/index.html#wednesday-102925",
+    "title": "5. Web APIs",
+    "section": "Wednesday 10/29/25",
+    "text": "Wednesday 10/29/25\nCreating your own APIs with FastAPI",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "5. Web APIs"
