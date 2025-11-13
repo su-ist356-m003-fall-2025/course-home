@@ -10,3 +10,23 @@ order: 5
 3. [Creating your own APIs with FastAPI](webapi-3.qmd)
 
 ## Lectures
+
+### Wednesday 10/22/25
+
+REST APIs
+
+<iframe id="kmsembed-1_xvaf4so6" width="640" height="360" src="https://video.syr.edu/embed/secure/iframe/entryId/1_xvaf4so6/uiConfId/45992161/st/0" class="kmsembed" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" referrerPolicy="no-referrer-when-downgrade" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="IST 356 Lecture - 10-22-25"></iframe>
+
+
+## Monday 10/27/25
+
+Posting with REST API and caching results
+
+<iframe id="kmsembed-1_h1afe770" width="640" height="360" src="https://video.syr.edu/embed/secure/iframe/entryId/1_h1afe770/uiConfId/45992161/st/0" class="kmsembed" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" referrerPolicy="no-referrer-when-downgrade" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="IST 356 Lecture - 10-27-25"></iframe>
+
+
+## Wednesday 10/29/25
+
+Creating your own APIs with FastAPI
+
+<iframe id="kmsembed-1_fr9454ja" width="640" height="360" src="https://video.syr.edu/embed/secure/iframe/entryId/1_fr9454ja/uiConfId/45992161/st/0" class="kmsembed" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" referrerPolicy="no-referrer-when-downgrade" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="IST 356 Lecture - 10-29-25"></iframe>
