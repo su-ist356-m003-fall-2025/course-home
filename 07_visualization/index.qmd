@@ -1,0 +1,10 @@
+---
+title: "7. Visualization"
+order: 7
+---
+
+## Tutorials
+
+1. [Introduction to maptlotlib and seaborn](visualization-1.qmd) 
+
+## Lectures

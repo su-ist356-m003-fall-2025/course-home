@@ -5,3 +5,5 @@ pandas
 openpyxl
 lxml
 playwright
+matplotlib
+seaborn
