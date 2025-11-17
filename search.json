@@ -121,6 +121,102 @@
     ]
   },
   {
+    "objectID": "07_visualization/visualization-1.html",
+    "href": "07_visualization/visualization-1.html",
+    "title": "1. Instroduction to Matplotlib and Seaborn",
+    "section": "",
+    "text": "Note: Parts of this tutorial were copied from the Syracuse University OSPO Advanced Python Workshop 2024.\nIn this tutorial you will learn the basics of how to create plots of data using Seaborn, which depends on Matplotlib.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization",
+      "1. Instroduction to Matplotlib and Seaborn"
+    ]
+  },
+  {
+    "objectID": "07_visualization/visualization-1.html#overview",
+    "href": "07_visualization/visualization-1.html#overview",
+    "title": "1. Instroduction to Matplotlib and Seaborn",
+    "section": "Overview",
+    "text": "Overview\n\nAnatomy of a visualization\nhttps://carbondesignsystem.com/data-visualization/chart-anatomy/\n\nCanvas / Plot Area - The area where the data is visualized.\nAxis - The x and y lines that help to orient the viewer to the data.\nTitle - A brief description of the data being visualized.\nSeries / Trace - A single set of data that is plotted on the chart.\nLegend - A key that explains the colors or symbols used in the visualization / series.\n\n\n\nData Plotting: Kinds of Data\n\nCategorical data - Discrete values like Yes/No, Red/Green/Blue, etc.\nOrdinal data - Categorical data that has an order to it. Monday, Tuesday, Wednesday, etc.\nTime series data - Data that is recorded over time. Stock prices, temperature, etc.\nContinuous data - Measuments, such as weight, height, price, etc.\nDiscrete data - Data that can only take certain values. Number of children, number of cars, etc.\nGeospatial data - Data that is tied to a location. Latitude, Longitude, etc.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization",
+      "1. Instroduction to Matplotlib and Seaborn"
+    ]
+  },
+  {
+    "objectID": "07_visualization/visualization-1.html#matplotlib",
+    "href": "07_visualization/visualization-1.html#matplotlib",
+    "title": "1. Instroduction to Matplotlib and Seaborn",
+    "section": "Matplotlib",
+    "text": "Matplotlib\nMatplotlib is a multi-platform data visualization library built on NumPy arrays, and designed to work with the broader SciPy stack. One of Matplotlib’s most important features is its ability to play well with many operating systems and graphics backends. Matplotlib supports dozens of backends and output types, which means you can count on it to work regardless of which operating system you are using or which output format you wish. This cross-platform, everything-to-everyone approach has been one of the great strengths of Matplotlib. It has led to a large user base, which in turn has led to an active developer base and Matplotlib’s powerful tools and ubiquity within the scientific Python world.\nMatplotlib is an excellent graphics library for generating scientific figures, with a slightly steeper learning curve than other libraries and a somewhat aging API, yet it is still the most widely used library for plotting in the Python community. It allows for any kind of visualization, from quick and simple to complex and custom. Many other libraries are built on top of Matplotlib and are designed to work in conjunction with analysis tools from the SciPy stack, such as NumPy and Pandas.\nAlthough you will use Seaborn most in this course (and likely outside this course) it is good to have a basic understanding of matplotlib. Here, we provide a very quick crash course.\nTo use matplotlib, we first need to import it. Specifically, we need to import the pyplot module, which we will rename plt (as is typical):\n\nfrom matplotlib import pyplot as plt\n\n\nBasic line plot with Matplotlib\nAt its most basic, matplotlib uses “figures” and “axes”. These create the canvases that you can plot things on. An axes is what a plot is created on; a figure can hold one or more axes. To create them:\n\nfig = plt.figure()\nax = fig.add_subplot()\n\n\n\n\n\n\n\n\nOk, so how do we actually make a plot? Let’s create a simple line plot of a sine wave, evaluated between 0 and 2pi. First, we’ll create our data with numpy:\n\nimport numpy as np\nx = np.linspace(0, 2*np.pi, 100)\ny = np.sin(x)\n\nNow let’s create a figure, axes, and plot them using the plot function:\n\nfig = plt.figure()\nax = fig.add_subplot()\nax.plot(x, y)\n\n\n\n\n\n\n\n\nNote that the plotting function is a method of the axes. We can make a nicer looking plot by adding things like axis labels, a legend, and an axis label:\n\nfig = plt.figure()\nax = fig.add_subplot()\nax.plot(x, y, label='sin(x)$')\nax.set_xlabel('x')\nax.set_ylabel('y')\nax.legend()\nax.grid()\nax.set_title('My plot')\n\nText(0.5, 1.0, 'My plot')\n\n\n\n\n\n\n\n\n\nWe can also plot more than one thing on a single plot. Let’s plot cos(x) on the same plot:\n\nfig = plt.figure()\nax = fig.add_subplot()\nax.plot(x, y, label='sin(x)')\nax.plot(x, np.cos(x), label='cos(x)')\nax.set_xlabel('x')\nax.set_ylabel('y')\nax.legend()\nax.grid()\nax.set_title('My plot')\n\nText(0.5, 1.0, 'My plot')\n\n\n\n\n\n\n\n\n\nNotice that the color of the second plot automatically changed. You can alternatively specify the color manually using the color argument in plot. You can also do things like set the linestyle and linewidth. For example:\n\nfig = plt.figure()\nax = fig.add_subplot()\nax.plot(x, y, lw=2, label='sin(x)')\nax.plot(x, np.cos(x), lw=2, ls='--', label='cos(x)')\nax.set_xlabel('x')\nax.set_ylabel('y')\nax.legend()\nax.grid()\nax.set_title('My plot')\n\nText(0.5, 1.0, 'My plot')\n\n\n\n\n\n\n\n\n\n\n\nStateful execution\nIn the above examples we explicitly created a figure, axes, and added plots to the axes.\nMatplotlib has another, “stateful”, interface. In this case, the figure and axes are automatically created and managed by matplotlib in the background. Instead of calling methods, you instead call methods on the pyplot module directly. Here’s the same example as above, but using the stateful interface:\n\nplt.plot(x, y, lw=2, label='sin(x)')\nplt.plot(x, np.cos(x), lw=2, ls='--', label='cos(x)')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.legend()\nplt.grid()\nplt.title('My plot')\n\nText(0.5, 1.0, 'My plot')\n\n\n\n\n\n\n\n\n\nNotice that in this case you don’t interact with the figure or axes at all. Instead, matplotlib creates the a figure and axes for you, which are the “current” figure/axes. All plotting commands are automatically added to those plots. You can retrieve the current figure and axes with:\n\n# get the current figure\nfig = plt.gcf()\n# get the current axes\naxes = plt.gca()\n\n\n\n\n\n\n\n\nAs you can see, the stateful interface can be quicker and easier to use if you are only creating a single plot at a time. It is the more common interface you will see in various examples on the web. Seaborn also supports a stateful interface that we will use below.\nHowever, I prefer directly interacting with the figure and axes as we did initially. This causes less confusion later on, and it makes it easy to create more complicated figures with multiple axes. What to use is up to you, and it depends on the situation.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization",
+      "1. Instroduction to Matplotlib and Seaborn"
+    ]
+  },
+  {
+    "objectID": "07_visualization/visualization-1.html#seaborn",
+    "href": "07_visualization/visualization-1.html#seaborn",
+    "title": "1. Instroduction to Matplotlib and Seaborn",
+    "section": "Seaborn",
+    "text": "Seaborn\nSeaborn is a Python data visualization library based on Matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics.\nConsider seaborn as a replacement for Matplotlib, Pythons de-facto plotting library. Seaborn is built on top of Matplotlib and closely integrated with pandas data structures. You can think of Matplotlib and Seaborn as being to visualization as numpy and Pandas is to data wrangling.\nTo use Seaborn, we need to import it:\n\nimport seaborn as sns",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization",
+      "1. Instroduction to Matplotlib and Seaborn"
+    ]
+  },
+  {
+    "objectID": "07_visualization/visualization-1.html#datasets-we-will-use",
+    "href": "07_visualization/visualization-1.html#datasets-we-will-use",
+    "title": "1. Instroduction to Matplotlib and Seaborn",
+    "section": "Datasets we will use",
+    "text": "Datasets we will use\nSeaborn has some in-built toy datasets that we will use to illustrate its plotting capabilities.\n\n“penguins” The Palmer Penguins dataset: https://github.com/allisonhorst/palmerpenguins\n“dowjones”: The Dow Jones Industrial Stock Price Index: https://fred.stlouisfed.org/series/M1109BUSM293NNBR\n\nWe will also use: - Analyzing Mobile Usage Patterns and User Behavior Classification Across Devices https://www.kaggle.com/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization",
+      "1. Instroduction to Matplotlib and Seaborn"
+    ]
+  },
+  {
+    "objectID": "07_visualization/visualization-1.html#plot-types",
+    "href": "07_visualization/visualization-1.html#plot-types",
+    "title": "1. Instroduction to Matplotlib and Seaborn",
+    "section": "Plot Types",
+    "text": "Plot Types\n\nLine plot\nTo start, let’s recreate the simple line plot we did above with matplotlib:\n\nlp = sns.lineplot(x=x, y=y, label='sin(x)')\nsns.lineplot(x=x, y=np.cos(x), lw=2, ls='--', label='cos(x)')\nlp.set_xlabel('x')\nlp.set_ylabel('y')\nlp.legend()\nlp.grid()\nlp.set_title('My plot')\n\nText(0.5, 1.0, 'My plot')\n\n\n\n\n\n\n\n\n\nThat’s nice, but not that much better than the matplotlib interface. Where Seaborn really shines is its interface with Pandas. For example, let’s create a DataFrame from x and sin(x):\n\nimport pandas as pd\ndf = pd.DataFrame({'x': x, 'sin(x)': np.sin(x)})\nsns.lineplot(data=df, x='x', y='sin(x)')\n\n\n\n\n\n\n\n\nNotice that an x and y label were generated automatically for us. Things get even more interesting if you use the hue argument. Suppose we have dataframe that has both sin and cos values in a single column, with a separate column that indicates which rows below to which function:\n\ndf = pd.DataFrame({'x': np.tile(x, 2), 'Trig Functions': np.append(np.sin(x), np.cos(x)),\n                   'Function': ['sin']*len(x) + ['cos']*len(x)})\nprint(df.head())\nprint(df.tail())\n\n          x  Trig Functions Function\n0  0.000000        0.000000      sin\n1  0.063467        0.063424      sin\n2  0.126933        0.126592      sin\n3  0.190400        0.189251      sin\n4  0.253866        0.251148      sin\n            x  Trig Functions Function\n195  6.029319        0.967949      cos\n196  6.092786        0.981929      cos\n197  6.156252        0.991955      cos\n198  6.219719        0.997987      cos\n199  6.283185        1.000000      cos\n\n\nNow we can plot both with a single line, using the hue argument:\n\nsns.lineplot(data=df, x='x', y='Trig Functions', hue='Function')\n\n\n\n\n\n\n\n\nNotice that it created x and y labels, as well as a legend for us! The hue parameter is especially useful for bar plots, as we’ll see below.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization",
+      "1. Instroduction to Matplotlib and Seaborn"
+    ]
+  },
+  {
+    "objectID": "07_visualization/visualization-1.html#errorbar",
+    "href": "07_visualization/visualization-1.html#errorbar",
+    "title": "1. Instroduction to Matplotlib and Seaborn",
+    "section": "Errorbar",
+    "text": "Errorbar\nSeaborn also makes it easy to create plots with errorbars on it. To illustrate, let’s use the Dow Jones Industrial data:\n\ndow = sns.load_dataset(\"dowjones\")\ndow.head()\n\n\n\n\n\n\n\n\nDate\nPrice\n\n\n\n\n0\n1914-12-01\n55.00\n\n\n1\n1915-01-01\n56.55\n\n\n2\n1915-02-01\n56.00\n\n\n3\n1915-03-01\n58.30\n\n\n4\n1915-04-01\n66.45\n\n\n\n\n\n\n\n\n\n\n\n\n\nCautionCode Challenge 1.1\n\n\n\nMake a line plot of the Dow price versus year using Seaborn.\n\n\n\n\n\n\nCautionSolution\n\n\n\n\n\n\nsns.lineplot(data=dow, x=\"Date\", y=\"Price\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nNow suppose we want to average the price per year. First, let’s create a new column that just has the year. To do that, we’ll create a function that extracts the year from the Date column:\n\ndef parse_year(date):\n    return date.year\n\nNow apply it:\n\nyears = dow['Date'].apply(parse_year)\ndow['Year'] = years\n\nNow let’s plot it:\n\nlp = sns.lineplot(data=dow, x=\"Year\", y=\"Price\", estimator='mean')\nlp.set_title(\"Average Dow Jones Price by Year\")\n\nText(0.5, 1.0, 'Average Dow Jones Price by Year')\n\n\n\n\n\n\n\n\n\nSeaborn has shown the average for each year, and has automatically added errorbars showing the standard deviation for each year.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization",
+      "1. Instroduction to Matplotlib and Seaborn"
+    ]
+  },
+  {
+    "objectID": "07_visualization/visualization-1.html#the-bar-plot",
+    "href": "07_visualization/visualization-1.html#the-bar-plot",
+    "title": "1. Instroduction to Matplotlib and Seaborn",
+    "section": "The Bar Plot",
+    "text": "The Bar Plot\nA bar plot is a plot that presents categorical data with rectangular bars with lengths proportional to the coninouos or discrete values they represent. One axis of the plot shows the specific categories being compared, and the other axis represents a measured value.\nSeaborn will automatically aggregate the data for you, using the estimator named argument. It takees the values \"mean\", \"count\", \"sum\", \"min\" or \"max\".\nTo illustrate this, we will use the Palmer Penguins data:\n\nimport seaborn as sns\npengo = sns.load_dataset(\"penguins\")\npengo.head()\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nMale\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nFemale\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nFemale\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nFemale\n\n\n\n\n\n\n\nEach row in the data set represents measurements for a single penguin. Let’s make that more explicit by adding a “count” column, which we’ll use to keep track of the number of penguins in the dataset.\n\npengo['count'] = 1\n\nNow lets create a bar plot showing the total number of penguins by species. To separate them out, we’ll use the hue argument:\n\nplot = sns.barplot(data=pengo, x=\"species\", y=\"count\", hue=\"species\", estimator=\"sum\")\nplot.set_title(\"Penguin species count\")\n\nText(0.5, 1.0, 'Penguin species count')\n\n\n\n\n\n\n\n\n\n\nSame plot with method chaning\nYou can chain the title onto the plot.\n\nsns.barplot(data=pengo, x=\"species\", y=\"count\", hue=\"species\", estimator=\"sum\").set_title(\"Penguin species count\")\n\nText(0.5, 1.0, 'Penguin species count')\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCautionCode Challenge 1.2\n\n\n\nUsing the Palmer penguins data, make a bar plot of body mass (y axis) vs species (x axis) , separated by sex.\n\n\n\n\n\n\nCautionSolution\n\n\n\n\n\n\nsns.barplot(data=pengo, x=\"species\", y=\"body_mass_g\", hue=\"sex\", estimator=\"mean\")",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization",
+      "1. Instroduction to Matplotlib and Seaborn"
+    ]
+  },
+  {
     "objectID": "06_web_scraping/scraping-4.html",
     "href": "06_web_scraping/scraping-4.html",
     "title": "4. Playwright + Argparse + Streamlit to create useful apps",
@@ -2384,6 +2480,39 @@
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "6. Web Scraping",
       "3. Writing executable scripts with Argparse"
+    ]
+  },
+  {
+    "objectID": "07_visualization/index.html",
+    "href": "07_visualization/index.html",
+    "title": "7. Visualization",
+    "section": "",
+    "text": "Introduction to maptlotlib and seaborn",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization"
+    ]
+  },
+  {
+    "objectID": "07_visualization/index.html#tutorials",
+    "href": "07_visualization/index.html#tutorials",
+    "title": "7. Visualization",
+    "section": "",
+    "text": "Introduction to maptlotlib and seaborn",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization"
+    ]
+  },
+  {
+    "objectID": "07_visualization/index.html#lectures",
+    "href": "07_visualization/index.html#lectures",
+    "title": "7. Visualization",
+    "section": "Lectures",
+    "text": "Lectures",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization"
     ]
   },
   {
