@@ -154,6 +154,7 @@ the distributions by species.
 #### Solution
 
 ```{python}
+pengo = sns.load_dataset("penguins")
 sns.histplot(data=pengo, x='bill_length_mm', hue='species', stat='density', common_norm=False, kde=True)
 ```
 :::
