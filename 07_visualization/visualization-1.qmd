@@ -1,5 +1,5 @@
 ---
-title: '1. Instroduction to Matplotlib and Seaborn'
+title: '1. Introduction to Matplotlib and Seaborn'
 jupyter: python3
 ---
 
@@ -339,3 +339,30 @@ sns.barplot(data=pengo, x="species", y="body_mass_g", hue="sex", estimator="mean
 ```
 :::
 ::::
+
+
+### Scatter plots
+
+A scatter plot is used to show how to variables are related to each other. This is usually used when there is
+some random element to the data such that the realtionship between the variables is not always one-to-one.
+In that case, you don't want to make a line plot, as the lines will jumpt around, making for a difficult
+to read plot. A scatter plot simply puts markers at every data point, so that you can get a sense of
+what the relationship between the variables are.
+
+To make a scatter plot with Seaborn you use the [scatterplot](https://seaborn.pydata.org/generated/seaborn.scatterplot.html)
+function. For example, here is a scatter plot showing the relationship between
+bill length and flipper length in the Palmer penguins dataset:
+
+```{python}
+sns.scatterplot(data=pengo, x='bill_length_mm', y='flipper_length_mm')
+```
+
+We can make an even more informative plot with the hue argument to color the points based on
+one of the other columns. If we make the hue be based on species, we get:
+
+```{python}
+sns.scatterplot(data=pengo, x='bill_length_mm', y='flipper_length_mm', hue='species')
+```
+
+Notice that changing the colors of the markers based on a third column, we have effectively
+represented 3D data in a 2D plot.
