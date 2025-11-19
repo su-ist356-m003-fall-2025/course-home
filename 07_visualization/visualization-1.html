@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1. Instroduction to Matplotlib and Seaborn – IST 356 Fall 2025</title>
+<title>1. Introduction to Matplotlib and Seaborn – IST 356 Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../syllabus.html" rel="next">
+<link href="../07_visualization/visualization-2.html" rel="next">
 <link href="../07_visualization/index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -109,13 +109,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
-<meta property="og:title" content="1. Instroduction to Matplotlib and Seaborn – IST 356 Fall 2025">
+<meta property="og:title" content="1. Introduction to Matplotlib and Seaborn – IST 356 Fall 2025">
 <meta property="og:description" content="">
 <meta property="og:image" content="enter_gitHub_pages_URL_here/07_visualization/visualization-1_files/figure-html/cell-3-output-1.png">
 <meta property="og:site_name" content="IST 356 Fall 2025">
 <meta property="og:image:height" content="832">
 <meta property="og:image:width" content="1162">
-<meta name="twitter:title" content="1. Instroduction to Matplotlib and Seaborn – IST 356 Fall 2025">
+<meta name="twitter:title" content="1. Introduction to Matplotlib and Seaborn – IST 356 Fall 2025">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="enter_gitHub_pages_URL_here/07_visualization/visualization-1_files/figure-html/cell-3-output-1.png">
 <meta name="twitter:image-height" content="832">
@@ -150,7 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07_visualization/index.html">7. Visualization</a></li><li class="breadcrumb-item"><a href="../07_visualization/visualization-1.html">1. Instroduction to Matplotlib and Seaborn</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07_visualization/index.html">7. Visualization</a></li><li class="breadcrumb-item"><a href="../07_visualization/visualization-1.html">1. Introduction to Matplotlib and Seaborn</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -372,11 +372,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../07_visualization/visualization-1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">1. Instroduction to Matplotlib and Seaborn</span></a>
+ <span class="menu-text">1. Introduction to Matplotlib and Seaborn</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../07_visualization/visualization-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. More Seaborn plots</span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../08_final_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Final Project</span></a>
+  </div>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
@@ -413,6 +425,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-bar-plot" id="toc-the-bar-plot" class="nav-link" data-scroll-target="#the-bar-plot">The Bar Plot</a>
   <ul class="collapse">
   <li><a href="#same-plot-with-method-chaning" id="toc-same-plot-with-method-chaning" class="nav-link" data-scroll-target="#same-plot-with-method-chaning">Same plot with method chaning</a></li>
+  <li><a href="#scatter-plots" id="toc-scatter-plots" class="nav-link" data-scroll-target="#scatter-plots">Scatter plots</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -420,9 +433,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07_visualization/index.html">7. Visualization</a></li><li class="breadcrumb-item"><a href="../07_visualization/visualization-1.html">1. Instroduction to Matplotlib and Seaborn</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07_visualization/index.html">7. Visualization</a></li><li class="breadcrumb-item"><a href="../07_visualization/visualization-1.html">1. Introduction to Matplotlib and Seaborn</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">1. Instroduction to Matplotlib and Seaborn</h1>
+<h1 class="title">1. Introduction to Matplotlib and Seaborn</h1>
 </div>
 
 
@@ -486,13 +499,13 @@ Note
 <p>Matplotlib is an excellent graphics library for generating scientific figures, with a slightly steeper learning curve than other libraries and a somewhat aging API, yet it is still the most widely used library for plotting in the Python community. It allows for any kind of visualization, from quick and simple to complex and custom. Many other libraries are built on top of Matplotlib and are designed to work in conjunction with analysis tools from the SciPy stack, such as NumPy and Pandas.</p>
 <p>Although you will use Seaborn most in this course (and likely outside this course) it is good to have a basic understanding of matplotlib. Here, we provide a very quick crash course.</p>
 <p>To use <code>matplotlib</code>, we first need to import it. Specifically, we need to import the pyplot module, which we will rename <code>plt</code> (as is typical):</p>
-<div id="9682b178" class="cell" data-execution_count="1">
+<div id="a3f89f48" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="basic-line-plot-with-matplotlib" class="level3">
 <h3 class="anchored" data-anchor-id="basic-line-plot-with-matplotlib">Basic line plot with Matplotlib</h3>
 <p>At its most basic, matplotlib uses “figures” and “axes”. These create the canvases that you can plot things on. An axes is what a plot is created on; a figure can hold one or more axes. To create them:</p>
-<div id="c632ae2b" class="cell" data-execution_count="2">
+<div id="17940305" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
@@ -504,13 +517,13 @@ Note
 </div>
 </div>
 <p>Ok, so how do we actually make a plot? Let’s create a simple line plot of a sine wave, evaluated between 0 and 2pi. First, we’ll create our data with numpy:</p>
-<div id="56646501" class="cell" data-execution_count="3">
+<div id="7acad743" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">100</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.sin(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now let’s create a figure, axes, and plot them using the <code>plot</code> function:</p>
-<div id="af570897" class="cell" data-execution_count="4">
+<div id="14a14ad7" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot()</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ax.plot(x, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -523,7 +536,7 @@ Note
 </div>
 </div>
 <p>Note that the plotting function is a method of the axes. We can make a nicer looking plot by adding things like axis labels, a legend, and an axis label:</p>
-<div id="5396d9c2" class="cell" data-execution_count="5">
+<div id="37e96283" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ax.plot(x, y, label<span class="op">=</span><span class="st">'sin(x)$'</span>)</span>
@@ -544,7 +557,7 @@ Note
 </div>
 </div>
 <p>We can also plot more than one thing on a single plot. Let’s plot cos(x) on the same plot:</p>
-<div id="79b2a354" class="cell" data-execution_count="6">
+<div id="2887497c" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot()</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ax.plot(x, y, label<span class="op">=</span><span class="st">'sin(x)'</span>)</span>
@@ -566,7 +579,7 @@ Note
 </div>
 </div>
 <p>Notice that the color of the second plot automatically changed. You can alternatively specify the color manually using the <code>color</code> argument in <code>plot</code>. You can also do things like set the linestyle and linewidth. For example:</p>
-<div id="11f66014" class="cell" data-execution_count="7">
+<div id="73f63623" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot()</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ax.plot(x, y, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'sin(x)'</span>)</span>
@@ -592,7 +605,7 @@ Note
 <h3 class="anchored" data-anchor-id="stateful-execution">Stateful execution</h3>
 <p>In the above examples we explicitly created a figure, axes, and added plots to the axes.</p>
 <p>Matplotlib has another, “stateful”, interface. In this case, the figure and axes are automatically created and managed by matplotlib in the background. Instead of calling methods, you instead call methods on the <code>pyplot</code> module directly. Here’s the same example as above, but using the stateful interface:</p>
-<div id="68c268bf" class="cell" data-execution_count="8">
+<div id="1de219f2" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'sin(x)'</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, np.cos(x), lw<span class="op">=</span><span class="dv">2</span>, ls<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'cos(x)'</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
@@ -612,7 +625,7 @@ Note
 </div>
 </div>
 <p>Notice that in this case you don’t interact with the figure or axes at all. Instead, matplotlib creates the a figure and axes for you, which are the “current” figure/axes. All plotting commands are automatically added to those plots. You can retrieve the current figure and axes with:</p>
-<div id="8c980262" class="cell" data-execution_count="9">
+<div id="904a1753" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get the current figure</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.gcf()</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># get the current axes</span></span>
@@ -634,7 +647,7 @@ Note
 <p><a href="https://seaborn.pydata.org/">Seaborn</a> is a Python data visualization library based on Matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics.</p>
 <p>Consider seaborn as a replacement for Matplotlib, Pythons de-facto plotting library. Seaborn is built on top of Matplotlib and closely integrated with pandas data structures. You can think of Matplotlib and Seaborn as being to visualization as numpy and Pandas is to data wrangling.</p>
 <p>To use Seaborn, we need to import it:</p>
-<div id="f8d763b7" class="cell" data-execution_count="10">
+<div id="7266e0b0" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
@@ -652,7 +665,7 @@ Note
 <section id="line-plot" class="level3">
 <h3 class="anchored" data-anchor-id="line-plot">Line plot</h3>
 <p>To start, let’s recreate the simple line plot we did above with matplotlib:</p>
-<div id="3fb1d86b" class="cell" data-execution_count="11">
+<div id="584a673d" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>lp <span class="op">=</span> sns.lineplot(x<span class="op">=</span>x, y<span class="op">=</span>y, label<span class="op">=</span><span class="st">'sin(x)'</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(x<span class="op">=</span>x, y<span class="op">=</span>np.cos(x), lw<span class="op">=</span><span class="dv">2</span>, ls<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'cos(x)'</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>lp.set_xlabel(<span class="st">'x'</span>)</span>
@@ -672,7 +685,7 @@ Note
 </div>
 </div>
 <p>That’s nice, but not that much better than the matplotlib interface. Where Seaborn really shines is its interface with Pandas. For example, let’s create a DataFrame from x and sin(x):</p>
-<div id="8ba4a502" class="cell" data-execution_count="12">
+<div id="ba3d7ea4" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'x'</span>: x, <span class="st">'sin(x)'</span>: np.sin(x)})</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'sin(x)'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -685,7 +698,7 @@ Note
 </div>
 </div>
 <p>Notice that an x and y label were generated automatically for us. Things get even more interesting if you use the <code>hue</code> argument. Suppose we have dataframe that has both sin and cos values in a single column, with a separate column that indicates which rows below to which function:</p>
-<div id="f39275e5" class="cell" data-execution_count="13">
+<div id="235bfebb" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'x'</span>: np.tile(x, <span class="dv">2</span>), <span class="st">'Trig Functions'</span>: np.append(np.sin(x), np.cos(x)),</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'Function'</span>: [<span class="st">'sin'</span>]<span class="op">*</span><span class="bu">len</span>(x) <span class="op">+</span> [<span class="st">'cos'</span>]<span class="op">*</span><span class="bu">len</span>(x)})</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())</span>
@@ -706,7 +719,7 @@ Note
 </div>
 </div>
 <p>Now we can plot both with a single line, using the <code>hue</code> argument:</p>
-<div id="83566d5c" class="cell" data-execution_count="14">
+<div id="d6949ee5" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'x'</span>, y<span class="op">=</span><span class="st">'Trig Functions'</span>, hue<span class="op">=</span><span class="st">'Function'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -722,7 +735,7 @@ Note
 <section id="errorbar" class="level2">
 <h2 class="anchored" data-anchor-id="errorbar">Errorbar</h2>
 <p>Seaborn also makes it easy to create plots with errorbars on it. To illustrate, let’s use the Dow Jones Industrial data:</p>
-<div id="46b21d66" class="cell" data-execution_count="15">
+<div id="875ea2ba" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>dow <span class="op">=</span> sns.load_dataset(<span class="st">"dowjones"</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>dow.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
@@ -792,7 +805,7 @@ Note
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="f81fd879" class="cell" data-execution_count="16">
+<div id="81c796b5" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>dow, x<span class="op">=</span><span class="st">"Date"</span>, y<span class="op">=</span><span class="st">"Price"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -808,17 +821,17 @@ Note
 </div>
 </div>
 <p>Now suppose we want to average the price per year. First, let’s create a new column that just has the year. To do that, we’ll create a function that extracts the year from the Date column:</p>
-<div id="37a4da47" class="cell" data-execution_count="17">
+<div id="2893a917" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> parse_year(date):</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> date.year</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now apply it:</p>
-<div id="ee13870d" class="cell" data-execution_count="18">
+<div id="67473cc0" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> dow[<span class="st">'Date'</span>].<span class="bu">apply</span>(parse_year)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>dow[<span class="st">'Year'</span>] <span class="op">=</span> years</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now let’s plot it:</p>
-<div id="4ba54764" class="cell" data-execution_count="19">
+<div id="89d63463" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>lp <span class="op">=</span> sns.lineplot(data<span class="op">=</span>dow, x<span class="op">=</span><span class="st">"Year"</span>, y<span class="op">=</span><span class="st">"Price"</span>, estimator<span class="op">=</span><span class="st">'mean'</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>lp.set_title(<span class="st">"Average Dow Jones Price by Year"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
@@ -839,7 +852,7 @@ Note
 <p>A bar plot is a plot that presents categorical data with rectangular bars with lengths proportional to the coninouos or discrete values they represent. One axis of the plot shows the specific categories being compared, and the other axis represents a measured value.</p>
 <p>Seaborn will automatically aggregate the data for you, using the <code>estimator</code> named argument. It takees the values <code>"mean", "count", "sum", "min"</code> or <code>"max"</code>.</p>
 <p>To illustrate this, we will use the Palmer Penguins data:</p>
-<div id="75f9ca98" class="cell" data-execution_count="20">
+<div id="2c88c035" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>pengo <span class="op">=</span> sns.load_dataset(<span class="st">"penguins"</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>pengo.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -918,11 +931,11 @@ Note
 </div>
 </div>
 <p>Each row in the data set represents measurements for a single penguin. Let’s make that more explicit by adding a “count” column, which we’ll use to keep track of the number of penguins in the dataset.</p>
-<div id="1b911534" class="cell" data-execution_count="21">
+<div id="28996ac6" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>pengo[<span class="st">'count'</span>] <span class="op">=</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now lets create a bar plot showing the total number of penguins by species. To separate them out, we’ll use the <code>hue</code> argument:</p>
-<div id="048f773f" class="cell" data-execution_count="22">
+<div id="4a5ff6f2" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> sns.barplot(data<span class="op">=</span>pengo, x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"count"</span>, hue<span class="op">=</span><span class="st">"species"</span>, estimator<span class="op">=</span><span class="st">"sum"</span>)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>plot.set_title(<span class="st">"Penguin species count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
@@ -939,7 +952,7 @@ Note
 <section id="same-plot-with-method-chaning" class="level3">
 <h3 class="anchored" data-anchor-id="same-plot-with-method-chaning">Same plot with method chaning</h3>
 <p>You can chain the title onto the plot.</p>
-<div id="e8a2c6aa" class="cell" data-execution_count="23">
+<div id="fc2178cc" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(data<span class="op">=</span>pengo, x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"count"</span>, hue<span class="op">=</span><span class="st">"species"</span>, estimator<span class="op">=</span><span class="st">"sum"</span>).set_title(<span class="st">"Penguin species count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>Text(0.5, 1.0, 'Penguin species count')</code></pre>
@@ -975,7 +988,7 @@ Note
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="3732f412" class="cell" data-execution_count="24">
+<div id="29763c44" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(data<span class="op">=</span>pengo, x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"body_mass_g"</span>, hue<span class="op">=</span><span class="st">"sex"</span>, estimator<span class="op">=</span><span class="st">"mean"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -990,6 +1003,33 @@ Note
 </div>
 </div>
 </div>
+</section>
+<section id="scatter-plots" class="level3">
+<h3 class="anchored" data-anchor-id="scatter-plots">Scatter plots</h3>
+<p>A scatter plot is used to show how to variables are related to each other. This is usually used when there is some random element to the data such that the realtionship between the variables is not always one-to-one. In that case, you don’t want to make a line plot, as the lines will jumpt around, making for a difficult to read plot. A scatter plot simply puts markers at every data point, so that you can get a sense of what the relationship between the variables are.</p>
+<p>To make a scatter plot with Seaborn you use the <a href="https://seaborn.pydata.org/generated/seaborn.scatterplot.html">scatterplot</a> function. For example, here is a scatter plot showing the relationship between bill length and flipper length in the Palmer penguins dataset:</p>
+<div id="088ea714" class="cell" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>pengo, x<span class="op">=</span><span class="st">'bill_length_mm'</span>, y<span class="op">=</span><span class="st">'flipper_length_mm'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualization-1_files/figure-html/cell-26-output-1.png" width="593" height="429" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can make an even more informative plot with the hue argument to color the points based on one of the other columns. If we make the hue be based on species, we get:</p>
+<div id="546eed51" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>pengo, x<span class="op">=</span><span class="st">'bill_length_mm'</span>, y<span class="op">=</span><span class="st">'flipper_length_mm'</span>, hue<span class="op">=</span><span class="st">'species'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualization-1_files/figure-html/cell-27-output-1.png" width="593" height="429" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Notice that changing the colors of the markers based on a third column, we have effectively represented 3D data in a 2D plot.</p>
 
 
 </section>
@@ -1403,8 +1443,8 @@ Note
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../syllabus.html" class="pagination-link" aria-label="Syllabus">
-        <span class="nav-page-text">Syllabus</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../07_visualization/visualization-2.html" class="pagination-link" aria-label="2. More Seaborn plots">
+        <span class="nav-page-text">2. More Seaborn plots</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

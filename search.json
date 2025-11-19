@@ -121,99 +121,176 @@
     ]
   },
   {
+    "objectID": "08_final_project/index.html",
+    "href": "08_final_project/index.html",
+    "title": "Final Project",
+    "section": "",
+    "text": "This is a hard deadline: nothing will be accepted after that date.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Final Project"
+    ]
+  },
+  {
+    "objectID": "08_final_project/index.html#due-date-december-15",
+    "href": "08_final_project/index.html#due-date-december-15",
+    "title": "Final Project",
+    "section": "",
+    "text": "This is a hard deadline: nothing will be accepted after that date.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Final Project"
+    ]
+  },
+  {
+    "objectID": "08_final_project/index.html#project-expectations",
+    "href": "08_final_project/index.html#project-expectations",
+    "title": "Final Project",
+    "section": "Project Expectations",
+    "text": "Project Expectations\nFor the project you can do anything you want, provided it uses what we learned in the course. Here’s a summary of what’s expected:\n\nPython functions in modules with tests\nEither a Streamlit app or a set of command-line executables (that use argparse) for user interface.\nPandas for data manipulation\nVisualizations\nAPIs (cent.ischool-iot.net portal or any other API’s of your choosing) and/or\nWeb Scraping using playwright if you cannot find an API.\n\nYour grade is proportional to the number of expectations you complete with intentionality.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Final Project"
+    ]
+  },
+  {
+    "objectID": "08_final_project/index.html#what-type-of-project-should-i-do",
+    "href": "08_final_project/index.html#what-type-of-project-should-i-do",
+    "title": "Final Project",
+    "section": "What Type of Project Should I Do?",
+    "text": "What Type of Project Should I Do?\nIts up to you! Do you need some ideas? Consider building a data pipeline like we did in assignment 04/05/06 and then building a dashboard around the data using visualizations and streamlit.\nBreak your pipeline up into separate python programs to perform each step similar to assignment 05 and 06.\n\nExtract data from API’s / web scraping / or a dataset. Save the data to a file in your cache folder.\nTransform the data into a format that is useful for your dashboard. Save the data to a file in your cache folder.\nLoad the data into a pandas and interact with it using streamlit and charts, graphs or maps.\npart of your extract or transform steps you might need to write functions. Make sure you write tests for these functions, similar to what has been demonstrated in the class assignments.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Final Project"
+    ]
+  },
+  {
+    "objectID": "08_final_project/index.html#i-need-more-inspiration",
+    "href": "08_final_project/index.html#i-need-more-inspiration",
+    "title": "Final Project",
+    "section": "I need more inspiration…",
+    "text": "I need more inspiration…\nHere’s a place where you can find API’s that might interest you:\n\nAwesome Public API’s: https://github.com/public-apis/public-apis\nUS Government API’s: https://api.data.gov/\nPortal of Public APIs: https://publicapis.dev/\nAlways welcome to use: https://cent.ischool-iot.net/\n\nHere’s a suggestion for data sources / datasets of interest:\n\nSU Library: https://researchguides.library.syr.edu/az/databases?t=8828\nData Catalog: https://data.world/datasets/free\nMost cities have an open data portal, for example: https://opendata.cityofnewyork.us/\nBritish Film Institute: https://www.bfi.org.uk/industry-data-insights\nNASA Data, for example: https://www.earthdata.nasa.gov/\nSports Data: https://www.sports-reference.com/\nUS Government data: https://data.gov/\nGoogle Dataset Search: https://datasetsearch.research.google.com/\nKaggle Datasets: https://www.kaggle.com/datasets\nAwesome Public Datasets: https://github.com/smuthubabu/awesome-public-datasets",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Final Project"
+    ]
+  },
+  {
+    "objectID": "08_final_project/index.html#what-are-you-turning-in",
+    "href": "08_final_project/index.html#what-are-you-turning-in",
+    "title": "Final Project",
+    "section": "What are you turning in?",
+    "text": "What are you turning in?\nYou will be pushing a GitHub repository with your project in it (I will circulate a GitHub repo through GitHub classroom for you to submit your project in).",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Final Project"
+    ]
+  },
+  {
+    "objectID": "08_final_project/index.html#in-summary",
+    "href": "08_final_project/index.html#in-summary",
+    "title": "Final Project",
+    "section": "In summary",
+    "text": "In summary\nIt is important to me that I see “YOU” in your project. That means:\n\nShare what you learned,\nDo something that interests you,\nExplain what you did and how it works!",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "Final Project"
+    ]
+  },
+  {
     "objectID": "07_visualization/visualization-1.html",
     "href": "07_visualization/visualization-1.html",
-    "title": "1. Instroduction to Matplotlib and Seaborn",
+    "title": "1. Introduction to Matplotlib and Seaborn",
     "section": "",
     "text": "Note: Parts of this tutorial were copied from the Syracuse University OSPO Advanced Python Workshop 2024.\nIn this tutorial you will learn the basics of how to create plots of data using Seaborn, which depends on Matplotlib.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization",
-      "1. Instroduction to Matplotlib and Seaborn"
+      "1. Introduction to Matplotlib and Seaborn"
     ]
   },
   {
     "objectID": "07_visualization/visualization-1.html#overview",
     "href": "07_visualization/visualization-1.html#overview",
-    "title": "1. Instroduction to Matplotlib and Seaborn",
+    "title": "1. Introduction to Matplotlib and Seaborn",
     "section": "Overview",
     "text": "Overview\n\nAnatomy of a visualization\nhttps://carbondesignsystem.com/data-visualization/chart-anatomy/\n\nCanvas / Plot Area - The area where the data is visualized.\nAxis - The x and y lines that help to orient the viewer to the data.\nTitle - A brief description of the data being visualized.\nSeries / Trace - A single set of data that is plotted on the chart.\nLegend - A key that explains the colors or symbols used in the visualization / series.\n\n\n\nData Plotting: Kinds of Data\n\nCategorical data - Discrete values like Yes/No, Red/Green/Blue, etc.\nOrdinal data - Categorical data that has an order to it. Monday, Tuesday, Wednesday, etc.\nTime series data - Data that is recorded over time. Stock prices, temperature, etc.\nContinuous data - Measuments, such as weight, height, price, etc.\nDiscrete data - Data that can only take certain values. Number of children, number of cars, etc.\nGeospatial data - Data that is tied to a location. Latitude, Longitude, etc.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization",
-      "1. Instroduction to Matplotlib and Seaborn"
+      "1. Introduction to Matplotlib and Seaborn"
     ]
   },
   {
     "objectID": "07_visualization/visualization-1.html#matplotlib",
     "href": "07_visualization/visualization-1.html#matplotlib",
-    "title": "1. Instroduction to Matplotlib and Seaborn",
+    "title": "1. Introduction to Matplotlib and Seaborn",
     "section": "Matplotlib",
     "text": "Matplotlib\nMatplotlib is a multi-platform data visualization library built on NumPy arrays, and designed to work with the broader SciPy stack. One of Matplotlib’s most important features is its ability to play well with many operating systems and graphics backends. Matplotlib supports dozens of backends and output types, which means you can count on it to work regardless of which operating system you are using or which output format you wish. This cross-platform, everything-to-everyone approach has been one of the great strengths of Matplotlib. It has led to a large user base, which in turn has led to an active developer base and Matplotlib’s powerful tools and ubiquity within the scientific Python world.\nMatplotlib is an excellent graphics library for generating scientific figures, with a slightly steeper learning curve than other libraries and a somewhat aging API, yet it is still the most widely used library for plotting in the Python community. It allows for any kind of visualization, from quick and simple to complex and custom. Many other libraries are built on top of Matplotlib and are designed to work in conjunction with analysis tools from the SciPy stack, such as NumPy and Pandas.\nAlthough you will use Seaborn most in this course (and likely outside this course) it is good to have a basic understanding of matplotlib. Here, we provide a very quick crash course.\nTo use matplotlib, we first need to import it. Specifically, we need to import the pyplot module, which we will rename plt (as is typical):\n\nfrom matplotlib import pyplot as plt\n\n\nBasic line plot with Matplotlib\nAt its most basic, matplotlib uses “figures” and “axes”. These create the canvases that you can plot things on. An axes is what a plot is created on; a figure can hold one or more axes. To create them:\n\nfig = plt.figure()\nax = fig.add_subplot()\n\n\n\n\n\n\n\n\nOk, so how do we actually make a plot? Let’s create a simple line plot of a sine wave, evaluated between 0 and 2pi. First, we’ll create our data with numpy:\n\nimport numpy as np\nx = np.linspace(0, 2*np.pi, 100)\ny = np.sin(x)\n\nNow let’s create a figure, axes, and plot them using the plot function:\n\nfig = plt.figure()\nax = fig.add_subplot()\nax.plot(x, y)\n\n\n\n\n\n\n\n\nNote that the plotting function is a method of the axes. We can make a nicer looking plot by adding things like axis labels, a legend, and an axis label:\n\nfig = plt.figure()\nax = fig.add_subplot()\nax.plot(x, y, label='sin(x)$')\nax.set_xlabel('x')\nax.set_ylabel('y')\nax.legend()\nax.grid()\nax.set_title('My plot')\n\nText(0.5, 1.0, 'My plot')\n\n\n\n\n\n\n\n\n\nWe can also plot more than one thing on a single plot. Let’s plot cos(x) on the same plot:\n\nfig = plt.figure()\nax = fig.add_subplot()\nax.plot(x, y, label='sin(x)')\nax.plot(x, np.cos(x), label='cos(x)')\nax.set_xlabel('x')\nax.set_ylabel('y')\nax.legend()\nax.grid()\nax.set_title('My plot')\n\nText(0.5, 1.0, 'My plot')\n\n\n\n\n\n\n\n\n\nNotice that the color of the second plot automatically changed. You can alternatively specify the color manually using the color argument in plot. You can also do things like set the linestyle and linewidth. For example:\n\nfig = plt.figure()\nax = fig.add_subplot()\nax.plot(x, y, lw=2, label='sin(x)')\nax.plot(x, np.cos(x), lw=2, ls='--', label='cos(x)')\nax.set_xlabel('x')\nax.set_ylabel('y')\nax.legend()\nax.grid()\nax.set_title('My plot')\n\nText(0.5, 1.0, 'My plot')\n\n\n\n\n\n\n\n\n\n\n\nStateful execution\nIn the above examples we explicitly created a figure, axes, and added plots to the axes.\nMatplotlib has another, “stateful”, interface. In this case, the figure and axes are automatically created and managed by matplotlib in the background. Instead of calling methods, you instead call methods on the pyplot module directly. Here’s the same example as above, but using the stateful interface:\n\nplt.plot(x, y, lw=2, label='sin(x)')\nplt.plot(x, np.cos(x), lw=2, ls='--', label='cos(x)')\nplt.xlabel('x')\nplt.ylabel('y')\nplt.legend()\nplt.grid()\nplt.title('My plot')\n\nText(0.5, 1.0, 'My plot')\n\n\n\n\n\n\n\n\n\nNotice that in this case you don’t interact with the figure or axes at all. Instead, matplotlib creates the a figure and axes for you, which are the “current” figure/axes. All plotting commands are automatically added to those plots. You can retrieve the current figure and axes with:\n\n# get the current figure\nfig = plt.gcf()\n# get the current axes\naxes = plt.gca()\n\n\n\n\n\n\n\n\nAs you can see, the stateful interface can be quicker and easier to use if you are only creating a single plot at a time. It is the more common interface you will see in various examples on the web. Seaborn also supports a stateful interface that we will use below.\nHowever, I prefer directly interacting with the figure and axes as we did initially. This causes less confusion later on, and it makes it easy to create more complicated figures with multiple axes. What to use is up to you, and it depends on the situation.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization",
-      "1. Instroduction to Matplotlib and Seaborn"
+      "1. Introduction to Matplotlib and Seaborn"
     ]
   },
   {
     "objectID": "07_visualization/visualization-1.html#seaborn",
     "href": "07_visualization/visualization-1.html#seaborn",
-    "title": "1. Instroduction to Matplotlib and Seaborn",
+    "title": "1. Introduction to Matplotlib and Seaborn",
     "section": "Seaborn",
     "text": "Seaborn\nSeaborn is a Python data visualization library based on Matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics.\nConsider seaborn as a replacement for Matplotlib, Pythons de-facto plotting library. Seaborn is built on top of Matplotlib and closely integrated with pandas data structures. You can think of Matplotlib and Seaborn as being to visualization as numpy and Pandas is to data wrangling.\nTo use Seaborn, we need to import it:\n\nimport seaborn as sns",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization",
-      "1. Instroduction to Matplotlib and Seaborn"
+      "1. Introduction to Matplotlib and Seaborn"
     ]
   },
   {
     "objectID": "07_visualization/visualization-1.html#datasets-we-will-use",
     "href": "07_visualization/visualization-1.html#datasets-we-will-use",
-    "title": "1. Instroduction to Matplotlib and Seaborn",
+    "title": "1. Introduction to Matplotlib and Seaborn",
     "section": "Datasets we will use",
     "text": "Datasets we will use\nSeaborn has some in-built toy datasets that we will use to illustrate its plotting capabilities.\n\n“penguins” The Palmer Penguins dataset: https://github.com/allisonhorst/palmerpenguins\n“dowjones”: The Dow Jones Industrial Stock Price Index: https://fred.stlouisfed.org/series/M1109BUSM293NNBR\n\nWe will also use: - Analyzing Mobile Usage Patterns and User Behavior Classification Across Devices https://www.kaggle.com/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization",
-      "1. Instroduction to Matplotlib and Seaborn"
+      "1. Introduction to Matplotlib and Seaborn"
     ]
   },
   {
     "objectID": "07_visualization/visualization-1.html#plot-types",
     "href": "07_visualization/visualization-1.html#plot-types",
-    "title": "1. Instroduction to Matplotlib and Seaborn",
+    "title": "1. Introduction to Matplotlib and Seaborn",
     "section": "Plot Types",
     "text": "Plot Types\n\nLine plot\nTo start, let’s recreate the simple line plot we did above with matplotlib:\n\nlp = sns.lineplot(x=x, y=y, label='sin(x)')\nsns.lineplot(x=x, y=np.cos(x), lw=2, ls='--', label='cos(x)')\nlp.set_xlabel('x')\nlp.set_ylabel('y')\nlp.legend()\nlp.grid()\nlp.set_title('My plot')\n\nText(0.5, 1.0, 'My plot')\n\n\n\n\n\n\n\n\n\nThat’s nice, but not that much better than the matplotlib interface. Where Seaborn really shines is its interface with Pandas. For example, let’s create a DataFrame from x and sin(x):\n\nimport pandas as pd\ndf = pd.DataFrame({'x': x, 'sin(x)': np.sin(x)})\nsns.lineplot(data=df, x='x', y='sin(x)')\n\n\n\n\n\n\n\n\nNotice that an x and y label were generated automatically for us. Things get even more interesting if you use the hue argument. Suppose we have dataframe that has both sin and cos values in a single column, with a separate column that indicates which rows below to which function:\n\ndf = pd.DataFrame({'x': np.tile(x, 2), 'Trig Functions': np.append(np.sin(x), np.cos(x)),\n                   'Function': ['sin']*len(x) + ['cos']*len(x)})\nprint(df.head())\nprint(df.tail())\n\n          x  Trig Functions Function\n0  0.000000        0.000000      sin\n1  0.063467        0.063424      sin\n2  0.126933        0.126592      sin\n3  0.190400        0.189251      sin\n4  0.253866        0.251148      sin\n            x  Trig Functions Function\n195  6.029319        0.967949      cos\n196  6.092786        0.981929      cos\n197  6.156252        0.991955      cos\n198  6.219719        0.997987      cos\n199  6.283185        1.000000      cos\n\n\nNow we can plot both with a single line, using the hue argument:\n\nsns.lineplot(data=df, x='x', y='Trig Functions', hue='Function')\n\n\n\n\n\n\n\n\nNotice that it created x and y labels, as well as a legend for us! The hue parameter is especially useful for bar plots, as we’ll see below.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization",
-      "1. Instroduction to Matplotlib and Seaborn"
+      "1. Introduction to Matplotlib and Seaborn"
     ]
   },
   {
     "objectID": "07_visualization/visualization-1.html#errorbar",
     "href": "07_visualization/visualization-1.html#errorbar",
-    "title": "1. Instroduction to Matplotlib and Seaborn",
+    "title": "1. Introduction to Matplotlib and Seaborn",
     "section": "Errorbar",
     "text": "Errorbar\nSeaborn also makes it easy to create plots with errorbars on it. To illustrate, let’s use the Dow Jones Industrial data:\n\ndow = sns.load_dataset(\"dowjones\")\ndow.head()\n\n\n\n\n\n\n\n\nDate\nPrice\n\n\n\n\n0\n1914-12-01\n55.00\n\n\n1\n1915-01-01\n56.55\n\n\n2\n1915-02-01\n56.00\n\n\n3\n1915-03-01\n58.30\n\n\n4\n1915-04-01\n66.45\n\n\n\n\n\n\n\n\n\n\n\n\n\nCautionCode Challenge 1.1\n\n\n\nMake a line plot of the Dow price versus year using Seaborn.\n\n\n\n\n\n\nCautionSolution\n\n\n\n\n\n\nsns.lineplot(data=dow, x=\"Date\", y=\"Price\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nNow suppose we want to average the price per year. First, let’s create a new column that just has the year. To do that, we’ll create a function that extracts the year from the Date column:\n\ndef parse_year(date):\n    return date.year\n\nNow apply it:\n\nyears = dow['Date'].apply(parse_year)\ndow['Year'] = years\n\nNow let’s plot it:\n\nlp = sns.lineplot(data=dow, x=\"Year\", y=\"Price\", estimator='mean')\nlp.set_title(\"Average Dow Jones Price by Year\")\n\nText(0.5, 1.0, 'Average Dow Jones Price by Year')\n\n\n\n\n\n\n\n\n\nSeaborn has shown the average for each year, and has automatically added errorbars showing the standard deviation for each year.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization",
-      "1. Instroduction to Matplotlib and Seaborn"
+      "1. Introduction to Matplotlib and Seaborn"
     ]
   },
   {
     "objectID": "07_visualization/visualization-1.html#the-bar-plot",
     "href": "07_visualization/visualization-1.html#the-bar-plot",
-    "title": "1. Instroduction to Matplotlib and Seaborn",
+    "title": "1. Introduction to Matplotlib and Seaborn",
     "section": "The Bar Plot",
-    "text": "The Bar Plot\nA bar plot is a plot that presents categorical data with rectangular bars with lengths proportional to the coninouos or discrete values they represent. One axis of the plot shows the specific categories being compared, and the other axis represents a measured value.\nSeaborn will automatically aggregate the data for you, using the estimator named argument. It takees the values \"mean\", \"count\", \"sum\", \"min\" or \"max\".\nTo illustrate this, we will use the Palmer Penguins data:\n\nimport seaborn as sns\npengo = sns.load_dataset(\"penguins\")\npengo.head()\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nMale\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nFemale\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nFemale\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nFemale\n\n\n\n\n\n\n\nEach row in the data set represents measurements for a single penguin. Let’s make that more explicit by adding a “count” column, which we’ll use to keep track of the number of penguins in the dataset.\n\npengo['count'] = 1\n\nNow lets create a bar plot showing the total number of penguins by species. To separate them out, we’ll use the hue argument:\n\nplot = sns.barplot(data=pengo, x=\"species\", y=\"count\", hue=\"species\", estimator=\"sum\")\nplot.set_title(\"Penguin species count\")\n\nText(0.5, 1.0, 'Penguin species count')\n\n\n\n\n\n\n\n\n\n\nSame plot with method chaning\nYou can chain the title onto the plot.\n\nsns.barplot(data=pengo, x=\"species\", y=\"count\", hue=\"species\", estimator=\"sum\").set_title(\"Penguin species count\")\n\nText(0.5, 1.0, 'Penguin species count')\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCautionCode Challenge 1.2\n\n\n\nUsing the Palmer penguins data, make a bar plot of body mass (y axis) vs species (x axis) , separated by sex.\n\n\n\n\n\n\nCautionSolution\n\n\n\n\n\n\nsns.barplot(data=pengo, x=\"species\", y=\"body_mass_g\", hue=\"sex\", estimator=\"mean\")",
+    "text": "The Bar Plot\nA bar plot is a plot that presents categorical data with rectangular bars with lengths proportional to the coninouos or discrete values they represent. One axis of the plot shows the specific categories being compared, and the other axis represents a measured value.\nSeaborn will automatically aggregate the data for you, using the estimator named argument. It takees the values \"mean\", \"count\", \"sum\", \"min\" or \"max\".\nTo illustrate this, we will use the Palmer Penguins data:\n\nimport seaborn as sns\npengo = sns.load_dataset(\"penguins\")\npengo.head()\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nMale\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nFemale\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nFemale\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nFemale\n\n\n\n\n\n\n\nEach row in the data set represents measurements for a single penguin. Let’s make that more explicit by adding a “count” column, which we’ll use to keep track of the number of penguins in the dataset.\n\npengo['count'] = 1\n\nNow lets create a bar plot showing the total number of penguins by species. To separate them out, we’ll use the hue argument:\n\nplot = sns.barplot(data=pengo, x=\"species\", y=\"count\", hue=\"species\", estimator=\"sum\")\nplot.set_title(\"Penguin species count\")\n\nText(0.5, 1.0, 'Penguin species count')\n\n\n\n\n\n\n\n\n\n\nSame plot with method chaning\nYou can chain the title onto the plot.\n\nsns.barplot(data=pengo, x=\"species\", y=\"count\", hue=\"species\", estimator=\"sum\").set_title(\"Penguin species count\")\n\nText(0.5, 1.0, 'Penguin species count')\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCautionCode Challenge 1.2\n\n\n\nUsing the Palmer penguins data, make a bar plot of body mass (y axis) vs species (x axis) , separated by sex.\n\n\n\n\n\n\nCautionSolution\n\n\n\n\n\n\nsns.barplot(data=pengo, x=\"species\", y=\"body_mass_g\", hue=\"sex\", estimator=\"mean\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScatter plots\nA scatter plot is used to show how to variables are related to each other. This is usually used when there is some random element to the data such that the realtionship between the variables is not always one-to-one. In that case, you don’t want to make a line plot, as the lines will jumpt around, making for a difficult to read plot. A scatter plot simply puts markers at every data point, so that you can get a sense of what the relationship between the variables are.\nTo make a scatter plot with Seaborn you use the scatterplot function. For example, here is a scatter plot showing the relationship between bill length and flipper length in the Palmer penguins dataset:\n\nsns.scatterplot(data=pengo, x='bill_length_mm', y='flipper_length_mm')\n\n\n\n\n\n\n\n\nWe can make an even more informative plot with the hue argument to color the points based on one of the other columns. If we make the hue be based on species, we get:\n\nsns.scatterplot(data=pengo, x='bill_length_mm', y='flipper_length_mm', hue='species')\n\n\n\n\n\n\n\n\nNotice that changing the colors of the markers based on a third column, we have effectively represented 3D data in a 2D plot.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization",
-      "1. Instroduction to Matplotlib and Seaborn"
+      "1. Introduction to Matplotlib and Seaborn"
     ]
   },
   {
@@ -2487,7 +2564,7 @@
     "href": "07_visualization/index.html",
     "title": "7. Visualization",
     "section": "",
-    "text": "Introduction to maptlotlib and seaborn",
+    "text": "Introduction to maptlotlib and seaborn\nMore Seaborn plots",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization"
@@ -2498,7 +2575,7 @@
     "href": "07_visualization/index.html#tutorials",
     "title": "7. Visualization",
     "section": "",
-    "text": "Introduction to maptlotlib and seaborn",
+    "text": "Introduction to maptlotlib and seaborn\nMore Seaborn plots",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization"
@@ -2513,6 +2590,90 @@
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization"
+    ]
+  },
+  {
+    "objectID": "07_visualization/visualization-2.html",
+    "href": "07_visualization/visualization-2.html",
+    "title": "2. More Seaborn plots",
+    "section": "",
+    "text": "In this tutorial we will cover some additional common plots.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization",
+      "2. More Seaborn plots"
+    ]
+  },
+  {
+    "objectID": "07_visualization/visualization-2.html#histograms",
+    "href": "07_visualization/visualization-2.html#histograms",
+    "title": "2. More Seaborn plots",
+    "section": "Histograms",
+    "text": "Histograms\nA histogram is a graphical representation of the distribution of numerical data. It is an estimate of the probability distribution of a continuous variable. In Seaborn we create a histogram using the histplot function.\nTo illustrate its use, we’ll use the tips data in Seaborn:\n\nimport seaborn as sns\ntips = sns.load_dataset('tips')\ntips.head()\n\n\n\n\n\n\n\n\ntotal_bill\ntip\nsex\nsmoker\nday\ntime\nsize\n\n\n\n\n0\n16.99\n1.01\nFemale\nNo\nSun\nDinner\n2\n\n\n1\n10.34\n1.66\nMale\nNo\nSun\nDinner\n3\n\n\n2\n21.01\n3.50\nMale\nNo\nSun\nDinner\n3\n\n\n3\n23.68\n3.31\nMale\nNo\nSun\nDinner\n2\n\n\n4\n24.59\n3.61\nFemale\nNo\nSun\nDinner\n4\n\n\n\n\n\n\n\nThe data was collected by a waiter (in the 90s, I think) over several months. (Note that smoking was still allowed in restaurants when this data was taken. Ah, the 90s… I don’t miss everything about you.)\nLets make a histogram of the tip amounts:\n\nsns.histplot(data=tips, x='tip', bins=15)\n\n\n\n\n\n\n\n\nThe y-axis is the number of tips in the given bin. The bins argument specifies the number of bins to group the data into. We don’t actually need to specify that (more on that below), but for now, we’ll just use 15 as a good number.\nThe tip column is just the raw dollar amount of the tips. It’d be more interesting to see what the tip percentage is (i.e., the tip divided by the total bill). To plot that, we’ll first need to add a column of tip percentage to our data:\n\ntips['tip_percentage'] = tips['tip'] / tips['total_bill'] * 100\ntips.head()\n\n\n\n\n\n\n\n\ntotal_bill\ntip\nsex\nsmoker\nday\ntime\nsize\ntip_percentage\n\n\n\n\n0\n16.99\n1.01\nFemale\nNo\nSun\nDinner\n2\n5.944673\n\n\n1\n10.34\n1.66\nMale\nNo\nSun\nDinner\n3\n16.054159\n\n\n2\n21.01\n3.50\nMale\nNo\nSun\nDinner\n3\n16.658734\n\n\n3\n23.68\n3.31\nMale\nNo\nSun\nDinner\n2\n13.978041\n\n\n4\n24.59\n3.61\nFemale\nNo\nSun\nDinner\n4\n14.680765\n\n\n\n\n\n\n\nNow let’s create a histogram of the tip percentage:\n\nsns.histplot(data=tips, x='tip_percentage', bins=15)\n\n\n\n\n\n\n\n\nWe see it’s peaked around 15%, which was the standard tip amount at that time.\nThis is interesting, but we have additional data here. Let’s see how tip percentage breaks down by sex. As with the other plot commands, we accomplish that using the hue keyword argument:\n\nsns.histplot(data=tips, x='tip_percentage', bins=15, hue='sex')\n\n\n\n\n\n\n\n\nInteresting, but it’s a little hard to compare the two histograms here since there are more males than females. What we actually want to plot on the y-axis is a probability density, or, to make it more understandable, a percent to indicate what fraction of men and women tipped a given amount. We can convert the histogram from a count to a density using the stat command. There’s several options it takes, but to get it to plot a percent, we set it to percent:\n\nsns.histplot(data=tips, x='tip_percentage', bins=15, hue='sex', stat='percent')\n\n\n\n\n\n\n\n\nHmm, closer, but there still appears to be a larger percentage of males than females. The reason is that the histograms are normalized together: i.e., the histogram heights are showing the percent of the total population, which includes both males and females. What we actually want is each histogram to be normalized separately, so that the histogram heights show the percentage of men or women that tip a given amount. To do that, we can add the common_norm=False argument:\n\nsns.histplot(data=tips, x='tip_percentage', bins=15, hue='sex', stat='percent', common_norm=False)\n\n\n\n\n\n\n\n\nNow we see something interesting: it looks like women tipped slightly better than men.\n\nBin widths\nOr did they? If we change the number of bins, it can change our impression of the data. For example, if we reduce the bins to 8:\n\nsns.histplot(data=tips, x='tip_percentage', bins=8, hue='sex', stat='percent', common_norm=False)\n\n\n\n\n\n\n\n\nThen, while it’s clear a larger fraction of women tipped in the ~12-20% range, a larger fraction of men tipped inthe ~20-30% range. Using other bin numbers (try it!) can give other impressions.\nSo what’s the appropriate number of bins to use? There are various “rules” out there to select the right number. Seaborn (via numpy) has those rules coded up. In fact, you can pass a string to bins to invoke one of those rules instead of a number. The possiblities are documented in numpy’s histogram_bin_edges function, which is what the bins argument calls. If you don’t provide any bins argument, the default ('auto') will use a combination of rules to try to give a good estimate:\n\nsns.histplot(data=tips, x='tip_percentage', hue='sex', stat='percent', common_norm=False)",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization",
+      "2. More Seaborn plots"
+    ]
+  },
+  {
+    "objectID": "07_visualization/visualization-2.html#kde-plot",
+    "href": "07_visualization/visualization-2.html#kde-plot",
+    "title": "2. More Seaborn plots",
+    "section": "KDE plot",
+    "text": "KDE plot\nChoosing the appropriate bin width is always a challenge when making histograms. An alternative is to instead use a kernel density estimatation (KDE). A KDE is a method of interpolating the data to get a smooth curve. Basically, a KDE sticks a little Gaussian distribution around each data point, then sums them up to get an overall distribution. Since there are no bins involved, it can provide a more robust estimate of the distribution.\nYou can easily add a KDE to a histogram by turning on the kde=True keyword argument:\n\nsns.histplot(data=tips, x='tip_percentage', hue='sex', stat='percent', bins=15, common_norm=False, kde=True)\n\n\n\n\n\n\n\n\nThe lines plotted on top of the histogram show the KDE. Notice that they’re smooth, and independent of the bins (try changing the number of bins; you’ll get the same KDE plot).\nIf you want just a KDE plot on its own, you can use the https://seaborn.pydata.org/generated/seaborn.kdeplot.html command:\n\nsns.kdeplot(data=tips, x='tip_percentage', hue='sex', common_norm=False)\n\n\n\n\n\n\n\n\nThere are a couple things to be aware of with KDEs:\n\nKDEs have “bandwidth” parameter that determines how wide to make the little Guassians that are added around each data point. This is like the bins in a histogram. Too narrow a bandwidth will give too bumpy a distribution that obfuscates macro trends, while too wide will give an over smoothed distribution that may hide micro trends. You can adjust the bandwidth with additional keyword arguments. Using the default is usually pretty good though.\nDue to their smoothing nature, KDEs tend to leak over hard boundaries. For example, if you built a KDE of age distrubtions of children, you may get a tail to negative numbers, which doesn’t make sense.\n\n\n\n\n\n\n\nCautionCode Challenge 2.1\n\n\n\nUse the Palmer penguins data to make a histogram of the bill length of penguins, separated by species. Plot density on the y-axis, turn on a KDE, and normalize the distributions by species.\n\n\n\n\n\n\nCautionSolution\n\n\n\n\n\n\npengo = sns.load_dataset(\"penguins\")\nsns.histplot(data=pengo, x='bill_length_mm', hue='species', stat='density', common_norm=False, kde=True)",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization",
+      "2. More Seaborn plots"
+    ]
+  },
+  {
+    "objectID": "07_visualization/visualization-2.html#d-histograms",
+    "href": "07_visualization/visualization-2.html#d-histograms",
+    "title": "2. More Seaborn plots",
+    "section": "2-D histograms",
+    "text": "2-D histograms\nOften we want to see counts or population density over two parameters. We can use histplot to make 2D histograms. To do that, just pass in the extra dimension as a y arugment. For example, here’s a 2D histogram of the Palmer penguins flipper length versus bill length:\n\nsns.histplot(data=pengo, x='bill_length_mm', y='flipper_length_mm')\n\n\n\n\n\n\n\n\nHere, the darker the color, the larger the count. We can see exactly what color corresponds to what count by turning on a colorbar with the cbar argument:\n\nsns.histplot(data=pengo, x='bill_length_mm', y='flipper_length_mm', cbar=True)",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization",
+      "2. More Seaborn plots"
+    ]
+  },
+  {
+    "objectID": "07_visualization/visualization-2.html#contour-plots",
+    "href": "07_visualization/visualization-2.html#contour-plots",
+    "title": "2. More Seaborn plots",
+    "section": "Contour plots",
+    "text": "Contour plots\nWe can also make 2D KDE plots using kdeplot; these are also known as countour plots.\nHere’s a contour plot same Palmer penguins data as above:\n\nsns.kdeplot(data=pengo, x='bill_length_mm', y='flipper_length_mm')\n\n\n\n\n\n\n\n\nThe contours represent where the density is highest. It’s easier to understand if you provide the levels argument:\n\nsns.kdeplot(data=pengo, x='bill_length_mm', y='flipper_length_mm', levels=[0.1, 0.5])\n\n\n\n\n\n\n\n\nThe outer contour corresponds to the 0.1 level, while the inner contour corresponds to the 0.5 level. The contours are centered on the highest density. This means that 90% of the population is within the 0.1 level, and 50% of the population is within the 0.5 level.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization",
+      "2. More Seaborn plots"
+    ]
+  },
+  {
+    "objectID": "07_visualization/visualization-2.html#lm-plots",
+    "href": "07_visualization/visualization-2.html#lm-plots",
+    "title": "2. More Seaborn plots",
+    "section": "LM Plots",
+    "text": "LM Plots\nA lmplot is a scatterplot with a linear regression line.\nLinear regression is a linear approach to modeling the relationship between a scalar response (or dependent variable) and one or more explanatory variables (or independent variables). The case of one explanatory variable is called simple linear regression; for more than one, the process is called multiple linear regression.\nTo illustrate, let’s use the tips data to compare total bill to tip amount, separated by the diner’s sex:\n\nsns.lmplot(data=tips, x='total_bill', y='tip', hue='sex')",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization",
+      "2. More Seaborn plots"
+    ]
+  },
+  {
+    "objectID": "07_visualization/visualization-2.html#box-plots-and-violin-plots",
+    "href": "07_visualization/visualization-2.html#box-plots-and-violin-plots",
+    "title": "2. More Seaborn plots",
+    "section": "Box Plots and Violin Plots",
+    "text": "Box Plots and Violin Plots\nA box plot is a method for graphically depicting groups of numerical data through their quartiles. The box extends from the Q1 to Q3 quartile values of the data, with a line at the median (Q2). The whiskers extend from the edges of the box to show the range of the data.\n\nThey extend no more than 1.5 * IQR (Inter-quartile-range) (IQR = Q3 - Q1) from the edges of the box, ending at the farthest data point within that interval.\nThe line through the box is the median value of the data.\nThe box represents the interquartile range. Q3 - Q1\nThe whiskers represent the range of the data, defaults to 1.5 * (Q3 - Q1), a general rule for outliers.\nOutliers are plotted as separate points.\n\nThink of a box plot as a must more detailed bar chart, since it tells you much more about the data than just totals.\nA violin plot is like the combination of a box plot and a histogram. It uses a kernel density estimate to show the probability density of the data at different values.\nWe’ll use the tips data to illustrate them.\n\n# this will help us to see what the box plot and violin plot are showing us\ntips.describe()\n\n\n\n\n\n\n\n\ntotal_bill\ntip\nsize\ntip_percentage\n\n\n\n\ncount\n244.000000\n244.000000\n244.000000\n244.000000\n\n\nmean\n19.785943\n2.998279\n2.569672\n16.080258\n\n\nstd\n8.902412\n1.383638\n0.951100\n6.107220\n\n\nmin\n3.070000\n1.000000\n1.000000\n3.563814\n\n\n25%\n13.347500\n2.000000\n2.000000\n12.912736\n\n\n50%\n17.795000\n2.900000\n2.000000\n15.476977\n\n\n75%\n24.127500\n3.562500\n3.000000\n19.147549\n\n\nmax\n50.810000\n10.000000\n6.000000\n71.034483\n\n\n\n\n\n\n\nHere’s a box plot of total bill by day:\n\n# median = 17.79\n# 25% = 13.3475\n# 75% = 24.1275\nsns.boxplot(data=tips,y='total_bill')\n\n\n\n\n\n\n\n\nHere’s the equivalent violin plot:\n\nsns.violinplot(data=tips,y='total_bill')\n\n\n\n\n\n\n\n\nLet’s create a boxplot of total bill by day and smoker:\n\nsns.boxplot(data=tips, x='day', y='total_bill', hue=\"smoker\")\n\n\n\n\n\n\n\n\nThe equivalent violin plot:\n\nsns.violinplot(data=tips, x='day', y='total_bill', hue=\"smoker\")\n\n\n\n\n\n\n\n\n\nInterpreting Box / Violin Plots\n\nShort boxes and whiskers indicate that the data is dense concentrated near the median value.\nLong whiskers and boxes indicate that the data is spread out.\nLong whiskers and short boxes indicate that the data is spread out but concentrated near the median value.\nShort whiskers and long boxes indicate that the data is concentrated but spread out.",
+    "crumbs": [
+      "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
+      "7. Visualization",
+      "2. More Seaborn plots"
     ]
   },
   {
