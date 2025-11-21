@@ -3,9 +3,15 @@ title: "Final Project"
 order: 8
 ---
 
-## Due date: December 15
+**Total points:** 24
+
+**Due date: December 15**
 
 This is a hard deadline: nothing will be accepted after that date.
+
+## Partners
+
+You make work on your own or with one other partner. **If you wish to work with a partner, let me know via email who your partner is by Monday, November 24**. Otherwise, I will assume you are working on your own. I will email you GitHub links for the final project once the partners/individuals are established.
 
 ## Project Expectations
 
