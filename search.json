@@ -1731,7 +1731,7 @@
     "href": "01_cli_conda/index.html#lecture",
     "title": "1. Command line interface and Environments",
     "section": "Lecture",
-    "text": "Lecture\n\nWednesday, 8/28/2025",
+    "text": "Lecture\n\nWednesday, 8/27/2025",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "1. Command line interface and Environments"
@@ -2586,7 +2586,7 @@
     "href": "07_visualization/index.html#lectures",
     "title": "7. Visualization",
     "section": "Lectures",
-    "text": "Lectures",
+    "text": "Lectures\n\nMonday 11/17/25\nIntroduction to matplotlib and seaborn\n\n\n\n\nWednesday 11/19/25\nFinal project overview; more Seaborn plots\nNote: Around the 35:00 mark, I switched back from the iPad to the computer. Unfortunately the focus did not switch from my iPad to my laptop in the Zoom recording, so you can only see VS code in the small inset. I was basically follwoing the tutorial; refer to that for to see the commands I was using.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization"
