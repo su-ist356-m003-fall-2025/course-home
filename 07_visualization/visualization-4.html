@@ -1,0 +1,2428 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3. Creating visualizations with maps – IST 356 Fall 2025</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../08_final_project/index.html" rel="next">
+<link href="../07_visualization/visualization-3.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-636770ed70550effe8cc9e61b03b729c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<meta property="og:title" content="3. Creating visualizations with maps – IST 356 Fall 2025">
+<meta property="og:description" content="">
+<meta property="og:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
+<meta property="og:site_name" content="IST 356 Fall 2025">
+<meta property="og:image:height" content="105">
+<meta property="og:image:width" content="650">
+<meta name="twitter:title" content="3. Creating visualizations with maps – IST 356 Fall 2025">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
+<meta name="twitter:image-height" content="105">
+<meta name="twitter:image-width" content="650">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">IST 356 Fall 2025</span>
+    </a>
+  </div>
+          <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://ischool.syracuse.edu" target="_blank"> 
+<span class="menu-text"><img src="../images/ischool_logo_reverseX2.png" height="30"></span></a>
+  </li>  
+</ul>
+          <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07_visualization/index.html">7. Visualization</a></li><li class="breadcrumb-item"><a href="../07_visualization/visualization-4.html">3. Creating visualizations with maps</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../00_intro/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction and computer setup</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../01_cli_conda/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Command line interface and Environments</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01_cli_conda/shell-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Command Line Interface and the Unix Shell</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01_cli_conda/conda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bash variables, environments, and <code>conda</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../02_python/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Python review</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02_python/python-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Input, output, variables, types, conditionals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02_python/python-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Iterations, lists, dictionaries, comprehensions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02_python/python-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Functions, documentation, strings, files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../02_python/python-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Modules, import, pip, testing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../03_ui/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. UI</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../03_ui/ui-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Interaction in Jupyter using ipywidgets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../03_ui/ui-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Creating simple web apps with Streamlit</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../04_data_wrangling/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Data Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04_data_wrangling/numpy_basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Introduction to NumPy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04_data_wrangling/pandas-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Introduction to Pandas: Series and DataFrames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04_data_wrangling/pandas-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Data I/O with Pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04_data_wrangling/pandas-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Joining Multiple Pandas Dataframes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04_data_wrangling/pandas-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Basic data cleaning with Pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04_data_wrangling/pandas-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Grouping data and creating pivot tables with Pandas</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../05_web_apis/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Web APIs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../05_web_apis/webapi-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. REST APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../05_web_apis/webapi-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Posting with REST API and caching results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../05_web_apis/webapi-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Creating your own APIs with FastAPI</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../06_web_scraping/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Web Scraping</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../06_web_scraping/scraping-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Introduction to Web Scraping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../06_web_scraping/scraping-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. More Scraping + actionability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../06_web_scraping/scraping-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Writing executable scripts with Argparse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../06_web_scraping/scraping-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Playwright + Argparse + Streamlit to create useful apps</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../07_visualization/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Visualization</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../07_visualization/visualization-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Introduction to Matplotlib and Seaborn</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../07_visualization/visualization-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. More Seaborn plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../07_visualization/visualization-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Sharing plots and Streamlit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../07_visualization/visualization-4.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">3. Creating visualizations with maps</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../08_final_project/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Final Project</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#mapping" id="toc-mapping" class="nav-link active" data-scroll-target="#mapping">Mapping</a></li>
+  <li><a href="#map-visualizations-with-folium" id="toc-map-visualizations-with-folium" class="nav-link" data-scroll-target="#map-visualizations-with-folium">Map Visualizations with Folium</a>
+  <ul class="collapse">
+  <li><a href="#folium-and-streamlit" id="toc-folium-and-streamlit" class="nav-link" data-scroll-target="#folium-and-streamlit">Folium and Streamlit</a></li>
+  <li><a href="#map-markers-colors-and-icons" id="toc-map-markers-colors-and-icons" class="nav-link" data-scroll-target="#map-markers-colors-and-icons">Map Markers Colors and Icons</a></li>
+  <li><a href="#mapping-a-dataframe" id="toc-mapping-a-dataframe" class="nav-link" data-scroll-target="#mapping-a-dataframe">Mapping a dataframe</a></li>
+  </ul></li>
+  <li><a href="#geopandas" id="toc-geopandas" class="nav-link" data-scroll-target="#geopandas">Geopandas</a></li>
+  <li><a href="#choropleth-maps-in-geopandas" id="toc-choropleth-maps-in-geopandas" class="nav-link" data-scroll-target="#choropleth-maps-in-geopandas">Choropleth Maps in Geopandas</a>
+  <ul class="collapse">
+  <li><a href="#geopandas-choropleth-maps-in-streamlit." id="toc-geopandas-choropleth-maps-in-streamlit." class="nav-link" data-scroll-target="#geopandas-choropleth-maps-in-streamlit.">Geopandas Choropleth Maps in streamlit.</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07_visualization/index.html">7. Visualization</a></li><li class="breadcrumb-item"><a href="../07_visualization/visualization-4.html">3. Creating visualizations with maps</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">3. Creating visualizations with maps</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this tutorial you will learn how to create maps with the <code>folium</code> and <code>geopandas</code> packages.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To run this tutorial you will need <code>geopandas</code> and <code>folium</code> installed. You will also need <code>streamlit-folium</code> to use folium with Streamlit. To install these packages, open a Terminal, activate your <code>ist356</code> conda environment, and run:</p>
+<pre class="{bash}"><code>pip install folium geopandas streamlit-folium</code></pre>
+</div>
+</div>
+<section id="mapping" class="level2">
+<h2 class="anchored" data-anchor-id="mapping">Mapping</h2>
+<p>Mapping is a powerful way to visualize data. You can place points on a map, draw lines, and shade areas.</p>
+</section>
+<section id="map-visualizations-with-folium" class="level2">
+<h2 class="anchored" data-anchor-id="map-visualizations-with-folium">Map Visualizations with Folium</h2>
+<p>To create map visualizations, we will use <a href="https://python-visualization.github.io/folium/latest/">folium</a>, which is a Python wrapper for the Leaflet.js library.</p>
+<p>Folium uses <a href="https://www.openstreetmap.org/">OpenStreetMap</a> for drawing maps. It is a free/open source alternative to a service like Google Maps.</p>
+<div id="f513349e" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>JMA <span class="op">=</span> (<span class="fl">43.0362</span>, <span class="op">-</span><span class="fl">76.1363</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>map1 <span class="op">=</span> folium.Map(location<span class="op">=</span>JMA, zoom_start<span class="op">=</span><span class="dv">18</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>jma_marker <span class="op">=</span> folium.Marker(JMA, popup<span class="op">=</span><span class="st">'JMA Wireless Dome'</span>, tooltip<span class="op">=</span><span class="st">"JMA"</span>).add_to(map1)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>map1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
+    <script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;></script>
+    <script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;></script>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;></script>
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;></script>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/>
+    
+            <meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
+            <style>
+                #map_821b22d68bc4e5703ea4d94ac1107d96 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class=&quot;folium-map&quot; id=&quot;map_821b22d68bc4e5703ea4d94ac1107d96&quot; ></div>
+        
+</body>
+<script>
+    
+    
+            var map_821b22d68bc4e5703ea4d94ac1107d96 = L.map(
+                &quot;map_821b22d68bc4e5703ea4d94ac1107d96&quot;,
+                {
+                    center: [43.0362, -76.1363],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  &quot;zoom&quot;: 18,
+  &quot;zoomControl&quot;: true,
+  &quot;preferCanvas&quot;: false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_74fcb54735dcb8277d22ef1bdf064943 = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 19,
+  &quot;maxNativeZoom&quot;: 19,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_74fcb54735dcb8277d22ef1bdf064943.addTo(map_821b22d68bc4e5703ea4d94ac1107d96);
+        
+    
+            var marker_00ff273cc952cccdbac18fdc32142164 = L.marker(
+                [43.0362, -76.1363],
+                {
+}
+            ).addTo(map_821b22d68bc4e5703ea4d94ac1107d96);
+        
+    
+        var popup_6f1554330e535ecc7e79d83e57dc4368 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_a8f3a2eae9c1c165cf13dcd98017f581 = $(`<div id=&quot;html_a8f3a2eae9c1c165cf13dcd98017f581&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>JMA Wireless Dome</div>`)[0];
+                popup_6f1554330e535ecc7e79d83e57dc4368.setContent(html_a8f3a2eae9c1c165cf13dcd98017f581);
+            
+        
+
+        marker_00ff273cc952cccdbac18fdc32142164.bindPopup(popup_6f1554330e535ecc7e79d83e57dc4368)
+        ;
+
+        
+    
+    
+            marker_00ff273cc952cccdbac18fdc32142164.bindTooltip(
+                `<div>
+                     JMA
+                 </div>`,
+                {
+  &quot;sticky&quot;: true,
+}
+            );
+        
+</script>
+</html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Don’t name maps <code>map</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Notice in the above block we named the map that we created <code>map1</code>. You may be tempted to name the map <code>map</code> instead. It’s perfectly fine for you to do so, however, <code>map</code> is also the name of a Python in-built function. The <a href="https://docs.python.org/3/library/functions.html#map">map</a> function is used to apply a function to a list of values. If you name an instance of a map <code>map</code> in your code, you will overwrite the <code>map</code> function. This means that you will not be able to use the map function in the rest of your code! Even if you don’t use the <code>map</code> function often, you may find that you want to use it at some point in the future. For this reason, <em>it’s best not to name map instances <code>map</code>.</em> Call them something else, like <code>map1</code>, <code>mp</code>, etc.</p>
+</div>
+</div>
+<section id="folium-and-streamlit" class="level3">
+<h3 class="anchored" data-anchor-id="folium-and-streamlit">Folium and Streamlit</h3>
+<p>To display folium maps to display in Streamlit, you need to use the <code>streamlit_folium</code> module.</p>
+<p>This module has two functions:</p>
+<ul>
+<li><code>folium_static</code> is used to display the map only.</li>
+<li><code>st_folium</code> is use to display the map and return data while the user interacts with the map.</li>
+</ul>
+<p>Here’s an example:</p>
+<div id="237612e7" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit_folium <span class="im">as</span> sf</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">'Streamlit Folium Example'</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>JMA <span class="op">=</span> (<span class="fl">43.0362</span>, <span class="op">-</span><span class="fl">76.1363</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>HINDS <span class="op">=</span> (<span class="fl">43.0382</span>, <span class="op">-</span><span class="fl">76.1333</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> folium.Map(location<span class="op">=</span>JMA, zoom_start<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>folium.Marker(JMA, popup<span class="op">=</span><span class="st">"JMA Wireless Dome"</span>, tooltip<span class="op">=</span><span class="st">"JMA"</span>, icon<span class="op">=</span>folium.Icon(color<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>).add_to(m1)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>folium.Marker(HINDS, popup<span class="op">=</span><span class="st">"iSchool"</span>, tooltip<span class="op">=</span><span class="st">"Hinds Hall"</span>, icon<span class="op">=</span>folium.Icon(color<span class="op">=</span><span class="st">"blue"</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>).add_to(m1)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>st.write(<span class="st">'### Folium Map And Data'</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>st_data <span class="op">=</span> sf.st_folium(m1, width<span class="op">=</span><span class="dv">725</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>st.write(st_data)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>m2 <span class="op">=</span> folium.Map(location<span class="op">=</span>JMA, zoom_start<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>folium.Marker(JMA, popup<span class="op">=</span><span class="st">"JMA Wireless Dome"</span>, tooltip<span class="op">=</span><span class="st">"JMA"</span>, icon<span class="op">=</span>folium.Icon(color<span class="op">=</span><span class="st">"red"</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>).add_to(m2)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>folium.Marker(HINDS, popup<span class="op">=</span><span class="st">"iSchool"</span>, tooltip<span class="op">=</span><span class="st">"Hinds Hall"</span>, icon<span class="op">=</span>folium.Icon(color<span class="op">=</span><span class="st">"blue"</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>).add_to(m2)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>st.write(<span class="st">'### Folium Map Only'</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>sf.folium_static(m2, width<span class="op">=</span><span class="dv">725</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="map-markers-colors-and-icons" class="level3">
+<h3 class="anchored" data-anchor-id="map-markers-colors-and-icons">Map Markers Colors and Icons</h3>
+<p>Through the <code>icon</code> named argument you can assign an icon to the popup. You must create a <code>folium.Icon()</code> to assign a custom icon. There are three named arguments:</p>
+<p><code>color=</code> the color of the marker <code>icon_color=</code> the color of the icon on the marker <code>icon=</code> the name of the icon.</p>
+<p>Valid colors are: <code>['red', 'blue', 'green', 'purple', 'orange', 'darkred', 'lightred', 'beige', 'darkblue', 'darkgreen', 'cadetblue', 'darkpurple', 'white', 'pink', 'lightblue', 'lightgreen', 'gray', 'black', 'lightgray']</code></p>
+<p>Valid icons can be found here: https://fontawesome.com/v4/icons/ Your mileage may vary here as not all the icons listed are available.</p>
+</section>
+<section id="mapping-a-dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="mapping-a-dataframe">Mapping a dataframe</h3>
+<p>To map a dataframe:</p>
+<ol type="1">
+<li>we need coordinates</li>
+<li>we need to use loop over the data, creating a marker for each row</li>
+</ol>
+<p>Here’s an example using a dataframe that contains locations of various classes:</p>
+<div id="2088b87b" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>classesdf <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/mafudge/datasets/master/delimited/class-schedule.csv"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>classesdf.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Course</th>
+<th data-quarto-table-cell-role="th">Day</th>
+<th data-quarto-table-cell-role="th">Time</th>
+<th data-quarto-table-cell-role="th">Building</th>
+<th data-quarto-table-cell-role="th">Room</th>
+<th data-quarto-table-cell-role="th">Lat</th>
+<th data-quarto-table-cell-role="th">Lon</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>IST256</td>
+<td>M</td>
+<td>3:45pm</td>
+<td>HBC</td>
+<td>Gifford</td>
+<td>43.03819</td>
+<td>-76.13413</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>MAT221</td>
+<td>TuTh</td>
+<td>12:45pm</td>
+<td>Bowne</td>
+<td>104</td>
+<td>43.03674</td>
+<td>-76.13320</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>WRT206</td>
+<td>MW</td>
+<td>9:20am</td>
+<td>Crouse</td>
+<td>111</td>
+<td>43.03852</td>
+<td>-76.13676</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>COM222</td>
+<td>TuTh</td>
+<td>9:20am</td>
+<td>NH II</td>
+<td>232</td>
+<td>43.04020</td>
+<td>-76.13521</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>IST343</td>
+<td>MW</td>
+<td>2:15pm</td>
+<td>Hinds</td>
+<td>243</td>
+<td>43.03834</td>
+<td>-76.13364</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Let’s put a marker on the map showing the location of each class:</p>
+<div id="491ba213" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>schine <span class="op">=</span> (<span class="fl">43.03986</span>, <span class="op">-</span><span class="fl">76.13375</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>map2 <span class="op">=</span> folium.Map(location<span class="op">=</span>schine, zoom_start<span class="op">=</span><span class="dv">17</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, row <span class="kw">in</span> classesdf.iterrows():</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>row[<span class="st">'Course'</span>]<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>row[<span class="st">'Day'</span>]<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>row[<span class="st">'Time'</span>]<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>row[<span class="st">'Building'</span>]<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    dd <span class="op">=</span> (row[<span class="st">'Lat'</span>], row[<span class="st">'Lon'</span>])</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> row[<span class="st">'Day'</span>] <span class="op">==</span> <span class="st">"TuTh"</span>:</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        markercolor <span class="op">=</span> <span class="st">'orange'</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        markercolor <span class="op">=</span> <span class="st">'darkblue'</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    marker <span class="op">=</span> folium.Marker(location<span class="op">=</span>dd, popup<span class="op">=</span>text, icon <span class="op">=</span> folium.Icon(color <span class="op">=</span> markercolor, icon<span class="op">=</span><span class="st">"globe"</span>))</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    marker.add_to(map2)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>map2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
+    <script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;></script>
+    <script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;></script>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;></script>
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;></script>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/>
+    
+            <meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
+            <style>
+                #map_bf8696fde62720f7b905172fc42bb4d8 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class=&quot;folium-map&quot; id=&quot;map_bf8696fde62720f7b905172fc42bb4d8&quot; ></div>
+        
+</body>
+<script>
+    
+    
+            var map_bf8696fde62720f7b905172fc42bb4d8 = L.map(
+                &quot;map_bf8696fde62720f7b905172fc42bb4d8&quot;,
+                {
+                    center: [43.03986, -76.13375],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  &quot;zoom&quot;: 17,
+  &quot;zoomControl&quot;: true,
+  &quot;preferCanvas&quot;: false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_2cc7b3de95110285156b2be82b96eb80 = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 19,
+  &quot;maxNativeZoom&quot;: 19,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_2cc7b3de95110285156b2be82b96eb80.addTo(map_bf8696fde62720f7b905172fc42bb4d8);
+        
+    
+            var marker_197322cd5b9c490aa2a7ff70cf53e0e8 = L.marker(
+                [43.03819, -76.13413],
+                {
+}
+            ).addTo(map_bf8696fde62720f7b905172fc42bb4d8);
+        
+    
+            var icon_c7f3cbcac3a35847438a17f90b9c909c = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;darkblue&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;globe&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_4b6298597241cc21d811783f72051637 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_0d4ff1b384a453a3c74e506e993573a1 = $(`<div id=&quot;html_0d4ff1b384a453a3c74e506e993573a1&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>IST256 M 3:45pm HBC</div>`)[0];
+                popup_4b6298597241cc21d811783f72051637.setContent(html_0d4ff1b384a453a3c74e506e993573a1);
+            
+        
+
+        marker_197322cd5b9c490aa2a7ff70cf53e0e8.bindPopup(popup_4b6298597241cc21d811783f72051637)
+        ;
+
+        
+    
+    
+                marker_197322cd5b9c490aa2a7ff70cf53e0e8.setIcon(icon_c7f3cbcac3a35847438a17f90b9c909c);
+            
+    
+            var marker_0fa464e867c2b009c6a086b8745469e4 = L.marker(
+                [43.03674, -76.1332],
+                {
+}
+            ).addTo(map_bf8696fde62720f7b905172fc42bb4d8);
+        
+    
+            var icon_639093d1763b6c746970af69fe93e89e = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;orange&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;globe&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_460adc1eb236818390e4c1be0f928b95 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_4e1e79941f4c03037a705c979ec823b3 = $(`<div id=&quot;html_4e1e79941f4c03037a705c979ec823b3&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>MAT221 TuTh 12:45pm Bowne</div>`)[0];
+                popup_460adc1eb236818390e4c1be0f928b95.setContent(html_4e1e79941f4c03037a705c979ec823b3);
+            
+        
+
+        marker_0fa464e867c2b009c6a086b8745469e4.bindPopup(popup_460adc1eb236818390e4c1be0f928b95)
+        ;
+
+        
+    
+    
+                marker_0fa464e867c2b009c6a086b8745469e4.setIcon(icon_639093d1763b6c746970af69fe93e89e);
+            
+    
+            var marker_e80b14ed541bd1f48effd273203fc819 = L.marker(
+                [43.03852, -76.13676],
+                {
+}
+            ).addTo(map_bf8696fde62720f7b905172fc42bb4d8);
+        
+    
+            var icon_843eec6596d889096a37ecba2d53d863 = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;darkblue&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;globe&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_c85a461dac7e810eeeb9330176fed195 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_bd0f6bcee3da4e8767df047e726babb9 = $(`<div id=&quot;html_bd0f6bcee3da4e8767df047e726babb9&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>WRT206 MW 9:20am Crouse</div>`)[0];
+                popup_c85a461dac7e810eeeb9330176fed195.setContent(html_bd0f6bcee3da4e8767df047e726babb9);
+            
+        
+
+        marker_e80b14ed541bd1f48effd273203fc819.bindPopup(popup_c85a461dac7e810eeeb9330176fed195)
+        ;
+
+        
+    
+    
+                marker_e80b14ed541bd1f48effd273203fc819.setIcon(icon_843eec6596d889096a37ecba2d53d863);
+            
+    
+            var marker_998e1c1c819ffd779be3299377b142e1 = L.marker(
+                [43.0402, -76.13521],
+                {
+}
+            ).addTo(map_bf8696fde62720f7b905172fc42bb4d8);
+        
+    
+            var icon_f376c59154b429da43afc8ba41e19b44 = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;orange&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;globe&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_9bfe23bd5bbd57aaa3e902aaab0c51ef = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_aba9bc7b98b593d536a578ad9ee42219 = $(`<div id=&quot;html_aba9bc7b98b593d536a578ad9ee42219&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>COM222 TuTh 9:20am NH II</div>`)[0];
+                popup_9bfe23bd5bbd57aaa3e902aaab0c51ef.setContent(html_aba9bc7b98b593d536a578ad9ee42219);
+            
+        
+
+        marker_998e1c1c819ffd779be3299377b142e1.bindPopup(popup_9bfe23bd5bbd57aaa3e902aaab0c51ef)
+        ;
+
+        
+    
+    
+                marker_998e1c1c819ffd779be3299377b142e1.setIcon(icon_f376c59154b429da43afc8ba41e19b44);
+            
+    
+            var marker_7fe1f561e452b5be9d3d903480510cbd = L.marker(
+                [43.03834, -76.13364],
+                {
+}
+            ).addTo(map_bf8696fde62720f7b905172fc42bb4d8);
+        
+    
+            var icon_e871ae9cc88d28c20fd203adc41bea53 = L.AwesomeMarkers.icon(
+                {
+  &quot;markerColor&quot;: &quot;darkblue&quot;,
+  &quot;iconColor&quot;: &quot;white&quot;,
+  &quot;icon&quot;: &quot;globe&quot;,
+  &quot;prefix&quot;: &quot;glyphicon&quot;,
+  &quot;extraClasses&quot;: &quot;fa-rotate-0&quot;,
+}
+            );
+        
+    
+        var popup_95d0573aa021dfd0cede4de011066a10 = L.popup({
+  &quot;maxWidth&quot;: &quot;100%&quot;,
+});
+
+        
+            
+                var html_60ac4a03572b197526723eaff1c2395c = $(`<div id=&quot;html_60ac4a03572b197526723eaff1c2395c&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;>IST343 MW 2:15pm Hinds</div>`)[0];
+                popup_95d0573aa021dfd0cede4de011066a10.setContent(html_60ac4a03572b197526723eaff1c2395c);
+            
+        
+
+        marker_7fe1f561e452b5be9d3d903480510cbd.bindPopup(popup_95d0573aa021dfd0cede4de011066a10)
+        ;
+
+        
+    
+    
+                marker_7fe1f561e452b5be9d3d903480510cbd.setIcon(icon_e871ae9cc88d28c20fd203adc41bea53);
+            
+</script>
+</html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Code Challenge 4.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Streamlit version of Parkmagic!</p>
+<p>The file <a href="../assets/final_cuse_parking_violations.csv">final_cuse_parking_violations.csv</a> (right click the link, then click “Copy Link Location” to get the file’s URL) contains a list parking tickets in Syracuse, along with their locations.</p>
+<p>Write a Streamlit app that will load <code>final_cuse_parking_violations.csv</code> and create a map of the parking violations in Syracuse.</p>
+<p>Steps to take:</p>
+<ul>
+<li>drop rows without a latitude and longitude</li>
+<li>provide a dropdown to select the status of the violation</li>
+<li>place pins on the map with the street name and the violation description</li>
+<li>color code the pins based on day of the week</li>
+<li>to make the map more readable take a random sample of 50 rows from the dataframe (you can do this with the DataFrame’s <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sample.html">sample</a> method).</li>
+</ul>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="ab490c84" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit_folium <span class="im">as</span> sf</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>days  <span class="op">=</span> {</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Sunday'</span>: <span class="st">'red'</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Monday'</span>: <span class="st">'orange'</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Tuesday'</span>: <span class="st">'beige'</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Wednesday'</span>: <span class="st">'green'</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Thursday'</span>: <span class="st">'blue'</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Friday'</span>: <span class="st">'purple'</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Saturday'</span>: <span class="st">'gray'</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">'Streamlit Park magic'</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>mp <span class="op">=</span> folium.Map(location<span class="op">=</span>[<span class="fl">43.0481</span>, <span class="op">-</span><span class="fl">76.1474</span>], zoom_start<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'../assets/final_cuse_parking_violations.csv'</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>df_dropped <span class="op">=</span> df.dropna()</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>status <span class="op">=</span> df_dropped[<span class="st">'status'</span>].unique()</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>status <span class="op">=</span> st.selectbox(<span class="st">'Select ticket status: '</span>, status)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="op">=</span> df_dropped[df_dropped[<span class="st">'status'</span>] <span class="op">==</span> status]</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>df_sample <span class="op">=</span> df_filtered.sample(<span class="dv">50</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, row <span class="kw">in</span> df_sample.iterrows():</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    lat, lon <span class="op">=</span> row[<span class="st">'coords'</span>].strip(<span class="st">"("</span>).strip(<span class="st">")"</span>).split(<span class="st">','</span>) </span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    lat <span class="op">=</span> <span class="bu">float</span>(lat.replace(<span class="st">"'"</span>, <span class="st">""</span>))</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    lon <span class="op">=</span> <span class="bu">float</span>(lon.replace(<span class="st">"'"</span>, <span class="st">""</span>))</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    color <span class="op">=</span> days[row[<span class="st">'dayofweek'</span>]]</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    folium.Marker((lat, lon), popup<span class="op">=</span>row[<span class="st">'location'</span>], tooltip<span class="op">=</span>row[<span class="st">'location'</span>], icon<span class="op">=</span>folium.Icon(color<span class="op">=</span>color)).add_to(mp)</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>sf.folium_static(mp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="geopandas" class="level2">
+<h2 class="anchored" data-anchor-id="geopandas">Geopandas</h2>
+<p><a href="https://geopandas.org/">Geopandas</a> is a library that extends the Pandas library to work with geospatial data. It is built on top of the Shapely, Fiona, and Matplotlib libraries.</p>
+<p>Geopandas can read and write data in many formats, including shapefiles, GeoJSON, and PostGIS. It can also display data on a map.</p>
+<p>A Pandas DataFrame can be wrapped in a Geopandas’ <a href="https://geopandas.org/en/stable/docs/reference/geodataframe.html">GeoDataFrame</a>. This adds a <code>geometry</code> column to the dataframe that contains information about the shape of the object. The geometry can be a POINT, LINE, or PLOYGON. The GeoDataFrame also has an <a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.explore.html">explore</a> method to display the data on a map.</p>
+<p>Here is an example of a GeoDataFrame wrapped around the class-schedule DataFrame we used earlier:</p>
+<div id="9345c97e" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>classesdf <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/mafudge/datasets/master/delimited/class-schedule.csv"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gpd.GeoDataFrame(classesdf, geometry<span class="op">=</span>gpd.points_from_xy(classesdf[<span class="st">'Lon'</span>], classesdf[<span class="st">'Lat'</span>]))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>gdf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Course</th>
+<th data-quarto-table-cell-role="th">Day</th>
+<th data-quarto-table-cell-role="th">Time</th>
+<th data-quarto-table-cell-role="th">Building</th>
+<th data-quarto-table-cell-role="th">Room</th>
+<th data-quarto-table-cell-role="th">Lat</th>
+<th data-quarto-table-cell-role="th">Lon</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>IST256</td>
+<td>M</td>
+<td>3:45pm</td>
+<td>HBC</td>
+<td>Gifford</td>
+<td>43.03819</td>
+<td>-76.13413</td>
+<td>POINT (-76.13413 43.03819)</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>MAT221</td>
+<td>TuTh</td>
+<td>12:45pm</td>
+<td>Bowne</td>
+<td>104</td>
+<td>43.03674</td>
+<td>-76.13320</td>
+<td>POINT (-76.1332 43.03674)</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>WRT206</td>
+<td>MW</td>
+<td>9:20am</td>
+<td>Crouse</td>
+<td>111</td>
+<td>43.03852</td>
+<td>-76.13676</td>
+<td>POINT (-76.13676 43.03852)</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>COM222</td>
+<td>TuTh</td>
+<td>9:20am</td>
+<td>NH II</td>
+<td>232</td>
+<td>43.04020</td>
+<td>-76.13521</td>
+<td>POINT (-76.13521 43.0402)</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>IST343</td>
+<td>MW</td>
+<td>2:15pm</td>
+<td>Hinds</td>
+<td>243</td>
+<td>43.03834</td>
+<td>-76.13364</td>
+<td>POINT (-76.13364 43.03834)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>With the GeoDataFrame we can easily add markers to a folium map (compare to the multiple lines of code we had to use above to accomplish the same thing):</p>
+<div id="02ce4a05" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>schine <span class="op">=</span> (<span class="fl">43.03986</span>, <span class="op">-</span><span class="fl">76.13375</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>map3 <span class="op">=</span> folium.Map(location<span class="op">=</span>schine, zoom_start<span class="op">=</span><span class="dv">17</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>map_out <span class="op">=</span> gdf.explore(m<span class="op">=</span>map3, marker_type<span class="op">=</span><span class="st">"marker"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>map_out</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
+    <script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;></script>
+    <script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;></script>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;></script>
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;></script>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/>
+    
+            <meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
+            <style>
+                #map_be18e8c622525a9928163ff799205be7 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    
+                    <style>
+                        .foliumtooltip {
+                            
+                        }
+                       .foliumtooltip table{
+                            margin: auto;
+                        }
+                        .foliumtooltip tr{
+                            text-align: left;
+                        }
+                        .foliumtooltip th{
+                            padding: 2px; padding-right: 8px;
+                        }
+                    </style>
+            
+</head>
+<body>
+    
+    
+            <div class=&quot;folium-map&quot; id=&quot;map_be18e8c622525a9928163ff799205be7&quot; ></div>
+        
+</body>
+<script>
+    
+    
+            var map_be18e8c622525a9928163ff799205be7 = L.map(
+                &quot;map_be18e8c622525a9928163ff799205be7&quot;,
+                {
+                    center: [43.03986, -76.13375],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  &quot;zoom&quot;: 17,
+  &quot;zoomControl&quot;: true,
+  &quot;preferCanvas&quot;: false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a4d7d97f372233194bd122f98f7bfb06 = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 19,
+  &quot;maxNativeZoom&quot;: 19,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_a4d7d97f372233194bd122f98f7bfb06.addTo(map_be18e8c622525a9928163ff799205be7);
+        
+    
+        function geo_json_976bf03a97935f118a1372b7e64549e6_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {&quot;fillOpacity&quot;: 0.5, &quot;weight&quot;: 2};
+            }
+        }
+        function geo_json_976bf03a97935f118a1372b7e64549e6_highlighter(feature) {
+            switch(feature.id) {
+                default:
+                    return {&quot;fillOpacity&quot;: 0.75};
+            }
+        }
+        function geo_json_976bf03a97935f118a1372b7e64549e6_pointToLayer(feature, latlng) {
+            var opts = {
+};
+            
+            let style = geo_json_976bf03a97935f118a1372b7e64549e6_styler(feature)
+            Object.assign(opts, style)
+            
+            return new L.Marker(latlng, opts)
+        }
+
+        function geo_json_976bf03a97935f118a1372b7e64549e6_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === &quot;function&quot;){
+                            geo_json_976bf03a97935f118a1372b7e64549e6.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === &quot;function&quot;){
+                        const highlightStyle = geo_json_976bf03a97935f118a1372b7e64549e6_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_976bf03a97935f118a1372b7e64549e6 = L.geoJson(null, {
+                onEachFeature: geo_json_976bf03a97935f118a1372b7e64549e6_onEachFeature,
+            
+                style: geo_json_976bf03a97935f118a1372b7e64549e6_styler,
+                pointToLayer: geo_json_976bf03a97935f118a1372b7e64549e6_pointToLayer,
+            ...{
+}
+        });
+
+        function geo_json_976bf03a97935f118a1372b7e64549e6_add (data) {
+            geo_json_976bf03a97935f118a1372b7e64549e6
+                .addData(data);
+        }
+            geo_json_976bf03a97935f118a1372b7e64549e6_add({&quot;bbox&quot;: [-76.13676, 43.03674, -76.1332, 43.0402], &quot;features&quot;: [{&quot;bbox&quot;: [-76.13413, 43.03819, -76.13413, 43.03819], &quot;geometry&quot;: {&quot;coordinates&quot;: [-76.13413, 43.03819], &quot;type&quot;: &quot;Point&quot;}, &quot;id&quot;: &quot;0&quot;, &quot;properties&quot;: {&quot;Building&quot;: &quot;HBC&quot;, &quot;Course&quot;: &quot;IST256&quot;, &quot;Day&quot;: &quot;M&quot;, &quot;Lat&quot;: 43.03819, &quot;Lon&quot;: -76.13413, &quot;Room&quot;: &quot;Gifford&quot;, &quot;Time&quot;: &quot;3:45pm&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-76.1332, 43.03674, -76.1332, 43.03674], &quot;geometry&quot;: {&quot;coordinates&quot;: [-76.1332, 43.03674], &quot;type&quot;: &quot;Point&quot;}, &quot;id&quot;: &quot;1&quot;, &quot;properties&quot;: {&quot;Building&quot;: &quot;Bowne&quot;, &quot;Course&quot;: &quot;MAT221&quot;, &quot;Day&quot;: &quot;TuTh&quot;, &quot;Lat&quot;: 43.03674, &quot;Lon&quot;: -76.1332, &quot;Room&quot;: &quot;104&quot;, &quot;Time&quot;: &quot;12:45pm&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-76.13676, 43.03852, -76.13676, 43.03852], &quot;geometry&quot;: {&quot;coordinates&quot;: [-76.13676, 43.03852], &quot;type&quot;: &quot;Point&quot;}, &quot;id&quot;: &quot;2&quot;, &quot;properties&quot;: {&quot;Building&quot;: &quot;Crouse&quot;, &quot;Course&quot;: &quot;WRT206&quot;, &quot;Day&quot;: &quot;MW&quot;, &quot;Lat&quot;: 43.03852, &quot;Lon&quot;: -76.13676, &quot;Room&quot;: &quot;111&quot;, &quot;Time&quot;: &quot;9:20am&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-76.13521, 43.0402, -76.13521, 43.0402], &quot;geometry&quot;: {&quot;coordinates&quot;: [-76.13521, 43.0402], &quot;type&quot;: &quot;Point&quot;}, &quot;id&quot;: &quot;3&quot;, &quot;properties&quot;: {&quot;Building&quot;: &quot;NH II&quot;, &quot;Course&quot;: &quot;COM222&quot;, &quot;Day&quot;: &quot;TuTh&quot;, &quot;Lat&quot;: 43.0402, &quot;Lon&quot;: -76.13521, &quot;Room&quot;: &quot;232&quot;, &quot;Time&quot;: &quot;9:20am&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-76.13364, 43.03834, -76.13364, 43.03834], &quot;geometry&quot;: {&quot;coordinates&quot;: [-76.13364, 43.03834], &quot;type&quot;: &quot;Point&quot;}, &quot;id&quot;: &quot;4&quot;, &quot;properties&quot;: {&quot;Building&quot;: &quot;Hinds&quot;, &quot;Course&quot;: &quot;IST343&quot;, &quot;Day&quot;: &quot;MW&quot;, &quot;Lat&quot;: 43.03834, &quot;Lon&quot;: -76.13364, &quot;Room&quot;: &quot;243&quot;, &quot;Time&quot;: &quot;2:15pm&quot;}, &quot;type&quot;: &quot;Feature&quot;}], &quot;type&quot;: &quot;FeatureCollection&quot;});
+
+        
+    
+    geo_json_976bf03a97935f118a1372b7e64549e6.bindTooltip(
+    function(layer){
+    let div = L.DomUtil.create('div');
+    
+    let handleObject = feature => {
+        if (feature === null) {
+            return '';
+        } else if (typeof(feature)=='object') {
+            return JSON.stringify(feature);
+        } else {
+            return feature;
+        }
+    }
+    let fields = [&quot;Course&quot;, &quot;Day&quot;, &quot;Time&quot;, &quot;Building&quot;, &quot;Room&quot;, &quot;Lat&quot;, &quot;Lon&quot;];
+    let aliases = [&quot;Course&quot;, &quot;Day&quot;, &quot;Time&quot;, &quot;Building&quot;, &quot;Room&quot;, &quot;Lat&quot;, &quot;Lon&quot;];
+    let table = '<table>' +
+        String(
+        fields.map(
+        (v,i)=>
+        `<tr>
+            <th>${aliases[i]}</th>
+            
+            <td>${handleObject(layer.feature.properties[v])}</td>
+        </tr>`).join(''))
+    +'</table>';
+    div.innerHTML=table;
+    
+    return div
+    }
+    ,{
+  &quot;sticky&quot;: true,
+  &quot;className&quot;: &quot;foliumtooltip&quot;,
+});
+                     
+    
+            geo_json_976bf03a97935f118a1372b7e64549e6.addTo(map_be18e8c622525a9928163ff799205be7);
+        
+</script>
+</html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
+</div>
+</div>
+<p>You can read more about how to work with GeoDetaFrames <a href="https://geopandas.org/en/stable/getting_started/introduction.html">here</a>.</p>
+</section>
+<section id="choropleth-maps-in-geopandas" class="level2">
+<h2 class="anchored" data-anchor-id="choropleth-maps-in-geopandas">Choropleth Maps in Geopandas</h2>
+<p>A choropleth map is a map that uses shading to represent the value of a variable. The shading can be based on a single value or a range of values.</p>
+<p>Choropleths maps require a GeoDataFrame with a geometry column. The geometry column contains the shapes that will be displayed on the map.</p>
+<p>First, we’ll use a <em>colormap</em> from matplotlib. A colormap maps a sequence of numerical values to a sequence of colors. Here’s the list of available colormaps in matplotlib:</p>
+<div id="e467b58a" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> colormaps</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(colormaps))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['magma', 'inferno', 'plasma', 'viridis', 'cividis', 'twilight', 'twilight_shifted', 'turbo', 'berlin', 'managua', 'vanimo', 'Blues', 'BrBG', 'BuGn', 'BuPu', 'CMRmap', 'GnBu', 'Greens', 'Greys', 'OrRd', 'Oranges', 'PRGn', 'PiYG', 'PuBu', 'PuBuGn', 'PuOr', 'PuRd', 'Purples', 'RdBu', 'RdGy', 'RdPu', 'RdYlBu', 'RdYlGn', 'Reds', 'Spectral', 'Wistia', 'YlGn', 'YlGnBu', 'YlOrBr', 'YlOrRd', 'afmhot', 'autumn', 'binary', 'bone', 'brg', 'bwr', 'cool', 'coolwarm', 'copper', 'cubehelix', 'flag', 'gist_earth', 'gist_gray', 'gist_heat', 'gist_ncar', 'gist_rainbow', 'gist_stern', 'gist_yarg', 'gnuplot', 'gnuplot2', 'gray', 'hot', 'hsv', 'jet', 'nipy_spectral', 'ocean', 'pink', 'prism', 'rainbow', 'seismic', 'spring', 'summer', 'terrain', 'winter', 'Accent', 'Dark2', 'Paired', 'Pastel1', 'Pastel2', 'Set1', 'Set2', 'Set3', 'tab10', 'tab20', 'tab20b', 'tab20c', 'grey', 'gist_grey', 'gist_yerg', 'Grays', 'magma_r', 'inferno_r', 'plasma_r', 'viridis_r', 'cividis_r', 'twilight_r', 'twilight_shifted_r', 'turbo_r', 'berlin_r', 'managua_r', 'vanimo_r', 'Blues_r', 'BrBG_r', 'BuGn_r', 'BuPu_r', 'CMRmap_r', 'GnBu_r', 'Greens_r', 'Greys_r', 'OrRd_r', 'Oranges_r', 'PRGn_r', 'PiYG_r', 'PuBu_r', 'PuBuGn_r', 'PuOr_r', 'PuRd_r', 'Purples_r', 'RdBu_r', 'RdGy_r', 'RdPu_r', 'RdYlBu_r', 'RdYlGn_r', 'Reds_r', 'Spectral_r', 'Wistia_r', 'YlGn_r', 'YlGnBu_r', 'YlOrBr_r', 'YlOrRd_r', 'afmhot_r', 'autumn_r', 'binary_r', 'bone_r', 'brg_r', 'bwr_r', 'cool_r', 'coolwarm_r', 'copper_r', 'cubehelix_r', 'flag_r', 'gist_earth_r', 'gist_gray_r', 'gist_heat_r', 'gist_ncar_r', 'gist_rainbow_r', 'gist_stern_r', 'gist_yarg_r', 'gnuplot_r', 'gnuplot2_r', 'gray_r', 'hot_r', 'hsv_r', 'jet_r', 'nipy_spectral_r', 'ocean_r', 'pink_r', 'prism_r', 'rainbow_r', 'seismic_r', 'spring_r', 'summer_r', 'terrain_r', 'winter_r', 'Accent_r', 'Dark2_r', 'Paired_r', 'Pastel1_r', 'Pastel2_r', 'Set1_r', 'Set2_r', 'Set3_r', 'tab10_r', 'tab20_r', 'tab20b_r', 'tab20c_r', 'grey_r', 'gist_grey_r', 'gist_yerg_r', 'Grays_r']</code></pre>
+</div>
+</div>
+<p>You can see what these look like on the <a href="https://matplotlib.org/stable/users/explain/colors/colormaps.html">matplotlib site</a>.</p>
+<p>In the example below we will use the <code>inferno</code> colormap to make a plot of fake population numbers of towns on the island of St.&nbsp;Lucia. To do this, we use the provided GeoJSON file that gives the borders of towns and villages in St.&nbsp;Lucia, <a href="../assets/stlucia.geojson">stlucia.geojson</a>:</p>
+<div id="76a04f53" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gpd.read_file(<span class="st">"../assets/stlucia.geojson"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>gdf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">source</th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">name</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>https://simplemaps.com</td>
+<td>LC06</td>
+<td>Gros Islet</td>
+<td>POLYGON ((-60.97997 14.04352, -60.97606 14.061...</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>https://simplemaps.com</td>
+<td>LC02</td>
+<td>Castries</td>
+<td>POLYGON ((-60.97997 14.04352, -60.96559 14.034...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>https://simplemaps.com</td>
+<td>LC01</td>
+<td>Anse-la-Raye</td>
+<td>POLYGON ((-61.0266 13.98737, -61.00945 13.9817...</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>https://simplemaps.com</td>
+<td>LC10</td>
+<td>Soufrière</td>
+<td>POLYGON ((-60.98063 13.8928, -60.97185 13.8827...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>https://simplemaps.com</td>
+<td>LC03</td>
+<td>Choiseul</td>
+<td>POLYGON ((-61.0681 13.79218, -61.04956 13.8063...</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>https://simplemaps.com</td>
+<td>LC07</td>
+<td>Laborie</td>
+<td>POLYGON ((-61.01892 13.75625, -61.01203 13.770...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>https://simplemaps.com</td>
+<td>LC11</td>
+<td>Vieux Fort</td>
+<td>POLYGON ((-60.98158 13.83577, -60.97522 13.839...</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>https://simplemaps.com</td>
+<td>LC08</td>
+<td>Micoud</td>
+<td>POLYGON ((-60.97522 13.83923, -60.96433 13.845...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>https://simplemaps.com</td>
+<td>LC09</td>
+<td>Praslin</td>
+<td>POLYGON ((-60.96057 13.87901, -60.96057 13.900...</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>https://simplemaps.com</td>
+<td>LC05</td>
+<td>Dennery</td>
+<td>POLYGON ((-60.96057 13.90032, -60.95681 13.927...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">10</th>
+<td>https://simplemaps.com</td>
+<td>LC04</td>
+<td>Dauphin</td>
+<td>POLYGON ((-60.93559 14.01796, -60.933 14.03692...</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Now let’s illustrate plotting, say, the population of each town. Since this is just for illustrative purposes, we’ll just create a population column with random numbers.</p>
+<div id="c5cff36e" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>gdf[<span class="st">'Population'</span>] <span class="op">=</span> gdf.<span class="bu">apply</span>(<span class="kw">lambda</span> row: np.random.randint(<span class="dv">5000</span>,<span class="dv">50000</span>), axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We can now create the Choropleth map illustrating our fake population numbers with:</p>
+<div id="5eb34226" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gdf.explore(column<span class="op">=</span><span class="st">'Population'</span>, cmap<span class="op">=</span><span class="st">'inferno'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
+    <script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;></script>
+    <script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;></script>
+    <script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;></script>
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;></script>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/>
+    <link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/>
+    
+            <meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; />
+            <style>
+                #map_3210520b336d791026dea09f2713f1ce {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    
+                    <style>
+                        .foliumtooltip {
+                            
+                        }
+                       .foliumtooltip table{
+                            margin: auto;
+                        }
+                        .foliumtooltip tr{
+                            text-align: left;
+                        }
+                        .foliumtooltip th{
+                            padding: 2px; padding-right: 8px;
+                        }
+                    </style>
+            
+    <script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js&quot;></script>
+</head>
+<body>
+    
+    
+            <div class=&quot;folium-map&quot; id=&quot;map_3210520b336d791026dea09f2713f1ce&quot; ></div>
+        
+</body>
+<script>
+    
+    
+            var map_3210520b336d791026dea09f2713f1ce = L.map(
+                &quot;map_3210520b336d791026dea09f2713f1ce&quot;,
+                {
+                    center: [13.913275584714711, -60.98074296702212],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  &quot;zoom&quot;: 10,
+  &quot;zoomControl&quot;: true,
+  &quot;preferCanvas&quot;: false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_3210520b336d791026dea09f2713f1ce);
+
+            
+
+        
+    
+            var tile_layer_1250db3cfd8dd9b185897ff14144c6ca = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 19,
+  &quot;maxNativeZoom&quot;: 19,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_1250db3cfd8dd9b185897ff14144c6ca.addTo(map_3210520b336d791026dea09f2713f1ce);
+        
+    
+            map_3210520b336d791026dea09f2713f1ce.fitBounds(
+                [[13.714667199671691, -61.07852128744509], [14.111883969757729, -60.88296464659914]],
+                {}
+            );
+        
+    
+        function geo_json_cb9bfc3979112c497c7d0c23423eee5c_styler(feature) {
+            switch(feature.id) {
+                case &quot;0&quot;: 
+                    return {&quot;color&quot;: &quot;#000004&quot;, &quot;fillColor&quot;: &quot;#000004&quot;, &quot;fillOpacity&quot;: 0.5, &quot;weight&quot;: 2};
+                case &quot;1&quot;: 
+                    return {&quot;color&quot;: &quot;#fb9706&quot;, &quot;fillColor&quot;: &quot;#fb9706&quot;, &quot;fillOpacity&quot;: 0.5, &quot;weight&quot;: 2};
+                case &quot;2&quot;: 
+                    return {&quot;color&quot;: &quot;#fbbc21&quot;, &quot;fillColor&quot;: &quot;#fbbc21&quot;, &quot;fillOpacity&quot;: 0.5, &quot;weight&quot;: 2};
+                case &quot;3&quot;: 
+                    return {&quot;color&quot;: &quot;#c03a51&quot;, &quot;fillColor&quot;: &quot;#c03a51&quot;, &quot;fillOpacity&quot;: 0.5, &quot;weight&quot;: 2};
+                case &quot;4&quot;: 
+                    return {&quot;color&quot;: &quot;#ce4347&quot;, &quot;fillColor&quot;: &quot;#ce4347&quot;, &quot;fillOpacity&quot;: 0.5, &quot;weight&quot;: 2};
+                case &quot;5&quot;: 
+                    return {&quot;color&quot;: &quot;#010106&quot;, &quot;fillColor&quot;: &quot;#010106&quot;, &quot;fillOpacity&quot;: 0.5, &quot;weight&quot;: 2};
+                case &quot;6&quot;: 
+                    return {&quot;color&quot;: &quot;#140b34&quot;, &quot;fillColor&quot;: &quot;#140b34&quot;, &quot;fillOpacity&quot;: 0.5, &quot;weight&quot;: 2};
+                case &quot;7&quot;: 
+                    return {&quot;color&quot;: &quot;#0a0722&quot;, &quot;fillColor&quot;: &quot;#0a0722&quot;, &quot;fillOpacity&quot;: 0.5, &quot;weight&quot;: 2};
+                case &quot;8&quot;: 
+                    return {&quot;color&quot;: &quot;#520e6d&quot;, &quot;fillColor&quot;: &quot;#520e6d&quot;, &quot;fillOpacity&quot;: 0.5, &quot;weight&quot;: 2};
+                case &quot;10&quot;: 
+                    return {&quot;color&quot;: &quot;#d74b3f&quot;, &quot;fillColor&quot;: &quot;#d74b3f&quot;, &quot;fillOpacity&quot;: 0.5, &quot;weight&quot;: 2};
+                default:
+                    return {&quot;color&quot;: &quot;#fcffa4&quot;, &quot;fillColor&quot;: &quot;#fcffa4&quot;, &quot;fillOpacity&quot;: 0.5, &quot;weight&quot;: 2};
+            }
+        }
+        function geo_json_cb9bfc3979112c497c7d0c23423eee5c_highlighter(feature) {
+            switch(feature.id) {
+                default:
+                    return {&quot;fillOpacity&quot;: 0.75};
+            }
+        }
+        function geo_json_cb9bfc3979112c497c7d0c23423eee5c_pointToLayer(feature, latlng) {
+            var opts = {
+  &quot;stroke&quot;: true,
+  &quot;color&quot;: &quot;#3388ff&quot;,
+  &quot;weight&quot;: 3,
+  &quot;opacity&quot;: 1.0,
+  &quot;lineCap&quot;: &quot;round&quot;,
+  &quot;lineJoin&quot;: &quot;round&quot;,
+  &quot;dashArray&quot;: null,
+  &quot;dashOffset&quot;: null,
+  &quot;fill&quot;: true,
+  &quot;fillColor&quot;: &quot;#3388ff&quot;,
+  &quot;fillOpacity&quot;: 0.2,
+  &quot;fillRule&quot;: &quot;evenodd&quot;,
+  &quot;bubblingMouseEvents&quot;: true,
+  &quot;radius&quot;: 2,
+};
+            
+            let style = geo_json_cb9bfc3979112c497c7d0c23423eee5c_styler(feature)
+            Object.assign(opts, style)
+            
+            return new L.CircleMarker(latlng, opts)
+        }
+
+        function geo_json_cb9bfc3979112c497c7d0c23423eee5c_onEachFeature(feature, layer) {
+
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === &quot;function&quot;){
+                            geo_json_cb9bfc3979112c497c7d0c23423eee5c.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === &quot;function&quot;){
+                        const highlightStyle = geo_json_cb9bfc3979112c497c7d0c23423eee5c_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_cb9bfc3979112c497c7d0c23423eee5c = L.geoJson(null, {
+                onEachFeature: geo_json_cb9bfc3979112c497c7d0c23423eee5c_onEachFeature,
+            
+                style: geo_json_cb9bfc3979112c497c7d0c23423eee5c_styler,
+                pointToLayer: geo_json_cb9bfc3979112c497c7d0c23423eee5c_pointToLayer,
+            ...{
+}
+        });
+
+        function geo_json_cb9bfc3979112c497c7d0c23423eee5c_add (data) {
+            geo_json_cb9bfc3979112c497c7d0c23423eee5c
+                .addData(data);
+        }
+            geo_json_cb9bfc3979112c497c7d0c23423eee5c_add({&quot;bbox&quot;: [-61.07852128744509, 13.714667199671691, -60.88296464659914, 14.111883969757729], &quot;features&quot;: [{&quot;bbox&quot;: [-60.97996984865899, 14.017963405195127, -60.901031059483685, 14.111883969757729], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-60.97996984865899, 14.043524380671208], [-60.97606361571136, 14.061184112880598], [-60.972075964740284, 14.068101156976683], [-60.94762123147301, 14.10228110233217], [-60.93346107574182, 14.111883969757729], [-60.914133275213416, 14.105699066976735], [-60.91860918331479, 14.088446412284911], [-60.91193600498171, 14.079494571931985], [-60.901031059483685, 14.073391085494125], [-60.91545682342176, 14.064494524128554], [-60.927989578617066, 14.053215272042479], [-60.933002657711626, 14.036922485459316], [-60.93558802570042, 14.017963405195127], [-60.95806815149338, 14.021883383565019], [-60.9655877870114, 14.034416018511832], [-60.97996984865899, 14.043524380671208]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;0&quot;, &quot;properties&quot;: {&quot;Population&quot;: 5816, &quot;__folium_color&quot;: &quot;#000004&quot;, &quot;id&quot;: &quot;LC06&quot;, &quot;name&quot;: &quot;Gros Islet&quot;, &quot;source&quot;: &quot;https://simplemaps.com&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-61.026600710377686, 13.879009988446679, -60.93558802570042, 14.043524380671208], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-60.97996984865899, 14.043524380671208], [-60.9655877870114, 14.034416018511832], [-60.95806815149338, 14.021883383565019], [-60.93558802570042, 14.017963405195127], [-60.93676247879697, 14.00935044855311], [-60.94052230614067, 13.97927194676369], [-60.94678869220029, 13.954206680392247], [-60.95681486905222, 13.927887731628276], [-60.96057469154169, 13.900315701534577], [-60.96057468732507, 13.879009988446679], [-60.971854154670424, 13.88276983776763], [-60.980627070680484, 13.892796002633068], [-60.98062708106792, 13.91159525012159], [-60.98062707290912, 13.924127881931524], [-60.98188035093091, 13.945433597155597], [-60.984386895162295, 13.965485929912365], [-60.99190655347549, 13.978018863667774], [-61.009452391642974, 13.981778713821216], [-61.026600710377686, 13.9873720730623], [-61.002268043011476, 14.023138870207099], [-60.99705969569022, 14.02716700253527], [-60.98729406682902, 14.032538045982884], [-60.98232987389485, 14.037339478883133], [-60.97996984865899, 14.043524380671208]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;1&quot;, &quot;properties&quot;: {&quot;Population&quot;: 37227, &quot;__folium_color&quot;: &quot;#fb9706&quot;, &quot;id&quot;: &quot;LC02&quot;, &quot;name&quot;: &quot;Castries&quot;, &quot;source&quot;: &quot;https://simplemaps.com&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-61.06688390791343, 13.866477357885875, -60.980627070680484, 13.9873720730623], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-61.026600710377686, 13.9873720730623], [-61.009452391642974, 13.981778713821216], [-60.99190655347549, 13.978018863667774], [-60.984386895162295, 13.965485929912365], [-60.98188035093091, 13.945433597155597], [-60.98062707290912, 13.924127881931524], [-60.98062708106792, 13.91159525012159], [-60.980627070680484, 13.892796002633068], [-60.98313363022717, 13.873997056352017], [-60.99065327050962, 13.866477357885875], [-61.01070566406567, 13.871490590325342], [-61.0244916672565, 13.894049385917125], [-61.04078423508858, 13.905328934347565], [-61.05582352512424, 13.909088783887007], [-61.06688390791343, 13.909002861635912], [-61.06493078499751, 13.917303672194924], [-61.0594783173828, 13.931219772644411], [-61.03555253892064, 13.964911212125417], [-61.026600710377686, 13.9873720730623]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;2&quot;, &quot;properties&quot;: {&quot;Population&quot;: 40238, &quot;__folium_color&quot;: &quot;#fbbc21&quot;, &quot;id&quot;: &quot;LC01&quot;, &quot;name&quot;: &quot;Anse-la-Raye&quot;, &quot;source&quot;: &quot;https://simplemaps.com&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-61.07852128744509, 13.792181662094967, -60.96057468732507, 13.909088783887007], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-60.980627070680484, 13.892796002633068], [-60.971854154670424, 13.88276983776763], [-60.96057468732507, 13.879009988446679], [-60.96057468936946, 13.86898382388502], [-60.96433451327632, 13.845171646377976], [-60.975222824123215, 13.839232496961397], [-60.981577928454854, 13.835766165570293], [-60.99190655446432, 13.830132550939835], [-61.02574493786419, 13.817599621282469], [-61.04955713694187, 13.806320075007667], [-61.06810461758322, 13.792181662094967], [-61.07420813449238, 13.7987327814821], [-61.07811438505948, 13.80630114808245], [-61.071156384269806, 13.821966934292206], [-61.07005775712648, 13.832098848274002], [-61.07115638321751, 13.851792766099573], [-61.072743282872004, 13.858221612369066], [-61.075591598808145, 13.863267290879582], [-61.07811439045722, 13.869615021905199], [-61.07852128744509, 13.879787494640118], [-61.07591712988742, 13.890367046782055], [-61.06688390791343, 13.909002861635912], [-61.05582352512424, 13.909088783887007], [-61.04078423508858, 13.905328934347565], [-61.0244916672565, 13.894049385917125], [-61.01070566406567, 13.871490590325342], [-60.99065327050962, 13.866477357885875], [-60.98313363022717, 13.873997056352017], [-60.980627070680484, 13.892796002633068]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;3&quot;, &quot;properties&quot;: {&quot;Population&quot;: 26713, &quot;__folium_color&quot;: &quot;#c03a51&quot;, &quot;id&quot;: &quot;LC10&quot;, &quot;name&quot;: &quot;Soufri\u00e8re&quot;, &quot;source&quot;: &quot;https://simplemaps.com&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-61.06810461758322, 13.756246343418445, -60.98094284351656, 13.835766165570293], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-61.06810461758322, 13.792181662094967], [-61.04955713694187, 13.806320075007667], [-61.02574493786419, 13.817599621282469], [-60.99190655446432, 13.830132550939835], [-60.981577928454854, 13.835766165570293], [-60.98094284351656, 13.830799800194693], [-60.98565821782862, 13.827833380056855], [-60.98882296048643, 13.819394074094953], [-61.0011302866414, 13.791966255667063], [-61.012031055548626, 13.770867842450873], [-61.0189227656206, 13.756246343418445], [-61.04816647311292, 13.76732009575197], [-61.064930786352015, 13.786932595026554], [-61.06810461758322, 13.792181662094967]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;4&quot;, &quot;properties&quot;: {&quot;Population&quot;: 28350, &quot;__folium_color&quot;: &quot;#ce4347&quot;, &quot;id&quot;: &quot;LC03&quot;, &quot;name&quot;: &quot;Choiseul&quot;, &quot;source&quot;: &quot;https://simplemaps.com&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-61.0189227656206, 13.730640620444081, -60.96245009767476, 13.830799800194693], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-61.0189227656206, 13.756246343418445], [-61.012031055548626, 13.770867842450873], [-61.0011302866414, 13.791966255667063], [-60.98882296048643, 13.819394074094953], [-60.98565821782862, 13.827833380056855], [-60.98094284351656, 13.830799800194693], [-60.98038364360638, 13.826426778981332], [-60.976867263675004, 13.813416169875591], [-60.9701861272117, 13.790911154727404], [-60.96385665971408, 13.775790945649709], [-60.96280173799647, 13.755395833584942], [-60.96245009767476, 13.741681926030394], [-60.96708776779835, 13.730640620444081], [-60.9733780566766, 13.73899971071873], [-61.0189227656206, 13.756246343418445]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;5&quot;, &quot;properties&quot;: {&quot;Population&quot;: 6226, &quot;__folium_color&quot;: &quot;#010106&quot;, &quot;id&quot;: &quot;LC07&quot;, &quot;name&quot;: &quot;Laborie&quot;, &quot;source&quot;: &quot;https://simplemaps.com&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-60.981577928454854, 13.714667199671691, -60.918039106984565, 13.839232496961397], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-60.981577928454854, 13.835766165570293], [-60.975222824123215, 13.839232496961397], [-60.961827961134894, 13.82386593585517], [-60.94177559641603, 13.802560526737324], [-60.92924285674984, 13.78877451524633], [-60.918039106984565, 13.774000698987168], [-60.922840949114864, 13.772691136111456], [-60.92711340944503, 13.76992420010928], [-60.93175208081317, 13.760321340042038], [-60.94078528177615, 13.722113291009528], [-60.947010867332935, 13.716294614500596], [-60.95010332941998, 13.714667199671691], [-60.9550675224208, 13.714667199671691], [-60.96708776779835, 13.730640620444081], [-60.96245009767476, 13.741681926030394], [-60.96280173799647, 13.755395833584942], [-60.96385665971408, 13.775790945649709], [-60.9701861272117, 13.790911154727404], [-60.976867263675004, 13.813416169875591], [-60.98038364360638, 13.826426778981332], [-60.98094284351656, 13.830799800194693], [-60.981577928454854, 13.835766165570293]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;6&quot;, &quot;properties&quot;: {&quot;Population&quot;: 9570, &quot;__folium_color&quot;: &quot;#140b34&quot;, &quot;id&quot;: &quot;LC11&quot;, &quot;name&quot;: &quot;Vieux Fort&quot;, &quot;source&quot;: &quot;https://simplemaps.com&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-60.975222824123215, 13.774000698987168, -60.8922012918597, 13.845171646377976], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-60.975222824123215, 13.839232496961397], [-60.96433451327632, 13.845171646377976], [-60.94302886771425, 13.840158714653315], [-60.91545683680569, 13.832639016740984], [-60.8922012918597, 13.833197210852697], [-60.904611778362735, 13.784247074758182], [-60.90729732364228, 13.777329734613943], [-60.91030839660237, 13.776109098228993], [-60.918039106984565, 13.774000698987168], [-60.92924285674984, 13.78877451524633], [-60.94177559641603, 13.802560526737324], [-60.961827961134894, 13.82386593585517], [-60.975222824123215, 13.839232496961397]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;7&quot;, &quot;properties&quot;: {&quot;Population&quot;: 8269, &quot;__folium_color&quot;: &quot;#0a0722&quot;, &quot;id&quot;: &quot;LC08&quot;, &quot;name&quot;: &quot;Micoud&quot;, &quot;source&quot;: &quot;https://simplemaps.com&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-60.96433451327632, 13.832639016740984, -60.890225349416326, 13.908475010604072], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-60.96057468732507, 13.879009988446679], [-60.96057469154169, 13.900315701534577], [-60.93926903573513, 13.90407555103225], [-60.921723204649275, 13.897809235362676], [-60.90668392089705, 13.905328934347565], [-60.890225349416326, 13.908475010604072], [-60.89509030841784, 13.87734622133399], [-60.8922012918597, 13.833197210852697], [-60.91545683680569, 13.832639016740984], [-60.94302886771425, 13.840158714653315], [-60.96433451327632, 13.845171646377976], [-60.96057468936946, 13.86898382388502], [-60.96057468732507, 13.879009988446679]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;8&quot;, &quot;properties&quot;: {&quot;Population&quot;: 15581, &quot;__folium_color&quot;: &quot;#520e6d&quot;, &quot;id&quot;: &quot;LC09&quot;, &quot;name&quot;: &quot;Praslin&quot;, &quot;source&quot;: &quot;https://simplemaps.com&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-60.96057469154169, 13.897809235362676, -60.88296464659914, 13.983031796927856], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-60.96057469154169, 13.900315701534577], [-60.95681486905222, 13.927887731628276], [-60.94678869220029, 13.954206680392247], [-60.94052230614067, 13.97927194676369], [-60.92046993944822, 13.981778713821216], [-60.901670815296086, 13.983031796927856], [-60.88296464659914, 13.980617561533078], [-60.883046022027514, 13.9544130740723], [-60.890225349416326, 13.908475010604072], [-60.90668392089705, 13.905328934347565], [-60.921723204649275, 13.897809235362676], [-60.93926903573513, 13.90407555103225], [-60.96057469154169, 13.900315701534577]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;9&quot;, &quot;properties&quot;: {&quot;Population&quot;: 46448, &quot;__folium_color&quot;: &quot;#fcffa4&quot;, &quot;id&quot;: &quot;LC05&quot;, &quot;name&quot;: &quot;Dennery&quot;, &quot;source&quot;: &quot;https://simplemaps.com&quot;}, &quot;type&quot;: &quot;Feature&quot;}, {&quot;bbox&quot;: [-60.94052230614067, 13.97927194676369, -60.88296464659914, 14.073391085494125], &quot;geometry&quot;: {&quot;coordinates&quot;: [[[-60.93558802570042, 14.017963405195127], [-60.933002657711626, 14.036922485459316], [-60.927989578617066, 14.053215272042479], [-60.91545682342176, 14.064494524128554], [-60.901031059483685, 14.073391085494125], [-60.89297440211461, 14.06468319263496], [-60.89020749433179, 14.052232273099982], [-60.88678951446872, 14.01007718272342], [-60.88296464659914, 13.980617561533078], [-60.901670815296086, 13.983031796927856], [-60.92046993944822, 13.981778713821216], [-60.94052230614067, 13.97927194676369], [-60.93676247879697, 14.00935044855311], [-60.93558802570042, 14.017963405195127]]], &quot;type&quot;: &quot;Polygon&quot;}, &quot;id&quot;: &quot;10&quot;, &quot;properties&quot;: {&quot;Population&quot;: 29389, &quot;__folium_color&quot;: &quot;#d74b3f&quot;, &quot;id&quot;: &quot;LC04&quot;, &quot;name&quot;: &quot;Dauphin&quot;, &quot;source&quot;: &quot;https://simplemaps.com&quot;}, &quot;type&quot;: &quot;Feature&quot;}], &quot;type&quot;: &quot;FeatureCollection&quot;});
+
+        
+    
+    geo_json_cb9bfc3979112c497c7d0c23423eee5c.bindTooltip(
+    function(layer){
+    let div = L.DomUtil.create('div');
+    
+    let handleObject = feature => {
+        if (feature === null) {
+            return '';
+        } else if (typeof(feature)=='object') {
+            return JSON.stringify(feature);
+        } else {
+            return feature;
+        }
+    }
+    let fields = [&quot;source&quot;, &quot;id&quot;, &quot;name&quot;, &quot;Population&quot;];
+    let aliases = [&quot;source&quot;, &quot;id&quot;, &quot;name&quot;, &quot;Population&quot;];
+    let table = '<table>' +
+        String(
+        fields.map(
+        (v,i)=>
+        `<tr>
+            <th>${aliases[i]}</th>
+            
+            <td>${handleObject(layer.feature.properties[v])}</td>
+        </tr>`).join(''))
+    +'</table>';
+    div.innerHTML=table;
+    
+    return div
+    }
+    ,{
+  &quot;sticky&quot;: true,
+  &quot;className&quot;: &quot;foliumtooltip&quot;,
+});
+                     
+    
+            geo_json_cb9bfc3979112c497c7d0c23423eee5c.addTo(map_3210520b336d791026dea09f2713f1ce);
+        
+    
+    var color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e = {};
+
+    
+    color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.color = d3.scale.threshold()
+              .domain([5816.0, 5897.426853707415, 5978.85370741483, 6060.280561122245, 6141.70741482966, 6223.134268537075, 6304.561122244489, 6385.9879759519035, 6467.4148296593185, 6548.841683366733, 6630.268537074148, 6711.695390781563, 6793.122244488978, 6874.549098196393, 6955.975951903807, 7037.402805611222, 7118.829659318637, 7200.256513026052, 7281.683366733467, 7363.110220440882, 7444.537074148297, 7525.9639278557115, 7607.390781563126, 7688.817635270541, 7770.244488977956, 7851.671342685371, 7933.098196392786, 8014.525050100201, 8095.951903807615, 8177.37875751503, 8258.805611222444, 8340.23246492986, 8421.659318637274, 8503.086172344689, 8584.513026052104, 8665.939879759519, 8747.366733466934, 8828.793587174348, 8910.220440881763, 8991.647294589178, 9073.074148296593, 9154.501002004008, 9235.927855711423, 9317.354709418838, 9398.781563126253, 9480.208416833668, 9561.635270541083, 9643.062124248498, 9724.488977955913, 9805.915831663326, 9887.342685370742, 9968.769539078156, 10050.196392785572, 10131.623246492985, 10213.050100200402, 10294.476953907815, 10375.90380761523, 10457.330661322645, 10538.75751503006, 10620.184368737475, 10701.61122244489, 10783.038076152305, 10864.46492985972, 10945.891783567135, 11027.31863727455, 11108.745490981964, 11190.172344689377, 11271.599198396794, 11353.026052104207, 11434.452905811624, 11515.879759519037, 11597.306613226454, 11678.733466933867, 11760.160320641284, 11841.587174348697, 11923.014028056112, 12004.440881763527, 12085.867735470942, 12167.294589178357, 12248.721442885771, 12330.148296593186, 12411.575150300601, 12493.002004008016, 12574.428857715431, 12655.855711422846, 12737.28256513026, 12818.709418837676, 12900.136272545089, 12981.563126252506, 13062.989979959919, 13144.416833667336, 13225.843687374749, 13307.270541082165, 13388.697394789579, 13470.124248496995, 13551.551102204408, 13632.977955911823, 13714.404809619238, 13795.831663326653, 13877.258517034068, 13958.685370741483, 14040.112224448898, 14121.539078156313, 14202.965931863728, 14284.392785571143, 14365.819639278558, 14447.246492985973, 14528.673346693387, 14610.100200400802, 14691.527054108217, 14772.95390781563, 14854.380761523045, 14935.80761523046, 15017.234468937875, 15098.66132264529, 15180.088176352705, 15261.51503006012, 15342.941883767535, 15424.36873747495, 15505.795591182365, 15587.22244488978, 15668.649298597195, 15750.07615230461, 15831.503006012024, 15912.92985971944, 15994.356713426854, 16075.78356713427, 16157.210420841684, 16238.637274549099, 16320.064128256514, 16401.49098196393, 16482.917835671342, 16564.344689378755, 16645.77154308617, 16727.19839679359, 16808.625250501, 16890.052104208415, 16971.47895791583, 17052.905811623248, 17134.33266533066, 17215.759519038074, 17297.18637274549, 17378.613226452908, 17460.04008016032, 17541.466933867734, 17622.89378757515, 17704.320641282568, 17785.74749498998, 17867.174348697394, 17948.60120240481, 18030.028056112224, 18111.454909819637, 18192.881763527053, 18274.30861723447, 18355.735470941883, 18437.162324649296, 18518.589178356713, 18600.01603206413, 18681.442885771543, 18762.869739478956, 18844.296593186373, 18925.72344689379, 19007.150300601203, 19088.577154308616, 19170.004008016032, 19251.43086172345, 19332.857715430862, 19414.284569138275, 19495.711422845692, 19577.13827655311, 19658.56513026052, 19739.991983967935, 19821.418837675352, 19902.845691382765, 19984.272545090178, 20065.699398797595, 20147.12625250501, 20228.553106212425, 20309.979959919838, 20391.406813627254, 20472.83366733467, 20554.260521042084, 20635.687374749497, 20717.114228456914, 20798.54108216433, 20879.967935871744, 20961.394789579157, 21042.821643286574, 21124.24849699399, 21205.675350701404, 21287.102204408817, 21368.529058116234, 21449.955911823647, 21531.38276553106, 21612.809619238476, 21694.236472945893, 21775.663326653306, 21857.09018036072, 21938.517034068136, 22019.943887775553, 22101.370741482966, 22182.79759519038, 22264.224448897796, 22345.65130260521, 22427.078156312626, 22508.50501002004, 22589.931863727455, 22671.35871743487, 22752.785571142285, 22834.2124248497, 22915.639278557115, 22997.06613226453, 23078.492985971945, 23159.919839679358, 23241.346693386775, 23322.773547094188, 23404.200400801605, 23485.627254509018, 23567.054108216435, 23648.480961923848, 23729.90781563126, 23811.334669338677, 23892.76152304609, 23974.188376753507, 24055.61523046092, 24137.042084168337, 24218.46893787575, 24299.895791583167, 24381.32264529058, 24462.749498997997, 24544.17635270541, 24625.603206412827, 24707.03006012024, 24788.456913827657, 24869.88376753507, 24951.310621242486, 25032.7374749499, 25114.164328657316, 25195.59118236473, 25277.018036072146, 25358.44488977956, 25439.871743486972, 25521.29859719439, 25602.725450901802, 25684.15230460922, 25765.579158316632, 25847.00601202405, 25928.43286573146, 26009.85971943888, 26091.28657314629, 26172.71342685371, 26254.14028056112, 26335.56713426854, 26416.99398797595, 26498.420841683368, 26579.84769539078, 26661.274549098198, 26742.70140280561, 26824.128256513028, 26905.55511022044, 26986.981963927854, 27068.40881763527, 27149.835671342684, 27231.2625250501, 27312.689378757514, 27394.11623246493, 27475.543086172343, 27556.96993987976, 27638.396793587173, 27719.82364729459, 27801.250501002003, 27882.67735470942, 27964.104208416833, 28045.53106212425, 28126.957915831663, 28208.38476953908, 28289.811623246493, 28371.23847695391, 28452.665330661323, 28534.09218436874, 28615.519038076152, 28696.945891783565, 28778.372745490982, 28859.799599198395, 28941.226452905812, 29022.653306613225, 29104.080160320642, 29185.507014028055, 29266.93386773547, 29348.360721442885, 29429.7875751503, 29511.214428857715, 29592.64128256513, 29674.068136272545, 29755.49498997996, 29836.921843687374, 29918.34869739479, 29999.775551102204, 30081.20240480962, 30162.629258517034, 30244.056112224447, 30325.482965931864, 30406.909819639277, 30488.336673346694, 30569.763527054107, 30651.190380761524, 30732.617234468937, 30814.044088176353, 30895.470941883766, 30976.897795591183, 31058.324649298596, 31139.751503006013, 31221.178356713426, 31302.605210420843, 31384.032064128256, 31465.458917835673, 31546.885771543086, 31628.312625250503, 31709.739478957916, 31791.166332665332, 31872.593186372746, 31954.02004008016, 32035.446893787575, 32116.87374749499, 32198.300601202405, 32279.72745490982, 32361.154308617235, 32442.581162324648, 32524.008016032065, 32605.434869739478, 32686.861723446895, 32768.28857715431, 32849.715430861725, 32931.14228456914, 33012.56913827655, 33093.99599198397, 33175.422845691384, 33256.849699398794, 33338.27655310622, 33419.70340681363, 33501.13026052104, 33582.55711422846, 33663.98396793587, 33745.41082164329, 33826.837675350704, 33908.26452905811, 33989.69138276553, 34071.11823647295, 34152.545090180356, 34233.97194388778, 34315.39879759519, 34396.825651302606, 34478.25250501002, 34559.67935871743, 34641.10621242485, 34722.533066132266, 34803.959919839675, 34885.3867735471, 34966.81362725451, 35048.240480961926, 35129.66733466934, 35211.09418837675, 35292.52104208417, 35373.947895791585, 35455.374749498995, 35536.80160320641, 35618.22845691383, 35699.65531062124, 35781.08216432866, 35862.50901803607, 35943.93587174349, 36025.362725450905, 36106.789579158314, 36188.21643286573, 36269.64328657315, 36351.07014028056, 36432.49699398798, 36513.92384769539, 36595.35070140281, 36676.777555110224, 36758.20440881763, 36839.63126252505, 36921.05811623247, 37002.48496993988, 37083.91182364729, 37165.33867735471, 37246.76553106212, 37328.19238476954, 37409.61923847695, 37491.04609218437, 37572.47294589179, 37653.899799599196, 37735.32665330661, 37816.75350701403, 37898.18036072144, 37979.60721442886, 38061.03406813627, 38142.46092184369, 38223.887775551106, 38305.314629258515, 38386.74148296593, 38468.16833667335, 38549.59519038076, 38631.022044088175, 38712.44889779559, 38793.87575150301, 38875.30260521042, 38956.729458917835, 39038.15631262525, 39119.58316633267, 39201.01002004008, 39282.436873747494, 39363.86372745491, 39445.29058116233, 39526.71743486974, 39608.144288577154, 39689.57114228457, 39770.99799599199, 39852.4248496994, 39933.85170340681, 40015.27855711423, 40096.70541082164, 40178.13226452906, 40259.55911823647, 40340.98597194389, 40422.4128256513, 40503.839679358716, 40585.26653306613, 40666.69338677355, 40748.12024048096, 40829.547094188376, 40910.97394789579, 40992.40080160321, 41073.82765531062, 41155.254509018036, 41236.68136272545, 41318.10821643287, 41399.53507014028, 41480.961923847695, 41562.38877755511, 41643.81563126252, 41725.24248496994, 41806.669338677355, 41888.09619238477, 41969.52304609218, 42050.9498997996, 42132.376753507015, 42213.80360721443, 42295.23046092184, 42376.65731462926, 42458.084168336674, 42539.51102204409, 42620.9378757515, 42702.36472945892, 42783.791583166334, 42865.21843687375, 42946.64529058116, 43028.07214428858, 43109.498997995994, 43190.92585170341, 43272.35270541082, 43353.77955911824, 43435.20641282565, 43516.63326653306, 43598.06012024048, 43679.486973947896, 43760.91382765531, 43842.34068136272, 43923.76753507014, 44005.194388777556, 44086.62124248497, 44168.04809619238, 44249.4749498998, 44330.901803607216, 44412.32865731463, 44493.75551102204, 44575.18236472946, 44656.609218436875, 44738.03607214429, 44819.4629258517, 44900.88977955912, 44982.316633266535, 45063.743486973945, 45145.17034068136, 45226.59719438878, 45308.024048096195, 45389.450901803604, 45470.87775551102, 45552.30460921844, 45633.731462925854, 45715.158316633264, 45796.58517034068, 45878.0120240481, 45959.438877755514, 46040.86573146292, 46122.29258517034, 46203.71943887776, 46285.146292585174, 46366.57314629258, 46448.0])
+              .range(['#000004ff', '#000004ff', '#010005ff', '#010005ff', '#010106ff', '#010107ff', '#010108ff', '#010109ff', '#02010aff', '#02010bff', '#02020cff', '#02020dff', '#02020eff', '#02020fff', '#030210ff', '#030211ff', '#040312ff', '#040313ff', '#040314ff', '#040316ff', '#050417ff', '#050418ff', '#060419ff', '#06041aff', '#07051bff', '#07051cff', '#08051dff', '#08051eff', '#090620ff', '#090621ff', '#0a0722ff', '#0a0723ff', '#0b0724ff', '#0b0725ff', '#0c0827ff', '#0c0828ff', '#0d0829ff', '#0d082aff', '#0e092cff', '#0f092dff', '#10092eff', '#110930ff', '#110a31ff', '#120a32ff', '#130a33ff', '#140b34ff', '#140b35ff', '#150b37ff', '#150b38ff', '#160b39ff', '#170b3aff', '#180c3cff', '#180c3dff', '#190c3eff', '#1a0c40ff', '#1b0c41ff', '#1b0c42ff', '#1c0c43ff', '#1d0c44ff', '#1e0c45ff', '#1e0c47ff', '#1f0c48ff', '#200c49ff', '#210c4aff', '#220c4bff', '#230c4cff', '#230c4eff', '#240c4fff', '#250c50ff', '#260b51ff', '#270b52ff', '#280b53ff', '#280b54ff', '#290b55ff', '#2a0b56ff', '#2b0b57ff', '#2c0b59ff', '#2d0a5aff', '#2e0a5bff', '#2f0a5bff', '#300a5cff', '#310a5dff', '#320a5eff', '#330a5eff', '#340a5fff', '#350960ff', '#360961ff', '#370961ff', '#380962ff', '#380962ff', '#390963ff', '#3a0963ff', '#3b0964ff', '#3c0964ff', '#3d0965ff', '#3d0965ff', '#3e0966ff', '#3f0966ff', '#400a67ff', '#410a67ff', '#420a68ff', '#430a68ff', '#440a68ff', '#440a69ff', '#450a69ff', '#460a6aff', '#470b6aff', '#480b6aff', '#490b6aff', '#490b6bff', '#4a0c6bff', '#4b0c6bff', '#4c0c6bff', '#4d0c6cff', '#4d0d6cff', '#4e0d6cff', '#4f0d6cff', '#500d6cff', '#510e6cff', '#520e6dff', '#520e6dff', '#530e6dff', '#540f6dff', '#550f6dff', '#560f6dff', '#570f6eff', '#58106eff', '#59106eff', '#59106eff', '#5a106eff', '#5b116eff', '#5c126eff', '#5c126eff', '#5d126eff', '#5e126eff', '#5f136eff', '#60136eff', '#61136eff', '#61136eff', '#62146eff', '#63146eff', '#64156eff', '#64156eff', '#65156eff', '#66156eff', '#67166eff', '#68166eff', '#69166eff', '#6a166eff', '#6a176eff', '#6b176eff', '#6c186eff', '#6d186eff', '#6d186eff', '#6e186eff', '#6f196eff', '#70196eff', '#71196eff', '#72196eff', '#721a6eff', '#731a6eff', '#741a6eff', '#751a6eff', '#761b6eff', '#771b6dff', '#771c6dff', '#781c6dff', '#791c6dff', '#7a1c6dff', '#7b1d6dff', '#7c1d6dff', '#7c1d6dff', '#7d1e6dff', '#7e1e6dff', '#7f1e6cff', '#7f1e6cff', '#801f6cff', '#811f6cff', '#82206cff', '#83206bff', '#84206bff', '#85206bff', '#85216bff', '#86216bff', '#87216bff', '#88216aff', '#88226aff', '#89226aff', '#8a226aff', '#8b2269ff', '#8c2369ff', '#8d2369ff', '#8d2369ff', '#8e2369ff', '#8f2469ff', '#902468ff', '#902568ff', '#912568ff', '#922568ff', '#932567ff', '#932667ff', '#952667ff', '#962667ff', '#972666ff', '#972766ff', '#982766ff', '#992766ff', '#9a2765ff', '#9a2865ff', '#9b2864ff', '#9c2964ff', '#9d2964ff', '#9e2964ff', '#9f2a63ff', '#9f2a63ff', '#a02a63ff', '#a12a63ff', '#a22b62ff', '#a32b61ff', '#a32c61ff', '#a42c60ff', '#a52c60ff', '#a62c60ff', '#a62d60ff', '#a72d5fff', '#a82e5fff', '#a92e5eff', '#a92e5eff', '#aa2e5eff', '#ab2f5eff', '#ac2f5dff', '#ad305dff', '#ae305cff', '#ae305cff', '#af305bff', '#b0315bff', '#b1315aff', '#b1325aff', '#b2325aff', '#b3325aff', '#b43259ff', '#b53359ff', '#b63358ff', '#b63458ff', '#b73457ff', '#b83557ff', '#b93556ff', '#b93556ff', '#ba3555ff', '#bb3655ff', '#bc3654ff', '#bd3754ff', '#bd3753ff', '#be3853ff', '#bf3952ff', '#c03952ff', '#c03a51ff', '#c13a50ff', '#c13a50ff', '#c23a4fff', '#c33b4fff', '#c43b4eff', '#c43c4eff', '#c53c4dff', '#c63d4dff', '#c73d4cff', '#c73e4cff', '#c83e4bff', '#c83f4bff', '#c93f4aff', '#ca404aff', '#cb4049ff', '#cb4149ff', '#cc4148ff', '#cc4248ff', '#cd4247ff', '#ce4347ff', '#cf4346ff', '#cf4446ff', '#d04445ff', '#d04545ff', '#d24544ff', '#d24644ff', '#d34643ff', '#d34743ff', '#d44742ff', '#d44842ff', '#d54941ff', '#d64a40ff', '#d74a3fff', '#d84b3fff', '#d84c3eff', '#d94c3eff', '#d94d3dff', '#da4d3cff', '#da4e3cff', '#db4e3bff', '#db4f3bff', '#dc503aff', '#dd513aff', '#de5139ff', '#de5238ff', '#df5237ff', '#df5337ff', '#e05436ff', '#e05536ff', '#e15535ff', '#e15635ff', '#e25634ff', '#e25734ff', '#e35833ff', '#e35933ff', '#e45932ff', '#e45a31ff', '#e55b30ff', '#e55c30ff', '#e65c2fff', '#e65d2fff', '#e75d2eff', '#e75e2eff', '#e85f2dff', '#e8602dff', '#e9602cff', '#e9612bff', '#ea622aff', '#eb632aff', '#eb6329ff', '#eb6429ff', '#eb6528ff', '#ec6627ff', '#ec6726ff', '#ed6726ff', '#ed6825ff', '#ee6924ff', '#ee6a24ff', '#ef6a23ff', '#ef6b23ff', '#ef6c22ff', '#ef6d21ff', '#f06e20ff', '#f06f20ff', '#f16f1fff', '#f1701fff', '#f1721eff', '#f1731dff', '#f2731cff', '#f2741cff', '#f3751bff', '#f3761bff', '#f3771aff', '#f37819ff', '#f47818ff', '#f47918ff', '#f57a17ff', '#f57b17ff', '#f57c16ff', '#f57d15ff', '#f67d14ff', '#f67e14ff', '#f67f13ff', '#f68013ff', '#f78112ff', '#f78212ff', '#f78311ff', '#f78410ff', '#f8850fff', '#f8850fff', '#f8860eff', '#f8870dff', '#f8880cff', '#f9890bff', '#f98a0bff', '#f98b0aff', '#f98c0aff', '#f98c09ff', '#f98d09ff', '#fa8e08ff', '#fa8f08ff', '#fa9007ff', '#fa9107ff', '#fa9207ff', '#fa9307ff', '#fb9506ff', '#fb9606ff', '#fb9606ff', '#fb9706ff', '#fb9806ff', '#fb9906ff', '#fb9a06ff', '#fb9b06ff', '#fb9c06ff', '#fb9d06ff', '#fc9e07ff', '#fc9f07ff', '#fca007ff', '#fca107ff', '#fca208ff', '#fca308ff', '#fca409ff', '#fca509ff', '#fca60aff', '#fca60bff', '#fca70cff', '#fca80cff', '#fca90dff', '#fcaa0eff', '#fcab10ff', '#fcac11ff', '#fcad11ff', '#fcae12ff', '#fcaf13ff', '#fcb014ff', '#fcb115ff', '#fcb216ff', '#fcb317ff', '#fcb418ff', '#fcb519ff', '#fbb61aff', '#fbb71bff', '#fbb81dff', '#fbb91eff', '#fbbb1fff', '#fbbc20ff', '#fbbd21ff', '#fbbe22ff', '#fbbf23ff', '#fbc025ff', '#fac126ff', '#fac227ff', '#fac328ff', '#fac429ff', '#fac52aff', '#fac62cff', '#fac72dff', '#fac72eff', '#f9c830ff', '#f9c931ff', '#f9ca33ff', '#f9cb34ff', '#f9cc35ff', '#f9cd36ff', '#f8ce38ff', '#f8cf39ff', '#f8d03bff', '#f8d13cff', '#f7d23eff', '#f7d33fff', '#f7d441ff', '#f7d543ff', '#f6d644ff', '#f6d746ff', '#f6d847ff', '#f5d949ff', '#f5da4aff', '#f5db4cff', '#f5dc4dff', '#f4dd4fff', '#f4de51ff', '#f4df53ff', '#f4e055ff', '#f4e256ff', '#f4e358ff', '#f3e45aff', '#f3e55cff', '#f3e65dff', '#f3e65fff', '#f2e761ff', '#f2e863ff', '#f2e966ff', '#f2ea68ff', '#f2eb6aff', '#f2ec6cff', '#f1ed6eff', '#f1ed70ff', '#f1ee72ff', '#f1ef74ff', '#f1f076ff', '#f1f178ff', '#f2f27aff', '#f2f27cff', '#f2f37eff', '#f2f481ff', '#f3f583ff', '#f3f585ff', '#f3f687ff', '#f3f689ff', '#f4f78bff', '#f4f88eff', '#f5f990ff', '#f5f992ff', '#f6fa94ff', '#f6fa96ff', '#f7fb98ff', '#f8fb9aff', '#f9fc9bff', '#f9fc9dff', '#fafd9fff', '#fafda1ff', '#fbfea3ff', '#fcffa4ff']);
+    
+
+    color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.x = d3.scale.linear()
+              .domain([5816.0, 46448.0])
+              .range([0, 450 - 50]);
+
+    color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.legend = L.control({position: 'topright'});
+    color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.legend.onAdd = function (map) {var div = L.DomUtil.create('div', 'legend'); return div};
+    color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.legend.addTo(map_3210520b336d791026dea09f2713f1ce);
+
+    color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.xAxis = d3.svg.axis()
+        .scale(color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.x)
+        .orient(&quot;top&quot;)
+        .tickSize(1)
+        .tickValues([5816.0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 9958.870588235295, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 14101.741176470588, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 18244.61176470588, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 22387.482352941177, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 26530.352941176472, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 30673.223529411764, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 34816.09411764706, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 38958.964705882354, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 43101.83529411765, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']);
+
+    color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.svg = d3.select(&quot;.legend.leaflet-control&quot;).append(&quot;svg&quot;)
+        .attr(&quot;id&quot;, 'legend')
+        .attr(&quot;width&quot;, 450)
+        .attr(&quot;height&quot;, 40);
+
+    color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.g = color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.svg.append(&quot;g&quot;)
+        .attr(&quot;class&quot;, &quot;key&quot;)
+        .attr(&quot;fill&quot;, &quot;black&quot;)
+        .attr(&quot;transform&quot;, &quot;translate(25,16)&quot;);
+
+    color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.g.selectAll(&quot;rect&quot;)
+        .data(color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.color.range().map(function(d, i) {
+          return {
+            x0: i ? color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.x(color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.color.domain()[i - 1]) : color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.x.range()[0],
+            x1: i < color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.color.domain().length ? color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.x(color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.color.domain()[i]) : color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.x.range()[1],
+            z: d
+          };
+        }))
+      .enter().append(&quot;rect&quot;)
+        .attr(&quot;height&quot;, 40 - 30)
+        .attr(&quot;x&quot;, function(d) { return d.x0; })
+        .attr(&quot;width&quot;, function(d) { return d.x1 - d.x0; })
+        .style(&quot;fill&quot;, function(d) { return d.z; });
+
+    color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.g.call(color_map_9c1df4f9c3b6f36aa4a7dfc4cc53024e.xAxis).append(&quot;text&quot;)
+        .attr(&quot;class&quot;, &quot;caption&quot;)
+        .attr(&quot;y&quot;, 21)
+        .attr(&quot;fill&quot;, &quot;black&quot;)
+        .text(&quot;Population&quot;);
+</script>
+</html>" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe></div></div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Code Challenge 4.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The following CSV file contains US unemployment data from October, 2012:</p>
+<p>https://raw.githubusercontent.com/wrobstory/vincent/master/examples/data/US_Unemployment_Oct2012.csv</p>
+<p>This GeoJSON file contains the geometry information about US states: <a href="../assets/us-states.geojson">us-states.geojson</a>.</p>
+<p>Use these files to create a choropleth map of the unemployment data by state.</p>
+<ol type="1">
+<li>Load the unemployment data as a Pandas DataFrame.</li>
+<li>Load the states’ geometry data into geopandas.</li>
+<li>Merge the data on a common key.</li>
+<li>Explore with geopandas!</li>
+</ol>
+<p>To initially center map, use the latitude and longitude of the continental US, which is <code>39.8333333,-98.585522</code>.</p>
+<div class="callout callout-style-simple callout-caution no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div id="f5c58e90" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>CENTER_US <span class="op">=</span> (<span class="fl">39.8333333</span>,<span class="op">-</span><span class="fl">98.585522</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>u_df <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/wrobstory/vincent/master/examples/data/US_Unemployment_Oct2012.csv'</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>state_geojson <span class="op">=</span> <span class="st">'../assets/us-states.geojson'</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>geo <span class="op">=</span> gpd.read_file(state_geojson)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>combined <span class="op">=</span> pd.merge(geo, u_df, left_on<span class="op">=</span><span class="st">'id'</span>, right_on<span class="op">=</span><span class="st">'State'</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>mp <span class="op">=</span> folium.Map(location<span class="op">=</span>CENTER_US, zoom_start<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>out_map <span class="op">=</span> combined.explore(m<span class="op">=</span>mp, column<span class="op">=</span><span class="st">'Unemployment'</span>, cmap<span class="op">=</span><span class="st">'YlGn'</span>, legend<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="geopandas-choropleth-maps-in-streamlit." class="level3">
+<h3 class="anchored" data-anchor-id="geopandas-choropleth-maps-in-streamlit.">Geopandas Choropleth Maps in streamlit.</h3>
+<p>If you plan to use <code>GeoDataFrame.explore()</code> then you will need to call <code>folium_static()</code> from the <code>streamlit_folium</code> module to display the map in Streamlit. Here’s an example:</p>
+<div id="75741772" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> random</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit_folium <span class="im">as</span> sf</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">'Streamlit Geopandas Examples'</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>st.caption(<span class="st">'This is a simple example of how to use Streamlit to create visualizations with Geopandas'</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the GeoPandas data</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>st.write(<span class="st">"## Saint Lucia Choropleth"</span>)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gpd.read_file(<span class="st">"./6-viz/data/stlucia.geojson"</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>gdf[<span class="st">'Amount'</span>] <span class="op">=</span> gdf.<span class="bu">apply</span>(<span class="kw">lambda</span> row: random.randint(<span class="dv">50</span>,<span class="dv">275</span>), axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>st.write(gdf)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>sf.folium_static(gdf.explore(gdf[<span class="st">'Amount'</span>]))</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>wards_df <span class="op">=</span> gpd.read_file(<span class="st">"https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/city-of-syracuse/wards.geojson"</span>)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>wards_df[<span class="st">'amount'</span>] <span class="op">=</span> wards_df.<span class="bu">apply</span>(<span class="kw">lambda</span> row: random.randint(<span class="dv">1</span>,<span class="dv">50</span>), axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>st.write(<span class="st">'## City of Syracuse Wards - Choropleth'</span>)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>st.write(wards_df)</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>sf.folium_static(wards_df.explore(wards_df[<span class="st">'amount'</span>]))</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>stlucia_df <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/st-lucia/parishes.csv"</span>)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>stlucia_df[<span class="st">'Amount'</span>] <span class="op">=</span> stlucia_df.<span class="bu">apply</span>(<span class="kw">lambda</span> row: random.randint(<span class="dv">50</span>,<span class="dv">500</span>), axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>classesdf <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/mafudge/datasets/master/delimited/class-schedule.csv"</span>)</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>gdf <span class="op">=</span> gpd.GeoDataFrame(classesdf, geometry<span class="op">=</span>gpd.points_from_xy(classesdf[<span class="st">'Lon'</span>], classesdf[<span class="st">'Lat'</span>]))</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>st.write(gdf)</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>schine <span class="op">=</span> (<span class="fl">43.03986</span>, <span class="op">-</span><span class="fl">76.13375</span>)</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> folium.Map(location<span class="op">=</span>schine, zoom_start<span class="op">=</span><span class="dv">17</span>)</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>mout <span class="op">=</span> gdf.explore(popup<span class="op">=</span><span class="st">"Course"</span>,lat<span class="op">=</span><span class="st">"Lat"</span>, lon<span class="op">=</span><span class="st">"Lon"</span>, m<span class="op">=</span>m, marker_type<span class="op">=</span><span class="st">"marker"</span>)</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>sf.folium_static(mout)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("enter_gitHub_pages_URL_here");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../07_visualization/visualization-3.html" class="pagination-link" aria-label="3. Sharing plots and Streamlit">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">3. Sharing plots and Streamlit</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../08_final_project/index.html" class="pagination-link" aria-label="Final Project">
+        <span class="nav-page-text">Final Project</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Adapted from the <a href="https://opensource.syracuse.edu/">Syracuse University Open Source Program Office’s</a> <a href="https://github.com/SU-OSPO/workshop-template">workshop template</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5. Web APIs – IST 356 Fall 2025</title>
+<title>3. Sharing plots and Streamlit – IST 356 Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -29,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../05_web_apis/webapi-1.html" rel="next">
-<link href="../04_data_wrangling/pandas-5.html" rel="prev">
+<link href="../07_visualization/visualization-4.html" rel="next">
+<link href="../07_visualization/visualization-2.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -71,17 +106,17 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="5. Web APIs – IST 356 Fall 2025">
+<meta property="og:title" content="3. Sharing plots and Streamlit – IST 356 Fall 2025">
 <meta property="og:description" content="">
-<meta property="og:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
+<meta property="og:image" content="enter_gitHub_pages_URL_here/07_visualization/visualization-3_files/figure-html/cell-2-output-2.png">
 <meta property="og:site_name" content="IST 356 Fall 2025">
-<meta property="og:image:height" content="105">
-<meta property="og:image:width" content="650">
-<meta name="twitter:title" content="5. Web APIs – IST 356 Fall 2025">
+<meta property="og:image:height" content="858">
+<meta property="og:image:width" content="1216">
+<meta name="twitter:title" content="3. Sharing plots and Streamlit – IST 356 Fall 2025">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="enter_gitHub_pages_URL_here/images/ischool_logo_reverseX2.png">
-<meta name="twitter:image-height" content="105">
-<meta name="twitter:image-width" content="650">
+<meta name="twitter:image" content="enter_gitHub_pages_URL_here/07_visualization/visualization-3_files/figure-html/cell-2-output-2.png">
+<meta name="twitter:image-height" content="858">
+<meta name="twitter:image-width" content="1216">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -112,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../05_web_apis/index.html">5. Web APIs</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07_visualization/index.html">7. Visualization</a></li><li class="breadcrumb-item"><a href="../07_visualization/visualization-3.html">3. Sharing plots and Streamlit</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -260,13 +295,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../05_web_apis/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../05_web_apis/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">5. Web APIs</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../05_web_apis/webapi-1.html" class="sidebar-item-text sidebar-link">
@@ -326,11 +361,11 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a href="../07_visualization/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">7. Visualization</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../07_visualization/visualization-1.html" class="sidebar-item-text sidebar-link">
@@ -345,7 +380,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../07_visualization/visualization-3.html" class="sidebar-item-text sidebar-link">
+  <a href="../07_visualization/visualization-3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">3. Sharing plots and Streamlit</span></a>
   </div>
 </li>
@@ -379,22 +414,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#tutorials" id="toc-tutorials" class="nav-link active" data-scroll-target="#tutorials">Tutorials</a></li>
-  <li><a href="#lectures" id="toc-lectures" class="nav-link" data-scroll-target="#lectures">Lectures</a>
+  <li><a href="#saving-figs-matplotlib" id="toc-saving-figs-matplotlib" class="nav-link active" data-scroll-target="#saving-figs-matplotlib">Saving figs: Matplotlib</a>
   <ul class="collapse">
-  <li><a href="#wednesday-102225" id="toc-wednesday-102225" class="nav-link" data-scroll-target="#wednesday-102225">Wednesday 10/22/25</a></li>
+  <li><a href="#explicit-object-oriented-way" id="toc-explicit-object-oriented-way" class="nav-link" data-scroll-target="#explicit-object-oriented-way">Explicit object-oriented way</a></li>
+  <li><a href="#stateful-way" id="toc-stateful-way" class="nav-link" data-scroll-target="#stateful-way">Stateful way</a></li>
   </ul></li>
-  <li><a href="#monday-102725" id="toc-monday-102725" class="nav-link" data-scroll-target="#monday-102725">Monday 10/27/25</a></li>
-  <li><a href="#wednesday-102925" id="toc-wednesday-102925" class="nav-link" data-scroll-target="#wednesday-102925">Wednesday 10/29/25</a></li>
+  <li><a href="#saving-figs-seaborn" id="toc-saving-figs-seaborn" class="nav-link" data-scroll-target="#saving-figs-seaborn">Saving figs: Seaborn</a></li>
+  <li><a href="#displaying-figures-in-a-streamlit-app" id="toc-displaying-figures-in-a-streamlit-app" class="nav-link" data-scroll-target="#displaying-figures-in-a-streamlit-app">Displaying figures in a Streamlit app</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07_visualization/index.html">7. Visualization</a></li><li class="breadcrumb-item"><a href="../07_visualization/visualization-3.html">3. Sharing plots and Streamlit</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">5. Web APIs</h1>
+<h1 class="title">3. Sharing plots and Streamlit</h1>
 </div>
 
 
@@ -411,34 +446,131 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="tutorials" class="level2">
-<h2 class="anchored" data-anchor-id="tutorials">Tutorials</h2>
-<ol type="1">
-<li><a href="../05_web_apis/webapi-1.html">REST APIs</a></li>
-<li><a href="../05_web_apis/webapi-2.html">Posting with REST API and caching results</a></li>
-<li><a href="../05_web_apis/webapi-3.html">Creating your own APIs with FastAPI</a></li>
-</ol>
+<p>In the previous tutorials we learned how to create plots and display them in a Jupyter notebook. But how can we share them outside of a notebook?</p>
+<p>In this tutorial we cover how to save plots so they can be shared/used in reports, and how to display them in a Streamlit app.</p>
+<section id="saving-figs-matplotlib" class="level2">
+<h2 class="anchored" data-anchor-id="saving-figs-matplotlib">Saving figs: Matplotlib</h2>
+<p>You can save your plot as a file to disk using matplotlib’s <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html">savefig</a> function. The function takes as its first argument a string specifying the full path (including the filename) of the file to create. Multiple file formats are supported (e.g., png, jpeg, pdf, svg); png is most commonly used. The file format is inferred from the file name extension. For example, if you save your figure to <code>plot.png</code>, the figure will be saved as a png file.</p>
+<p>The <code>savefig</code> function is actually a method of the <code>figure</code> object. As with creating plots, you can save figures either via the explict object-oriented way (my preferred way) or via stateful execution.</p>
+<section id="explicit-object-oriented-way" class="level3">
+<h3 class="anchored" data-anchor-id="explicit-object-oriented-way">Explicit object-oriented way</h3>
+<p>Let’s use our example from the <a href="../07_visualization/visualization-1.html">first visualization tutorial</a> of plotting a sine wave:</p>
+<div id="bffb2b75" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create the data</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">100</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.sin(x)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># plot it</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot()</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ax.plot(x, y)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'sin(x)'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>Text(0, 0.5, 'sin(x)')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualization-3_files/figure-html/cell-2-output-2.png" width="608" height="429" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now to save it (here, as a png):</p>
+<div id="bc52ddc2" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">'sine.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The savefig argument also takes other arugments. One of the most common to use is <code>dpi</code>. This sets the resolution of the plot. The default is based on your system settings, but is typically 100 dots/inch. This can sometimes be too pixelated, especially if you are embedding the plot in a document that you wish to print. Set <code>dpi=300</code> for typical publication-quailty pngs.</p>
 </section>
-<section id="lectures" class="level2">
-<h2 class="anchored" data-anchor-id="lectures">Lectures</h2>
-<section id="wednesday-102225" class="level3">
-<h3 class="anchored" data-anchor-id="wednesday-102225">Wednesday 10/22/25</h3>
-<p>REST APIs</p>
-<iframe id="kmsembed-1_xvaf4so6" width="640" height="360" src="https://video.syr.edu/embed/secure/iframe/entryId/1_xvaf4so6/uiConfId/45992161/st/0" class="kmsembed" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" referrerpolicy="no-referrer-when-downgrade" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="IST 356 Lecture - 10-22-25">
-</iframe>
+<section id="stateful-way" class="level3">
+<h3 class="anchored" data-anchor-id="stateful-way">Stateful way</h3>
+<p>The same code above, but using stateful execution:</p>
+<div id="7068b88c" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create the data</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">100</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.sin(x)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># plot it</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'sin(x)'</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># save it</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'sine.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualization-3_files/figure-html/cell-4-output-1.png" width="608" height="429" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 </section>
-<section id="monday-102725" class="level2">
-<h2 class="anchored" data-anchor-id="monday-102725">Monday 10/27/25</h2>
-<p>Posting with REST API and caching results</p>
-<iframe id="kmsembed-1_h1afe770" width="640" height="360" src="https://video.syr.edu/embed/secure/iframe/entryId/1_h1afe770/uiConfId/45992161/st/0" class="kmsembed" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" referrerpolicy="no-referrer-when-downgrade" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="IST 356 Lecture - 10-27-25">
-</iframe>
+<section id="saving-figs-seaborn" class="level2">
+<h2 class="anchored" data-anchor-id="saving-figs-seaborn">Saving figs: Seaborn</h2>
+<p>Seaborn, being built on top of matplotlib, just uses matplotlib’s savefig method to save plots. To do that you can explicitly get the figure using the <code>get_figure()</code> method. This method can be called on the objects returned by a Seaborn plotting command (which are actually returning matplotlib Axes instances).</p>
+<p>Repeating our sine example, this time with Seaborn:</p>
+<div id="d1297ef2" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the x and sin(x) (from above) using seaborn</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>lp <span class="op">=</span> sns.lineplot(x<span class="op">=</span>x, y<span class="op">=</span>y, label<span class="op">=</span><span class="st">'sin(x)'</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># lp is actually a matplotlib axes instance. We can get the figure the axes</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># lives on with:</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> lp.get_figure()</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># now we can save it with</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">'sine-seaborn.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualization-3_files/figure-html/cell-5-output-1.png" width="590" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Notice that we don’t actually need to import matplotlib in this case.</p>
+<p>Alternatively, since Seaborn plots to the current figure, if we create a figure first with matplotlib, Seaborn will plot to that. We can then save the figure:</p>
+<div id="ea6baf3f" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this works too</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>lp <span class="op">=</span> sns.lineplot(x<span class="op">=</span>x, y<span class="op">=</span>y, label<span class="op">=</span><span class="st">'sin(x)'</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">'sine-seaborn.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visualization-3_files/figure-html/cell-6-output-1.png" width="590" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note that in this case, we do need to import matplotlib in order to explicitly create the figure and axes.</p>
 </section>
-<section id="wednesday-102925" class="level2">
-<h2 class="anchored" data-anchor-id="wednesday-102925">Wednesday 10/29/25</h2>
-<p>Creating your own APIs with FastAPI</p>
-<iframe id="kmsembed-1_fr9454ja" width="640" height="360" src="https://video.syr.edu/embed/secure/iframe/entryId/1_fr9454ja/uiConfId/45992161/st/0" class="kmsembed" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" allow="autoplay *; fullscreen *; encrypted-media *" referrerpolicy="no-referrer-when-downgrade" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="IST 356 Lecture - 10-29-25">
-</iframe>
+<section id="displaying-figures-in-a-streamlit-app" class="level2">
+<h2 class="anchored" data-anchor-id="displaying-figures-in-a-streamlit-app">Displaying figures in a Streamlit app</h2>
+<p>You can display a figure in a Streamlit app using Streamlit’s <a href="https://docs.streamlit.io/develop/api-reference/charts/st.pyplot">pyplot</a> function. The pyplot method takes as input a matplotlib figure. Whether you are using matplotlib or Seaborn, you can get the figure by either explicitly creating it first with matplotlib, or using the <code>get_figure</code> method on the axes returned by a Seaborn plotting command. Either way, once you have the figure, you just pass it <code>st.pyplot</code>.</p>
+<p>Here’s an example using Seaborn and the <code>get_figure</code> method:</p>
+<div id="87a387b9" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># let's make a scatter plot of the palmer penguins data</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>pengo <span class="op">=</span> sns.load_dataset(<span class="st">"penguins"</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>pengo[<span class="st">'count'</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#create a figure and series</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>bp <span class="op">=</span> sns.barplot(data<span class="op">=</span>pengo, x<span class="op">=</span><span class="st">"species"</span>, y<span class="op">=</span><span class="st">"count"</span>, hue<span class="op">=</span><span class="st">"species"</span>, estimator<span class="op">=</span><span class="st">"sum"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># add a title</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>bp.set_title(<span class="st">"Total Count by Species"</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># get the figure</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>figure <span class="op">=</span> bp.get_figure()</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># now display it</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>st.pyplot(figure)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 
 
 </section>
@@ -846,13 +978,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../04_data_wrangling/pandas-5.html" class="pagination-link" aria-label="6. Grouping data and creating pivot tables with Pandas">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">6. Grouping data and creating pivot tables with Pandas</span>
+      <a href="../07_visualization/visualization-2.html" class="pagination-link" aria-label="2. More Seaborn plots">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">2. More Seaborn plots</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../05_web_apis/webapi-1.html" class="pagination-link" aria-label="1. REST APIs">
-        <span class="nav-page-text">1. REST APIs</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../07_visualization/visualization-4.html" class="pagination-link" aria-label="3. Creating visualizations with maps">
+        <span class="nav-page-text">3. Creating visualizations with maps</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
