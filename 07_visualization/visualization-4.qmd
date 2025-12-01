@@ -109,7 +109,8 @@ Through the `icon` named argument you can assign an icon to the popup. You must 
 
 Valid colors are: `['red', 'blue', 'green', 'purple', 'orange', 'darkred', 'lightred', 'beige', 'darkblue', 'darkgreen', 'cadetblue', 'darkpurple', 'white', 'pink', 'lightblue', 'lightgreen', 'gray', 'black', 'lightgray']`
 
-Valid icons can be found here: https://fontawesome.com/v4/icons/ Your mileage may vary here as not all the icons listed are available.
+Valid icons can be found here: [https://fontawesome.com/v4/icons/](https://fontawesome.com/v4/icons/)
+Your mileage may vary here as not all the icons listed are available.
 
 ### Mapping a dataframe
 
@@ -149,8 +150,11 @@ map2
 
 Streamlit version of Parkmagic!
 
-The file <a href="../assets/final_cuse_parking_violations.csv">final_cuse_parking_violations.csv</a> (right click the link, then 
-click "Copy Link Location" to get the file's URL) contains a list parking tickets in Syracuse, along with their locations.
+The file
+
+[https://su-ist356-m003-fall-2025.github.io/course-home/assets/final_cuse_parking_violations.csv](../assets/final_cuse_parking_violations.csv)
+
+contains a list parking tickets in Syracuse, along with their locations.
 
 Write a Streamlit app that will load `final_cuse_parking_violations.csv` and create a map of the parking violations in Syracuse.
 
@@ -187,7 +191,7 @@ days  = {
 st.title('Streamlit Park magic')
 
 mp = folium.Map(location=[43.0481, -76.1474], zoom_start=15)
-df = pd.read_csv('../assets/final_cuse_parking_violations.csv')
+df = pd.read_csv('https://su-ist356-m003-fall-2025.github.io/course-home/assets/final_cuse_parking_violations.csv')
 df_dropped = df.dropna()
 status = df_dropped['status'].unique()
 
@@ -250,6 +254,7 @@ Choropleths maps require a GeoDataFrame with a geometry column. The geometry col
 
 First, we'll use a *colormap* from matplotlib. A colormap maps a sequence of numerical values to a sequence of colors.
 Here's the list of available colormaps in matplotlib:
+
 ```{python}
 from matplotlib import colormaps
 print(list(colormaps))
@@ -258,11 +263,14 @@ print(list(colormaps))
 You can see what these look like on the [matplotlib site](https://matplotlib.org/stable/users/explain/colors/colormaps.html).
 
 In the example below we will use the `inferno` colormap to make a plot of fake population
-numbers of towns on the island of St. Lucia. To do this, we use the provided GeoJSON
-file that gives the borders of towns and villages in St. Lucia, [stlucia.geojson](../assets/stlucia.geojson):
+numbers of towns on the island of St. Lucia. To do this, we'll use the file
+
+[https://su-ist356-m003-fall-2025.github.io/course-home/assets/stlucia.geojson](../assets/stlucia.geojson)
+
+This is a GeoJSON file that gives the borders of towns and villages in St. Lucia:
 
 ```{python}
-gdf = gpd.read_file("../assets/stlucia.geojson")
+gdf = gpd.read_file("https://su-ist356-m003-fall-2025.github.io/course-home/assets/stlucia.geojson")
 gdf
 ```
 
@@ -308,11 +316,12 @@ import geopandas as gpd
 
 CENTER_US = (39.8333333,-98.585522)
 u_df = pd.read_csv('https://raw.githubusercontent.com/wrobstory/vincent/master/examples/data/US_Unemployment_Oct2012.csv')
-state_geojson = '../assets/us-states.geojson'
+state_geojson = 'https://su-ist356-m003-fall-2025.github.io/course-home/assets/stlucia.geojson'
 geo = gpd.read_file(state_geojson)
 combined = pd.merge(geo, u_df, left_on='id', right_on='State')
 mp = folium.Map(location=CENTER_US, zoom_start=4)
 out_map = combined.explore(m=mp, column='Unemployment', cmap='YlGn', legend=True)
+out_map
 ```
 
 :::
@@ -337,7 +346,7 @@ st.caption('This is a simple example of how to use Streamlit to create visualiza
 
 # Load the GeoPandas data
 st.write("## Saint Lucia Choropleth")
-gdf = gpd.read_file("./6-viz/data/stlucia.geojson")
+gdf = gpd.read_file("https://su-ist356-m003-fall-2025.github.io/course-home/assets/stlucia.geojson")
 gdf['Amount'] = gdf.apply(lambda row: random.randint(50,275), axis=1)
 st.write(gdf)
 
