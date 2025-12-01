@@ -2,6 +2,8 @@ project:
   type: website
   resources:
     - assets/scratch-*.ipynb
+    - assets/*.csv
+    - assets/*json
   render:
     - "*.qmd"
     - "!assets/*ipynb"

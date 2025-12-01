@@ -1,0 +1,364 @@
+---
+title: '3. Creating visualizations with maps'
+jupyter: python3
+resources:
+    - assets/final_cuse_parking_violations.csv
+    - assets/stlucia.geojson
+    - assets/us-states.geojson
+---
+
+
+In this tutorial you will learn how to create maps with the `folium` and `geopandas`
+packages.
+
+::: {.callout-note}
+To run this tutorial you will need `geopandas` and `folium` installed. You will also
+need `streamlit-folium` to use folium with Streamlit. To install these packages,
+open a Terminal, activate your `ist356` conda environment, and run:
+
+```{bash}
+pip install folium geopandas streamlit-folium
+```
+:::
+
+## Mapping
+
+Mapping is a powerful way to visualize data. You can place points on a map, draw lines, and shade areas.
+
+## Map Visualizations with Folium
+
+To create map visualizations, we will use [folium](https://python-visualization.github.io/folium/latest/),
+which is a Python wrapper for the Leaflet.js library. 
+
+Folium uses [OpenStreetMap](https://www.openstreetmap.org/) for drawing maps.
+It is a free/open source alternative to a service like Google Maps.
+
+```{python}
+import folium
+JMA = (43.0362, -76.1363)
+map1 = folium.Map(location=JMA, zoom_start=18)
+jma_marker = folium.Marker(JMA, popup='JMA Wireless Dome', tooltip="JMA").add_to(map1)
+map1
+```
+
+
+::: {.callout-note}
+# Don't name maps `map`
+Notice in the above block we named the map that we created `map1`. You may be tempted
+to name the map `map` instead. It's perfectly fine for you to do so, however, `map` is
+also the name of a Python in-built function. The [map](https://docs.python.org/3/library/functions.html#map)
+function is used to apply a function to a list of values. If you name an instance
+of a map `map` in your code, you will overwrite the `map` function. This means that you will not
+be able to use the map function in the rest of your code! Even if you don't use the
+`map` function often, you may find that you want to use it at some point in the future.
+For this reason, *it's best not to name map instances `map`.* Call them something else,
+like `map1`, `mp`, etc.
+:::
+
+### Folium and Streamlit
+
+To display folium maps to display in Streamlit, you need to use the `streamlit_folium` module.
+
+This module has two functions: 
+
+- `folium_static` is used to display the map only.
+- `st_folium` is use to display the map and return data while the user interacts with the map.
+
+Here's an example:
+
+```{python}
+#| eval: false
+import folium
+import streamlit as st
+import pandas as pd
+
+import streamlit_folium as sf
+
+
+st.title('Streamlit Folium Example')
+JMA = (43.0362, -76.1363)
+HINDS = (43.0382, -76.1333)
+m1 = folium.Map(location=JMA, zoom_start=16)
+folium.Marker(JMA, popup="JMA Wireless Dome", tooltip="JMA", icon=folium.Icon(color="red")
+).add_to(m1)
+folium.Marker(HINDS, popup="iSchool", tooltip="Hinds Hall", icon=folium.Icon(color="blue")
+).add_to(m1)
+
+st.write('### Folium Map And Data')
+st_data = sf.st_folium(m1, width=725)
+st.write(st_data)
+
+m2 = folium.Map(location=JMA, zoom_start=16)
+folium.Marker(JMA, popup="JMA Wireless Dome", tooltip="JMA", icon=folium.Icon(color="red")
+).add_to(m2)
+folium.Marker(HINDS, popup="iSchool", tooltip="Hinds Hall", icon=folium.Icon(color="blue")
+).add_to(m2)
+
+st.write('### Folium Map Only')
+sf.folium_static(m2, width=725)
+```
+
+### Map Markers Colors and Icons
+
+Through the `icon` named argument you can assign an icon to the popup. You must create a `folium.Icon()` to assign a custom icon. There are three named arguments:
+
+`color=` the color of the marker
+`icon_color=` the color of the icon on the marker
+`icon=` the name of the icon.
+
+
+Valid colors are: `['red', 'blue', 'green', 'purple', 'orange', 'darkred', 'lightred', 'beige', 'darkblue', 'darkgreen', 'cadetblue', 'darkpurple', 'white', 'pink', 'lightblue', 'lightgreen', 'gray', 'black', 'lightgray']`
+
+Valid icons can be found here: https://fontawesome.com/v4/icons/ Your mileage may vary here as not all the icons listed are available.
+
+### Mapping a dataframe
+
+To map a dataframe:
+
+1. we need coordinates
+2. we need to use loop over the data, creating a marker for each row
+
+Here's an example using a dataframe that contains locations of various classes:
+
+```{python}
+import pandas as pd
+classesdf = pd.read_csv("https://raw.githubusercontent.com/mafudge/datasets/master/delimited/class-schedule.csv")
+classesdf.head()
+```
+
+Let's put a marker on the map showing the location of each class:
+
+```{python}
+schine = (43.03986, -76.13375)
+map2 = folium.Map(location=schine, zoom_start=17)
+
+for index, row in classesdf.iterrows():
+    text = f"{row['Course']} {row['Day']} {row['Time']} {row['Building']}"
+    dd = (row['Lat'], row['Lon'])
+    if row['Day'] == "TuTh":
+        markercolor = 'orange'
+    else:
+        markercolor = 'darkblue'
+    marker = folium.Marker(location=dd, popup=text, icon = folium.Icon(color = markercolor, icon="globe"))
+    marker.add_to(map2)
+map2
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 4.1
+
+Streamlit version of Parkmagic!
+
+The file <a href="../assets/final_cuse_parking_violations.csv">final_cuse_parking_violations.csv</a> (right click the link, then 
+click "Copy Link Location" to get the file's URL) contains a list parking tickets in Syracuse, along with their locations.
+
+Write a Streamlit app that will load `final_cuse_parking_violations.csv` and create a map of the parking violations in Syracuse.
+
+Steps to take:
+
+- drop rows without a latitude and longitude
+- provide a dropdown to select the status of the violation
+- place pins on the map with the street name and the violation description
+- color code the pins based on day of the week 
+- to make the map more readable take a random sample of 50 rows from the dataframe (you can do this with the DataFrame's
+[sample](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sample.html) method).
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+#| eval: false
+import pandas as pd
+import streamlit as st
+import folium
+import streamlit_folium as sf
+
+
+days  = {
+    'Sunday': 'red',
+    'Monday': 'orange',
+    'Tuesday': 'beige',
+    'Wednesday': 'green',
+    'Thursday': 'blue',
+    'Friday': 'purple',
+    'Saturday': 'gray'
+}
+
+st.title('Streamlit Park magic')
+
+mp = folium.Map(location=[43.0481, -76.1474], zoom_start=15)
+df = pd.read_csv('../assets/final_cuse_parking_violations.csv')
+df_dropped = df.dropna()
+status = df_dropped['status'].unique()
+
+status = st.selectbox('Select ticket status: ', status)
+
+df_filtered = df_dropped[df_dropped['status'] == status]
+
+df_sample = df_filtered.sample(50)
+
+for i, row in df_sample.iterrows():
+    lat, lon = row['coords'].strip("(").strip(")").split(',') 
+    lat = float(lat.replace("'", ""))
+    lon = float(lon.replace("'", ""))
+    color = days[row['dayofweek']]
+    folium.Marker((lat, lon), popup=row['location'], tooltip=row['location'], icon=folium.Icon(color=color)).add_to(mp)
+
+sf.folium_static(mp)
+```
+:::
+::::
+
+## Geopandas
+
+[Geopandas](https://geopandas.org/) is a library that extends the Pandas library to work with geospatial data. It is built on top of the Shapely, Fiona, and Matplotlib libraries.
+
+Geopandas can read and write data in many formats, including shapefiles, GeoJSON, and PostGIS. It can also display data on a map.
+
+A Pandas DataFrame can be wrapped in a Geopandas' [GeoDataFrame](https://geopandas.org/en/stable/docs/reference/geodataframe.html).
+This adds a `geometry` column to the dataframe that contains information about the shape of the object.
+The geometry can be a POINT, LINE, or PLOYGON. The GeoDataFrame also has an
+[explore](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.explore.html)
+method to display the data on a map.  
+
+Here is an example of a GeoDataFrame wrapped around the class-schedule DataFrame we used earlier:
+
+```{python}
+import geopandas as gpd
+classesdf = pd.read_csv("https://raw.githubusercontent.com/mafudge/datasets/master/delimited/class-schedule.csv")
+gdf = gpd.GeoDataFrame(classesdf, geometry=gpd.points_from_xy(classesdf['Lon'], classesdf['Lat']))
+gdf
+```
+
+With the GeoDataFrame we can easily add markers to a folium map (compare to the multiple lines of code
+we had to use above to accomplish the same thing):
+
+```{python}
+schine = (43.03986, -76.13375)
+map3 = folium.Map(location=schine, zoom_start=17)
+map_out = gdf.explore(m=map3, marker_type="marker")
+map_out
+```
+
+You can read more about how to work with GeoDetaFrames [here](https://geopandas.org/en/stable/getting_started/introduction.html).
+
+## Choropleth Maps in Geopandas
+
+A choropleth map is a map that uses shading to represent the value of a variable. The shading can be based on a single value or a range of values.
+
+Choropleths maps require a GeoDataFrame with a geometry column. The geometry column contains the shapes that will be displayed on the map.
+
+First, we'll use a *colormap* from matplotlib. A colormap maps a sequence of numerical values to a sequence of colors.
+Here's the list of available colormaps in matplotlib:
+```{python}
+from matplotlib import colormaps
+print(list(colormaps))
+```
+
+You can see what these look like on the [matplotlib site](https://matplotlib.org/stable/users/explain/colors/colormaps.html).
+
+In the example below we will use the `inferno` colormap to make a plot of fake population
+numbers of towns on the island of St. Lucia. To do this, we use the provided GeoJSON
+file that gives the borders of towns and villages in St. Lucia, [stlucia.geojson](../assets/stlucia.geojson):
+
+```{python}
+gdf = gpd.read_file("../assets/stlucia.geojson")
+gdf
+```
+
+Now let's illustrate plotting, say, the population of each town. Since this is just for illustrative
+purposes, we'll just create a population column with random numbers. 
+
+```{python}
+import numpy as np
+gdf['Population'] = gdf.apply(lambda row: np.random.randint(5000,50000), axis=1)
+```
+We can now create the Choropleth map illustrating our fake population numbers with:
+
+```{python}
+gdf.explore(column='Population', cmap='inferno')
+```
+
+:::: {.callout-caution appearance="simple" icon="false"}
+### Code Challenge 4.2
+
+The following CSV file contains US unemployment data from October, 2012: 
+
+https://raw.githubusercontent.com/wrobstory/vincent/master/examples/data/US_Unemployment_Oct2012.csv
+
+This GeoJSON file contains the geometry information about US states: [us-states.geojson](../assets/us-states.geojson).
+
+Use these files to create a choropleth map of the unemployment data by state.
+
+1. Load the unemployment data as a Pandas DataFrame.
+2. Load the states' geometry data into geopandas.
+3. Merge the data on a common key.
+4. Explore with geopandas!
+
+To initially center map, use the latitude and longitude of the continental US,
+which is `39.8333333,-98.585522`.
+
+::: {.callout-caution collapse="true" appearance="simple" icon="false"}
+#### Solution
+
+```{python}
+import folium
+import pandas as pd
+import geopandas as gpd
+
+CENTER_US = (39.8333333,-98.585522)
+u_df = pd.read_csv('https://raw.githubusercontent.com/wrobstory/vincent/master/examples/data/US_Unemployment_Oct2012.csv')
+state_geojson = '../assets/us-states.geojson'
+geo = gpd.read_file(state_geojson)
+combined = pd.merge(geo, u_df, left_on='id', right_on='State')
+mp = folium.Map(location=CENTER_US, zoom_start=4)
+out_map = combined.explore(m=mp, column='Unemployment', cmap='YlGn', legend=True)
+```
+
+:::
+::::
+
+###  Geopandas Choropleth Maps in streamlit.
+
+If you plan to use `GeoDataFrame.explore()` then you will need to call `folium_static()` from the `streamlit_folium` module to display the map in Streamlit.
+Here's an example:
+
+```{python}
+#| eval: false
+from numpy import random
+import geopandas as gpd
+import pandas as pd
+import streamlit as st
+import streamlit_folium as sf
+import folium
+
+st.title('Streamlit Geopandas Examples')
+st.caption('This is a simple example of how to use Streamlit to create visualizations with Geopandas')
+
+# Load the GeoPandas data
+st.write("## Saint Lucia Choropleth")
+gdf = gpd.read_file("./6-viz/data/stlucia.geojson")
+gdf['Amount'] = gdf.apply(lambda row: random.randint(50,275), axis=1)
+st.write(gdf)
+
+sf.folium_static(gdf.explore(gdf['Amount']))
+
+wards_df = gpd.read_file("https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/city-of-syracuse/wards.geojson")
+wards_df['amount'] = wards_df.apply(lambda row: random.randint(1,50), axis=1)
+
+st.write('## City of Syracuse Wards - Choropleth')
+st.write(wards_df)
+sf.folium_static(wards_df.explore(wards_df['amount']))
+
+stlucia_df = pd.read_csv("https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/st-lucia/parishes.csv")
+stlucia_df['Amount'] = stlucia_df.apply(lambda row: random.randint(50,500), axis=1)
+
+
+classesdf = pd.read_csv("https://raw.githubusercontent.com/mafudge/datasets/master/delimited/class-schedule.csv")
+gdf = gpd.GeoDataFrame(classesdf, geometry=gpd.points_from_xy(classesdf['Lon'], classesdf['Lat']))
+st.write(gdf)
+schine = (43.03986, -76.13375)
+m = folium.Map(location=schine, zoom_start=17)
+mout = gdf.explore(popup="Course",lat="Lat", lon="Lon", m=m, marker_type="marker")
+sf.folium_static(mout)
+```

@@ -7,3 +7,5 @@ lxml
 playwright
 matplotlib
 seaborn
+geopandas
+folium

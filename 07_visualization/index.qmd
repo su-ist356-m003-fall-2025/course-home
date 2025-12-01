@@ -7,6 +7,8 @@ order: 7
 
 1. [Introduction to maptlotlib and seaborn](visualization-1.qmd) 
 2. [More Seaborn plots](visualization-2.qmd)
+3. [Saving plots and displaying in Streamlit](visualization-3.qmd)
+4. [Creating visualizations with maps](visualization-4.qmd)
 
 ## Lectures
 
