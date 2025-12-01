@@ -12,12 +12,12 @@ In this tutorial you will learn how to create maps with the `folium` and `geopan
 packages.
 
 ::: {.callout-note}
-To run this tutorial you will need `geopandas` and `folium` installed. You will also
+To run this tutorial you will need `geopandas`, `folium`, and `mapclassify` installed. You will also
 need `streamlit-folium` to use folium with Streamlit. To install these packages,
 open a Terminal, activate your `ist356` conda environment, and run:
 
 ```{bash}
-pip install folium geopandas streamlit-folium
+pip install folium geopandas mapclassify streamlit-folium
 ```
 :::
 
@@ -292,9 +292,11 @@ gdf.explore(column='Population', cmap='inferno')
 
 The following CSV file contains US unemployment data from October, 2012: 
 
-https://raw.githubusercontent.com/wrobstory/vincent/master/examples/data/US_Unemployment_Oct2012.csv
+`https://raw.githubusercontent.com/wrobstory/vincent/master/examples/data/US_Unemployment_Oct2012.csv`
 
-This GeoJSON file contains the geometry information about US states: [us-states.geojson](../assets/us-states.geojson).
+This GeoJSON file contains the geometry information about US states: 
+
+`https://su-ist356-m003-fall-2025.github.io/course-home/assets/us-states.geojson`
 
 Use these files to create a choropleth map of the unemployment data by state.
 
@@ -316,7 +318,7 @@ import geopandas as gpd
 
 CENTER_US = (39.8333333,-98.585522)
 u_df = pd.read_csv('https://raw.githubusercontent.com/wrobstory/vincent/master/examples/data/US_Unemployment_Oct2012.csv')
-state_geojson = 'https://su-ist356-m003-fall-2025.github.io/course-home/assets/stlucia.geojson'
+state_geojson = 'https://su-ist356-m003-fall-2025.github.io/course-home/assets/us-states.geojson'
 geo = gpd.read_file(state_geojson)
 combined = pd.merge(geo, u_df, left_on='id', right_on='State')
 mp = folium.Map(location=CENTER_US, zoom_start=4)
