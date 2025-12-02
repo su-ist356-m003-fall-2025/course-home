@@ -200,49 +200,49 @@
   {
     "objectID": "07_visualization/visualization-3.html",
     "href": "07_visualization/visualization-3.html",
-    "title": "3. Sharing plots and Streamlit",
+    "title": "3. Saving plots and displaying in Streamlit",
     "section": "",
     "text": "In the previous tutorials we learned how to create plots and display them in a Jupyter notebook. But how can we share them outside of a notebook?\nIn this tutorial we cover how to save plots so they can be shared/used in reports, and how to display them in a Streamlit app.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization",
-      "3. Sharing plots and Streamlit"
+      "3. Saving plots and displaying in Streamlit"
     ]
   },
   {
     "objectID": "07_visualization/visualization-3.html#saving-figs-matplotlib",
     "href": "07_visualization/visualization-3.html#saving-figs-matplotlib",
-    "title": "3. Sharing plots and Streamlit",
+    "title": "3. Saving plots and displaying in Streamlit",
     "section": "Saving figs: Matplotlib",
     "text": "Saving figs: Matplotlib\nYou can save your plot as a file to disk using matplotlib’s savefig function. The function takes as its first argument a string specifying the full path (including the filename) of the file to create. Multiple file formats are supported (e.g., png, jpeg, pdf, svg); png is most commonly used. The file format is inferred from the file name extension. For example, if you save your figure to plot.png, the figure will be saved as a png file.\nThe savefig function is actually a method of the figure object. As with creating plots, you can save figures either via the explict object-oriented way (my preferred way) or via stateful execution.\n\nExplicit object-oriented way\nLet’s use our example from the first visualization tutorial of plotting a sine wave:\n\nimport numpy as np\nfrom matplotlib import pyplot as plt\n# create the data\nx = np.linspace(0, 2*np.pi, 100)\ny = np.sin(x)\n# plot it\nfig = plt.figure()\nax = fig.add_subplot()\nax.plot(x, y)\nax.set_xlabel('x')\nax.set_ylabel('sin(x)')\n\nText(0, 0.5, 'sin(x)')\n\n\n\n\n\n\n\n\n\nNow to save it (here, as a png):\n\nfig.savefig('sine.png')\n\nThe savefig argument also takes other arugments. One of the most common to use is dpi. This sets the resolution of the plot. The default is based on your system settings, but is typically 100 dots/inch. This can sometimes be too pixelated, especially if you are embedding the plot in a document that you wish to print. Set dpi=300 for typical publication-quailty pngs.\n\n\nStateful way\nThe same code above, but using stateful execution:\n\nimport numpy as np\nfrom matplotlib import pyplot as plt\n# create the data\nx = np.linspace(0, 2*np.pi, 100)\ny = np.sin(x)\n# plot it\nplt.plot(x, y)\nplt.xlabel('x')\nplt.ylabel('sin(x)')\n# save it\nplt.savefig('sine.png')",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization",
-      "3. Sharing plots and Streamlit"
+      "3. Saving plots and displaying in Streamlit"
     ]
   },
   {
     "objectID": "07_visualization/visualization-3.html#saving-figs-seaborn",
     "href": "07_visualization/visualization-3.html#saving-figs-seaborn",
-    "title": "3. Sharing plots and Streamlit",
+    "title": "3. Saving plots and displaying in Streamlit",
     "section": "Saving figs: Seaborn",
     "text": "Saving figs: Seaborn\nSeaborn, being built on top of matplotlib, just uses matplotlib’s savefig method to save plots. To do that you can explicitly get the figure using the get_figure() method. This method can be called on the objects returned by a Seaborn plotting command (which are actually returning matplotlib Axes instances).\nRepeating our sine example, this time with Seaborn:\n\nimport seaborn as sns\n# plot the x and sin(x) (from above) using seaborn\nlp = sns.lineplot(x=x, y=y, label='sin(x)')\n\n# lp is actually a matplotlib axes instance. We can get the figure the axes\n# lives on with:\nfig = lp.get_figure()\n\n# now we can save it with\nfig.savefig('sine-seaborn.png')\n\n\n\n\n\n\n\n\nNotice that we don’t actually need to import matplotlib in this case.\nAlternatively, since Seaborn plots to the current figure, if we create a figure first with matplotlib, Seaborn will plot to that. We can then save the figure:\n\n# this works too\nfig = plt.figure()\nax = fig.add_subplot()\nlp = sns.lineplot(x=x, y=y, label='sin(x)')\nfig.savefig('sine-seaborn.png')\n\n\n\n\n\n\n\n\nNote that in this case, we do need to import matplotlib in order to explicitly create the figure and axes.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization",
-      "3. Sharing plots and Streamlit"
+      "3. Saving plots and displaying in Streamlit"
     ]
   },
   {
     "objectID": "07_visualization/visualization-3.html#displaying-figures-in-a-streamlit-app",
     "href": "07_visualization/visualization-3.html#displaying-figures-in-a-streamlit-app",
-    "title": "3. Sharing plots and Streamlit",
+    "title": "3. Saving plots and displaying in Streamlit",
     "section": "Displaying figures in a Streamlit app",
     "text": "Displaying figures in a Streamlit app\nYou can display a figure in a Streamlit app using Streamlit’s pyplot function. The pyplot method takes as input a matplotlib figure. Whether you are using matplotlib or Seaborn, you can get the figure by either explicitly creating it first with matplotlib, or using the get_figure method on the axes returned by a Seaborn plotting command. Either way, once you have the figure, you just pass it st.pyplot.\nHere’s an example using Seaborn and the get_figure method:\n\nimport seaborn as sns\nimport streamlit as st\n\n# let's make a scatter plot of the palmer penguins data\npengo = sns.load_dataset(\"penguins\")\npengo['count'] = 1\n\n#create a figure and series\nbp = sns.barplot(data=pengo, x=\"species\", y=\"count\", hue=\"species\", estimator=\"sum\")\n# add a title\nbp.set_title(\"Total Count by Species\")\n# get the figure\nfigure = bp.get_figure()\n# now display it\nst.pyplot(figure)",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization",
-      "3. Sharing plots and Streamlit"
+      "3. Saving plots and displaying in Streamlit"
     ]
   },
   {
@@ -2634,7 +2634,7 @@
     "href": "07_visualization/index.html#lectures",
     "title": "7. Visualization",
     "section": "Lectures",
-    "text": "Lectures\n\nMonday 11/17/25\nIntroduction to matplotlib and seaborn\n\n\n\n\nWednesday 11/19/25\nFinal project overview; more Seaborn plots\nNote: Around the 35:00 mark, I switched back from the iPad to the computer. Unfortunately the focus did not switch from my iPad to my laptop in the Zoom recording, so you can only see VS code in the small inset. I was basically follwoing the tutorial; refer to that for to see the commands I was using.",
+    "text": "Lectures\n\nMonday 11/17/25\nIntroduction to matplotlib and seaborn\n\n\n\n\nWednesday 11/19/25\nFinal project overview; more Seaborn plots\nNote: Around the 35:00 mark, I switched back from the iPad to the computer. Unfortunately the focus did not switch from my iPad to my laptop in the Zoom recording, so you can only see VS code in the small inset. I was basically follwoing the tutorial; refer to that for to see the commands I was using.\n\n\n\n\nMonday 12/1/25\nSaving plots and displaying in Streamlit; creating visualizations with maps",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization"
@@ -2727,61 +2727,61 @@
   {
     "objectID": "07_visualization/visualization-4.html",
     "href": "07_visualization/visualization-4.html",
-    "title": "3. Creating visualizations with maps",
+    "title": "4. Creating visualizations with maps",
     "section": "",
     "text": "In this tutorial you will learn how to create maps with the folium and geopandas packages.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization",
-      "3. Creating visualizations with maps"
+      "4. Creating visualizations with maps"
     ]
   },
   {
     "objectID": "07_visualization/visualization-4.html#mapping",
     "href": "07_visualization/visualization-4.html#mapping",
-    "title": "3. Creating visualizations with maps",
+    "title": "4. Creating visualizations with maps",
     "section": "Mapping",
     "text": "Mapping\nMapping is a powerful way to visualize data. You can place points on a map, draw lines, and shade areas.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization",
-      "3. Creating visualizations with maps"
+      "4. Creating visualizations with maps"
     ]
   },
   {
     "objectID": "07_visualization/visualization-4.html#map-visualizations-with-folium",
     "href": "07_visualization/visualization-4.html#map-visualizations-with-folium",
-    "title": "3. Creating visualizations with maps",
+    "title": "4. Creating visualizations with maps",
     "section": "Map Visualizations with Folium",
     "text": "Map Visualizations with Folium\nTo create map visualizations, we will use folium, which is a Python wrapper for the Leaflet.js library.\nFolium uses OpenStreetMap for drawing maps. It is a free/open source alternative to a service like Google Maps.\n\nimport folium\nJMA = (43.0362, -76.1363)\nmap1 = folium.Map(location=JMA, zoom_start=18)\njma_marker = folium.Marker(JMA, popup='JMA Wireless Dome', tooltip=\"JMA\").add_to(map1)\nmap1\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook\n\n\n\n\n\n\n\n\nNoteDon’t name maps map\n\n\n\nNotice in the above block we named the map that we created map1. You may be tempted to name the map map instead. It’s perfectly fine for you to do so, however, map is also the name of a Python in-built function. The map function is used to apply a function to a list of values. If you name an instance of a map map in your code, you will overwrite the map function. This means that you will not be able to use the map function in the rest of your code! Even if you don’t use the map function often, you may find that you want to use it at some point in the future. For this reason, it’s best not to name map instances map. Call them something else, like map1, mp, etc.\n\n\n\nFolium and Streamlit\nTo display folium maps to display in Streamlit, you need to use the streamlit_folium module.\nThis module has two functions:\n\nfolium_static is used to display the map only.\nst_folium is use to display the map and return data while the user interacts with the map.\n\nHere’s an example:\n\nimport folium\nimport streamlit as st\nimport pandas as pd\n\nimport streamlit_folium as sf\n\n\nst.title('Streamlit Folium Example')\nJMA = (43.0362, -76.1363)\nHINDS = (43.0382, -76.1333)\nm1 = folium.Map(location=JMA, zoom_start=16)\nfolium.Marker(JMA, popup=\"JMA Wireless Dome\", tooltip=\"JMA\", icon=folium.Icon(color=\"red\")\n).add_to(m1)\nfolium.Marker(HINDS, popup=\"iSchool\", tooltip=\"Hinds Hall\", icon=folium.Icon(color=\"blue\")\n).add_to(m1)\n\nst.write('### Folium Map And Data')\nst_data = sf.st_folium(m1, width=725)\nst.write(st_data)\n\nm2 = folium.Map(location=JMA, zoom_start=16)\nfolium.Marker(JMA, popup=\"JMA Wireless Dome\", tooltip=\"JMA\", icon=folium.Icon(color=\"red\")\n).add_to(m2)\nfolium.Marker(HINDS, popup=\"iSchool\", tooltip=\"Hinds Hall\", icon=folium.Icon(color=\"blue\")\n).add_to(m2)\n\nst.write('### Folium Map Only')\nsf.folium_static(m2, width=725)\n\n\n\nMap Markers Colors and Icons\nThrough the icon named argument you can assign an icon to the popup. You must create a folium.Icon() to assign a custom icon. There are three named arguments:\ncolor= the color of the marker icon_color= the color of the icon on the marker icon= the name of the icon.\nValid colors are: ['red', 'blue', 'green', 'purple', 'orange', 'darkred', 'lightred', 'beige', 'darkblue', 'darkgreen', 'cadetblue', 'darkpurple', 'white', 'pink', 'lightblue', 'lightgreen', 'gray', 'black', 'lightgray']\nValid icons can be found here: https://fontawesome.com/v4/icons/ Your mileage may vary here as not all the icons listed are available.\n\n\nMapping a dataframe\nTo map a dataframe:\n\nwe need coordinates\nwe need to use loop over the data, creating a marker for each row\n\nHere’s an example using a dataframe that contains locations of various classes:\n\nimport pandas as pd\nclassesdf = pd.read_csv(\"https://raw.githubusercontent.com/mafudge/datasets/master/delimited/class-schedule.csv\")\nclassesdf.head()\n\n\n\n\n\n\n\n\nCourse\nDay\nTime\nBuilding\nRoom\nLat\nLon\n\n\n\n\n0\nIST256\nM\n3:45pm\nHBC\nGifford\n43.03819\n-76.13413\n\n\n1\nMAT221\nTuTh\n12:45pm\nBowne\n104\n43.03674\n-76.13320\n\n\n2\nWRT206\nMW\n9:20am\nCrouse\n111\n43.03852\n-76.13676\n\n\n3\nCOM222\nTuTh\n9:20am\nNH II\n232\n43.04020\n-76.13521\n\n\n4\nIST343\nMW\n2:15pm\nHinds\n243\n43.03834\n-76.13364\n\n\n\n\n\n\n\nLet’s put a marker on the map showing the location of each class:\n\nschine = (43.03986, -76.13375)\nmap2 = folium.Map(location=schine, zoom_start=17)\n\nfor index, row in classesdf.iterrows():\n    text = f\"{row['Course']} {row['Day']} {row['Time']} {row['Building']}\"\n    dd = (row['Lat'], row['Lon'])\n    if row['Day'] == \"TuTh\":\n        markercolor = 'orange'\n    else:\n        markercolor = 'darkblue'\n    marker = folium.Marker(location=dd, popup=text, icon = folium.Icon(color = markercolor, icon=\"globe\"))\n    marker.add_to(map2)\nmap2\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook\n\n\n\n\n\n\n\n\nCautionCode Challenge 4.1\n\n\n\nStreamlit version of Parkmagic!\nThe file\nhttps://su-ist356-m003-fall-2025.github.io/course-home/assets/final_cuse_parking_violations.csv\ncontains a list parking tickets in Syracuse, along with their locations.\nWrite a Streamlit app that will load final_cuse_parking_violations.csv and create a map of the parking violations in Syracuse.\nSteps to take:\n\ndrop rows without a latitude and longitude\nprovide a dropdown to select the status of the violation\nplace pins on the map with the street name and the violation description\ncolor code the pins based on day of the week\nto make the map more readable take a random sample of 50 rows from the dataframe (you can do this with the DataFrame’s sample method).\n\n\n\n\n\n\n\nCautionSolution\n\n\n\n\n\n\nimport pandas as pd\nimport streamlit as st\nimport folium\nimport streamlit_folium as sf\n\n\ndays  = {\n    'Sunday': 'red',\n    'Monday': 'orange',\n    'Tuesday': 'beige',\n    'Wednesday': 'green',\n    'Thursday': 'blue',\n    'Friday': 'purple',\n    'Saturday': 'gray'\n}\n\nst.title('Streamlit Park magic')\n\nmp = folium.Map(location=[43.0481, -76.1474], zoom_start=15)\ndf = pd.read_csv('https://su-ist356-m003-fall-2025.github.io/course-home/assets/final_cuse_parking_violations.csv')\ndf_dropped = df.dropna()\nstatus = df_dropped['status'].unique()\n\nstatus = st.selectbox('Select ticket status: ', status)\n\ndf_filtered = df_dropped[df_dropped['status'] == status]\n\ndf_sample = df_filtered.sample(50)\n\nfor i, row in df_sample.iterrows():\n    lat, lon = row['coords'].strip(\"(\").strip(\")\").split(',') \n    lat = float(lat.replace(\"'\", \"\"))\n    lon = float(lon.replace(\"'\", \"\"))\n    color = days[row['dayofweek']]\n    folium.Marker((lat, lon), popup=row['location'], tooltip=row['location'], icon=folium.Icon(color=color)).add_to(mp)\n\nsf.folium_static(mp)",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization",
-      "3. Creating visualizations with maps"
+      "4. Creating visualizations with maps"
     ]
   },
   {
     "objectID": "07_visualization/visualization-4.html#geopandas",
     "href": "07_visualization/visualization-4.html#geopandas",
-    "title": "3. Creating visualizations with maps",
+    "title": "4. Creating visualizations with maps",
     "section": "Geopandas",
     "text": "Geopandas\nGeopandas is a library that extends the Pandas library to work with geospatial data. It is built on top of the Shapely, Fiona, and Matplotlib libraries.\nGeopandas can read and write data in many formats, including shapefiles, GeoJSON, and PostGIS. It can also display data on a map.\nA Pandas DataFrame can be wrapped in a Geopandas’ GeoDataFrame. This adds a geometry column to the dataframe that contains information about the shape of the object. The geometry can be a POINT, LINE, or PLOYGON. The GeoDataFrame also has an explore method to display the data on a map.\nHere is an example of a GeoDataFrame wrapped around the class-schedule DataFrame we used earlier:\n\nimport geopandas as gpd\nclassesdf = pd.read_csv(\"https://raw.githubusercontent.com/mafudge/datasets/master/delimited/class-schedule.csv\")\ngdf = gpd.GeoDataFrame(classesdf, geometry=gpd.points_from_xy(classesdf['Lon'], classesdf['Lat']))\ngdf\n\n\n\n\n\n\n\n\nCourse\nDay\nTime\nBuilding\nRoom\nLat\nLon\ngeometry\n\n\n\n\n0\nIST256\nM\n3:45pm\nHBC\nGifford\n43.03819\n-76.13413\nPOINT (-76.13413 43.03819)\n\n\n1\nMAT221\nTuTh\n12:45pm\nBowne\n104\n43.03674\n-76.13320\nPOINT (-76.1332 43.03674)\n\n\n2\nWRT206\nMW\n9:20am\nCrouse\n111\n43.03852\n-76.13676\nPOINT (-76.13676 43.03852)\n\n\n3\nCOM222\nTuTh\n9:20am\nNH II\n232\n43.04020\n-76.13521\nPOINT (-76.13521 43.0402)\n\n\n4\nIST343\nMW\n2:15pm\nHinds\n243\n43.03834\n-76.13364\nPOINT (-76.13364 43.03834)\n\n\n\n\n\n\n\nWith the GeoDataFrame we can easily add markers to a folium map (compare to the multiple lines of code we had to use above to accomplish the same thing):\n\nschine = (43.03986, -76.13375)\nmap3 = folium.Map(location=schine, zoom_start=17)\nmap_out = gdf.explore(m=map3, marker_type=\"marker\")\nmap_out\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook\n\n\nYou can read more about how to work with GeoDetaFrames here.",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization",
-      "3. Creating visualizations with maps"
+      "4. Creating visualizations with maps"
     ]
   },
   {
     "objectID": "07_visualization/visualization-4.html#choropleth-maps-in-geopandas",
     "href": "07_visualization/visualization-4.html#choropleth-maps-in-geopandas",
-    "title": "3. Creating visualizations with maps",
+    "title": "4. Creating visualizations with maps",
     "section": "Choropleth Maps in Geopandas",
     "text": "Choropleth Maps in Geopandas\nA choropleth map is a map that uses shading to represent the value of a variable. The shading can be based on a single value or a range of values.\nChoropleths maps require a GeoDataFrame with a geometry column. The geometry column contains the shapes that will be displayed on the map.\nFirst, we’ll use a colormap from matplotlib. A colormap maps a sequence of numerical values to a sequence of colors. Here’s the list of available colormaps in matplotlib:\n\nfrom matplotlib import colormaps\nprint(list(colormaps))\n\n['magma', 'inferno', 'plasma', 'viridis', 'cividis', 'twilight', 'twilight_shifted', 'turbo', 'berlin', 'managua', 'vanimo', 'Blues', 'BrBG', 'BuGn', 'BuPu', 'CMRmap', 'GnBu', 'Greens', 'Greys', 'OrRd', 'Oranges', 'PRGn', 'PiYG', 'PuBu', 'PuBuGn', 'PuOr', 'PuRd', 'Purples', 'RdBu', 'RdGy', 'RdPu', 'RdYlBu', 'RdYlGn', 'Reds', 'Spectral', 'Wistia', 'YlGn', 'YlGnBu', 'YlOrBr', 'YlOrRd', 'afmhot', 'autumn', 'binary', 'bone', 'brg', 'bwr', 'cool', 'coolwarm', 'copper', 'cubehelix', 'flag', 'gist_earth', 'gist_gray', 'gist_heat', 'gist_ncar', 'gist_rainbow', 'gist_stern', 'gist_yarg', 'gnuplot', 'gnuplot2', 'gray', 'hot', 'hsv', 'jet', 'nipy_spectral', 'ocean', 'pink', 'prism', 'rainbow', 'seismic', 'spring', 'summer', 'terrain', 'winter', 'Accent', 'Dark2', 'Paired', 'Pastel1', 'Pastel2', 'Set1', 'Set2', 'Set3', 'tab10', 'tab20', 'tab20b', 'tab20c', 'grey', 'gist_grey', 'gist_yerg', 'Grays', 'magma_r', 'inferno_r', 'plasma_r', 'viridis_r', 'cividis_r', 'twilight_r', 'twilight_shifted_r', 'turbo_r', 'berlin_r', 'managua_r', 'vanimo_r', 'Blues_r', 'BrBG_r', 'BuGn_r', 'BuPu_r', 'CMRmap_r', 'GnBu_r', 'Greens_r', 'Greys_r', 'OrRd_r', 'Oranges_r', 'PRGn_r', 'PiYG_r', 'PuBu_r', 'PuBuGn_r', 'PuOr_r', 'PuRd_r', 'Purples_r', 'RdBu_r', 'RdGy_r', 'RdPu_r', 'RdYlBu_r', 'RdYlGn_r', 'Reds_r', 'Spectral_r', 'Wistia_r', 'YlGn_r', 'YlGnBu_r', 'YlOrBr_r', 'YlOrRd_r', 'afmhot_r', 'autumn_r', 'binary_r', 'bone_r', 'brg_r', 'bwr_r', 'cool_r', 'coolwarm_r', 'copper_r', 'cubehelix_r', 'flag_r', 'gist_earth_r', 'gist_gray_r', 'gist_heat_r', 'gist_ncar_r', 'gist_rainbow_r', 'gist_stern_r', 'gist_yarg_r', 'gnuplot_r', 'gnuplot2_r', 'gray_r', 'hot_r', 'hsv_r', 'jet_r', 'nipy_spectral_r', 'ocean_r', 'pink_r', 'prism_r', 'rainbow_r', 'seismic_r', 'spring_r', 'summer_r', 'terrain_r', 'winter_r', 'Accent_r', 'Dark2_r', 'Paired_r', 'Pastel1_r', 'Pastel2_r', 'Set1_r', 'Set2_r', 'Set3_r', 'tab10_r', 'tab20_r', 'tab20b_r', 'tab20c_r', 'grey_r', 'gist_grey_r', 'gist_yerg_r', 'Grays_r']\n\n\nYou can see what these look like on the matplotlib site.\nIn the example below we will use the inferno colormap to make a plot of fake population numbers of towns on the island of St. Lucia. To do this, we’ll use the file\nhttps://su-ist356-m003-fall-2025.github.io/course-home/assets/stlucia.geojson\nThis is a GeoJSON file that gives the borders of towns and villages in St. Lucia:\n\ngdf = gpd.read_file(\"https://su-ist356-m003-fall-2025.github.io/course-home/assets/stlucia.geojson\")\ngdf\n\n\n\n\n\n\n\n\nsource\nid\nname\ngeometry\n\n\n\n\n0\nhttps://simplemaps.com\nLC06\nGros Islet\nPOLYGON ((-60.97997 14.04352, -60.97606 14.061...\n\n\n1\nhttps://simplemaps.com\nLC02\nCastries\nPOLYGON ((-60.97997 14.04352, -60.96559 14.034...\n\n\n2\nhttps://simplemaps.com\nLC01\nAnse-la-Raye\nPOLYGON ((-61.0266 13.98737, -61.00945 13.9817...\n\n\n3\nhttps://simplemaps.com\nLC10\nSoufrière\nPOLYGON ((-60.98063 13.8928, -60.97185 13.8827...\n\n\n4\nhttps://simplemaps.com\nLC03\nChoiseul\nPOLYGON ((-61.0681 13.79218, -61.04956 13.8063...\n\n\n5\nhttps://simplemaps.com\nLC07\nLaborie\nPOLYGON ((-61.01892 13.75625, -61.01203 13.770...\n\n\n6\nhttps://simplemaps.com\nLC11\nVieux Fort\nPOLYGON ((-60.98158 13.83577, -60.97522 13.839...\n\n\n7\nhttps://simplemaps.com\nLC08\nMicoud\nPOLYGON ((-60.97522 13.83923, -60.96433 13.845...\n\n\n8\nhttps://simplemaps.com\nLC09\nPraslin\nPOLYGON ((-60.96057 13.87901, -60.96057 13.900...\n\n\n9\nhttps://simplemaps.com\nLC05\nDennery\nPOLYGON ((-60.96057 13.90032, -60.95681 13.927...\n\n\n10\nhttps://simplemaps.com\nLC04\nDauphin\nPOLYGON ((-60.93559 14.01796, -60.933 14.03692...\n\n\n\n\n\n\n\nNow let’s illustrate plotting, say, the population of each town. Since this is just for illustrative purposes, we’ll just create a population column with random numbers.\n\nimport numpy as np\ngdf['Population'] = gdf.apply(lambda row: np.random.randint(5000,50000), axis=1)\n\nWe can now create the Choropleth map illustrating our fake population numbers with:\n\ngdf.explore(column='Population', cmap='inferno')\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook\n\n\n\n\n\n\n\n\nCautionCode Challenge 4.2\n\n\n\nThe following CSV file contains US unemployment data from October, 2012:\nhttps://raw.githubusercontent.com/wrobstory/vincent/master/examples/data/US_Unemployment_Oct2012.csv\nThis GeoJSON file contains the geometry information about US states:\nhttps://su-ist356-m003-fall-2025.github.io/course-home/assets/us-states.geojson\nUse these files to create a choropleth map of the unemployment data by state.\n\nLoad the unemployment data as a Pandas DataFrame.\nLoad the states’ geometry data into geopandas.\nMerge the data on a common key.\nExplore with geopandas!\n\nTo initially center map, use the latitude and longitude of the continental US, which is 39.8333333,-98.585522.\n\n\n\n\n\n\nCautionSolution\n\n\n\n\n\n\nimport folium\nimport pandas as pd\nimport geopandas as gpd\n\nCENTER_US = (39.8333333,-98.585522)\nu_df = pd.read_csv('https://raw.githubusercontent.com/wrobstory/vincent/master/examples/data/US_Unemployment_Oct2012.csv')\nstate_geojson = 'https://su-ist356-m003-fall-2025.github.io/course-home/assets/us-states.geojson'\ngeo = gpd.read_file(state_geojson)\ncombined = pd.merge(geo, u_df, left_on='id', right_on='State')\nmp = folium.Map(location=CENTER_US, zoom_start=4)\nout_map = combined.explore(m=mp, column='Unemployment', cmap='YlGn', legend=True)\nout_map\n\nMake this Notebook Trusted to load map: File -&gt; Trust Notebook\n\n\n\n\n\n\n\n\nGeopandas Choropleth Maps in streamlit.\nIf you plan to use GeoDataFrame.explore() then you will need to call folium_static() from the streamlit_folium module to display the map in Streamlit. Here’s an example:\n\nfrom numpy import random\nimport geopandas as gpd\nimport pandas as pd\nimport streamlit as st\nimport streamlit_folium as sf\nimport folium\n\nst.title('Streamlit Geopandas Examples')\nst.caption('This is a simple example of how to use Streamlit to create visualizations with Geopandas')\n\n# Load the GeoPandas data\nst.write(\"## Saint Lucia Choropleth\")\ngdf = gpd.read_file(\"https://su-ist356-m003-fall-2025.github.io/course-home/assets/stlucia.geojson\")\ngdf['Amount'] = gdf.apply(lambda row: random.randint(50,275), axis=1)\nst.write(gdf)\n\nsf.folium_static(gdf.explore(gdf['Amount']))\n\nwards_df = gpd.read_file(\"https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/city-of-syracuse/wards.geojson\")\nwards_df['amount'] = wards_df.apply(lambda row: random.randint(1,50), axis=1)\n\nst.write('## City of Syracuse Wards - Choropleth')\nst.write(wards_df)\nsf.folium_static(wards_df.explore(wards_df['amount']))\n\nstlucia_df = pd.read_csv(\"https://raw.githubusercontent.com/mafudge/datasets/refs/heads/master/st-lucia/parishes.csv\")\nstlucia_df['Amount'] = stlucia_df.apply(lambda row: random.randint(50,500), axis=1)\n\n\nclassesdf = pd.read_csv(\"https://raw.githubusercontent.com/mafudge/datasets/master/delimited/class-schedule.csv\")\ngdf = gpd.GeoDataFrame(classesdf, geometry=gpd.points_from_xy(classesdf['Lon'], classesdf['Lat']))\nst.write(gdf)\nschine = (43.03986, -76.13375)\nm = folium.Map(location=schine, zoom_start=17)\nmout = gdf.explore(popup=\"Course\",lat=\"Lat\", lon=\"Lon\", m=m, marker_type=\"marker\")\nsf.folium_static(mout)",
     "crumbs": [
       "<img src='/images/ischool_logo_reverseX2.png' height='30'>",
       "7. Visualization",
-      "3. Creating visualizations with maps"
+      "4. Creating visualizations with maps"
     ]
   },
   {

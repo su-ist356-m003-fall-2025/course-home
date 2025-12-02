@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3. Sharing plots and Streamlit – IST 356 Fall 2025</title>
+<title>3. Saving plots and displaying in Streamlit – IST 356 Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,13 +106,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="3. Sharing plots and Streamlit – IST 356 Fall 2025">
+<meta property="og:title" content="3. Saving plots and displaying in Streamlit – IST 356 Fall 2025">
 <meta property="og:description" content="">
 <meta property="og:image" content="enter_gitHub_pages_URL_here/07_visualization/visualization-3_files/figure-html/cell-2-output-2.png">
 <meta property="og:site_name" content="IST 356 Fall 2025">
 <meta property="og:image:height" content="858">
 <meta property="og:image:width" content="1216">
-<meta name="twitter:title" content="3. Sharing plots and Streamlit – IST 356 Fall 2025">
+<meta name="twitter:title" content="3. Saving plots and displaying in Streamlit – IST 356 Fall 2025">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="enter_gitHub_pages_URL_here/07_visualization/visualization-3_files/figure-html/cell-2-output-2.png">
 <meta name="twitter:image-height" content="858">
@@ -147,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07_visualization/index.html">7. Visualization</a></li><li class="breadcrumb-item"><a href="../07_visualization/visualization-3.html">3. Sharing plots and Streamlit</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07_visualization/index.html">7. Visualization</a></li><li class="breadcrumb-item"><a href="../07_visualization/visualization-3.html">3. Saving plots and displaying in Streamlit</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -381,13 +381,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../07_visualization/visualization-3.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">3. Sharing plots and Streamlit</span></a>
+ <span class="menu-text">3. Saving plots and displaying in Streamlit</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../07_visualization/visualization-4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3. Creating visualizations with maps</span></a>
+ <span class="menu-text">4. Creating visualizations with maps</span></a>
   </div>
 </li>
       </ul>
@@ -427,9 +427,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07_visualization/index.html">7. Visualization</a></li><li class="breadcrumb-item"><a href="../07_visualization/visualization-3.html">3. Sharing plots and Streamlit</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../07_visualization/index.html">7. Visualization</a></li><li class="breadcrumb-item"><a href="../07_visualization/visualization-3.html">3. Saving plots and displaying in Streamlit</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">3. Sharing plots and Streamlit</h1>
+<h1 class="title">3. Saving plots and displaying in Streamlit</h1>
 </div>
 
 
@@ -455,7 +455,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="explicit-object-oriented-way" class="level3">
 <h3 class="anchored" data-anchor-id="explicit-object-oriented-way">Explicit object-oriented way</h3>
 <p>Let’s use our example from the <a href="../07_visualization/visualization-1.html">first visualization tutorial</a> of plotting a sine wave:</p>
-<div id="bffb2b75" class="cell" data-execution_count="1">
+<div id="9edaa753" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create the data</span></span>
@@ -479,7 +479,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Now to save it (here, as a png):</p>
-<div id="bc52ddc2" class="cell" data-execution_count="2">
+<div id="9edde5fd" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">'sine.png'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The savefig argument also takes other arugments. One of the most common to use is <code>dpi</code>. This sets the resolution of the plot. The default is based on your system settings, but is typically 100 dots/inch. This can sometimes be too pixelated, especially if you are embedding the plot in a document that you wish to print. Set <code>dpi=300</code> for typical publication-quailty pngs.</p>
@@ -487,7 +487,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="stateful-way" class="level3">
 <h3 class="anchored" data-anchor-id="stateful-way">Stateful way</h3>
 <p>The same code above, but using stateful execution:</p>
-<div id="7068b88c" class="cell" data-execution_count="3">
+<div id="81e9c3d1" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create the data</span></span>
@@ -513,7 +513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="saving-figs-seaborn">Saving figs: Seaborn</h2>
 <p>Seaborn, being built on top of matplotlib, just uses matplotlib’s savefig method to save plots. To do that you can explicitly get the figure using the <code>get_figure()</code> method. This method can be called on the objects returned by a Seaborn plotting command (which are actually returning matplotlib Axes instances).</p>
 <p>Repeating our sine example, this time with Seaborn:</p>
-<div id="d1297ef2" class="cell" data-execution_count="4">
+<div id="076766db" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the x and sin(x) (from above) using seaborn</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>lp <span class="op">=</span> sns.lineplot(x<span class="op">=</span>x, y<span class="op">=</span>y, label<span class="op">=</span><span class="st">'sin(x)'</span>)</span>
@@ -534,7 +534,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Notice that we don’t actually need to import matplotlib in this case.</p>
 <p>Alternatively, since Seaborn plots to the current figure, if we create a figure first with matplotlib, Seaborn will plot to that. We can then save the figure:</p>
-<div id="ea6baf3f" class="cell" data-execution_count="5">
+<div id="05f18818" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this works too</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot()</span>
@@ -554,7 +554,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="displaying-figures-in-a-streamlit-app">Displaying figures in a Streamlit app</h2>
 <p>You can display a figure in a Streamlit app using Streamlit’s <a href="https://docs.streamlit.io/develop/api-reference/charts/st.pyplot">pyplot</a> function. The pyplot method takes as input a matplotlib figure. Whether you are using matplotlib or Seaborn, you can get the figure by either explicitly creating it first with matplotlib, or using the <code>get_figure</code> method on the axes returned by a Seaborn plotting command. Either way, once you have the figure, you just pass it <code>st.pyplot</code>.</p>
 <p>Here’s an example using Seaborn and the <code>get_figure</code> method:</p>
-<div id="87a387b9" class="cell" data-execution_count="6">
+<div id="61446012" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -983,8 +983,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../07_visualization/visualization-4.html" class="pagination-link" aria-label="3. Creating visualizations with maps">
-        <span class="nav-page-text">3. Creating visualizations with maps</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../07_visualization/visualization-4.html" class="pagination-link" aria-label="4. Creating visualizations with maps">
+        <span class="nav-page-text">4. Creating visualizations with maps</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
