@@ -1,5 +1,5 @@
 ---
-title: '3. Sharing plots and Streamlit'
+title: '3. Saving plots and displaying in Streamlit'
 jupyter: python3
 ---
 

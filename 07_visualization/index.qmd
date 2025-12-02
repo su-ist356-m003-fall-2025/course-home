@@ -26,3 +26,9 @@ Final project overview; more Seaborn plots
 *Note*: Around the 35:00 mark, I switched back from the iPad to the computer. Unfortunately the focus did not switch from my iPad to my laptop in the Zoom recording, so you can only see VS code in the small inset. I was basically follwoing the [tutorial](visualization-2.qmd); refer to that for to see the commands I was using.
 
 <iframe id="kmsembed-1_3tumyoga" width="640" height="360" src="https://video.syr.edu/embed/secure/iframe/entryId/1_3tumyoga/uiConfId/45992161/st/0" class="kmsembed" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" referrerPolicy="no-referrer-when-downgrade" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="IST 356 Lecture - 11-19-25"></iframe>
+
+### Monday 12/1/25
+
+Saving plots and displaying in Streamlit; creating visualizations with maps
+
+<iframe id="kmsembed-1_w4cyuxqf" width="640" height="360" src="https://video.syr.edu/embed/secure/iframe/entryId/1_w4cyuxqf/uiConfId/45992161/st/0" class="kmsembed" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" referrerPolicy="no-referrer-when-downgrade" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="IST 356 Lecture - 12-1-25"></iframe>
